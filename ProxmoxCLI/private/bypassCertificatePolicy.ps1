@@ -1,4 +1,4 @@
-function Get-TrustAllCertsPolicy () {
+function GetTrustAllCertsPolicy () {
     # Trust all certs as we don't use an internal CA
     # Remove this if you do use an internal CA or are using an external CA
     add-type @"
@@ -16,10 +16,10 @@ public class TrustAllCertsPolicy : ICertificatePolicy {
     return $(New-Object TrustAllCertsPolicy)
 }
 
-function Set-CertificatePolicy ($Func) {
+function SetCertificatePolicy ($Func) {
     [System.Net.ServicePointManager]::CertificatePolicy = $Func
 }
 
-function Get-CertificatePolicy () {
+function GetCertificatePolicy () {
     return [System.Net.ServicePointManager]::CertificatePolicy
 }

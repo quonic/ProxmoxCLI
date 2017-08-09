@@ -27,7 +27,7 @@ function Connect-PveServer {
         [Parameter(Position = 0,Mandatory,ValueFromPipeline,ValueFromPipelineByPropertyName)]
         [String]
         $Server,
-        [Parameter(Position = 1,Mandatory)]
+        [Parameter(Position = 1)]
         [SecureString]
         $Credentials,
         [Switch]
@@ -36,8 +36,8 @@ function Connect-PveServer {
     
     begin {
         # Check if ticket already exists and if it is expired
-        if ((Get-Date).AddSeconds(1).Ticks -ge $Global:PveTickets.Expire -or
-        $null -eq $Global:PveTickets) {
+        if ((Get-Date).AddSeconds(1).Ticks -ge $Script:PveTickets.Expire -or
+        $null -eq $Script:PveTickets) {
             if (-not ($Credentials)) {
                 $Credential = Get-Credential -Message "Proxmox Username and password, user@pam, user@pve, or user@domain"
             }
@@ -49,20 +49,20 @@ function Connect-PveServer {
                 password = $Password
             }
         }
-        # if (-not $Global:PveTickets) {
-        #     $Global:PveTickets = New-Object -TypeName PSCustomObject
+        # if (-not $Script:PveTickets) {
+        #     $Script:PveTickets = New-Object -TypeName PSCustomObject
         # }
         if ($BypassSSLCheck) {
             # Trust all certs as we don't use an internal CA
             # Don't use this if you do use an internal CA or are using an external CA
-            $CertificatePolicy = Get-CertificatePolicy
-            Set-CertificatePolicy -Func (Get-TrustAllCertsPolicy)
+            $CertificatePolicy = GetCertificatePolicy
+            SetCertificatePolicy -Func (GetTrustAllCertsPolicy)
         }
     }
     
     process {
         # Check if ticket already exists and if it is expired
-        if ((Get-Date).Ticks -ge $Global:PveTickets.Expire -or $null -eq $Global:PveTickets) {
+        if ((Get-Date).Ticks -ge $Script:PveTickets.Expire -or $null -eq $Script:PveTickets) {
             $Url = "https://$($Server):8006/api2/json/access/ticket"
             $response = Invoke-RestMethod -Method Post -Uri $Url -Body $Body
             if ($response) {
@@ -76,12 +76,12 @@ function Connect-PveServer {
                 if ($BypassSSLCheck) {
                     $NewServer.BypassSSLCheck = $true
                 }
-                if ($Global:PveTickets.Server -contains $Server) {
-                    $Global:PveTickets = $Global:PveTickets | ForEach-Object {
+                if ($Script:PveTickets.Server -contains $Server) {
+                    $Script:PveTickets = $Script:PveTickets | ForEach-Object {
                         if ($_.Server -notlike $Server) {$_}
                     }
                 }
-                $Global:PveTickets += New-Object PSObject -Property $NewServer
+                $Script:PveTickets += New-Object PSObject -Property $NewServer
             }
             else {
                 Write-Warning "Not able to connect to server: $Server"
@@ -89,13 +89,15 @@ function Connect-PveServer {
         }
         else {
             Write-Verbose "Ticket not expired"
-            Write-Warning "Connected to server $($Global:PveTickets.Server)"
+            Write-Warning "Connected to server $($Script:PveTickets.Server)"
         }
     }
     
     end {
         if ($BypassSSLCheck) {
-            Set-CertificatePolicy -Func ($CertificatePolicy)
+            SetCertificatePolicy -Func ($CertificatePolicy)
         }
     }
 }
+
+Export-ModuleMember -Function @('Connect-PveServer') -Variable @('PveTickets')

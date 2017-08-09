@@ -1,24 +1,36 @@
+<#
+.SYNOPSIS
+Get version of Proxmox server
 
+.DESCRIPTION
+Get version information of connected Proxmox Server
+
+.EXAMPLE
+Get-PveVersion
+
+.NOTES
+Run Connect-PveServer first
+#>
 function Get-PveVersion () {
     # Check if ticket has expired or was even created
-    if ((Get-Date).Ticks -le $Global:PveTickets.Expire -or $null -ne $Global:PveTickets) {
+    if ((Get-Date).Ticks -le $Script:PveTickets.Expire -or $null -ne $Script:PveTickets) {
         # Setup Headers and cookie
         $ContentType = "application/json"
-        $Url = "https://$($Global:PveTickets.Server):8006/api2/json/version"
+        $Url = "https://$($Script:PveTickets.Server):8006/api2/json/version"
         $Header = @{
-            CSRFPreventionToken = $Global:PveTickets.CSRFPreventionToken
+            CSRFPreventionToken = $Script:PveTickets.CSRFPreventionToken
         }
         $cookie = New-Object System.Net.Cookie
         $cookie.Name = "PVEAuthCookie"
         $cookie.Path = "/"
-        $cookie.Domain = $Global:PveTickets.Server
-        $cookie.Value = $Global:PveTickets.Ticket
+        $cookie.Domain = $Script:PveTickets.Server
+        $cookie.Value = $Script:PveTickets.Ticket
         $session = New-Object Microsoft.PowerShell.Commands.WebRequestSession
         $session.cookies.add($cookie)
 
-        if ($Global:PveTickets.BypassSSLCheck) {
-            $CertificatePolicy = Get-CertificatePolicy
-            Set-CertificatePolicy -Func (Get-TrustAllCertsPolicy)
+        if ($Script:PveTickets.BypassSSLCheck) {
+            $CertificatePolicy = GetCertificatePolicy
+            SetCertificatePolicy -Func (GetTrustAllCertsPolicy)
         }
         
         try {
@@ -28,8 +40,8 @@ function Get-PveVersion () {
             Write-Error $_
             return $false
         }
-        if ($Global:PveTickets.BypassSSLCheck) {
-            Set-CertificatePolicy -Func ($CertificatePolicy)
+        if ($Script:PveTickets.BypassSSLCheck) {
+            SetCertificatePolicy -Func ($CertificatePolicy)
         }
         return $response
     }
@@ -40,3 +52,4 @@ function Get-PveVersion () {
 }
 
 
+Export-ModuleMember -Function @('Get-PveVersion')
