@@ -24,9 +24,10 @@ function Connect-PveServer {
     [CmdletBinding()]
     param (
         [Alias("Host", "PveServer")]
-        [Parameter(ValueFromPipeline)]
+        [Parameter(Position = 0,Mandatory,ValueFromPipeline,ValueFromPipelineByPropertyName)]
         [String]
         $Server,
+        [Parameter(Position = 1,Mandatory)]
         [SecureString]
         $Credentials,
         [Switch]
@@ -36,7 +37,7 @@ function Connect-PveServer {
     begin {
         # Check if ticket already exists and if it is expired
         if ((Get-Date).AddSeconds(1).Ticks -ge $Global:PveTickets.Expire -or
-        $Global:PveTickets -eq $null) {
+        $null -eq $Global:PveTickets) {
             if (-not ($Credentials)) {
                 $Credential = Get-Credential -Message "Proxmox Username and password, user@pam, user@pve, or user@domain"
             }
@@ -61,7 +62,7 @@ function Connect-PveServer {
     
     process {
         # Check if ticket already exists and if it is expired
-        if ((Get-Date).Ticks -ge $Global:PveTickets.Expire -or $Global:PveTickets -eq $null) {
+        if ((Get-Date).Ticks -ge $Global:PveTickets.Expire -or $null -eq $Global:PveTickets) {
             $Url = "https://$($Server):8006/api2/json/access/ticket"
             $response = Invoke-RestMethod -Method Post -Uri $Url -Body $Body
             if ($response) {

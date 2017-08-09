@@ -1,7 +1,7 @@
 
 function Get-PveVersion () {
     # Check if ticket has expired or was even created
-    if ((Get-Date).Ticks -le $Global:PveTickets.Expire -or $Global:PveTickets -ne $null) {
+    if ((Get-Date).Ticks -le $Global:PveTickets.Expire -or $null -ne $Global:PveTickets) {
         # Setup Headers and cookie
         $ContentType = "application/json"
         $Url = "https://$($Global:PveTickets.Server):8006/api2/json/version"
