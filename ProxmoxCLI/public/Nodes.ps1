@@ -1,22 +1,14 @@
-<#
-.SYNOPSIS
-Get version of Proxmox server
-
-.DESCRIPTION
-Get version information of connected Proxmox Server
-
-.EXAMPLE
-Get-PveVersion
-
-.NOTES
-Run Connect-PveServer first
-#>
-function Get-PveVersion () {
+function Get-Node {
+    Param(
+        # Parameter help description
+        [Parameter(ValueFromPipelineByPropertyName)]
+        [String]
+        $node
+    )
     # Check if ticket has expired or was even created
     if ((Get-Date).Ticks -le $Script:PveTickets.Expire -or $null -ne $Script:PveTickets) {
         # Setup Headers and cookie
         $ContentType = "application/json"
-        $Url = "https://$($Script:PveTickets.Server):8006/api2/json/version"
         $Header = @{
             CSRFPreventionToken = $Script:PveTickets.CSRFPreventionToken
         }
@@ -32,14 +24,28 @@ function Get-PveVersion () {
             $CertificatePolicy = GetCertificatePolicy
             SetCertificatePolicy -Func (GetTrustAllCertsPolicy)
         }
-        
-        try {
-            $response = Invoke-RestMethod -Method Get -Uri $Url -WebSession $session -Headers $Header -Verbose -ContentType $ContentType    
+        if($node){
+            $node | ForEach-Object {
+                #asdf
+                $Url = "https://$($Script:PveTickets.Server):8006/api2/json/nodes/$_"
+                try {
+                    $response = Invoke-RestMethod -Method Get -Uri $Url -WebSession $session -Headers $Header -Verbose -ContentType $ContentType   
+                    # Do some recursion on this data? 
+                }
+                catch {
+                    Write-Error $_
+                }
+            }
+        }else{
+            $Url = "https://$($Script:PveTickets.Server):8006/api2/json/nodes"
+            try {
+                $response = Invoke-RestMethod -Method Get -Uri $Url -WebSession $session -Headers $Header -Verbose -ContentType $ContentType    
+            }
+            catch {
+                Write-Error $_
+            }
         }
-        catch {
-            Write-Error $_
-            return $false
-        }
+
         if ($Script:PveTickets.BypassSSLCheck) {
             SetCertificatePolicy -Func ($CertificatePolicy)
         }
@@ -52,4 +58,4 @@ function Get-PveVersion () {
 }
 
 
-Export-ModuleMember -Function @('Get-PveVersion')
+Export-ModuleMember -Function @('Get-Node')
