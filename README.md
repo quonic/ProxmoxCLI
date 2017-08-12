@@ -6,7 +6,7 @@ A Proxmox module for accessing your Proxmox APIs
 
 * Developing and Testing
 
-[https://ci.appveyor.com/api/projects/status/xgr3m4nhfgh8wenl?svg=true](https://ci.appveyor.com/api/projects/status/xgr3m4nhfgh8wenl?svg=true)
+![https://ci.appveyor.com/api/projects/status/xgr3m4nhfgh8wenl?svg=true](https://ci.appveyor.com/api/projects/status/xgr3m4nhfgh8wenl?svg=true)
 
 ## GitPitch PitchMe presentation
 
