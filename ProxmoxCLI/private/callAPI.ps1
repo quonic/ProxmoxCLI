@@ -22,6 +22,8 @@ function callGet ($Resource) {
             $response = Invoke-RestMethod -Method Get -Uri $Url -WebSession $session -Headers $Header -Verbose -ContentType $ContentType    
         }
         catch {return $false}
+        
+        SetCertificatePolicy -Func $CertificatePolicy
 
         return $response.data
     }
