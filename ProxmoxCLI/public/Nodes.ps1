@@ -24,19 +24,20 @@ function Get-Node {
             $CertificatePolicy = GetCertificatePolicy
             SetCertificatePolicy -Func (GetTrustAllCertsPolicy)
         }
-        if($node){
+        if ($node) {
             $node | ForEach-Object {
                 #asdf
                 $Url = "https://$($Script:PveTickets.Server):8006/api2/json/nodes/$_"
                 try {
-                    $response = Invoke-RestMethod -Method Get -Uri $Url -WebSession $session -Headers $Header -Verbose -ContentType $ContentType   
+                    $response = Invoke-RestMethod -Method Get -Uri $Url -WebSession $session -Headers $Header -Verbose -ContentType $ContentType
                     # Do some recursion on this data? 
                 }
                 catch {
                     Write-Error $_
                 }
             }
-        }else{
+        }
+        else {
             $Url = "https://$($Script:PveTickets.Server):8006/api2/json/nodes"
             try {
                 $response = Invoke-RestMethod -Method Get -Uri $Url -WebSession $session -Headers $Header -Verbose -ContentType $ContentType    
