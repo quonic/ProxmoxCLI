@@ -130,4 +130,3 @@ class Node {
         return $false
     }
 }
-$pvehost01 = New-Object -TypeName "Node" -ArgumentList "pvehost01"
