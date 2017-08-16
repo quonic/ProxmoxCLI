@@ -3,21 +3,18 @@ module.exports = function(grunt) {
     grunt.initConfig({
 
         shell: {
+            build: {
+                command: 'powershell .\\build.ps1'
+            },
             github: {
-                options: {
-                    stdout: true
-                },
                 command: 'git push -u origin master'
             },
             gitlab: {
-                options: {
-                    stdout: true
-                },
                 command: 'git push -u gitlab master'
             }
         }
     });
 
 
-    grunt.registerTask('default', ['shell:github', 'shell:gitlab']);
+    grunt.registerTask('default', ['shell:build', 'shell:github', 'shell:gitlab']);
 };

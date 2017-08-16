@@ -69,7 +69,7 @@ Description = 'A Proxmox module for accessing your Proxmox APIs'
 # NestedModules = @()
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-FunctionsToExport = @('ConnectionManager','Version')
+FunctionsToExport = @('ConnectionManager','Nodes','Version')
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
 CmdletsToExport = @('Connect-PveServer', 'Get-PveVersion')
