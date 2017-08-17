@@ -1,4 +1,9 @@
-function callGet ([string] $Resource) {
+function callGet {
+    [CmdletBinding()]
+    Param(
+        [string]
+        $Resource
+    )
     if ((Get-Date).Ticks -le $Script:PveTickets.Expire -or $null -ne $Script:PveTickets) {
         
         # Bypass ssl checking or servers without a public cert or internal CA cert
