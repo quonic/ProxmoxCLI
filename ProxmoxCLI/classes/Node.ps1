@@ -2,37 +2,49 @@ class Node {
 
     [string] $Name
     [PSCustomObject] $AvailableResources
+    [PSCustomObject] $Subscription
+    [DateTime] $Time
+    [PSCustomObject] $Version
+    [PSCustomObject] $Status
+    [PSCustomObject] $Dns
+    
     
     Node ([string] $Name) {
         $this.Name = [string]$Name
         $this.AvailableResources = (callGet -Resource "nodes/$Name")
+        $this.Subscription = $this.getSubscription()
+        $origin = New-Object -Type DateTime -ArgumentList 1970, 1, 1, 0, 0, 0, 0
+        $this.Time = $origin.AddSeconds(($this.getTime()).localtime)
+        $this.Version = $this.getVersion()
+        $this.Status = $this.getStatus()
+        $this.Dns = $this.getDns()
     }
     
-    [PSCustomObject] Subscription() {
+    [PSCustomObject] getSubscription() {
         return (callGet -Resource "nodes/$($this.Name)/subscription")
     }
-    [PSCustomObject] Syslog() {
+    [PSCustomObject] getSyslog() {
         return (callGet -Resource "nodes/$($this.Name)/syslog")
     }
-    [PSCustomObject] Time() {
+    [PSCustomObject] getTime() {
         return (callGet -Resource "nodes/$($this.Name)/time")
     }
-    [PSCustomObject] Version() {
+    [PSCustomObject] getVersion() {
         return (callGet -Resource "nodes/$($this.Name)/version")
     }
-    [PSCustomObject] Status() {
+    [PSCustomObject] getStatus() {
         return (callGet -Resource "nodes/$($this.Name)/status")
     }
-    [PSCustomObject] Aplinfo() {
+    [PSCustomObject] getAplinfo() {
         return (callGet -Resource "nodes/$($this.Name)/aplinfo")
     }
-    [PSCustomObject] Dns() {
+    [PSCustomObject] getDns() {
         return (callGet -Resource "nodes/$($this.Name)/dns")
     }
-    [PSCustomObject] Netstat() {
+    [PSCustomObject] getNetstat() {
         return (callGet -Resource "nodes/$($this.Name)/netstat")
     }
-    [PSCustomObject] Report() {
+    [PSCustomObject] getReport() {
         return (callGet -Resource "nodes/$($this.Name)/report")
     }
 
