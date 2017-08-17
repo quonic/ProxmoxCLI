@@ -1,7 +1,7 @@
 function callGet {
-    [CmdletBinding()]
+    #[CmdletBinding()]
     Param(
-        [Parameter(Position = 0,Mandatory)]
+        [Parameter(Position = 0, Mandatory)]
         [string]
         $Resource,
         [hashtable] $Options
@@ -17,7 +17,7 @@ function callGet {
         # Setup Headers and cookie for splatting
         $splat = PrepareGetRequest
         $Query = ""
-        If ($Options){
+        If ($Options) {
             $Options.keys | ForEach-Object {
                 $Query = $Query + "$_=$($Options[$_])&"
             }
@@ -32,8 +32,10 @@ function callGet {
         SetCertificatePolicy -Func $CertificatePolicy
         
         return $response.data
-    }else{
+    }
+    else {
         # TODO Impliment updating ticket
+        return $false
     }
 }
 

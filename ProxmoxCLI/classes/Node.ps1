@@ -51,8 +51,8 @@ class Node {
 
     
     # /apt/*
-    [PSCustomObject] getAptChangeLog () {
-        return (callGet -Resource "nodes/$($this.Name)/apt/changlog")
+    [PSCustomObject] getAptChangeLog ([String]$package) {
+        return (callGet -Resource "nodes/$($this.Name)/apt/changelog" -Options @{name=$package})
     }
     [PSCustomObject] getAptUpdate () {
         return (callGet -Resource "nodes/$($this.Name)/apt/update")
