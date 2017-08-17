@@ -1,10 +1,13 @@
-function callGet {
+function callREST {
     #[CmdletBinding()]
     Param(
         [Parameter(Position = 0, Mandatory)]
         [string]
         $Resource,
-        [hashtable] $Options
+        [string]
+        $Method,
+        [hashtable]
+        $Options
     )
     if ((Get-Date).Ticks -le $Script:PveTickets.Expire -or $null -ne $Script:PveTickets) {
         
@@ -15,7 +18,13 @@ function callGet {
         }
 
         # Setup Headers and cookie for splatting
-        $splat = PrepareGetRequest
+        switch ($Method) {
+            Get { $splat = PrepareGetRequest }
+            Post { $splat = PreparePostRequest }
+            Delete { $splat = PrepareGetRequest }
+            Default { $splat = PrepareGetRequest }
+        }
+        
         $Query = ""
         If ($Options) {
             $Options.keys | ForEach-Object {
