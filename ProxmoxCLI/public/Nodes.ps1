@@ -1,4 +1,5 @@
 function Get-Node {
+    [CmdletBinding()]
     Param(
         # Parameter help description
         [Parameter(ValueFromPipelineByPropertyName)]

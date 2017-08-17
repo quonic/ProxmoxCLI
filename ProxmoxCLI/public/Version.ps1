@@ -11,7 +11,9 @@ Get-PveVersion
 .NOTES
 Run Connect-PveServer first
 #>
-function Get-PveVersion () {
+function Get-PveVersion {
+    [CmdletBinding()]
+    Param()
     return (callGet -Resource "version")
 }
 
