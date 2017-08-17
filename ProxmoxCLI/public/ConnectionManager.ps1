@@ -24,7 +24,7 @@ function Connect-PveServer {
     [CmdletBinding()]
     param (
         [Alias("Host", "PveServer")]
-        [Parameter(Position = 0,Mandatory,ValueFromPipeline,ValueFromPipelineByPropertyName)]
+        [Parameter(Position = 0, Mandatory, ValueFromPipeline, ValueFromPipelineByPropertyName)]
         [String]
         $Server,
         [Parameter(Position = 1)]
@@ -36,8 +36,7 @@ function Connect-PveServer {
     
     begin {
         # Check if ticket already exists and if it is expired
-        if ((Get-Date).AddSeconds(1).Ticks -ge $Script:PveTickets.Expire -or
-        $null -eq $Script:PveTickets) {
+        if ($null -eq $Script:PveTickets) {
             if (-not ($Credentials)) {
                 $Credential = Get-Credential -Message "Proxmox Username and password, user@pam, user@pve, or user@domain"
             }
@@ -48,6 +47,15 @@ function Connect-PveServer {
                 username = $UserName
                 password = $Password
             }
+        }
+        elseif ((Get-Date).AddSeconds(1).Ticks -ge $Script:PveTickets.Expire) {
+            $Body = @{
+                username = $Script:PveTickets.UserName
+                password = $Script:PveTickets.Ticket
+            }
+        }else{
+            Write-Verbose "Ticket not expired"
+            Write-Warning "Connected to server $($Script:PveTickets.Server)"
         }
         # if (-not $Script:PveTickets) {
         #     $Script:PveTickets = New-Object -TypeName PSCustomObject
@@ -61,35 +69,28 @@ function Connect-PveServer {
     }
     
     process {
-        # Check if ticket already exists and if it is expired
-        if ((Get-Date).Ticks -ge $Script:PveTickets.Expire -or $null -eq $Script:PveTickets) {
-            $Url = "https://$($Server):8006/api2/json/access/ticket"
-            $response = Invoke-RestMethod -Method Post -Uri $Url -Body $Body
-            if ($response) {
-                # Create variable to work with as we have a ticket for future auth
-                $NewServer = @{}
-                $NewServer.Server = $Server
-                $NewServer.UserName = $UserName
-                $NewServer.Ticket = $response.data.ticket
-                $NewServer.CSRFPreventionToken = $response.data.CSRFPreventionToken
-                $NewServer.Expire = (Get-Date).AddHours(2).Ticks
-                if ($BypassSSLCheck) {
-                    $NewServer.BypassSSLCheck = $true
-                }
-                if ($Script:PveTickets.Server -contains $Server) {
-                    $Script:PveTickets = $Script:PveTickets | ForEach-Object {
-                        if ($_.Server -notlike $Server) {$_}
-                    }
-                }
-                $Script:PveTickets += New-Object PSObject -Property $NewServer
+        $Url = "https://$($Server):8006/api2/json/access/ticket"
+        $response = Invoke-RestMethod -Method Post -Uri $Url -Body $Body
+        if ($response) {
+            # Create variable to work with as we have a ticket for future auth
+            $NewServer = @{}
+            $NewServer.Server = $Server
+            $NewServer.UserName = $UserName
+            $NewServer.Ticket = $response.data.ticket
+            $NewServer.CSRFPreventionToken = $response.data.CSRFPreventionToken
+            $NewServer.Expire = (Get-Date).AddHours(2).Ticks
+            if ($BypassSSLCheck) {
+                $NewServer.BypassSSLCheck = $true
             }
-            else {
-                Write-Warning "Not able to connect to server: $Server"
+            if ($Script:PveTickets.Server -contains $Server) {
+                $Script:PveTickets = $Script:PveTickets | ForEach-Object {
+                    if ($_.Server -notlike $Server) {$_}
+                }
             }
+            $Script:PveTickets += New-Object PSObject -Property $NewServer
         }
         else {
-            Write-Verbose "Ticket not expired"
-            Write-Warning "Connected to server $($Script:PveTickets.Server)"
+            Write-Warning "Not able to connect to server: $Server"
         }
     }
     
