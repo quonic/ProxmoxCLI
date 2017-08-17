@@ -13,15 +13,15 @@ function callGet {
         }
 
         # Setup Headers and cookie for splatting
-        $spat = PrepareGetRequest -resource $Resource
+        $splat = PrepareGetRequest
         try {
-            $response = Invoke-RestMethod -Uri "https://$($Script:PveTickets.Server):8006/api2/json/$Resource" @spat
+            $response = Invoke-RestMethod -Uri "https://$($Script:PveTickets.Server):8006/api2/json/$Resource" @splat
         }
         catch {return $false}
         
         # restore original cert policy
         SetCertificatePolicy -Func $CertificatePolicy
-
+        
         return $response.data
     }
 }
