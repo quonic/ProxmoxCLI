@@ -5,128 +5,128 @@ class Node {
     
     Node ([string] $Name) {
         $this.Name = [string]$Name
-        $this.AvailableResources = (callGet -Resource "node/$Name")
+        $this.AvailableResources = (callGet -Resource "nodes/$Name")
     }
     
     [PSCustomObject] Subscription() {
-        return (callGet -Resource "node/$($this.Name)/subscription")
+        return (callGet -Resource "nodes/$($this.Name)/subscription")
     }
     [PSCustomObject] Syslog() {
-        return (callGet -Resource "node/$($this.Name)/syslog")
+        return (callGet -Resource "nodes/$($this.Name)/syslog")
     }
     [PSCustomObject] Time() {
-        return (callGet -Resource "node/$($this.Name)/time")
+        return (callGet -Resource "nodes/$($this.Name)/time")
     }
     [PSCustomObject] Version() {
-        return (callGet -Resource "node/$($this.Name)/version")
+        return (callGet -Resource "nodes/$($this.Name)/version")
     }
     [PSCustomObject] Status() {
-        return (callGet -Resource "node/$($this.Name)/status")
+        return (callGet -Resource "nodes/$($this.Name)/status")
     }
     [PSCustomObject] Aplinfo() {
-        return (callGet -Resource "node/$($this.Name)/aplinfo")
+        return (callGet -Resource "nodes/$($this.Name)/aplinfo")
     }
     [PSCustomObject] Dns() {
-        return (callGet -Resource "node/$($this.Name)/dns")
+        return (callGet -Resource "nodes/$($this.Name)/dns")
     }
     [PSCustomObject] Netstat() {
-        return (callGet -Resource "node/$($this.Name)/netstat")
+        return (callGet -Resource "nodes/$($this.Name)/netstat")
     }
     [PSCustomObject] Report() {
-        return (callGet -Resource "node/$($this.Name)/report")
+        return (callGet -Resource "nodes/$($this.Name)/report")
     }
 
 
     
     # /apt/*
     [PSCustomObject] getAptChangeLog () {
-        return (callGet -Resource "node/$($this.Name)/apt/changlog")
+        return (callGet -Resource "nodes/$($this.Name)/apt/changlog")
     }
     [PSCustomObject] getAptUpdate () {
-        return (callGet -Resource "node/$($this.Name)/apt/update")
+        return (callGet -Resource "nodes/$($this.Name)/apt/update")
     }
     [PSCustomObject] getAptVersion () {
-        return (callGet -Resource "node/$($this.Name)/apt/versions")
+        return (callGet -Resource "nodes/$($this.Name)/apt/versions")
     }
 
     # /ceph/*
     [PSCustomObject] getCephFlags () {
-        return (callGet -Resource "node/$($this.Name)/ceph/flags")
+        return (callGet -Resource "nodes/$($this.Name)/ceph/flags")
     }
     [PSCustomObject] getCeph () {
-        return (callGet -Resource "node/$($this.Name)/ceph")
+        return (callGet -Resource "nodes/$($this.Name)/ceph")
     }
 
     # /disks/*
     [PSCustomObject] getDisks () {
-        return (callGet -Resource "node/$($this.Name)/disks")
+        return (callGet -Resource "nodes/$($this.Name)/disks")
     }
     # /firewall/*
     [PSCustomObject] getFirewall () {
-        return (callGet -Resource "node/$($this.Name)/firewall")
+        return (callGet -Resource "nodes/$($this.Name)/firewall")
     }
     # /lxc/*
     [PSCustomObject] getLxc () {
-        return (callGet -Resource "node/$($this.Name)/lxc")
+        return (callGet -Resource "nodes/$($this.Name)/lxc")
     }
     # /network/*
     [PSCustomObject] getNetwork () {
-        return (callGet -Resource "node/$($this.Name)/Network")
+        return (callGet -Resource "nodes/$($this.Name)/Network")
     }
     # /qemu/*
     [PSCustomObject] getQemu () {
-        return (callGet -Resource "node/$($this.Name)/qemu")
+        return (callGet -Resource "nodes/$($this.Name)/qemu")
     }
     # /replication/*
     [PSCustomObject] getReplication () {
-        return (callGet -Resource "node/$($this.Name)/replicate")
+        return (callGet -Resource "nodes/$($this.Name)/replicate")
     }
     # /scan/*
     [PSCustomObject] getScan () {
-        return (callGet -Resource "node/$($this.Name)/Scan")
+        return (callGet -Resource "nodes/$($this.Name)/Scan")
     }
     # /services/*
     [PSCustomObject] getServices () {
-        return (callGet -Resource "node/$($this.Name)/services")
+        return (callGet -Resource "nodes/$($this.Name)/services")
     }
     # /storage/*
     [PSCustomObject] getStorage () {
-        return (callGet -Resource "node/$($this.Name)/storage")
+        return (callGet -Resource "nodes/$($this.Name)/storage")
     }
     # /tasks/*
     [PSCustomObject] getTasks () {
-        return (callGet -Resource "node/$($this.Name)/tasks")
+        return (callGet -Resource "nodes/$($this.Name)/tasks")
     }
     # /vzdump/*
     # [PSCustomObject] getVzdump () {
-    #     $this.vzdump = (callGet -Resource "node/$($this.Name)/vzdump")
+    #     $this.vzdump = (callGet -Resource "nodes/$($this.Name)/vzdump")
     # }
 
     # /rrd
-    #$this.rrd = (callGet -Resource "node/$($this.Name)/rrd")
+    #$this.rrd = (callGet -Resource "nodes/$($this.Name)/rrd")
     # /rrddata
-    #$this.rrddata = (callGet -Resource "node/$($this.Name)/rrddata")
+    #$this.rrddata = (callGet -Resource "nodes/$($this.Name)/rrddata")
     # /spiceshell
-    # $this.spiceshell = (callPost -Resource "node/$($this.Name)/spiceshell")
+    # $this.spiceshell = (callPost -Resource "nodes/$($this.Name)/spiceshell")
     # /startall
-    #$this.startall = (callPost -Resource "node/$($this.Name)/startall")
+    #$this.startall = (callPost -Resource "nodes/$($this.Name)/startall")
     
     # /stopall
-    #$this.stopall = (callPost -Resource "node/$($this.Name)/stopall")
+    #$this.stopall = (callPost -Resource "nodes/$($this.Name)/stopall")
     
     # /vncshell
-    #$this.vncshell = (callPost -Resource "node/$($this.Name)/vncshell")
+    #$this.vncshell = (callPost -Resource "nodes/$($this.Name)/vncshell")
     # /vncwebsocket
-    #$this.vncwebsocket = (callGet -Resource "node/$($this.Name)/vncwebsocket")
+    #$this.vncwebsocket = (callGet -Resource "nodes/$($this.Name)/vncwebsocket")
 
     # /execute
     [PSCustomObject] execute ($command, $node) {
-        #return (callGet -Resource "node/$($this.Name)/execute")
+        #return (callGet -Resource "nodes/$($this.Name)/execute")
         return $false
     }
     # /migrateall
     [PSCustomObject] MigrateAll () {
-        #return (callGet -Resource "node/$($this.Name)/migrateall")
+        #return (callGet -Resource "nodes/$($this.Name)/migrateall")
         return $false
     }
 }
