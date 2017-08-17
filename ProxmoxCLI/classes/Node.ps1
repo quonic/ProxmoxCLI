@@ -52,10 +52,15 @@ class Node {
     
     # /apt/*
     [PSCustomObject] getAptChangeLog ([String]$package) {
-        return (callGet -Resource "nodes/$($this.Name)/apt/changelog" -Options @{name=$package})
+        return (callGet -Resource "nodes/$($this.Name)/apt/changelog" -Options @{name = $package})
     }
     [PSCustomObject] getAptUpdate () {
         return (callGet -Resource "nodes/$($this.Name)/apt/update")
+    }
+    [PSCustomObject] runAptUpdate ([switch]$notify) {
+        $query = "?quiet=true"
+        if ($notify) {$query = "$($query)&notify=true"}
+        return (callGet -Resource "nodes/$($this.Name)/apt/update$query")
     }
     [PSCustomObject] getAptVersion () {
         return (callGet -Resource "nodes/$($this.Name)/apt/versions")
