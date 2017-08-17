@@ -14,7 +14,7 @@ Run Connect-PveServer first
 function Get-PveVersion {
     [CmdletBinding()]
     Param()
-    return (callGet -Resource "version")
+    return (callREST -Resource "version")
 }
 
 
