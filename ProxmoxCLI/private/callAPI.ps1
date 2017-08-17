@@ -1,8 +1,10 @@
 function callGet {
     [CmdletBinding()]
     Param(
+        [Parameter(Position = 0,Mandatory)]
         [string]
-        $Resource
+        $Resource,
+        [hashtable] $Options
     )
     if ((Get-Date).Ticks -le $Script:PveTickets.Expire -or $null -ne $Script:PveTickets) {
         
@@ -14,8 +16,15 @@ function callGet {
 
         # Setup Headers and cookie for splatting
         $splat = PrepareGetRequest
+        $Query = ""
+        If ($Options){
+            $Options.keys | ForEach-Object {
+                $Query = $Query + "$_=$($Options[$_])&"
+            }
+            $Query = $Query.TrimEnd("&")
+        }
         try {
-            $response = Invoke-RestMethod -Uri "https://$($Script:PveTickets.Server):8006/api2/json/$Resource" @splat
+            $response = Invoke-RestMethod -Uri "https://$($Script:PveTickets.Server):8006/api2/json/$($Resource)?$($Query)" @splat
         }
         catch {return $false}
         
@@ -23,6 +32,8 @@ function callGet {
         SetCertificatePolicy -Func $CertificatePolicy
         
         return $response.data
+    }else{
+        # TODO Impliment updating ticket
     }
 }
 
