@@ -78,9 +78,18 @@ class Node {
 
     # /disks/*
     [PSCustomObject] getDisks () {
-        return (callREST -Resource "nodes/$($this.Name)/disks")
+        return (callREST -Resource "nodes/$($this.Name)/disks/list")
+    }
+    [PSCustomObject] getDisksHealth () {
+        return $this.getDisks() | ForEach-Object {
+            @{
+                'devpath'    = $_.devpath;
+                'attributes' = (callREST -Resource "nodes/$($this.Name)/disks/smart" -Options @{disk = $_.devpath}) | Select-Object health
+            }
+        }
     }
     # /firewall/*
+    # I haven't used this yet, but plan on doing so to get this implimented
     [PSCustomObject] getFirewall () {
         return (callREST -Resource "nodes/$($this.Name)/firewall")
     }
@@ -90,10 +99,11 @@ class Node {
     }
     # /network/*
     [PSCustomObject] getNetwork () {
-        return (callREST -Resource "nodes/$($this.Name)/Network")
+        return (callREST -Resource "nodes/$($this.Name)/network")
     }
     # /qemu/*
     [PSCustomObject] getQemu () {
+        # TODO make this into an object like [Node]
         return (callREST -Resource "nodes/$($this.Name)/qemu")
     }
     # /replication/*
