@@ -13,5 +13,5 @@ module.exports = function(grunt) {
     });
 
 
-    grunt.registerTask('default', ['shell:build', 'shell:github', 'shell:gitlab']);
+    grunt.registerTask('default', ['shell:github', 'shell:gitlab']);
 };
