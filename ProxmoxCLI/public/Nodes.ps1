@@ -14,7 +14,7 @@ function Get-Node {
         }
     }
     else {
-        return callGet -Resource "/nodes" | ForEach-Object {
+        return callREST -Resource "/nodes" | ForEach-Object {
             New-Object -TypeName "Node" -ArgumentList $_.node
         }
     }

@@ -103,8 +103,8 @@ class Node {
     }
     # /qemu/*
     [PSCustomObject] getQemu () {
-        # TODO make this into an object like [Node]
-        return (callREST -Resource "nodes/$($this.Name)/qemu")
+        $vms = (callREST -Resource "nodes/$($this.Name)/qemu")
+        return $vms | ForEach-Object { [Qemu]::new($this.Name, $_.vmid) }
     }
     # /replication/*
     [PSCustomObject] getReplication () {
