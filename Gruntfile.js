@@ -3,9 +3,6 @@ module.exports = function(grunt) {
     grunt.initConfig({
 
         shell: {
-            build: {
-                command: 'powershell .\\build.ps1'
-            },
             github: {
                 command: 'git push -u origin master'
             },
