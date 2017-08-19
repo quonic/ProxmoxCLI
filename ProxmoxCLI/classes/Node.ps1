@@ -112,7 +112,7 @@ class Node {
     }
     # /scan/*
     [PSCustomObject] getScan () {
-        return (callREST -Resource "nodes/$($this.Name)/Scan")
+        return (callREST -Resource "nodes/$($this.Name)/scan")
     }
     # /services/*
     [PSCustomObject] getServices () {

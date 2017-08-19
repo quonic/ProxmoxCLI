@@ -48,7 +48,8 @@ function Connect-PveServer {
                 password = $Password
             }
         }
-        elseif ((Get-Date).AddSeconds(1).Ticks -ge $Script:PveTickets.Expire) {
+        elseif ((Get-Date).Ticks -ge $Script:PveTickets.Expire) {
+            # Check if ticket expired and assign the username and ticket
             $Body = @{
                 username = $Script:PveTickets.UserName
                 password = $Script:PveTickets.Ticket
@@ -60,9 +61,10 @@ function Connect-PveServer {
         # if (-not $Script:PveTickets) {
         #     $Script:PveTickets = New-Object -TypeName PSCustomObject
         # }
-        if ($BypassSSLCheck) {
+        if ($BypassSSLCheck -or $Script:PveTickets.BypassSSLCheck) {
             # Trust all certs as we don't use an internal CA
             # Don't use this if you do use an internal CA or are using an external CA
+            $Script:PveTickets.BypassSSLCheck = $true
             $CertificatePolicy = GetCertificatePolicy
             SetCertificatePolicy -Func (GetTrustAllCertsPolicy)
         }
@@ -79,6 +81,7 @@ function Connect-PveServer {
             $NewServer.Ticket = $response.data.ticket
             $NewServer.CSRFPreventionToken = $response.data.CSRFPreventionToken
             $NewServer.Expire = (Get-Date).AddHours(2).Ticks
+            $NewServer.BypassSSLCheck = $false
             if ($BypassSSLCheck) {
                 $NewServer.BypassSSLCheck = $true
             }
@@ -95,7 +98,7 @@ function Connect-PveServer {
     }
     
     end {
-        if ($BypassSSLCheck) {
+        if ($BypassSSLCheck -or $Script:PveTickets.BypassSSLCheck) {
             SetCertificatePolicy -Func ($CertificatePolicy)
         }
     }

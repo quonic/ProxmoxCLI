@@ -9,43 +9,45 @@ function callREST {
         [hashtable]
         $Options
     )
-    if ((Get-Date).Ticks -le $Script:PveTickets.Expire -or $null -ne $Script:PveTickets) {
-        
-        # Bypass ssl checking or servers without a public cert or internal CA cert
-        if ($Script:PveTickets.BypassSSLCheck) {
-            $CertificatePolicy = GetCertificatePolicy
-            SetCertificatePolicy -Func (GetTrustAllCertsPolicy)
-        }
-
-        # Setup Headers and cookie for splatting
-        switch ($Method) {
-            Get { $splat = PrepareGetRequest }
-            Post { $splat = PreparePostRequest }
-            Delete { $splat = PrepareGetRequest }
-            Default { $splat = PrepareGetRequest }
-        }
-        
-        $Query = ""
-        If ($Options) {
-            $Options.keys | ForEach-Object {
-                $Query = $Query + "$_=$($Options[$_])&"
-            }
-            $Query = $Query.TrimEnd("&")
-        }
-        try {
-            $response = Invoke-RestMethod -Uri "https://$($Script:PveTickets.Server):8006/api2/json/$($Resource)?$($Query)" @splat
-        }
-        catch {return $false}
-        
-        # restore original cert policy
-        SetCertificatePolicy -Func $CertificatePolicy
-        
-        return $response.data
-    }
-    else {
-        # TODO Impliment updating ticket
+    if($null -ne $Script:PveTickets){
+        # Check if we even have a ticket
+        Write-Error "Please connect usinge Connect-PveServer."
         return $false
     }
+    if ((Get-Date).Ticks -le $Script:PveTickets.Expire) {
+        # Check if ticket expired and grab a new one
+        Connect-PveServer -Server $Script:PveTickets.Server
+    }
+    # Bypass ssl checking or servers without a public cert or internal CA cert
+    if ($Script:PveTickets.BypassSSLCheck) {
+        $CertificatePolicy = GetCertificatePolicy
+        SetCertificatePolicy -Func (GetTrustAllCertsPolicy)
+    }
+
+    # Setup Headers and cookie for splatting
+    switch ($Method) {
+        Get { $splat = PrepareGetRequest }
+        Post { $splat = PreparePostRequest }
+        Delete { $splat = PrepareGetRequest }
+        Default { $splat = PrepareGetRequest }
+    }
+    
+    $Query = ""
+    If ($Options) {
+        $Options.keys | ForEach-Object {
+            $Query = $Query + "$_=$($Options[$_])&"
+        }
+        $Query = $Query.TrimEnd("&")
+    }
+    try {
+        $response = Invoke-RestMethod -Uri "https://$($Script:PveTickets.Server):8006/api2/json/$($Resource)?$($Query)" @splat
+    }
+    catch {return $false}
+    
+    # restore original cert policy
+    SetCertificatePolicy -Func $CertificatePolicy
+    
+    return $response.data
 }
 
 function PreparePostRequest() {
