@@ -28,7 +28,7 @@ function Connect-PveServer {
         [String]
         $Server,
         [Parameter(Position = 1)]
-        [SecureString]
+        [pscredential]
         $Credentials,
         [Switch]
         $BypassSSLCheck
