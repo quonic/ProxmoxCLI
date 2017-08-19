@@ -1,7 +1,6 @@
 class Node {
 
     [string] $Name
-    [PSCustomObject] $AvailableResources
     [PSCustomObject] $Subscription
     [DateTime] $Time
     [PSCustomObject] $Version
@@ -11,7 +10,6 @@ class Node {
     
     Node ([string] $Name) {
         $this.Name = [string]$Name
-        $this.AvailableResources = (callREST -Resource "nodes/$Name")
         $this.Subscription = $this.getSubscription()
         # Convert UNIX time to Windows time
         $origin = New-Object -Type DateTime -ArgumentList 1970, 1, 1, 0, 0, 0, 0
@@ -171,13 +169,11 @@ class Qemu {
     Qemu ([Node] $Node, [string] $vmid) {
         $this.vmid = $vmid
         $this.Node = $Node
-        $this.AvailableResources = (callREST -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)")
         $this.Status = $this.getStatus()
     }
     Qemu ([String] $Node, [string] $vmid) {
         $this.vmid = $vmid
         $this.Node = [Node]::new($Node)
-        $this.AvailableResources = (callREST -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)")
         $this.Status = $this.getStatus()
     }
         
