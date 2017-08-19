@@ -20,5 +20,19 @@ function Get-Node {
     }
 }
 
+function Get-Qemu {
+    [CmdletBinding()]
+    Param(
+        # The Qemu property called vmid
+        [Parameter(mandatory = $true, ValueFromPipelineByPropertyName)]
+        [String]
+        $vmid,
+        # Name of node that the Qemu is running under
+        [Parameter(mandatory = $true)]
+        [String]
+        $Node
+    )
+    return [Qemu]::new($Node, $vmid)
+}
 
-Export-ModuleMember -Function @('Get-Node')
+Export-ModuleMember -Function @('Get-Node', 'Get-Qemu')

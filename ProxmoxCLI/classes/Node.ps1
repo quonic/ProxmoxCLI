@@ -174,6 +174,12 @@ class Qemu {
         $this.AvailableResources = (callREST -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)")
         $this.Status = $this.getStatus()
     }
+    Qemu ([String] $Node, [string] $vmid) {
+        $this.vmid = $vmid
+        $this.Node = [Node]::new($Node)
+        $this.AvailableResources = (callREST -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)")
+        $this.Status = $this.getStatus()
+    }
         
     [PSCustomObject] getStatus() {
         return (callREST -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/status/current")
