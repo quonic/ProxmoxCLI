@@ -44,9 +44,12 @@ function callREST {
     }
     catch {return $false}
     
-    # restore original cert policy
-    SetCertificatePolicy -Func $CertificatePolicy
-    
+    if ($Script:PveTickets.BypassSSLCheck)
+    {
+        # restore original cert policy
+        SetCertificatePolicy -Func $CertificatePolicy
+    }
+
     return $response.data
 }
 
