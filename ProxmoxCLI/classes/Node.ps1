@@ -158,6 +158,12 @@ class Node {
     }
 }
 
+enum Features {
+    snapshot
+    clone
+    copy
+}
+
 class Qemu {
     
     [string] $vmid
@@ -187,5 +193,13 @@ class Qemu {
 
     [PSCustomObject] getPending() {
         return (callREST -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/pending")
+    }
+
+    [PSCustomObject] getFeature([Features]$Feature) {
+        return (callREST -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/feature")
+    }
+
+    [PSCustomObject] getFeature([Features]$Feature,[string]$SnapName) {
+        return (callREST -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/feature" -Options @{snapname = $SnapName})
     }
 }
