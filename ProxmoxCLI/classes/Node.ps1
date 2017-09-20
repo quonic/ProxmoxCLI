@@ -185,4 +185,7 @@ class Qemu {
         return (callREST -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/config" -Options @{current = $Current})
     }
 
+    [PSCustomObject] getPending() {
+        return (callREST -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/pending")
+    }
 }
