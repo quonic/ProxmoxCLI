@@ -179,7 +179,10 @@ class Qemu {
         
     [PSCustomObject] getStatus() {
         return (callREST -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/status/current")
-        
+    }
+
+    [PSCustomObject] getConfig([switch]$Current) {
+        return (callREST -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/config" -Options @{current = $Current})
     }
 
 }

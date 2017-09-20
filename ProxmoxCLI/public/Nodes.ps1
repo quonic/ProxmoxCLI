@@ -66,14 +66,25 @@ The object(s) returned can be used to manipulate qemu(s)
 function Get-Qemu {
     [CmdletBinding()]
     Param(
-        [Parameter(mandatory = $true, ValueFromPipelineByPropertyName)]
+        [Parameter(mandatory = $false, ValueFromPipelineByPropertyName)]
         [String]
         $vmid,
         [Parameter(mandatory = $true)]
         [String]
         $Node
     )
-    return [Qemu]::new($Node, $vmid)
+    if($vmid){
+        return [Qemu]::new($Node, $vmid)
+    }else{
+        Get-Node -Node $Node | ForEach-Object {
+            $VMList = $_.getQemu()
+            $VMList | ForEach-Object {
+                # Return Qemu object
+                $_
+            }
+        }
+    }
+    
 }
 
 Export-ModuleMember -Function @('Get-Node', 'Get-Qemu')
