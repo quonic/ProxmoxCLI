@@ -19,6 +19,17 @@ class Node {
         $this.Dns = $this.getDns()
     }
     
+    [void] Refresh() {
+        $this.Subscription = $this.getSubscription()
+        # Convert UNIX time to Windows time
+        $origin = New-Object -Type DateTime -ArgumentList 1970, 1, 1, 0, 0, 0, 0
+        $this.Time = $origin.AddSeconds(($this.getTime()).localtime)
+        $this.Version = $this.getVersion()
+        $this.Status = $this.getStatus()
+        $this.Dns = $this.getDns()
+
+    }
+
     [PSCustomObject] getSubscription() {
         return (callREST -Resource "nodes/$($this.Name)/subscription")
     }
@@ -182,7 +193,11 @@ class Qemu {
         $this.Node = [Node]::new($Node)
         $this.Status = $this.getStatus()
     }
-        
+    
+    [void] Refresh() {
+        $this.Status = $this.getStatus()
+    }
+
     [PSCustomObject] getStatus() {
         return (callREST -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/status/current")
     }
