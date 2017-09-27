@@ -9,14 +9,7 @@ class Node {
     
     
     Node ([string] $Name) {
-        $this.Name = [string]$Name
-        $this.Subscription = $this.getSubscription()
-        # Convert UNIX time to Windows time
-        $origin = New-Object -Type DateTime -ArgumentList 1970, 1, 1, 0, 0, 0, 0
-        $this.Time = $origin.AddSeconds(($this.getTime()).localtime)
-        $this.Version = $this.getVersion()
-        $this.Status = $this.getStatus()
-        $this.Dns = $this.getDns()
+        $this.Refresh()
     }
     
     [void] Refresh() {
@@ -186,12 +179,12 @@ class Qemu {
     Qemu ([Node] $Node, [string] $vmid) {
         $this.vmid = $vmid
         $this.Node = $Node
-        $this.Status = $this.getStatus()
+        $this.Refresh()
     }
     Qemu ([String] $Node, [string] $vmid) {
         $this.vmid = $vmid
         $this.Node = [Node]::new($Node)
-        $this.Status = $this.getStatus()
+        $this.Refresh()
     }
     
     [void] Refresh() {
