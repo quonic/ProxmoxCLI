@@ -18,7 +18,7 @@ Task Clean {
 }
 
 Task UnitTests {
-    $TestResults = Invoke-Pester -Path Tests\*unit* -PassThru -Tag Build -ExcludeTag Slow
+    $TestResults = Invoke-Pester -Path tests\*unit* -PassThru -Tag Build -ExcludeTag Slow
     if ($TestResults.FailedCount -gt 0)
     {
         Write-Error "Failed [$($TestResults.FailedCount)] Pester tests"
@@ -26,7 +26,7 @@ Task UnitTests {
 }
 
 Task FullTests {
-    $TestResults = Invoke-Pester -Path Tests -PassThru -OutputFormat NUnitXml -OutputFile $testFile -Tag Build
+    $TestResults = Invoke-Pester -Path tests -PassThru -OutputFormat NUnitXml -OutputFile $testFile -Tag Build
     if ($TestResults.FailedCount -gt 0)
     {
         Write-Error "Failed [$($TestResults.FailedCount)] Pester tests"
@@ -93,7 +93,7 @@ Task BuildPSD1 -inputs (Get-ChildItem $Source -Recurse -File) -Outputs $Manifest
 
     $bumpVersionType = 'Patch'
 
-    $functions = Get-ChildItem "$ModuleName\public\*.ps1" | Where-Object { $_.name -notmatch 'Tests'} | Select-Object -ExpandProperty basename      
+    $functions = Get-ChildItem "$ModuleName\public\*.ps1" | Where-Object { $_.name -notmatch 'tests'} | Select-Object -ExpandProperty basename      
 
     $oldFunctions = (Get-Metadata -Path $manifestPath -PropertyName 'FunctionsToExport')
 
