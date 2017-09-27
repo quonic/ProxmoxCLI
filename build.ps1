@@ -1,3 +1,4 @@
+#!/usr/bin/powershell -Command
 <#
 .Description
 Installs and loads all the required modules for the build.
