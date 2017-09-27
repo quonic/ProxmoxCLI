@@ -8,7 +8,7 @@ variables:
 Test:
   stage: test
   script:
-   - powershell -File "./build.ps1" "-Tasks Pester"
+   - powershell -Command "./build.ps1" "-Task Pester"
   except:
     - master
 #Release:
