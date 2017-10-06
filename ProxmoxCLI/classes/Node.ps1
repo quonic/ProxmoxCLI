@@ -145,11 +145,13 @@ class Node {
       digest: string
       pos: int
     #>
-    
+
     # /lxc/*
     [PSCustomObject] getLxc () {
         return (callREST -Resource "nodes/$($this.Name)/lxc")
     }
+    # TODO: impliment this as Qemu was implimented. I might share some of the same code.
+
     # /network/*
     [PSCustomObject] getNetwork () {
         return (callREST -Resource "nodes/$($this.Name)/network")
