@@ -77,6 +77,7 @@ class Node {
     [PSCustomObject] getCeph () {
         return (callREST -Resource "nodes/$($this.Name)/ceph")
     }
+    # TODO: Added everything else once I can get a test rig setup with cephs
 
     # /disks/*
     [PSCustomObject] getDisks () {
@@ -90,11 +91,61 @@ class Node {
             }
         }
     }
+    # TODO: /disks/initgpt POST
+    # Required:
+    #   disk: string ^/dev/[a-zA-Z0-9]+$
+    #   node: string
+    # Optional:
+    #   uuid: string [a-fA-F0-9\-]+
+
     # /firewall/*
     # I haven't used this yet, but plan on doing so to get this implimented
-    [PSCustomObject] getFirewall () {
-        return (callREST -Resource "nodes/$($this.Name)/firewall")
+    [PSCustomObject] getFirewallLogs ([int]$limit=$null,[int]$start=$null) {
+        $query = @{}
+        if($limit -or $start){
+            if($limit -and $start){$query = @{limit = $limit;start = $start}
+            }elseif ($start) {$query = @{start = $start}
+            }elseif ($limit){$query = @{limit = $limit}}
+            return (callREST -Resource "nodes/$($this.Name)/firewall/log" -Options $query)    
+        }
+        return (callREST -Resource "nodes/$($this.Name)/firewall/log")
     }
+    [PSCustomObject] getFirewallOptions () {
+        return (callREST -Resource "nodes/$($this.Name)/firewall/options")
+    }
+    [PSCustomObject] getFirewallRules () {
+        return (callREST -Resource "nodes/$($this.Name)/firewall/rules")
+    }
+    <#
+    TODO: /rules POST
+     Required:
+      action: string [A-Za-z][A-Za-z0-9\-\_]+
+      type: enum in,out,group
+     Optional:
+      enable,pos: int
+      comment,dest,digest,iface,macro,proto,source,sport: string
+    #>
+    <#
+    TODO: /rules/{pos} GET
+     Optional:
+      pos: int
+    #>
+    <#
+    TODO: /rules/{pos} POST
+     Required:
+     Optional:
+      action: string [A-Za-z][A-Za-z0-9\-\_]+
+      type: enum in,out,group
+      enable,pos,moveto: int
+      comment,dest,digest,dport,iface,macro,proto,source,sport: string
+    #>
+    <#
+    TODO: /rules/{pos} DELETE
+     Optional:
+      digest: string
+      pos: int
+    #>
+    
     # /lxc/*
     [PSCustomObject] getLxc () {
         return (callREST -Resource "nodes/$($this.Name)/lxc")
