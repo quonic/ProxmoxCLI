@@ -156,6 +156,25 @@ class Node {
     [PSCustomObject] getNetwork () {
         return (callREST -Resource "nodes/$($this.Name)/network")
     }
+    <#
+    TODO: /network/{iface} PUT
+     Required:
+      iface: string
+      type: enum bridge,bond,eth,alias,vlan,OVSBridge,OVSBond,OVSPort,OVSInitPort,unknown
+     Optional:
+      address,address6,bridge_ports,comments,comments6,delete,gateway,gateway6,netmask,slaves: string
+      autostart,bridge_vlan_aware: boolean
+      bond_mode: enum balance-rr,active-backup,balance-xor,802.3ad,balance-tlb,balance-alb,balance-slb,lacp-balance-slb,lacp-balance-tcp
+      bond_xmit_hash_policy: enum layer2,layer2+3,layer3+4
+      netmask6: int 0-128
+      ovs_bonds,ovs_bridge,ovs_options,ovs_ports: string
+      ovs_tags: int 1-4094
+    #>
+    <#
+    TODO: /network/{iface} DELETE
+     Required:
+      iface: string
+    #>
     # /qemu/*
     [PSCustomObject] getQemu () {
         $vms = (callREST -Resource "nodes/$($this.Name)/qemu")
