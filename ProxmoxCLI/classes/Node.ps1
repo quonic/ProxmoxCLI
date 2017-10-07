@@ -182,7 +182,30 @@ class Node {
     }
     # /replication/*
     [PSCustomObject] getReplication () {
-        return (callREST -Resource "nodes/$($this.Name)/replicate")
+        return (callREST -Resource "nodes/$($this.Name)/replication")
+    }
+    [PSCustomObject] getReplicationLogs ([string]$id=$null,[int]$limit=$null,[int]$start=$null) {
+        $query = @{}
+        if($limit -or $start){
+            if($limit -and $start){$query = @{limit = $limit;start = $start}
+            }elseif ($start) {$query = @{start = $start}
+            }elseif ($limit){$query = @{limit = $limit}}
+        }
+        if($id){
+            return (callREST -Resource "nodes/$($this.Name)/replication/$($id)/log" -Options $query)
+        }
+        return (($this.getReplication()).id | ForEach-Object {callREST -Resource "nodes/$($this.Name)/replication/$($_)/log" -Options $query})
+    }
+    <#
+    TODO: /replication/{id}/schedule_now POST
+     Required:
+      id: string pve-replication-job-id
+    #>
+    [PSCustomObject] getReplicationStatus ([string]$id=$null) {
+        if($id){
+            return (callREST -Resource "nodes/$($this.Name)/replication/$($id)/status")
+        }
+        return (($this.getReplication()).id | ForEach-Object {callREST -Resource "nodes/$($this.Name)/replication/$($_)/status"})
     }
     # /scan/*
     [PSCustomObject] getScan () {
