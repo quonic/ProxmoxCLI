@@ -211,6 +211,31 @@ class Node {
     [PSCustomObject] getScan () {
         return (callREST -Resource "nodes/$($this.Name)/scan")
     }
+    [PSCustomObject] getScanGlusterFS ([string]$server) {
+        return (callREST -Resource "nodes/$($this.Name)/scan/glusterfs" -Options @{server = $server})
+    }
+    [PSCustomObject] getScanIscsi ([string]$portal) {
+        return (callREST -Resource "nodes/$($this.Name)/scan/iscsi" -Options @{portal = $portal})
+    }
+    [PSCustomObject] getScanLvm () {
+        return (callREST -Resource "nodes/$($this.Name)/scan/lvm")
+    }
+    [PSCustomObject] getScanLvmThin ([string]$vg) {
+        if($vg -match "[a-zA-Z0-9\.\+\_][a-zA-Z0-9\.\+\_\-]+"){
+            return (callREST -Resource "nodes/$($this.Name)/scan/lvmthin" -Options @{vg = $vg})
+        }else{
+            return $false
+        }
+    }
+    [PSCustomObject] getScanNfs ([string]$server) {
+        return (callREST -Resource "nodes/$($this.Name)/scan/nfs" -Options @{server = $server})
+    }
+    [PSCustomObject] getScanUsb () {
+        return (callREST -Resource "nodes/$($this.Name)/scan/usb")
+    }
+    [PSCustomObject] getScanZfs () {
+        return (callREST -Resource "nodes/$($this.Name)/scan/zfs")
+    }
     # /services/*
     [PSCustomObject] getServices () {
         return (callREST -Resource "nodes/$($this.Name)/services")
