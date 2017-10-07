@@ -240,6 +240,9 @@ class Node {
     [PSCustomObject] getServices () {
         return (callREST -Resource "nodes/$($this.Name)/services")
     }
+    # /services/{service}/*
+    # TODO: This needs to be implimented into one call with a list of services.
+
     # /storage/*
     [PSCustomObject] getStorage () {
         return (callREST -Resource "nodes/$($this.Name)/storage")
