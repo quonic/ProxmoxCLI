@@ -1,3 +1,29 @@
+enum Services {
+    pveproxy
+    pvedaemon
+    spiceproxy
+    pvestatd
+    pve_cluster
+    corosync
+    pve_firewall
+    pvefw_logger
+    pve_ha_crm
+    pve_ha_lrm
+    sshd
+    syslog
+    cron
+    postfix
+    ksmtuned
+    systemd_timesyncd
+}
+
+enum ServiceState {
+    reload
+    restart
+    start
+    stop
+}
+
 class Node {
 
     [string] $Name
@@ -240,9 +266,16 @@ class Node {
     [PSCustomObject] getServices () {
         return (callREST -Resource "nodes/$($this.Name)/services")
     }
-    # /services/{service}/*
-    # TODO: This needs to be implimented into one call with a list of services.
-
+    [PSCustomObject] getServiceState ([Services]$service) {
+        $serviceString = $service.ToString()
+        $serviceName = $serviceString.Replace('_','-')
+        return (callREST -Resource "nodes/$($this.Name)/services/$($serviceName)/state")
+    }
+    [PSCustomObject] setServiceState ([Services]$service,[ServiceState]$state) {
+        $serviceString = $service.ToString()
+        $serviceName = $serviceString.Replace('_','-')
+        return (callREST -Resource "nodes/$($this.Name)/services/$($serviceName)/$($state)" -Method POST)
+    }
     # /storage/*
     [PSCustomObject] getStorage () {
         return (callREST -Resource "nodes/$($this.Name)/storage")
