@@ -126,12 +126,15 @@ class Node {
 
     # /firewall/*
     # I haven't used this yet, but plan on doing so to get this implimented
-    [PSCustomObject] getFirewallLogs ([int]$limit=$null,[int]$start=$null) {
+    [PSCustomObject] getFirewallLogs ([int]$limit = $null, [int]$start = $null) {
         $query = @{}
-        if($limit -or $start){
-            if($limit -and $start){$query = @{limit = $limit;start = $start}
-            }elseif ($start) {$query = @{start = $start}
-            }elseif ($limit){$query = @{limit = $limit}}
+        if ($limit -or $start) {
+            if ($limit -and $start) {$query = @{limit = $limit; start = $start}
+            }
+            elseif ($start) {$query = @{start = $start}
+            }
+            elseif ($limit) {$query = @{limit = $limit}
+            }
             return (callREST -Resource "nodes/$($this.Name)/firewall/log" -Options $query)    
         }
         return (callREST -Resource "nodes/$($this.Name)/firewall/log")
@@ -210,14 +213,17 @@ class Node {
     [PSCustomObject] getReplication () {
         return (callREST -Resource "nodes/$($this.Name)/replication")
     }
-    [PSCustomObject] getReplicationLogs ([string]$id=$null,[int]$limit=$null,[int]$start=$null) {
+    [PSCustomObject] getReplicationLogs ([string]$id = $null, [int]$limit = $null, [int]$start = $null) {
         $query = @{}
-        if($limit -or $start){
-            if($limit -and $start){$query = @{limit = $limit;start = $start}
-            }elseif ($start) {$query = @{start = $start}
-            }elseif ($limit){$query = @{limit = $limit}}
+        if ($limit -or $start) {
+            if ($limit -and $start) {$query = @{limit = $limit; start = $start}
+            }
+            elseif ($start) {$query = @{start = $start}
+            }
+            elseif ($limit) {$query = @{limit = $limit}
+            }
         }
-        if($id){
+        if ($id) {
             return (callREST -Resource "nodes/$($this.Name)/replication/$($id)/log" -Options $query)
         }
         return (($this.getReplication()).id | ForEach-Object {callREST -Resource "nodes/$($this.Name)/replication/$($_)/log" -Options $query})
@@ -227,8 +233,8 @@ class Node {
      Required:
       id: string pve-replication-job-id
     #>
-    [PSCustomObject] getReplicationStatus ([string]$id=$null) {
-        if($id){
+    [PSCustomObject] getReplicationStatus ([string]$id = $null) {
+        if ($id) {
             return (callREST -Resource "nodes/$($this.Name)/replication/$($id)/status")
         }
         return (($this.getReplication()).id | ForEach-Object {callREST -Resource "nodes/$($this.Name)/replication/$($_)/status"})
@@ -247,9 +253,10 @@ class Node {
         return (callREST -Resource "nodes/$($this.Name)/scan/lvm")
     }
     [PSCustomObject] getScanLvmThin ([string]$vg) {
-        if($vg -match "[a-zA-Z0-9\.\+\_][a-zA-Z0-9\.\+\_\-]+"){
+        if ($vg -match "[a-zA-Z0-9\.\+\_][a-zA-Z0-9\.\+\_\-]+") {
             return (callREST -Resource "nodes/$($this.Name)/scan/lvmthin" -Options @{vg = $vg})
-        }else{
+        }
+        else {
             return $false
         }
     }
@@ -268,17 +275,26 @@ class Node {
     }
     [PSCustomObject] getServiceState ([Services]$service) {
         $serviceString = $service.ToString()
-        $serviceName = $serviceString.Replace('_','-')
+        $serviceName = $serviceString.Replace('_', '-')
         return (callREST -Resource "nodes/$($this.Name)/services/$($serviceName)/state")
     }
-    [PSCustomObject] setServiceState ([Services]$service,[ServiceState]$state) {
+    [PSCustomObject] setServiceState ([Services]$service, [ServiceState]$state) {
         $serviceString = $service.ToString()
-        $serviceName = $serviceString.Replace('_','-')
+        $serviceName = $serviceString.Replace('_', '-')
         return (callREST -Resource "nodes/$($this.Name)/services/$($serviceName)/$($state)" -Method POST)
     }
     # /storage/*
-    [PSCustomObject] getStorage () {
-        return (callREST -Resource "nodes/$($this.Name)/storage")
+    [PSCustomObject] getStorage ([switch]$enabled) {
+        return (callREST -Resource "nodes/$($this.Name)/storage" -Options @{enabled = $enabled})
+    }
+    [PSCustomObject] getStorage ([switch]$enabled, [string]$content = $null, [string]$storage = $null, [string]$target = $null) {
+        $query = @{
+            enabled = $enabled
+            content = $content
+            storage = $storage
+            target  = $target
+        }
+        return (callREST -Resource "nodes/$($this.Name)/storage" -Options $query)
     }
     # /tasks/*
     [PSCustomObject] getTasks () {
@@ -363,7 +379,7 @@ class Qemu {
         return (callREST -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/feature")
     }
 
-    [PSCustomObject] getFeature([Features]$Feature,[string]$SnapName) {
+    [PSCustomObject] getFeature([Features]$Feature, [string]$SnapName) {
         return (callREST -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/feature" -Options @{snapname = $SnapName})
     }
 }
