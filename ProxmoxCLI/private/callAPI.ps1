@@ -9,15 +9,15 @@ function callREST {
         [hashtable]
         $Options
     )
-    if($null -ne $Script:PveTickets){
+    if($null -eq $Script:PveTickets){
         # Check if we even have a ticket
         Write-Error "Please connect usinge Connect-PveServer."
         return $false
     }
-    if ((Get-Date).Ticks -le $Script:PveTickets.Expire) {
-        # Check if ticket expired and grab a new one
-        Connect-PveServer -Server $Script:PveTickets.Server
-    }
+    # if ((Get-Date).Ticks -le $Script:PveTickets.Expire) {
+    #     # Check if ticket expired and grab a new one
+    #     Connect-PveServer -Server $Script:PveTickets.Server
+    # }
     # Bypass ssl checking or servers without a public cert or internal CA cert
     if ($Script:PveTickets.BypassSSLCheck) {
         $CertificatePolicy = GetCertificatePolicy
@@ -33,16 +33,22 @@ function callREST {
     }
     
     $Query = ""
-    If ($Options) {
+    if($Options){
+        $Query = "?"
         $Options.keys | ForEach-Object {
-            $Query = $Query + "$_=$($Options[$_])&"
+            if($Options[$_]){
+                $Query = $Query + "$_=$($Options[$_])&"
+            }
         }
         $Query = $Query.TrimEnd("&")
     }
     try {
-        $response = Invoke-RestMethod -Uri "https://$($Script:PveTickets.Server):8006/api2/json/$($Resource)?$($Query)" @splat
+        Write-Debug "REST call: https://$($Script:PveTickets.Server):8006/api2/json/$($Resource)$($Query)"
+        $response = Invoke-RestMethod -Uri "https://$($Script:PveTickets.Server):8006/api2/json/$($Resource)$($Query)" @splat
+        Write-Debug "REST response: $($response.data)"
     }
     catch {return $false}
+    
     
     if ($Script:PveTickets.BypassSSLCheck)
     {

@@ -28,14 +28,21 @@ class Node {
 
     [string] $Name
     [PSCustomObject] $Subscription
-    [DateTime] $Time
+    #[DateTime] $Time
     [PSCustomObject] $Version
     [PSCustomObject] $Status
     [PSCustomObject] $Dns
     
     
     Node ([string] $Name) {
-        $this.Refresh()
+        $this.Name = [string]$Name
+        $this.Subscription = $this.getSubscription()
+        # Convert UNIX time to Windows time
+        $origin = New-Object -Type DateTime -ArgumentList 1970, 1, 1, 0, 0, 0, 0
+        $this.Time = $origin.AddSeconds(($this.getTime()).localtime)
+        $this.Version = $this.getVersion()
+        $this.Status = $this.getStatus()
+        $this.Dns = $this.getDns()
     }
     
     [void] Refresh() {

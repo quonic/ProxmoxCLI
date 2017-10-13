@@ -31,11 +31,13 @@ function Get-Node {
     # TODO - Expand this to return more information, probably in Node class.
     if ($Node) {
         return $Node | ForEach-Object {
+            #[Node]::new($_)
             New-Object -TypeName "Node" -ArgumentList $_
         }
     }
     else {
         return callREST -Resource "/nodes" | ForEach-Object {
+            #[Node]::new($_.node)
             New-Object -TypeName "Node" -ArgumentList $_.node
         }
     }
@@ -76,7 +78,7 @@ function Get-Qemu {
     if($vmid){
         return [Qemu]::new($Node, $vmid)
     }else{
-        Get-Node -Node $Node | ForEach-Object {
+        return Get-Node -Node $Node | ForEach-Object {
             $VMList = $_.getQemu()
             $VMList | ForEach-Object {
                 # Return Qemu object

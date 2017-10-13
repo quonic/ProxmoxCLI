@@ -64,7 +64,7 @@ function Connect-PveServer {
         if ($BypassSSLCheck -or $Script:PveTickets.BypassSSLCheck) {
             # Trust all certs as we don't use an internal CA
             # Don't use this if you do use an internal CA or are using an external CA
-            $Script:PveTickets.BypassSSLCheck = $true
+            #$Script:PveTickets.BypassSSLCheck = $true
             $CertificatePolicy = GetCertificatePolicy
             SetCertificatePolicy -Func (GetTrustAllCertsPolicy)
         }
@@ -93,7 +93,7 @@ function Connect-PveServer {
             $Script:PveTickets += New-Object PSObject -Property $NewServer
         }
         else {
-            Write-Warning "Not able to connect to server: $Server"
+            Write-Warning "Not able to connect to server: $Server\n Response: $response"
         }
     }
     
