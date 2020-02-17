@@ -441,17 +441,26 @@ class Qemu {
     [PSCustomObject] getFeature([Features]$Feature, [string]$SnapName) {
         return (callREST -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/feature" -Options @{snapname = $SnapName })
     }
-    [PSCustomObject] reboot([int]$TimeOut = 0) {
+    [PSCustomObject] reboot() {
         <#
         .Synopsis
         Reboot the VM by shutting it down, and starting it again. Applies pending changes.
         #>
-        if ($TimeOut) {
-            return (callREST -Method Post -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/status/reboot" -Options @{timeout = $TimeOut })
-        }
-        else {
-            return (callREST -Method Post -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/status/reboot")
-        }
+        return (callREST -Method Post -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/status/reboot")
+    }
+    [PSCustomObject] reboot([int]$TimeOut) {
+        <#
+        .Synopsis
+        Reboot the VM by shutting it down, and starting it again. Applies pending changes.
+        #>
+        return (callREST -Method Post -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/status/reboot" -Options @{timeout = $TimeOut })
+    }
+    [PSCustomObject] reset() {
+        <#
+        .Synopsis
+        Reset virtual machine.
+        #>
+        return (callREST -Method Post -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/status/reset")
     }
     [PSCustomObject] reset([switch]$SkipLock) {
         <#
@@ -460,6 +469,27 @@ class Qemu {
         #>
         return (callREST -Method Post -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/status/reset" -Options @{skiplock = $SkipLock })
     }
+    [PSCustomObject] resume() {
+        <#
+        .Synopsis
+        Resume virtual machine.
+        #>
+        return (callREST -Method Post -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/status/resume" )
+    }
+    [PSCustomObject] resume([switch]$SkipLock) {
+        <#
+        .Synopsis
+        Resume virtual machine.
+        #>
+        return (callREST -Method Post -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/status/resume" -Options @{skiplock = $SkipLock })
+    }
+    [PSCustomObject] resume([switch]$NoCheck) {
+        <#
+        .Synopsis
+        Resume virtual machine.
+        #>
+        return (callREST -Method Post -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/status/resume" -Options @{nocheck = $NoCheck })
+    }
     [PSCustomObject] resume([switch]$SkipLock, [switch]$NoCheck) {
         <#
         .Synopsis
@@ -467,18 +497,78 @@ class Qemu {
         #>
         return (callREST -Method Post -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/status/resume" -Options @{skiplock = $SkipLock; nocheck = $NoCheck })
     }
+    [PSCustomObject] shutdown() {
+        <#
+        .Synopsis
+        Shutdown virtual machine. This is similar to pressing the power button on a physical machine.This will send an ACPI event for the guest OS, which should then proceed to a clean shutdown.
+        #>
+        return (callREST -Method Post -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/status/shutdown")
+    }
+    [PSCustomObject] shutdown([switch]$ForceStop) {
+        <#
+        .Synopsis
+        Shutdown virtual machine. This is similar to pressing the power button on a physical machine.This will send an ACPI event for the guest OS, which should then proceed to a clean shutdown.
+        #>
+        return (callREST -Method Post -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/status/shutdown" -Options @{forceStop = $ForceStop })
+    }
+    [PSCustomObject] shutdown([switch]$KeepActive) {
+        <#
+        .Synopsis
+        Shutdown virtual machine. This is similar to pressing the power button on a physical machine.This will send an ACPI event for the guest OS, which should then proceed to a clean shutdown.
+        #>
+        return (callREST -Method Post -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/status/shutdown" -Options @{keepActive = $KeepActive })
+    }
+    [PSCustomObject] shutdown([switch]$SkipLock) {
+        <#
+        .Synopsis
+        Shutdown virtual machine. This is similar to pressing the power button on a physical machine.This will send an ACPI event for the guest OS, which should then proceed to a clean shutdown.
+        #>
+        return (callREST -Method Post -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/status/shutdown" -Options @{skiplock = $SkipLock })
+    }
+    [PSCustomObject] shutdown([switch]$NoCheck) {
+        <#
+        .Synopsis
+        Shutdown virtual machine. This is similar to pressing the power button on a physical machine.This will send an ACPI event for the guest OS, which should then proceed to a clean shutdown.
+        #>
+        return (callREST -Method Post -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/status/shutdown" -Options @{nocheck = $NoCheck; })
+    }
+    [PSCustomObject] shutdown([int]$TimeOut) {
+        <#
+        .Synopsis
+        Shutdown virtual machine. This is similar to pressing the power button on a physical machine.This will send an ACPI event for the guest OS, which should then proceed to a clean shutdown.
+        #>
+        return (callREST -Method Post -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/status/shutdown" -Options @{timeout = $TimeOut })
+    }
+    [PSCustomObject] shutdown([switch]$ForceStop, [switch]$KeepActive) {
+        <#
+        .Synopsis
+        Shutdown virtual machine. This is similar to pressing the power button on a physical machine.This will send an ACPI event for the guest OS, which should then proceed to a clean shutdown.
+        #>
+        return (callREST -Method Post -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/status/shutdown" -Options @{forceStop = $ForceStop; keepActive = $KeepActive })
+    }
+    [PSCustomObject] shutdown([switch]$ForceStop, [switch]$KeepActive, [switch]$SkipLock) {
+        <#
+        .Synopsis
+        Shutdown virtual machine. This is similar to pressing the power button on a physical machine.This will send an ACPI event for the guest OS, which should then proceed to a clean shutdown.
+        #>
+        return (callREST -Method Post -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/status/shutdown" -Options @{skiplock = $SkipLock; forceStop = $ForceStop; keepActive = $KeepActive })
+    }
+    [PSCustomObject] shutdown([switch]$ForceStop, [switch]$KeepActive, [switch]$SkipLock, [switch]$NoCheck) {
+        <#
+        .Synopsis
+        Shutdown virtual machine. This is similar to pressing the power button on a physical machine.This will send an ACPI event for the guest OS, which should then proceed to a clean shutdown.
+        #>
+        return (callREST -Method Post -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/status/shutdown" -Options @{skiplock = $SkipLock; nocheck = $NoCheck; forceStop = $ForceStop; keepActive = $KeepActive })
+    }
     [PSCustomObject] shutdown([switch]$ForceStop, [switch]$KeepActive, [switch]$SkipLock, [switch]$NoCheck, [int]$TimeOut = 0) {
         <#
         .Synopsis
         Shutdown virtual machine. This is similar to pressing the power button on a physical machine.This will send an ACPI event for the guest OS, which should then proceed to a clean shutdown.
         #>
-        if ($TimeOut) {
-            return (callREST -Method Post -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/status/shutdown" -Options @{skiplock = $SkipLock; nocheck = $NoCheck; forceStop = $ForceStop; keepActive = $KeepActive; timeout = $TimeOut })
-        }
-        else {
-            return (callREST -Method Post -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/status/shutdown" -Options @{skiplock = $SkipLock; nocheck = $NoCheck; forceStop = $ForceStop; keepActive = $KeepActive })
-        }
+        return (callREST -Method Post -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/status/shutdown" -Options @{skiplock = $SkipLock; nocheck = $NoCheck; forceStop = $ForceStop; keepActive = $KeepActive; timeout = $TimeOut })
     }
+
+    #TODO Expand this and the following methods out like shutdown.
     [PSCustomObject] start(
         [string]$Machine = "",
         [string]$MigratedFrom = "",
