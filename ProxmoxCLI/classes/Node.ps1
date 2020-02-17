@@ -400,18 +400,41 @@ class Qemu {
     }
 
     [PSCustomObject] getStatus() {
+        <#
+        .Synopsis
+        Get virtual machine status.
+        #>
         return (callREST -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/status/current")
+    }
+    [PSCustomObject] getCurrent() {
+        <#
+        .Synopsis
+        Get virtual machine status.
+        #>
+        return $this.getStatus()
     }
 
     [PSCustomObject] getConfig([switch]$Current) {
+        <#
+        .Synopsis
+        Get current virtual machine configuration. This does not include pending configuration changes (see 'pending' API).
+        #>
         return (callREST -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/config" -Options @{current = $Current })
     }
 
     [PSCustomObject] getPending() {
+        <#
+        .Synopsis
+        Get virtual machine configuration, including pending changes.
+        #>
         return (callREST -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/pending")
     }
 
     [PSCustomObject] getFeature([Features]$Feature) {
+        <#
+        .Synopsis
+        Check if feature for virtual machine is available.
+        #>
         return (callREST -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/feature")
     }
 
@@ -419,6 +442,10 @@ class Qemu {
         return (callREST -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/feature" -Options @{snapname = $SnapName })
     }
     [PSCustomObject] reboot([int]$TimeOut = 0) {
+        <#
+        .Synopsis
+        Reboot the VM by shutting it down, and starting it again. Applies pending changes.
+        #>
         if ($TimeOut) {
             return (callREST -Method Post -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/status/reboot" -Options @{timeout = $TimeOut })
         }
@@ -427,12 +454,24 @@ class Qemu {
         }
     }
     [PSCustomObject] reset([switch]$SkipLock) {
+        <#
+        .Synopsis
+        Reset virtual machine.
+        #>
         return (callREST -Method Post -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/status/reset" -Options @{skiplock = $SkipLock })
     }
     [PSCustomObject] resume([switch]$SkipLock, [switch]$NoCheck) {
+        <#
+        .Synopsis
+        Resume virtual machine.
+        #>
         return (callREST -Method Post -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/status/resume" -Options @{skiplock = $SkipLock; nocheck = $NoCheck })
     }
     [PSCustomObject] shutdown([switch]$ForceStop, [switch]$KeepActive, [switch]$SkipLock, [switch]$NoCheck, [int]$TimeOut = 0) {
+        <#
+        .Synopsis
+        Shutdown virtual machine. This is similar to pressing the power button on a physical machine.This will send an ACPI event for the guest OS, which should then proceed to a clean shutdown.
+        #>
         if ($TimeOut) {
             return (callREST -Method Post -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/status/shutdown" -Options @{skiplock = $SkipLock; nocheck = $NoCheck; forceStop = $ForceStop; keepActive = $KeepActive; timeout = $TimeOut })
         }
@@ -449,6 +488,10 @@ class Qemu {
         [string]$StateUri = "",
         [string]$TargetStorage = ""
     ) {
+        <#
+        .Synopsis
+        Start virtual machine.
+        #>
         $Options = @{ }
         
         if (-not [String]::IsNullOrEmpty($Machine) -and -not [String]::IsNullOrWhiteSpace($Machine)) {
@@ -477,6 +520,10 @@ class Qemu {
         return (callREST -Method Post -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/status/start" -Options $Options)
     }
     [PSCustomObject] stop([string]$MigratedFrom = "", [switch]$KeepActive, [switch]$SkipLock, [int]$TimeOut = 0) {
+        <#
+        .Synopsis
+        Stop virtual machine. The qemu process will exit immediately. Thisis akin to pulling the power plug of a running computer and may damage the VM data
+        #>
         $Options = @{skiplock = $SkipLock; keepActive = $KeepActive }
         if ($TimeOut) {
             $Options.Add("timeout", $TimeOut)
@@ -487,6 +534,10 @@ class Qemu {
         return (callREST -Method Post -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/status/stop" -Options $Options)
     }
     [PSCustomObject] suspend([string]$StateStorage = "", [switch]$ToDisk, [switch]$SkipLock) {
+        <#
+        .Synopsis
+        Suspend virtual machine.
+        #>
         $Options = @{skiplock = $SkipLock; todisk = $ToDisk }
         if (-not [String]::IsNullOrEmpty($StateStorage) -and -not [String]::IsNullOrWhiteSpace($StateStorage)) {
             $Options.Add("statestorage" , $StateStorage)
