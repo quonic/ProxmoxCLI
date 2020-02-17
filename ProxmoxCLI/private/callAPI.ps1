@@ -9,7 +9,7 @@ function callREST {
         [hashtable]
         $Options
     )
-    if($null -eq $Script:PveTickets){
+    if ($null -eq $Script:PveTickets) {
         # Check if we even have a ticket
         Write-Error "Please connect usinge Connect-PveServer."
         return $false
@@ -33,10 +33,10 @@ function callREST {
     }
     
     $Query = ""
-    if($Options){
+    if ($Options) {
         $Query = "?"
         $Options.keys | ForEach-Object {
-            if($Options[$_]){
+            if ($Options[$_]) {
                 $Query = $Query + "$_=$($Options[$_])&"
             }
         }
@@ -47,11 +47,10 @@ function callREST {
         $response = Invoke-RestMethod -Uri "https://$($Script:PveTickets.Server):8006/api2/json/$($Resource)$($Query)" @splat
         Write-Debug "REST response: $($response.data)"
     }
-    catch {return $false}
+    catch { return $false }
     
     
-    if ($Script:PveTickets.BypassSSLCheck)
-    {
+    if ($Script:PveTickets.BypassSSLCheck) {
         # restore original cert policy
         SetCertificatePolicy -Func $CertificatePolicy
     }
@@ -70,7 +69,7 @@ function PreparePostRequest() {
     $session.cookies.add($cookie)
     $request = New-Object -TypeName PSCustomObject -Property @{
         Method      = "Post"
-        Headers     = @{CSRFPreventionToken = $Script:PveTickets.CSRFPreventionToken}
+        Headers     = @{CSRFPreventionToken = $Script:PveTickets.CSRFPreventionToken }
         WebSession  = $session
         ContentType = "application/json"
     }
@@ -105,7 +104,7 @@ function PrepareDeleteRequest() {
     $session.cookies.add($cookie)
     $request = New-Object -TypeName PSCustomObject -Property @{
         Method      = "Delete"
-        Headers     = @{CSRFPreventionToken = $Script:PveTickets.CSRFPreventionToken}
+        Headers     = @{CSRFPreventionToken = $Script:PveTickets.CSRFPreventionToken }
         WebSession  = $session
         ContentType = "application/json"
     }
