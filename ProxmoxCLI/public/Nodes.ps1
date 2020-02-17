@@ -75,9 +75,10 @@ function Get-Qemu {
         [String]
         $Node
     )
-    if($vmid){
+    if ($vmid) {
         return [Qemu]::new($Node, $vmid)
-    }else{
+    }
+    else {
         return Get-Node -Node $Node | ForEach-Object {
             $VMList = $_.getQemu()
             $VMList | ForEach-Object {
@@ -86,7 +87,7 @@ function Get-Qemu {
             }
         }
     }
-    
+
 }
 
 Export-ModuleMember -Function @('Get-Node', 'Get-Qemu')

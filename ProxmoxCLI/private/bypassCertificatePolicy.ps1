@@ -12,7 +12,7 @@ public class TrustAllCertsPolicy : ICertificatePolicy {
     }
 }
 "@
-    
+
     return $(New-Object TrustAllCertsPolicy)
 }
 

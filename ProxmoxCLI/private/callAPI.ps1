@@ -31,7 +31,7 @@ function callREST {
         Delete { $splat = PrepareGetRequest }
         Default { $splat = PrepareGetRequest }
     }
-    
+
     $Query = ""
     if ($Options) {
         $Query = "?"
@@ -48,8 +48,8 @@ function callREST {
         Write-Debug "REST response: $($response.data)"
     }
     catch { return $false }
-    
-    
+
+
     if ($Script:PveTickets.BypassSSLCheck) {
         # restore original cert policy
         SetCertificatePolicy -Func $CertificatePolicy
