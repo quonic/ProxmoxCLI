@@ -88,14 +88,14 @@ class Node {
     
     # /apt/*
     [PSCustomObject] getAptChangeLog ([String]$package) {
-        return (callREST -Resource "nodes/$($this.Name)/apt/changelog" -Options @{name = $package})
+        return (callREST -Resource "nodes/$($this.Name)/apt/changelog" -Options @{name = $package })
     }
     [PSCustomObject] getAptUpdate () {
         return (callREST -Resource "nodes/$($this.Name)/apt/update")
     }
     [PSCustomObject] runAptUpdate ([switch]$notify) {
         $query = "?quiet=true"
-        if ($notify) {$query = "$($query)&notify=true"}
+        if ($notify) { $query = "$($query)&notify=true" }
         return (callREST -Resource "nodes/$($this.Name)/apt/update$query")
     }
     [PSCustomObject] getAptVersion () {
@@ -116,11 +116,29 @@ class Node {
     [PSCustomObject] getDisks () {
         return (callREST -Resource "nodes/$($this.Name)/disks/list")
     }
+    [PSCustomObject] getZfs () {
+        return (callREST -Resource "nodes/$($this.Name)/disks/zfs")
+    }
+    [PSCustomObject] getZfsPool ($PoolName) {
+        return (callREST -Resource "nodes/$($this.Name)/disks/zfs/$($PoolName)")
+    }
+    [PSCustomObject] getLvm () {
+        return (callREST -Resource "nodes/$($this.Name)/disks/lvm")
+    }
+    [PSCustomObject] getLvmThin () {
+        return (callREST -Resource "nodes/$($this.Name)/disks/lvmthin")
+    }
+    [PSCustomObject] getDirectory () {
+        return (callREST -Resource "nodes/$($this.Name)/disks/directory")
+    }
+    [PSCustomObject] getSmart () {
+        return (callREST -Resource "nodes/$($this.Name)/disks/smart")
+    }
     [PSCustomObject] getDisksHealth () {
         return $this.getDisks() | ForEach-Object {
             @{
                 'devpath'    = $_.devpath;
-                'attributes' = (callREST -Resource "nodes/$($this.Name)/disks/smart" -Options @{disk = $_.devpath}) | Select-Object health
+                'attributes' = (callREST -Resource "nodes/$($this.Name)/disks/smart" -Options @{disk = $_.devpath }) | Select-Object health
             }
         }
     }
@@ -134,13 +152,16 @@ class Node {
     # /firewall/*
     # I haven't used this yet, but plan on doing so to get this implimented
     [PSCustomObject] getFirewallLogs ([int]$limit = $null, [int]$start = $null) {
-        $query = @{}
+        $query = @{ }
         if ($limit -or $start) {
-            if ($limit -and $start) {$query = @{limit = $limit; start = $start}
+            if ($limit -and $start) {
+                $query = @{limit = $limit; start = $start }
             }
-            elseif ($start) {$query = @{start = $start}
+            elseif ($start) {
+                $query = @{start = $start }
             }
-            elseif ($limit) {$query = @{limit = $limit}
+            elseif ($limit) {
+                $query = @{limit = $limit }
             }
             return (callREST -Resource "nodes/$($this.Name)/firewall/log" -Options $query)    
         }
@@ -221,19 +242,22 @@ class Node {
         return (callREST -Resource "nodes/$($this.Name)/replication")
     }
     [PSCustomObject] getReplicationLogs ([string]$id = $null, [int]$limit = $null, [int]$start = $null) {
-        $query = @{}
+        $query = @{ }
         if ($limit -or $start) {
-            if ($limit -and $start) {$query = @{limit = $limit; start = $start}
+            if ($limit -and $start) {
+                $query = @{limit = $limit; start = $start }
             }
-            elseif ($start) {$query = @{start = $start}
+            elseif ($start) {
+                $query = @{start = $start }
             }
-            elseif ($limit) {$query = @{limit = $limit}
+            elseif ($limit) {
+                $query = @{limit = $limit }
             }
         }
         if ($id) {
             return (callREST -Resource "nodes/$($this.Name)/replication/$($id)/log" -Options $query)
         }
-        return (($this.getReplication()).id | ForEach-Object {callREST -Resource "nodes/$($this.Name)/replication/$($_)/log" -Options $query})
+        return (($this.getReplication()).id | ForEach-Object { callREST -Resource "nodes/$($this.Name)/replication/$($_)/log" -Options $query })
     }
     <#
     TODO: /replication/{id}/schedule_now POST
@@ -244,31 +268,31 @@ class Node {
         if ($id) {
             return (callREST -Resource "nodes/$($this.Name)/replication/$($id)/status")
         }
-        return (($this.getReplication()).id | ForEach-Object {callREST -Resource "nodes/$($this.Name)/replication/$($_)/status"})
+        return (($this.getReplication()).id | ForEach-Object { callREST -Resource "nodes/$($this.Name)/replication/$($_)/status" })
     }
     # /scan/*
     [PSCustomObject] getScan () {
         return (callREST -Resource "nodes/$($this.Name)/scan")
     }
     [PSCustomObject] getScanGlusterFS ([string]$server) {
-        return (callREST -Resource "nodes/$($this.Name)/scan/glusterfs" -Options @{server = $server})
+        return (callREST -Resource "nodes/$($this.Name)/scan/glusterfs" -Options @{server = $server })
     }
     [PSCustomObject] getScanIscsi ([string]$portal) {
-        return (callREST -Resource "nodes/$($this.Name)/scan/iscsi" -Options @{portal = $portal})
+        return (callREST -Resource "nodes/$($this.Name)/scan/iscsi" -Options @{portal = $portal })
     }
     [PSCustomObject] getScanLvm () {
         return (callREST -Resource "nodes/$($this.Name)/scan/lvm")
     }
     [PSCustomObject] getScanLvmThin ([string]$vg) {
         if ($vg -match "[a-zA-Z0-9\.\+\_][a-zA-Z0-9\.\+\_\-]+") {
-            return (callREST -Resource "nodes/$($this.Name)/scan/lvmthin" -Options @{vg = $vg})
+            return (callREST -Resource "nodes/$($this.Name)/scan/lvmthin" -Options @{vg = $vg })
         }
         else {
             return $false
         }
     }
     [PSCustomObject] getScanNfs ([string]$server) {
-        return (callREST -Resource "nodes/$($this.Name)/scan/nfs" -Options @{server = $server})
+        return (callREST -Resource "nodes/$($this.Name)/scan/nfs" -Options @{server = $server })
     }
     [PSCustomObject] getScanUsb () {
         return (callREST -Resource "nodes/$($this.Name)/scan/usb")
@@ -292,7 +316,7 @@ class Node {
     }
     # /storage/*
     [PSCustomObject] getStorage ([switch]$enabled) {
-        return (callREST -Resource "nodes/$($this.Name)/storage" -Options @{enabled = $enabled})
+        return (callREST -Resource "nodes/$($this.Name)/storage" -Options @{enabled = $enabled })
     }
     [PSCustomObject] getStorage ([switch]$enabled, [string]$content = $null, [string]$storage = $null, [string]$target = $null) {
         $query = @{
@@ -375,7 +399,7 @@ class Qemu {
     }
 
     [PSCustomObject] getConfig([switch]$Current) {
-        return (callREST -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/config" -Options @{current = $Current})
+        return (callREST -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/config" -Options @{current = $Current })
     }
 
     [PSCustomObject] getPending() {
@@ -387,6 +411,6 @@ class Qemu {
     }
 
     [PSCustomObject] getFeature([Features]$Feature, [string]$SnapName) {
-        return (callREST -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/feature" -Options @{snapname = $SnapName})
+        return (callREST -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/feature" -Options @{snapname = $SnapName })
     }
 }
