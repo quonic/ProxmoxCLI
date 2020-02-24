@@ -5,6 +5,7 @@ A Proxmox module for accessing your Proxmox APIs
 ## Current Stage
 
 * Developing and Testing
+* NOT Production Ready, yet.
 
 [![Build status](https://ci.appveyor.com/api/projects/status/pxsta8uglrc9kql8?svg=true)](https://ci.appveyor.com/project/quonic/proxmoxcli)
 
