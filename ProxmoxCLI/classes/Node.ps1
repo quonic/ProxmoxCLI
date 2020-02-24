@@ -574,7 +574,7 @@ class Qemu {
         [string]$MigratedFrom = "",
         [string]$MigrationNetwork = "",
         [MigrationType]$MigrationType = [MigrationType]::secure,
-        [switch]$SkipLock = "",
+        [switch]$SkipLock,
         [string]$StateUri = "",
         [string]$TargetStorage = ""
     ) {
