@@ -568,61 +568,6 @@ class Qemu {
         return (callREST -Method Post -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/status/shutdown" -Options @{skiplock = $SkipLock; nocheck = $NoCheck; forceStop = $ForceStop; keepActive = $KeepActive; timeout = $TimeOut })
     }
 
-    #TODO Expand this and the following methods out like shutdown.
-    [PSCustomObject] start(
-        [string]$Machine = "",
-        [string]$MigratedFrom = "",
-        [string]$MigrationNetwork = "",
-        [MigrationType]$MigrationType = [MigrationType]::secure,
-        [switch]$SkipLock,
-        [string]$StateUri = "",
-        [string]$TargetStorage = ""
-    ) {
-        <#
-        .Synopsis
-        Start virtual machine.
-        #>
-        $Options = @{ }
-        
-        if (-not [String]::IsNullOrEmpty($Machine) -and -not [String]::IsNullOrWhiteSpace($Machine)) {
-            if ($Machine -notmatch "(pc|pc(-i440fx)?-\d+(\.\d+)+(\+pve\d+)?(\.pxe)?|q35|pc-q35-\d+(\.\d+)+(\+pve\d+)?(\.pxe)?|virt(?:-\d+(\.\d+)+)?(\+pve\d+)?)") {
-                Write-Error -Message "Machine doesn't match known machine types" -Category InvalidArgument
-                return $false
-            }
-            $Options.Add("machine" , $Machine)
-        }
-        if (-not [String]::IsNullOrEmpty($MigratedFrom) -and -not [String]::IsNullOrWhiteSpace($MigratedFrom)) {
-            $Options.Add("migratedfrom" , $MigratedFrom)
-        }
-        if (-not [String]::IsNullOrEmpty($MigrationNetwork) -and -not [String]::IsNullOrWhiteSpace($MigrationNetwork)) {
-            $Options.Add("migration_network" , $MigrationNetwork)
-        }
-        if (-not [String]::IsNullOrEmpty($MigrationType) -and -not [String]::IsNullOrWhiteSpace($MigrationType)) {
-            $Options.Add("migration_type" , $MigrationType)
-        }
-        $Options.Add("skiplock" , $SkipLock)
-        if (-not [String]::IsNullOrEmpty($StateUri) -and -not [String]::IsNullOrWhiteSpace($StateUri)) {
-            $Options.Add("stateuri" , $StateUri)
-        }
-        if (-not [String]::IsNullOrEmpty($TargetStorage) -and -not [String]::IsNullOrWhiteSpace($TargetStorage)) {
-            $Options.Add("targetstorage" , $TargetStorage)
-        }
-        return (callREST -Method Post -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/status/start" -Options $Options)
-    }
-    [PSCustomObject] stop([string]$MigratedFrom = "", [switch]$KeepActive, [switch]$SkipLock, [int]$TimeOut = 0) {
-        <#
-        .Synopsis
-        Stop virtual machine. The qemu process will exit immediately. Thisis akin to pulling the power plug of a running computer and may damage the VM data
-        #>
-        $Options = @{skiplock = $SkipLock; keepActive = $KeepActive }
-        if ($TimeOut) {
-            $Options.Add("timeout", $TimeOut)
-        }
-        if (-not [String]::IsNullOrEmpty($MigratedFrom) -and -not [String]::IsNullOrWhiteSpace($MigratedFrom)) {
-            $Options.Add("migratedfrom" , $MigratedFrom)
-        }
-        return (callREST -Method Post -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/status/stop" -Options $Options)
-    }
     [PSCustomObject] suspend([string]$StateStorage = "", [switch]$ToDisk, [switch]$SkipLock) {
         <#
         .Synopsis
