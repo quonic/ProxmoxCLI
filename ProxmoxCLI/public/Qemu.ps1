@@ -194,4 +194,4 @@ function Stop-Guest {
 }
 
 
-Export-ModuleMember -Function @('Start-Guest')
+Export-ModuleMember -Function @('Start-Guest', 'Stop-Guest')
