@@ -6,6 +6,12 @@ function Start-Guest {
     
     .DESCRIPTION
     Starts a VM or lxc
+
+    .PARAMETER Node
+    Name of the Node that the Guest resides on
+    
+    .PARAMETER Id
+    ID of the guest
     
     .PARAMETER MachineType
     specifies the Qemu machine type
@@ -201,6 +207,12 @@ function Suspend-Guest {
     .DESCRIPTION
     Suspend virtual machine
     
+    .PARAMETER Node
+    Name of the Node that the Guest resides on
+    
+    .PARAMETER Id
+    ID of the guest
+
     .PARAMETER StateStorage
     The storage for the VM state
     
@@ -257,4 +269,89 @@ function Suspend-Guest {
     return (callREST -Method Post -Resource "nodes/$($Node)/qemu/$($Id)/status/suspend" -Options $Options)
 }
 
-Export-ModuleMember -Function @('Start-Guest', 'Stop-Guest', 'Suspend-Guest')
+function Shutdown-Guest {
+    [Diagnostics.CodeAnalysis.SuppressMessage("PSUseApprovedVerbs", Scope = "function")]
+    <#
+    .SYNOPSIS
+    Shuts down a guest
+    
+    .DESCRIPTION
+    Shutdown virtual machine. This is similar to pressing the power button on a physical machine.This will send an ACPI event for the guest OS, which should then proceed to a clean shutdown.
+    
+    .PARAMETER Node
+    Name of the Node that the Guest resides on
+    
+    .PARAMETER Id
+    ID of the guest
+
+    .PARAMETER ForceStop
+    Make sure the VM stops
+    
+    .PARAMETER KeepActive
+    Do not deactivate storage volumes
+    
+    .PARAMETER SkipLock
+    Ignores locks - only root is allowed to use this option
+    
+    .PARAMETER TimeOut
+    Wait maximal timeout seconds
+    
+    .EXAMPLE
+    An example
+    
+    .NOTES
+    General notes
+    #>
+    
+    Param (
+        [Parameter()]
+        [string]
+        $Node,
+        [int]
+        $Id,
+        [Parameter(Mandatory = $false, ParameterSetName = "vm")]
+        [Parameter(Mandatory = $false, ParameterSetName = "container")]
+        [switch]
+        $ForceStop,
+        [Parameter(Mandatory = $false, ParameterSetName = "vm")]
+        [switch]
+        $KeepActive,
+        [Parameter(Mandatory = $false, ParameterSetName = "vm")]
+        [switch]
+        $SkipLock,
+        [Parameter(Mandatory = $false, ParameterSetName = "vm")]
+        [Parameter(Mandatory = $false, ParameterSetName = "container")]
+        [int]
+        $TimeOut
+    )
+    $vms = callREST -Resource "nodes/$($Node)/qemu" | Where-Object { $_.vmid -eq $Id }
+    $containers = callREST -Resource "nodes/$($Node)/lxc" | Where-Object { $_.vmid -eq $Id }
+    $Options = @{ }
+    if ($vms.Count -eq 1) {
+        if ($KeepActive) {
+            $Options.Add("keepActive", $KeepActive)
+        }
+        if ($SkipLock) {
+            $Options.Add("skipLock" , $SkipLock)
+        }
+    }
+    elseif ($containers.Count -eq 1) {
+        Write-Verbose -Message "Container found matching $Id"
+
+        # Here to check if there is a cantainer to act on
+    }
+    else {
+        throw "No VM or Container, or more than one guest exists with the ID of $Id"
+    }
+    if ($ForceStop) {
+        $Options.Add("forceStop", $ForceStop)
+    }
+    if ($TimeOut) {
+        $Options.Add("timeout" , $TimeOut)
+    }
+    return (callREST -Method Post -Resource "nodes/$($Node)/qemu/$($Id)/status/shutdown" -Options $Options)
+
+}
+
+
+Export-ModuleMember -Function @('Start-Guest', 'Stop-Guest', 'Suspend-Guest', 'Shutdown-Guest')
