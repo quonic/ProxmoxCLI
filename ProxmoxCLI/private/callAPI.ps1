@@ -1,4 +1,4 @@
-function callREST {
+function Invoke-ProxmoxAPI {
     #[CmdletBinding()]
     Param(
         [Parameter(Position = 0, Mandatory)]

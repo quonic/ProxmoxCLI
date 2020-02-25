@@ -36,7 +36,7 @@ function Get-Node {
         }
     }
     else {
-        return callREST -Resource "/nodes" | ForEach-Object {
+        return Invoke-ProxmoxAPI -Resource "/nodes" | ForEach-Object {
             #[Node]::new($_.node)
             New-Object -TypeName "Node" -ArgumentList $_.node
         }

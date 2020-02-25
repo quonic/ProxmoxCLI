@@ -78,8 +78,8 @@ function Start-Guest {
         [Parameter(Mandatory = $false, ParameterSetName = "vm")]
         [int]$TimeOut
     )
-    $vms = callREST -Resource "nodes/$($Node)/qemu" | Where-Object { $_.vmid -eq $Id }
-    $containers = callREST -Resource "nodes/$($Node)/lxc" | Where-Object { $_.vmid -eq $Id }
+    $vms = Invoke-ProxmoxAPI -Resource "nodes/$($Node)/qemu" | Where-Object { $_.vmid -eq $Id }
+    $containers = Invoke-ProxmoxAPI -Resource "nodes/$($Node)/lxc" | Where-Object { $_.vmid -eq $Id }
     $Options = @{ }
     $Options.Add("skiplock" , $SkipLock)
 
@@ -118,7 +118,7 @@ function Start-Guest {
         throw "No VM or Container, or more than one guest exists with the ID of $Id"
     }
     Write-Verbose -Message "Starting guest $Id"
-    return (callREST -Method Post -Resource "nodes/$($Node)/qemu/$($Id)/status/start" -Options $Options)
+    return (Invoke-ProxmoxAPI -Method Post -Resource "nodes/$($Node)/qemu/$($Id)/status/start" -Options $Options)
 }
 
 
@@ -169,8 +169,8 @@ function Stop-Guest {
         [int]
         $TimeOut
     )
-    $vms = callREST -Resource "nodes/$($Node)/qemu" | Where-Object { $_.vmid -eq $Id }
-    $containers = callREST -Resource "nodes/$($Node)/lxc" | Where-Object { $_.vmid -eq $Id }
+    $vms = Invoke-ProxmoxAPI -Resource "nodes/$($Node)/qemu" | Where-Object { $_.vmid -eq $Id }
+    $containers = Invoke-ProxmoxAPI -Resource "nodes/$($Node)/lxc" | Where-Object { $_.vmid -eq $Id }
     $Options = @{ }
     if ($SkipLock) {
         $Options.Add("skiplock", $SkipLock)
@@ -196,7 +196,7 @@ function Stop-Guest {
     else {
         throw "No VM or Container, or more than one guest exists with the ID of $Id"
     }
-    return (callREST -Method Post -Resource "nodes/$($Node)/qemu/$($Id)/status/stop" -Options $Options)
+    return (Invoke-ProxmoxAPI -Method Post -Resource "nodes/$($Node)/qemu/$($Id)/status/stop" -Options $Options)
 }
 
 function Suspend-Guest {
@@ -245,8 +245,8 @@ function Suspend-Guest {
         [switch]
         $SkipLock
     )
-    $vms = callREST -Resource "nodes/$($Node)/qemu" | Where-Object { $_.vmid -eq $Id }
-    $containers = callREST -Resource "nodes/$($Node)/lxc" | Where-Object { $_.vmid -eq $Id }
+    $vms = Invoke-ProxmoxAPI -Resource "nodes/$($Node)/qemu" | Where-Object { $_.vmid -eq $Id }
+    $containers = Invoke-ProxmoxAPI -Resource "nodes/$($Node)/lxc" | Where-Object { $_.vmid -eq $Id }
     $Options = @{ }
     if ($vms.Count -eq 1) {
         if ($SkipLock) {
@@ -266,7 +266,7 @@ function Suspend-Guest {
     else {
         throw "No VM or Container, or more than one guest exists with the ID of $Id"
     }
-    return (callREST -Method Post -Resource "nodes/$($Node)/qemu/$($Id)/status/suspend" -Options $Options)
+    return (Invoke-ProxmoxAPI -Method Post -Resource "nodes/$($Node)/qemu/$($Id)/status/suspend" -Options $Options)
 }
 
 function Shutdown-Guest {
@@ -324,8 +324,8 @@ function Shutdown-Guest {
         [int]
         $TimeOut
     )
-    $vms = callREST -Resource "nodes/$($Node)/qemu" | Where-Object { $_.vmid -eq $Id }
-    $containers = callREST -Resource "nodes/$($Node)/lxc" | Where-Object { $_.vmid -eq $Id }
+    $vms = Invoke-ProxmoxAPI -Resource "nodes/$($Node)/qemu" | Where-Object { $_.vmid -eq $Id }
+    $containers = Invoke-ProxmoxAPI -Resource "nodes/$($Node)/lxc" | Where-Object { $_.vmid -eq $Id }
     $Options = @{ }
     if ($vms.Count -eq 1) {
         if ($KeepActive) {
@@ -349,7 +349,7 @@ function Shutdown-Guest {
     if ($TimeOut) {
         $Options.Add("timeout" , $TimeOut)
     }
-    return (callREST -Method Post -Resource "nodes/$($Node)/qemu/$($Id)/status/shutdown" -Options $Options)
+    return (Invoke-ProxmoxAPI -Method Post -Resource "nodes/$($Node)/qemu/$($Id)/status/shutdown" -Options $Options)
 
 }
 

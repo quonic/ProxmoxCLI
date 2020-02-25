@@ -14,7 +14,7 @@ Run Connect-PveServer first
 function Get-PveVersion {
     [CmdletBinding()]
     Param()
-    return (callREST -Resource "version")
+    return (Invoke-ProxmoxAPI -Resource "version")
 }
 
 
