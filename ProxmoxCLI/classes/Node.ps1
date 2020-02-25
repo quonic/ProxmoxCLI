@@ -567,16 +567,4 @@ class Qemu {
         #>
         return (callREST -Method Post -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/status/shutdown" -Options @{skiplock = $SkipLock; nocheck = $NoCheck; forceStop = $ForceStop; keepActive = $KeepActive; timeout = $TimeOut })
     }
-
-    [PSCustomObject] suspend([string]$StateStorage = "", [switch]$ToDisk, [switch]$SkipLock) {
-        <#
-        .Synopsis
-        Suspend virtual machine.
-        #>
-        $Options = @{skiplock = $SkipLock; todisk = $ToDisk }
-        if (-not [String]::IsNullOrEmpty($StateStorage) -and -not [String]::IsNullOrWhiteSpace($StateStorage)) {
-            $Options.Add("statestorage" , $StateStorage)
-        }
-        return (callREST -Method Post -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/status/suspend" -Options $Options)
-    }
 }
