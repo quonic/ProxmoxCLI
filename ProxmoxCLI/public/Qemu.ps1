@@ -193,5 +193,68 @@ function Stop-Guest {
     return (callREST -Method Post -Resource "nodes/$($Node)/qemu/$($Id)/status/stop" -Options $Options)
 }
 
+function Suspend-Guest {
+    <#
+    .SYNOPSIS
+    Suspend virtual machine
+    
+    .DESCRIPTION
+    Suspend virtual machine
+    
+    .PARAMETER StateStorage
+    The storage for the VM state
+    
+    .PARAMETER ToDisk
+    If set, suspends the VM to disk. Will be resumed on next VM start.
+    
+    .PARAMETER SkipLock
+    Ignore locks - only root is allowed to use this option
+    
+    .EXAMPLE
+    Suspend-Guest -Node "Proxmox1" -Id 100
+    
+    .NOTES
+    General notes
+    #>
+    
+    param (
+        [Parameter()]
+        [string]
+        $Node,
+        [int]
+        $Id,
+        [Parameter(Mandatory = $false, ParameterSetName = "vm")]
+        [string]
+        $StateStorage,
+        [Parameter(Mandatory = $false, ParameterSetName = "vm")]
+        [switch]
+        $ToDisk,
+        [Parameter(Mandatory = $false, ParameterSetName = "vm")]
+        [switch]
+        $SkipLock
+    )
+    $vms = callREST -Resource "nodes/$($Node)/qemu" | Where-Object { $_.vmid -eq $Id }
+    $containers = callREST -Resource "nodes/$($Node)/lxc" | Where-Object { $_.vmid -eq $Id }
+    $Options = @{ }
+    if ($vms.Count -eq 1) {
+        if ($SkipLock) {
+            $Options.Add("skiplock", $SkipLock)
+        }
+        if ($ToDisk) {
+            $Options.Add("todisk", $ToDisk)
+        }
+        if ($StateStorage) {
+            $Options.Add("statestorage" , $StateStorage)
+        }
+    }
+    elseif ($containers.Count -eq 1) {
+        Write-Verbose -Message "Container found matching $Id"
+        # Here to check if there is a cantainer to act on
+    }
+    else {
+        throw "No VM or Container, or more than one guest exists with the ID of $Id"
+    }
+    return (callREST -Method Post -Resource "nodes/$($Node)/qemu/$($Id)/status/suspend" -Options $Options)
+}
 
-Export-ModuleMember -Function @('Start-Guest', 'Stop-Guest')
+Export-ModuleMember -Function @('Start-Guest', 'Stop-Guest', 'Suspend-Guest')
