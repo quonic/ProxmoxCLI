@@ -8,7 +8,7 @@ $Credentials = New-Object System.Management.Automation.PSCredential -ArgumentLis
 Describe "Connect-PveServer" {
     Context "With BypassSSLCheck switch" {
         # arrange
-        Mock Invoke-RestMethod -MockWith { 
+        Mock Invoke-RestMethod -MockWith {
             return [PSCustomObject]@{
                 data = @{
                     ticket              = 'asdfghjklqwertyuiop';
@@ -16,10 +16,10 @@ Describe "Connect-PveServer" {
                 }
             }
         }
-  
+
         # act
         Connect-PveServer -Server $Server -Credentials $Credentials -BypassSSLCheck
-  
+
         # assert
         It "Should call 'Invoke-RestMethod' with the expected result" {
             Assert-MockCalled Invoke-RestMethod -Times 1 -Exactly
@@ -37,7 +37,7 @@ Describe "Connect-PveServer" {
     }
     Context "With out BypassSSLCheck switch" {
         # arrange
-        Mock Invoke-RestMethod -MockWith { 
+        Mock Invoke-RestMethod -MockWith {
             return [PSCustomObject]@{
                 data = @{
                     ticket              = 'asdfghjklqwertyuiop';
@@ -45,10 +45,10 @@ Describe "Connect-PveServer" {
                 }
             }
         }
-  
+
         # act
         Connect-PveServer -Server $Server -Credentials $Credentials
-  
+
         # assert
         It "Should call 'Invoke-RestMethod' with the expected result" {
             Assert-MockCalled Invoke-RestMethod -Times 1 -Exactly

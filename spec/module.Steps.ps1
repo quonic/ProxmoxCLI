@@ -4,7 +4,7 @@ Given 'the module was named (\S*)' {
 
     $path = "$PSScriptRoot\.."
     $module = Get-ChildItem -Path $path -Recurse -Filter "$ModuleName.psm1" -verbose
-    $module | should not benullorempty
+    $module | Should not benullorempty
     $module.fullname | Should Exist
 
     $Script:ModuleSource = "$PSScriptRoot\..\$ModuleName"
@@ -63,7 +63,7 @@ Then '(function )?(?<Function>\S*) will have comment based help' {
 }
 
 Then 'will have readthedoc pages' {
-    { Invoke-Webrequest -uri "https://$ModuleName.readthedocs.io" -UseBasicParsing } | Should Not Throw
+    { Invoke-WebRequest -uri "https://$ModuleName.readthedocs.io" -UseBasicParsing } | Should Not Throw
 }
 
 Then '(function )?(?<Function>\S*) will have a feature specification or a pester test' {
@@ -78,12 +78,12 @@ Then 'all public functions (?<Action>.*)' {
     $step = @{keyword = 'Then' }
     $AllPassed = $true
     foreach ($command in (Get-Command -Module $ModuleName  )) {
-        $step.text = ('function {0} {1}' -f $command.Name, $Action )           
-        
+        $step.text = ('function {0} {1}' -f $command.Name, $Action )
+
         Invoke-GherkinStep $step -Pester $Pester -Visible
         If ( -Not $Pester.TestResult[-1].Passed ) {
             $AllPassed = $false
-        } 
+        }
 
         $step.keyword = 'And'
     }
@@ -100,18 +100,18 @@ Given 'we have (?<folder>(public)) functions?' {
 }
 
 Then 'all script files pass PSScriptAnalyzer rules' {
-    
+
     $Rules = Get-ScriptAnalyzerRule
     $scripts = Get-ChildItem $BaseFolder -Include *.ps1, *.psm1, *.psd1 -Recurse | Where-Object fullname -notmatch 'classes'
-   
+
     $AllPassed = $true
 
-    foreach ($Script in $scripts ) {      
+    foreach ($Script in $scripts ) {
         $file = $script.fullname.replace($BaseFolder, '$')
-       
 
-        context $file {
-        
+
+        Context $file {
+
             foreach ( $rule in $rules ) {
                 It " [$file] Rule [$rule]" {
 
@@ -122,8 +122,8 @@ Then 'all script files pass PSScriptAnalyzer rules' {
 
         If ( -Not $Pester.TestResult[-1].Passed ) {
             $AllPassed = $false
-        } 
+        }
     }
-    
+
     $AllPassed | Should be $true
 }

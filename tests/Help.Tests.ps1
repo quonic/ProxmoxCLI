@@ -4,22 +4,19 @@ $script:ModuleName = 'ProxmoxCLI'
 Describe "Help tests for $moduleName" -Tags Build {
 
     $functions = Get-Command -Module $moduleName
-    $help = $functions | % {Get-Help $_.name}
-    foreach ($node in $help)
-    {
+    $help = $functions | ForEach-Object { Get-Help $_.name }
+    foreach ($node in $help) {
         Context $node.name {
 
-            it "has a description" {
+            It "has a description" {
                 $node.description | Should Not BeNullOrEmpty
             }
-            it "has an example" {
+            It "has an example" {
                 $node.examples | Should Not BeNullOrEmpty
             }
-            foreach ($parameter in $node.parameters.parameter)
-            {
-                if ($parameter -notmatch 'whatif|confirm')
-                {
-                    it "parameter $($parameter.name) has a description" {
+            foreach ($parameter in $node.parameters.parameter) {
+                if ($parameter -notmatch 'whatif|confirm') {
+                    It "parameter $($parameter.name) has a description" {
                         $parameter.Description.text | Should Not BeNullOrEmpty
                     }
                 }
