@@ -3,47 +3,47 @@ function Start-Guest {
     <#
     .SYNOPSIS
     Starts a VM or lxc
-    
+
     .DESCRIPTION
     Starts a VM or lxc
 
     .PARAMETER Node
     Name of the Node that the Guest resides on
-    
+
     .PARAMETER Id
     ID of the guest
-    
+
     .PARAMETER MachineType
     specifies the Qemu machine type
-    
+
     .PARAMETER MigratedFrom
     The cluster node name to migrate from
-    
+
     .PARAMETER MigrationNetwork
     CIDR of the (sum) network that is used for migration
-    
+
     .PARAMETER MigrationType
     Migrate traffic is encrypted using an SSH tunnel by default. On Secure, completely private networks this can be disabled to increase performance
-    
+
     .PARAMETER SkipLock
     Ignores logs - only root is allowed to use this option
-    
+
     .PARAMETER StateUri
     Some command save/restore state from this location
-    
+
     .PARAMETER TargetStorage
     Target storage for the migration. (Can be '1' to sue the same storage id as on the source node.)
-    
+
     .PARAMETER TimeOut
     Wait maximal timeout seconds
-    
+
     .EXAMPLE
     Start-VM -Node "Proxmox1" -ID 100
-    
+
     .NOTES
     General notes
     #>
-    
+    [Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
     [CmdletBinding()]
     param (
         [Parameter(Mandatory = $true)]
@@ -126,31 +126,32 @@ function Stop-Guest {
     <#
     .SYNOPSIS
     Stops a guest
-    
+
     .DESCRIPTION
     Stops a guest. Qemu process will exit immediately. This is akin to pulling the power plug of a running computer and may damage the VM data
-    
+
     .PARAMETER Node
     Name of the Node that the Guest resides on
-    
+
     .PARAMETER Id
     ID of the guest
-    
+
     .PARAMETER KeepActive
     Keeps the storage volumes active
-    
+
     .PARAMETER SkipLock
     Ignores locks - only root is allowed to use this option
-    
+
     .PARAMETER TimeOut
     Wait maximal timeout seconds
-    
+
     .EXAMPLE
     Stop-Guest -Node "Proxmox1" -Id 100
-    
+
     .NOTES
     General notes
     #>
+    [Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
     [CmdletBinding()]
     param (
         [Parameter(Mandatory = $true)]
@@ -204,32 +205,32 @@ function Suspend-Guest {
     <#
     .SYNOPSIS
     Suspend virtual machine
-    
+
     .DESCRIPTION
     Suspend virtual machine
-    
+
     .PARAMETER Node
     Name of the Node that the Guest resides on
-    
+
     .PARAMETER Id
     ID of the guest
 
     .PARAMETER StateStorage
     The storage for the VM state
-    
+
     .PARAMETER ToDisk
     If set, suspends the VM to disk. Will be resumed on next VM start.
-    
+
     .PARAMETER SkipLock
     Ignore locks - only root is allowed to use this option
-    
+
     .EXAMPLE
     Suspend-Guest -Node "Proxmox1" -Id 100
-    
+
     .NOTES
     General notes
     #>
-    
+
     param (
         [Parameter(Mandatory = $true)]
         [string]
@@ -272,39 +273,38 @@ function Suspend-Guest {
 }
 
 function Shutdown-Guest {
-    [Diagnostics.CodeAnalysis.SuppressMessage("PSUseApprovedVerbs", Scope = "function")]
     <#
     .SYNOPSIS
     Shuts down a guest
-    
+
     .DESCRIPTION
     Shutdown virtual machine. This is similar to pressing the power button on a physical machine.This will send an ACPI event for the guest OS, which should then proceed to a clean shutdown.
-    
+
     .PARAMETER Node
     Name of the Node that the Guest resides on
-    
+
     .PARAMETER Id
     ID of the guest
 
     .PARAMETER ForceStop
     Make sure the VM stops
-    
+
     .PARAMETER KeepActive
     Do not deactivate storage volumes
-    
+
     .PARAMETER SkipLock
     Ignores locks - only root is allowed to use this option
-    
+
     .PARAMETER TimeOut
     Wait maximal timeout seconds
-    
+
     .EXAMPLE
     An example
-    
+
     .NOTES
     General notes
     #>
-    
+    [Diagnostics.CodeAnalysis.SuppressMessage("PSUseApprovedVerbs", Scope = "function")]
     Param (
         [Parameter(Mandatory = $true)]
         [string]
@@ -358,29 +358,29 @@ function Resume-Guest {
     <#
     .SYNOPSIS
     Resume guest
-    
+
     .DESCRIPTION
     Resume guest
-    
+
     .PARAMETER Node
     Name of the node that the guest resides on
-    
+
     .PARAMETER Id
     Id if the guest
-    
+
     .PARAMETER SkipLock
     Ignore locks - only root is allowed to use this option
-    
+
     .PARAMETER NoCheck
     No description
-    
+
     .EXAMPLE
     Resume-Guest -Node "Proxmox1" -Id 101
-    
+
     .NOTES
     General notes
     #>
-    
+
     [CmdletBinding()]
     param (
         [Parameter(Mandatory = $true)]
@@ -420,26 +420,26 @@ function Reset-Guest {
     <#
     .SYNOPSIS
     Reset guest
-    
+
     .DESCRIPTION
     Reset guest
-    
+
     .PARAMETER Node
     Name of the node that the guest resides on
-    
+
     .PARAMETER Id
     Id if the guest
-    
+
     .PARAMETER SkipLock
     Ignore locks - only root is allowed to use this option
-    
+
     .EXAMPLE
     Reset-Guest -Node "Proxmox1" -Id 101
-    
+
     .NOTES
     General notes
     #>
-    
+    [Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
     [CmdletBinding()]
     param (
         [Parameter(Mandatory = $true)]
@@ -475,26 +475,26 @@ function Reboot-Guest {
     <#
     .SYNOPSIS
     Reboot guest
-    
+
     .DESCRIPTION
     Reboot guest
-    
+
     .PARAMETER Node
     Name of the node that the guest resides on
-    
+
     .PARAMETER Id
     Id if the guest
-    
+
     .PARAMETER timeOut
     Wait maximal timeout second for the shutdown
-    
+
     .EXAMPLE
     Reboot-Guest -Node "Proxmox1" -Id 101
-    
+
     .NOTES
     General notes
     #>
-    
+
     [CmdletBinding()]
     param (
         [Parameter(Mandatory = $true)]
@@ -528,29 +528,29 @@ function Get-Guest {
     <#
     .SYNOPSIS
     Gets the status of a guest, and other stats
-    
+
     .DESCRIPTION
     Gets the status of a guest, and other stats
-    
+
     .PARAMETER Node
     Names of the node
-    
+
     .PARAMETER Id
     Id of the guest(s)
-    
+
     .EXAMPLE
     Get-Guest -Node "Promxox1"
-    
+
     .EXAMPLE
     Get-Guest -Node "Promxox1" -Id 100
-    
+
     .EXAMPLE
     100..200 | Get-Guest -Node "Promxox1"
-    
+
     .NOTES
     General notes
     #>
-    
+
     [CmdletBinding()]
     param (
         [Parameter(Mandatory = $true)]
@@ -560,13 +560,13 @@ function Get-Guest {
         [int]
         $Id
     )
-    
+
     begin {
         $vms = Invoke-ProxmoxAPI -Resource "nodes/$($Node)/qemu"
         $containers = Invoke-ProxmoxAPI -Resource "nodes/$($Node)/lxc"
         [PSCustomObject[]]$guests = [PSCustomObject]@{ }
     }
-    
+
     process {
         $Id | ForEach-Object {
             if (($vms | Where-Object { $_.vmid -eq $Id }).Count -eq 1) {
@@ -581,7 +581,7 @@ function Get-Guest {
         }
         Write-Output $guests
     }
-    
+
     end {
         $guests = $null
     }
