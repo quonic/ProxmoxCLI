@@ -91,8 +91,8 @@ Task BuildPSD1 -inputs (Get-ChildItem $Source -Recurse -File) -Outputs $Manifest
 
     $oldFunctions = (Get-Metadata -Path $manifestPath -PropertyName 'FunctionsToExport')
 
-    $functions | Where-Object { $_ -notin $oldFunctions } | % { $bumpVersionType = 'Minor' }
-    $oldFunctions | Where-Object { $_ -notin $Functions } | % { $bumpVersionType = 'Major' }
+    $functions | Where-Object { $_ -notin $oldFunctions } | ForEach-Object { $bumpVersionType = 'Minor' }
+    $oldFunctions | Where-Object { $_ -notin $Functions } | ForEach-Object { $bumpVersionType = 'Major' }
 
     Set-ModuleFunctions -Name $ManifestPath -FunctionsToExport $functions
 
