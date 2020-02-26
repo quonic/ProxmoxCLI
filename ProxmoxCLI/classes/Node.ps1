@@ -469,32 +469,4 @@ class Qemu {
         #>
         return (Invoke-ProxmoxAPI -Method Post -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/status/reset" -Options @{skiplock = $SkipLock })
     }
-    [PSCustomObject] resume() {
-        <#
-        .Synopsis
-        Resume virtual machine.
-        #>
-        return (Invoke-ProxmoxAPI -Method Post -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/status/resume" )
-    }
-    [PSCustomObject] resume([switch]$SkipLock) {
-        <#
-        .Synopsis
-        Resume virtual machine.
-        #>
-        return (Invoke-ProxmoxAPI -Method Post -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/status/resume" -Options @{skiplock = $SkipLock })
-    }
-    [PSCustomObject] resume([switch]$NoCheck) {
-        <#
-        .Synopsis
-        Resume virtual machine.
-        #>
-        return (Invoke-ProxmoxAPI -Method Post -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/status/resume" -Options @{nocheck = $NoCheck })
-    }
-    [PSCustomObject] resume([switch]$SkipLock, [switch]$NoCheck) {
-        <#
-        .Synopsis
-        Resume virtual machine.
-        #>
-        return (Invoke-ProxmoxAPI -Method Post -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/status/resume" -Options @{skiplock = $SkipLock; nocheck = $NoCheck })
-    }
 }
