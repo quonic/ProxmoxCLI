@@ -415,7 +415,113 @@ function Resume-Guest {
     else {
         throw "No VM or Container, or more than one guest exists with the ID of $Id"
     }
+}
+function Reset-Guest {
+    <#
+    .SYNOPSIS
+    Reset guest
     
+    .DESCRIPTION
+    Reset guest
+    
+    .PARAMETER Node
+    Name of the node that the guest resides on
+    
+    .PARAMETER Id
+    Id if the guest
+    
+    .PARAMETER SkipLock
+    Ignore locks - only root is allowed to use this option
+    
+    .EXAMPLE
+    Reset-Guest -Node "Proxmox1" -Id 101
+    
+    .NOTES
+    General notes
+    #>
+    
+    [CmdletBinding()]
+    param (
+        [Parameter(Mandatory = $true)]
+        [string]
+        $Node,
+        [Parameter(Mandatory = $true)]
+        [int]
+        $Id,
+        [Parameter(Mandatory = $false, ParameterSetName = "vm")]
+        [switch]
+        $SkipLock
+    )
+    $vms = Invoke-ProxmoxAPI -Resource "nodes/$($Node)/qemu" | Where-Object { $_.vmid -eq $Id }
+    $containers = Invoke-ProxmoxAPI -Resource "nodes/$($Node)/lxc" | Where-Object { $_.vmid -eq $Id }
+    $Options = @{ }
+    if ($vms.Count -eq 1) {
+        if ($SkipLock) {
+            $Options.Add("skipLock" , $SkipLock)
+        }
+        return (Invoke-ProxmoxAPI -Method Post -Resource "nodes/$($Node)/qemu/$($Id)/status/reset" -Options $Options)
+    }
+    elseif ($containers.Count -eq 1) {
+        Write-Verbose -Message "Container found matching $Id"
+        throw "Can't reset a container."
+    }
+    else {
+        throw "No VM, or more than one guest exists with the ID of $Id"
+    }
+}
+
+function Reboot-Guest {
+    [Diagnostics.CodeAnalysis.SuppressMessage("PSUseApprovedVerbs", Scope = "function")]
+    <#
+    .SYNOPSIS
+    Reboot guest
+    
+    .DESCRIPTION
+    Reboot guest
+    
+    .PARAMETER Node
+    Name of the node that the guest resides on
+    
+    .PARAMETER Id
+    Id if the guest
+    
+    .PARAMETER timeOut
+    Wait maximal timeout second for the shutdown
+    
+    .EXAMPLE
+    Reboot-Guest -Node "Proxmox1" -Id 101
+    
+    .NOTES
+    General notes
+    #>
+    
+    [CmdletBinding()]
+    param (
+        [Parameter(Mandatory = $true)]
+        [string]
+        $Node,
+        [Parameter(Mandatory = $true)]
+        [int]
+        $Id,
+        [switch]
+        $Timeout
+    )
+    $vms = Invoke-ProxmoxAPI -Resource "nodes/$($Node)/qemu" | Where-Object { $_.vmid -eq $Id }
+    $containers = Invoke-ProxmoxAPI -Resource "nodes/$($Node)/lxc" | Where-Object { $_.vmid -eq $Id }
+    $Options = @{ }
+    if ($Timeout) {
+        $Options.Add("timeout" , $Timeout)
+    }
+    if ($vms.Count -eq 1) {
+        return (Invoke-ProxmoxAPI -Method Post -Resource "nodes/$($Node)/qemu/$($Id)/status/reboot" -Options $Options)
+    }
+    elseif ($containers.Count -eq 1) {
+        Write-Verbose -Message "Container found matching $Id"
+        return (Invoke-ProxmoxAPI -Method Post -Resource "nodes/$($Node)/lxc/$($Id)/status/reboot" -Options $Options)
+    }
+    else {
+        throw "No VM or Container, or more than one guest exists with the ID of $Id"
+    }
 }
 
 Export-ModuleMember -Function @('Start-Guest', 'Stop-Guest', 'Suspend-Guest', 'Shutdown-Guest', 'Resume-Guest')

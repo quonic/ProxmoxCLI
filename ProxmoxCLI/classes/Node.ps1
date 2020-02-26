@@ -441,32 +441,4 @@ class Qemu {
     [PSCustomObject] getFeature([Features]$Feature, [string]$SnapName) {
         return (Invoke-ProxmoxAPI -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/feature" -Options @{snapname = $SnapName })
     }
-    [PSCustomObject] reboot() {
-        <#
-        .Synopsis
-        Reboot the VM by shutting it down, and starting it again. Applies pending changes.
-        #>
-        return (Invoke-ProxmoxAPI -Method Post -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/status/reboot")
-    }
-    [PSCustomObject] reboot([int]$TimeOut) {
-        <#
-        .Synopsis
-        Reboot the VM by shutting it down, and starting it again. Applies pending changes.
-        #>
-        return (Invoke-ProxmoxAPI -Method Post -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/status/reboot" -Options @{timeout = $TimeOut })
-    }
-    [PSCustomObject] reset() {
-        <#
-        .Synopsis
-        Reset virtual machine.
-        #>
-        return (Invoke-ProxmoxAPI -Method Post -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/status/reset")
-    }
-    [PSCustomObject] reset([switch]$SkipLock) {
-        <#
-        .Synopsis
-        Reset virtual machine.
-        #>
-        return (Invoke-ProxmoxAPI -Method Post -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/status/reset" -Options @{skiplock = $SkipLock })
-    }
 }
