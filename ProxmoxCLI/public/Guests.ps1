@@ -587,4 +587,4 @@ function Get-Guest {
     }
 }
 
-Export-ModuleMember -Function @('Start-Guest', 'Stop-Guest', 'Suspend-Guest', 'Shutdown-Guest', 'Resume-Guest', 'Get-Guest')
+Export-ModuleMember -Function @('Start-Guest', 'Stop-Guest', 'Suspend-Guest', 'Shutdown-Guest', 'Resume-Guest', 'Reset-Guest', 'Reboot-Guest', 'Get-Guest')
