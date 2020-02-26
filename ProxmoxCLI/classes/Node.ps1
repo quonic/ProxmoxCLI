@@ -380,39 +380,18 @@ class Qemu {
     
     [string] $vmid
     [PSCustomObject] $AvailableResources
-    [PSCustomObject] $Status
     [Node] $Node
         
         
     Qemu ([Node] $Node, [string] $vmid) {
         $this.vmid = $vmid
         $this.Node = $Node
-        $this.Refresh()
     }
     Qemu ([String] $Node, [string] $vmid) {
         $this.vmid = $vmid
         $this.Node = [Node]::new($Node)
-        $this.Refresh()
     }
     
-    [void] Refresh() {
-        $this.Status = $this.getStatus()
-    }
-
-    [PSCustomObject] getStatus() {
-        <#
-        .Synopsis
-        Get virtual machine status.
-        #>
-        return (Invoke-ProxmoxAPI -Resource "nodes/$($this.Node.Name)/qemu/$($this.vmid)/status/current")
-    }
-    [PSCustomObject] getCurrent() {
-        <#
-        .Synopsis
-        Get virtual machine status.
-        #>
-        return $this.getStatus()
-    }
 
     [PSCustomObject] getConfig([switch]$Current) {
         <#

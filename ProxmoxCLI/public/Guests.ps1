@@ -524,4 +524,41 @@ function Reboot-Guest {
     }
 }
 
-Export-ModuleMember -Function @('Start-Guest', 'Stop-Guest', 'Suspend-Guest', 'Shutdown-Guest', 'Resume-Guest')
+function Get-Guest {
+    [CmdletBinding()]
+    param (
+        [Parameter(Mandatory = $true)]
+        [string]
+        $Node,
+        [Parameter(Mandatory = $false, ValueFromPipelineByPropertyName, ValueFromPipeline)]
+        [int]
+        $Id
+    )
+    
+    begin {
+        $vms = Invoke-ProxmoxAPI -Resource "nodes/$($Node)/qemu"
+        $containers = Invoke-ProxmoxAPI -Resource "nodes/$($Node)/lxc"
+        [PSCustomObject[]]$guests = [PSCustomObject]@{ }
+    }
+    
+    process {
+        $Id | ForEach-Object {
+            if (($vms | Where-Object { $_.vmid -eq $Id }).Count -eq 1) {
+                $guests.Add((Invoke-ProxmoxAPI -Method Post -Resource "nodes/$($Node)/qemu/$($Id)/status/current"))
+            }
+            elseif (($containers | Where-Object { $_.vmid -eq $Id }).Count -eq 1) {
+                $guests.Add((Invoke-ProxmoxAPI -Method Post -Resource "nodes/$($Node)/lxc/$($Id)/status/current"))
+            }
+            else {
+                Write-Error "No VM or Container exists with the ID of $Id"
+            }
+        }
+        Write-Output $guests
+    }
+    
+    end {
+        $guests = $null
+    }
+}
+
+Export-ModuleMember -Function @('Start-Guest', 'Stop-Guest', 'Suspend-Guest', 'Shutdown-Guest', 'Resume-Guest', 'Get-Guest')
