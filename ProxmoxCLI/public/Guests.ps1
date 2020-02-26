@@ -525,6 +525,32 @@ function Reboot-Guest {
 }
 
 function Get-Guest {
+    <#
+    .SYNOPSIS
+    Gets the status of a guest, and other stats
+    
+    .DESCRIPTION
+    Gets the status of a guest, and other stats
+    
+    .PARAMETER Node
+    Names of the node
+    
+    .PARAMETER Id
+    Id of the guest(s)
+    
+    .EXAMPLE
+    Get-Guest -Node "Promxox1"
+    
+    .EXAMPLE
+    Get-Guest -Node "Promxox1" -Id 100
+    
+    .EXAMPLE
+    100..200 | Get-Guest -Node "Promxox1"
+    
+    .NOTES
+    General notes
+    #>
+    
     [CmdletBinding()]
     param (
         [Parameter(Mandatory = $true)]
