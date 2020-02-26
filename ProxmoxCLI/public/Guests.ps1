@@ -109,16 +109,16 @@ function Start-Guest {
             Write-Verbose -Message "Adding target storage to options"
             $Options.Add("targetstorage" , $TargetStorage)
         }
+        return (Invoke-ProxmoxAPI -Method Post -Resource "nodes/$($Node)/qemu/$($Id)/status/start" -Options $Options)
     }
-    if ($containers.Count -eq 1) {
+    elseif ($containers.Count -eq 1) {
         Write-Verbose -Message "Container found matching $Id"
-        # Here to check if there is a cantainer to act on
+        return (Invoke-ProxmoxAPI -Method Post -Resource "nodes/$($Node)/lxc/$($Id)/status/start" -Options $Options)
     }
     else {
         throw "No VM or Container, or more than one guest exists with the ID of $Id"
     }
     Write-Verbose -Message "Starting guest $Id"
-    return (Invoke-ProxmoxAPI -Method Post -Resource "nodes/$($Node)/qemu/$($Id)/status/start" -Options $Options)
 }
 
 
@@ -189,19 +189,18 @@ function Stop-Guest {
             Write-Verbose -Message "Adding migration source to options"
             $Options.Add("migratedfrom" , $MigratedFrom)
         }
+        return (Invoke-ProxmoxAPI -Method Post -Resource "nodes/$($Node)/qemu/$($Id)/status/stop" -Options $Options)
     }
     elseif ($containers.Count -eq 1) {
         Write-Verbose -Message "Container found matching $Id"
-        # Here to check if there is a cantainer to act on
+        return (Invoke-ProxmoxAPI -Method Post -Resource "nodes/$($Node)/lxc/$($Id)/status/stop" -Options $Options)
+        else {
+            throw "No VM or Container, or more than one guest exists with the ID of $Id"
+        }
     }
-    else {
-        throw "No VM or Container, or more than one guest exists with the ID of $Id"
-    }
-    return (Invoke-ProxmoxAPI -Method Post -Resource "nodes/$($Node)/qemu/$($Id)/status/stop" -Options $Options)
-}
 
-function Suspend-Guest {
-    <#
+    function Suspend-Guest {
+        <#
     .SYNOPSIS
     Suspend virtual machine
     
@@ -230,50 +229,50 @@ function Suspend-Guest {
     General notes
     #>
     
-    param (
-        [Parameter(Mandatory = $true)]
-        [string]
-        $Node,
-        [Parameter(Mandatory = $true)]
-        [int]
-        $Id,
-        [Parameter(Mandatory = $false, ParameterSetName = "vm")]
-        [string]
-        $StateStorage,
-        [Parameter(Mandatory = $false, ParameterSetName = "vm")]
-        [switch]
-        $ToDisk,
-        [Parameter(Mandatory = $false, ParameterSetName = "vm")]
-        [switch]
-        $SkipLock
-    )
-    $vms = Invoke-ProxmoxAPI -Resource "nodes/$($Node)/qemu" | Where-Object { $_.vmid -eq $Id }
-    $containers = Invoke-ProxmoxAPI -Resource "nodes/$($Node)/lxc" | Where-Object { $_.vmid -eq $Id }
-    $Options = @{ }
-    if ($vms.Count -eq 1) {
-        if ($SkipLock) {
-            $Options.Add("skiplock", $SkipLock)
+        param (
+            [Parameter(Mandatory = $true)]
+            [string]
+            $Node,
+            [Parameter(Mandatory = $true)]
+            [int]
+            $Id,
+            [Parameter(Mandatory = $false, ParameterSetName = "vm")]
+            [string]
+            $StateStorage,
+            [Parameter(Mandatory = $false, ParameterSetName = "vm")]
+            [switch]
+            $ToDisk,
+            [Parameter(Mandatory = $false, ParameterSetName = "vm")]
+            [switch]
+            $SkipLock
+        )
+        $vms = Invoke-ProxmoxAPI -Resource "nodes/$($Node)/qemu" | Where-Object { $_.vmid -eq $Id }
+        $containers = Invoke-ProxmoxAPI -Resource "nodes/$($Node)/lxc" | Where-Object { $_.vmid -eq $Id }
+        $Options = @{ }
+        if ($vms.Count -eq 1) {
+            if ($SkipLock) {
+                $Options.Add("skiplock", $SkipLock)
+            }
+            if ($ToDisk) {
+                $Options.Add("todisk", $ToDisk)
+            }
+            if ($StateStorage) {
+                $Options.Add("statestorage" , $StateStorage)
+            }
+            return (Invoke-ProxmoxAPI -Method Post -Resource "nodes/$($Node)/qemu/$($Id)/status/suspend" -Options $Options)
         }
-        if ($ToDisk) {
-            $Options.Add("todisk", $ToDisk)
+        elseif ($containers.Count -eq 1) {
+            Write-Verbose -Message "Container found matching $Id"
+            return (Invoke-ProxmoxAPI -Method Post -Resource "nodes/$($Node)/lxc/$($Id)/status/suspend" -Options $Options)
         }
-        if ($StateStorage) {
-            $Options.Add("statestorage" , $StateStorage)
+        else {
+            throw "No VM or Container, or more than one guest exists with the ID of $Id"
         }
     }
-    elseif ($containers.Count -eq 1) {
-        Write-Verbose -Message "Container found matching $Id"
-        # Here to check if there is a cantainer to act on
-    }
-    else {
-        throw "No VM or Container, or more than one guest exists with the ID of $Id"
-    }
-    return (Invoke-ProxmoxAPI -Method Post -Resource "nodes/$($Node)/qemu/$($Id)/status/suspend" -Options $Options)
-}
 
-function Shutdown-Guest {
-    [Diagnostics.CodeAnalysis.SuppressMessage("PSUseApprovedVerbs", Scope = "function")]
-    <#
+    function Shutdown-Guest {
+        [Diagnostics.CodeAnalysis.SuppressMessage("PSUseApprovedVerbs", Scope = "function")]
+        <#
     .SYNOPSIS
     Shuts down a guest
     
@@ -305,59 +304,57 @@ function Shutdown-Guest {
     General notes
     #>
     
-    Param (
-        [Parameter(Mandatory = $true)]
-        [string]
-        $Node,
-        [Parameter(Mandatory = $true)]
-        [int]
-        $Id,
-        [Parameter(Mandatory = $false, ParameterSetName = "vm")]
-        [Parameter(Mandatory = $false, ParameterSetName = "container")]
-        [switch]
-        $ForceStop,
-        [Parameter(Mandatory = $false, ParameterSetName = "vm")]
-        [switch]
-        $KeepActive,
-        [Parameter(Mandatory = $false, ParameterSetName = "vm")]
-        [switch]
-        $SkipLock,
-        [Parameter(Mandatory = $false, ParameterSetName = "vm")]
-        [Parameter(Mandatory = $false, ParameterSetName = "container")]
-        [int]
-        $TimeOut
-    )
-    $vms = Invoke-ProxmoxAPI -Resource "nodes/$($Node)/qemu" | Where-Object { $_.vmid -eq $Id }
-    $containers = Invoke-ProxmoxAPI -Resource "nodes/$($Node)/lxc" | Where-Object { $_.vmid -eq $Id }
-    $Options = @{ }
-    if ($vms.Count -eq 1) {
-        if ($KeepActive) {
-            $Options.Add("keepActive", $KeepActive)
+        Param (
+            [Parameter(Mandatory = $true)]
+            [string]
+            $Node,
+            [Parameter(Mandatory = $true)]
+            [int]
+            $Id,
+            [Parameter(Mandatory = $false, ParameterSetName = "vm")]
+            [Parameter(Mandatory = $false, ParameterSetName = "container")]
+            [switch]
+            $ForceStop,
+            [Parameter(Mandatory = $false, ParameterSetName = "vm")]
+            [switch]
+            $KeepActive,
+            [Parameter(Mandatory = $false, ParameterSetName = "vm")]
+            [switch]
+            $SkipLock,
+            [Parameter(Mandatory = $false, ParameterSetName = "vm")]
+            [Parameter(Mandatory = $false, ParameterSetName = "container")]
+            [int]
+            $TimeOut
+        )
+        $vms = Invoke-ProxmoxAPI -Resource "nodes/$($Node)/qemu" | Where-Object { $_.vmid -eq $Id }
+        $containers = Invoke-ProxmoxAPI -Resource "nodes/$($Node)/lxc" | Where-Object { $_.vmid -eq $Id }
+        $Options = @{ }
+        if ($ForceStop) {
+            $Options.Add("forceStop", $ForceStop)
         }
-        if ($SkipLock) {
-            $Options.Add("skipLock" , $SkipLock)
+        if ($TimeOut) {
+            $Options.Add("timeout" , $TimeOut)
+        }
+        if ($vms.Count -eq 1) {
+            if ($KeepActive) {
+                $Options.Add("keepActive", $KeepActive)
+            }
+            if ($SkipLock) {
+                $Options.Add("skipLock" , $SkipLock)
+            }
+            return (Invoke-ProxmoxAPI -Method Post -Resource "nodes/$($Node)/qemu/$($Id)/status/shutdown" -Options $Options)
+        }
+        elseif ($containers.Count -eq 1) {
+            Write-Verbose -Message "Container found matching $Id"
+            return (Invoke-ProxmoxAPI -Method Post -Resource "nodes/$($Node)/lxc/$($Id)/status/shutdown" -Options $Options)
+        }
+        else {
+            throw "No VM or Container, or more than one guest exists with the ID of $Id"
         }
     }
-    elseif ($containers.Count -eq 1) {
-        Write-Verbose -Message "Container found matching $Id"
 
-        # Here to check if there is a cantainer to act on
-    }
-    else {
-        throw "No VM or Container, or more than one guest exists with the ID of $Id"
-    }
-    if ($ForceStop) {
-        $Options.Add("forceStop", $ForceStop)
-    }
-    if ($TimeOut) {
-        $Options.Add("timeout" , $TimeOut)
-    }
-    return (Invoke-ProxmoxAPI -Method Post -Resource "nodes/$($Node)/qemu/$($Id)/status/shutdown" -Options $Options)
-
-}
-
-function Resume-Guest {
-    <#
+    function Resume-Guest {
+        <#
     .SYNOPSIS
     Resume guest
     
@@ -383,41 +380,41 @@ function Resume-Guest {
     General notes
     #>
     
-    [CmdletBinding()]
-    param (
-        [Parameter(Mandatory = $true)]
-        [string]
-        $Node,
-        [Parameter(Mandatory = $true)]
-        [int]
-        $Id,
-        [Parameter(Mandatory = $false, ParameterSetName = "vm")]
-        [switch]
-        $SkipLock,
-        [Parameter(Mandatory = $false, ParameterSetName = "vm")]
-        [switch]
-        $NoCheck
-    )
-    $vms = Invoke-ProxmoxAPI -Resource "nodes/$($Node)/qemu" | Where-Object { $_.vmid -eq $Id }
-    $containers = Invoke-ProxmoxAPI -Resource "nodes/$($Node)/lxc" | Where-Object { $_.vmid -eq $Id }
-    $Options = @{ }
-    if ($vms.Count -eq 1) {
-        if ($NoCheck) {
-            $Options.Add("nocheck", $NoCheck)
+        [CmdletBinding()]
+        param (
+            [Parameter(Mandatory = $true)]
+            [string]
+            $Node,
+            [Parameter(Mandatory = $true)]
+            [int]
+            $Id,
+            [Parameter(Mandatory = $false, ParameterSetName = "vm")]
+            [switch]
+            $SkipLock,
+            [Parameter(Mandatory = $false, ParameterSetName = "vm")]
+            [switch]
+            $NoCheck
+        )
+        $vms = Invoke-ProxmoxAPI -Resource "nodes/$($Node)/qemu" | Where-Object { $_.vmid -eq $Id }
+        $containers = Invoke-ProxmoxAPI -Resource "nodes/$($Node)/lxc" | Where-Object { $_.vmid -eq $Id }
+        $Options = @{ }
+        if ($vms.Count -eq 1) {
+            if ($NoCheck) {
+                $Options.Add("nocheck", $NoCheck)
+            }
+            if ($SkipLock) {
+                $Options.Add("skipLock" , $SkipLock)
+            }
+            return (Invoke-ProxmoxAPI -Method Post -Resource "nodes/$($Node)/qemu/$($Id)/status/resume" -Options $Options)
         }
-        if ($SkipLock) {
-            $Options.Add("skipLock" , $SkipLock)
+        elseif ($containers.Count -eq 1) {
+            Write-Verbose -Message "Container found matching $Id"
+            return (Invoke-ProxmoxAPI -Method Post -Resource "nodes/$($Node)/lxc/$($Id)/status/resume" -Options $Options)
         }
+        else {
+            throw "No VM or Container, or more than one guest exists with the ID of $Id"
+        }
+    
     }
-    elseif ($containers.Count -eq 1) {
-        Write-Verbose -Message "Container found matching $Id"
 
-        # Here to check if there is a cantainer to act on
-    }
-    else {
-        throw "No VM or Container, or more than one guest exists with the ID of $Id"
-    }
-    return (Invoke-ProxmoxAPI -Method Post -Resource "nodes/$($Node)/qemu/$($Id)/status/shutdown" -Options $Options)
-}
-
-Export-ModuleMember -Function @('Start-Guest', 'Stop-Guest', 'Suspend-Guest', 'Shutdown-Guest', 'Resume-Guest')
+    Export-ModuleMember -Function @('Start-Guest', 'Stop-Guest', 'Suspend-Guest', 'Shutdown-Guest', 'Resume-Guest')
