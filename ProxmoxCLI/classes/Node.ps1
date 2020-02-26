@@ -32,8 +32,8 @@ class Node {
     [PSCustomObject] $Version
     [PSCustomObject] $Status
     [PSCustomObject] $Dns
-    
-    
+
+
     Node ([string] $Name) {
         $this.Name = [string]$Name
         $this.Subscription = $this.getSubscription()
@@ -44,7 +44,7 @@ class Node {
         $this.Status = $this.getStatus()
         $this.Dns = $this.getDns()
     }
-    
+
     [void] Refresh() {
         $this.Subscription = $this.getSubscription()
         # Convert UNIX time to Windows time
@@ -85,7 +85,7 @@ class Node {
     }
 
 
-    
+
     # /apt/*
     [PSCustomObject] getAptChangeLog ([String]$package) {
         return (Invoke-ProxmoxAPI -Resource "nodes/$($this.Name)/apt/changelog" -Options @{name = $package })
@@ -163,7 +163,7 @@ class Node {
             elseif ($limit) {
                 $query = @{limit = $limit }
             }
-            return (Invoke-ProxmoxAPI -Resource "nodes/$($this.Name)/firewall/log" -Options $query)    
+            return (Invoke-ProxmoxAPI -Resource "nodes/$($this.Name)/firewall/log" -Options $query)
         }
         return (Invoke-ProxmoxAPI -Resource "nodes/$($this.Name)/firewall/log")
     }
@@ -344,10 +344,10 @@ class Node {
     # $this.spiceshell = (callPost -Resource "nodes/$($this.Name)/spiceshell")
     # /startall
     #$this.startall = (callPost -Resource "nodes/$($this.Name)/startall")
-    
+
     # /stopall
     #$this.stopall = (callPost -Resource "nodes/$($this.Name)/stopall")
-    
+
     # /vncshell
     #$this.vncshell = (callPost -Resource "nodes/$($this.Name)/vncshell")
     # /vncwebsocket
@@ -377,12 +377,12 @@ enum MigrationType {
 }
 
 class Qemu {
-    
+
     [string] $vmid
     [PSCustomObject] $AvailableResources
     [Node] $Node
-        
-        
+
+
     Qemu ([Node] $Node, [string] $vmid) {
         $this.vmid = $vmid
         $this.Node = $Node
@@ -391,7 +391,7 @@ class Qemu {
         $this.vmid = $vmid
         $this.Node = [Node]::new($Node)
     }
-    
+
 
     [PSCustomObject] getConfig([switch]$Current) {
         <#
