@@ -203,12 +203,6 @@ class Node {
       pos: int
     #>
 
-    # /lxc/*
-    [PSCustomObject] getLxc () {
-        return (Invoke-ProxmoxAPI -Resource "nodes/$($this.Name)/lxc")
-    }
-    # TODO: impliment this as Qemu was implimented. I might share some of the same code.
-
     # /network/*
     [PSCustomObject] getNetwork () {
         return (Invoke-ProxmoxAPI -Resource "nodes/$($this.Name)/network")
@@ -232,11 +226,6 @@ class Node {
      Required:
       iface: string
     #>
-    # /qemu/*
-    [PSCustomObject] getQemu () {
-        $vms = (Invoke-ProxmoxAPI -Resource "nodes/$($this.Name)/qemu")
-        return $vms | ForEach-Object { [Qemu]::new($this.Name, $_.vmid) }
-    }
     # /replication/*
     [PSCustomObject] getReplication () {
         return (Invoke-ProxmoxAPI -Resource "nodes/$($this.Name)/replication")

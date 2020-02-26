@@ -1,3 +1,9 @@
+enum NodeStatus {
+    unknown
+    online
+    offline
+}
+
 function Get-Node {
     <#
     .SYNOPSIS
@@ -28,17 +34,58 @@ function Get-Node {
         $Node
     )
 
-    # TODO - Expand this to return more information, probably in Node class.
     if ($Node) {
-        return $Node | ForEach-Object {
-            #[Node]::new($_)
-            New-Object -TypeName "Node" -ArgumentList $_
+        $Node | ForEach-Object {
+            try {
+                $NodeReturn = Invoke-ProxmoxAPI -Resource "/nodes/$_"
+            }
+            catch {
+                throw "$Node doesn't exist."
+            }
+            $Name = $NodeReturn.node
+            $return = [PSCustomObject]@{
+                Name           = $NodeReturn.node
+                Status         = $(
+                    switch ($NodeReturn.status) {
+                        ([NodeStatus]::online).ToString() { [NodeStatus]::online }
+                        ([NodeStatus]::offline).ToString() { [NodeStatus]::offline }
+                        Default { [NodeStatus]::unknown }
+                    }
+                )
+                Cpu            = $NodeReturn.cpu
+                MaxCpu         = $NodeReturn.maxcpu
+                Level          = $NodeReturn.level
+                Memory         = $NodeReturn.mem
+                SslFingerprint = $NodeReturn.ssl_fingerprint
+                UpTime         = $NodeReturn.uptime
+            }
+            Add-Member -InputObject $return -MemberType ScriptMethod -Name "getGuests" -Force -Value {
+                Get-Guest -Node $Name
+            }
         }
     }
     else {
         return Invoke-ProxmoxAPI -Resource "/nodes" | ForEach-Object {
-            #[Node]::new($_.node)
-            New-Object -TypeName "Node" -ArgumentList $_.node
+            $Name = $_.node
+            $return = [PSCustomObject]@{
+                Name           = $_.node
+                Status         = $(
+                    switch ($_.status) {
+                        ([NodeStatus]::online).ToString() { [NodeStatus]::online }
+                        ([NodeStatus]::offline).ToString() { [NodeStatus]::offline }
+                        Default { [NodeStatus]::unknown }
+                    }
+                )
+                Cpu            = $_.cpu
+                MaxCpu         = $_.maxcpu
+                Level          = $_.level
+                Memory         = $_.mem
+                SslFingerprint = $_.ssl_fingerprint
+                UpTime         = $_.uptime
+            }
+            Add-Member -InputObject $return -MemberType ScriptMethod -Name "getGuests" -Force -Value {
+                Get-Guest -Node $Name
+            }
         }
     }
 }
