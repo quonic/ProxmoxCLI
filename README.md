@@ -26,6 +26,17 @@ Install from the PSGallery and Import the module
     Install-Module ProxmoxCLI
     Import-Module ProxmoxCLI -->
 
+### Building
+
+* Clone this repository.
+* Run `.\build\ps1`
+* Run `Import-Module .\output\ProxmoxCLI\` -Verbose
+
+###
+
+* Connect to a Proxmox sever with `Connect-PveServer -Server "Proxmox1"`, use `-BypassSSLCheck` if you computer doesn't trust the SSL cert from the Promxox server.
+* Run `Get-Node | Get-Guest` and you should see 
+
 
 ## More Information
 
