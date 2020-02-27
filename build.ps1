@@ -22,11 +22,9 @@ Set-BuildEnvironment
 
 Write-Output "  InvokeBuild"
 Invoke-Build $Task -Result result
-if ($Result.Error)
-{
+if ($Result.Error) {
     exit 1
 }
-else 
-{
+else {
     exit 0
 }

@@ -471,7 +471,6 @@ function Reset-Guest {
 }
 
 function Reboot-Guest {
-    [Diagnostics.CodeAnalysis.SuppressMessage("PSUseApprovedVerbs", Scope = "function")]
     <#
     .SYNOPSIS
     Reboot guest
@@ -494,7 +493,7 @@ function Reboot-Guest {
     .NOTES
     General notes
     #>
-
+    [Diagnostics.CodeAnalysis.SuppressMessage("PSUseApprovedVerbs", Scope = "function")]
     [CmdletBinding()]
     param (
         [Parameter(Mandatory = $true)]

@@ -21,6 +21,7 @@ Task UnitTests {
     $TestResults = Invoke-Pester -Path tests\*unit* -PassThru -Tag Build -ExcludeTag Slow
     if ($TestResults.FailedCount -gt 0) {
         Write-Error "Failed [$($TestResults.FailedCount)] Pester tests"
+        Invoke-ScriptAnalyzer -Path "$Source\*\*.ps1" -IncludeRule $(Get-ScriptAnalyzerRule)
     }
 }
 
@@ -28,11 +29,11 @@ Task FullTests {
     $TestResults = Invoke-Pester -Path tests -PassThru -OutputFormat NUnitXml -OutputFile $testFile -Tag Build
     if ($TestResults.FailedCount -gt 0) {
         Write-Error "Failed [$($TestResults.FailedCount)] Pester tests"
+        Invoke-ScriptAnalyzer -Path "$Source\*\*.ps1" -IncludeRule $(Get-ScriptAnalyzerRule)
     }
 }
 
 Task Specification {
-    
     $TestResults = Invoke-Gherkin $PSScriptRoot\Spec -PassThru
     if ($TestResults.FailedCount -gt 0) {
         Write-Error "[$($TestResults.FailedCount)] specification are incomplete"
@@ -44,20 +45,20 @@ Task CopyToOutput {
     Write-Output "  Create Directory [$Destination]"
     $null = New-Item -Type Directory -Path $Destination -ErrorAction Ignore
 
-    Get-ChildItem $source -File | 
-    Where-Object name -NotMatch "$ModuleName\.ps[dm]1" | 
-    Copy-Item -Destination $Destination -Force -PassThru | 
-    ForEach-Object { "  Create [.{0}]" -f $_.fullname.replace($PSScriptRoot, '') }
+    Get-ChildItem $source -File |
+        Where-Object name -NotMatch "$ModuleName\.ps[dm]1" |
+        Copy-Item -Destination $Destination -Force -PassThru |
+        ForEach-Object { "  Create [.{0}]" -f $_.fullname.replace($PSScriptRoot, '') }
 
-    Get-ChildItem $source -Directory | 
-    Where-Object name -NotIn $imports | 
-    Copy-Item -Destination $Destination -Recurse -Force -PassThru | 
-    ForEach-Object { "  Create [.{0}]" -f $_.fullname.replace($PSScriptRoot, '') }
+    Get-ChildItem $source -Directory |
+        Where-Object name -NotIn $imports |
+        Copy-Item -Destination $Destination -Recurse -Force -PassThru |
+        ForEach-Object { "  Create [.{0}]" -f $_.fullname.replace($PSScriptRoot, '') }
 }
 
 Task BuildPSM1 -Inputs (Get-Item "$source\*\*.ps1") -Outputs $ModulePath {
 
-    [System.Text.StringBuilder]$stringbuilder = [System.Text.StringBuilder]::new()    
+    [System.Text.StringBuilder]$stringbuilder = [System.Text.StringBuilder]::new()
     foreach ($folder in $imports ) {
         [void]$stringbuilder.AppendLine( "Write-Verbose 'Importing from [$Source\$folder]'" )
         if (Test-Path "$source\$folder") {
@@ -65,14 +66,13 @@ Task BuildPSM1 -Inputs (Get-Item "$source\*\*.ps1") -Outputs $ModulePath {
             foreach ($file in $fileList) {
                 $shortName = $file.fullname.replace($PSScriptRoot, '')
                 Write-Output "  Importing [.$shortName]"
-                [void]$stringbuilder.AppendLine( "# .$shortName" ) 
+                [void]$stringbuilder.AppendLine( "# .$shortName" )
                 [void]$stringbuilder.AppendLine( [System.IO.File]::ReadAllText($file.fullname) )
             }
         }
     }
-    
     Write-Output "  Creating module [$ModulePath]"
-    Set-Content -Path  $ModulePath -Value $stringbuilder.ToString() 
+    Set-Content -Path  $ModulePath -Value $stringbuilder.ToString()
 }
 
 Task NextPSGalleryVersion -if (-Not ( Test-Path "$output\version.xml" ) ) -Before BuildPSD1 {
@@ -81,13 +81,12 @@ Task NextPSGalleryVersion -if (-Not ( Test-Path "$output\version.xml" ) ) -Befor
 }
 
 Task BuildPSD1 -inputs (Get-ChildItem $Source -Recurse -File) -Outputs $ManifestPath {
-   
     Write-Output "  Update [$ManifestPath]"
     Copy-Item "$source\$ModuleName.psd1" -Destination $ManifestPath
 
     $bumpVersionType = 'Patch'
 
-    $functions = Get-ChildItem "$ModuleName\public\*.ps1" | Where-Object { $_.name -notmatch 'tests' } | Select-Object -ExpandProperty basename      
+    $functions = Get-ChildItem "$ModuleName\public\*.ps1" | Where-Object { $_.name -notmatch 'tests' } | Select-Object -ExpandProperty basename
 
     $oldFunctions = (Get-Metadata -Path $manifestPath -PropertyName 'FunctionsToExport')
 
@@ -105,7 +104,7 @@ Task BuildPSD1 -inputs (Get-ChildItem $Source -Recurse -File) -Outputs $Manifest
     Write-Output "  Stepping [$bumpVersionType] version [$version]"
     $version = [version] (Step-Version $version -Type $bumpVersionType)
     Write-Output "  Using version: $version"
-    
+
     Update-Metadata -Path $ManifestPath -PropertyName ModuleVersion -Value $version
 }
 
@@ -131,8 +130,8 @@ Task ImportModule {
 Task Publish {
     # Gate deployment
     if (
-        $ENV:BHBuildSystem -ne 'Unknown' -and 
-        $ENV:BHBranchName -eq "master" -and 
+        $ENV:BHBuildSystem -ne 'Unknown' -and
+        $ENV:BHBranchName -eq "master" -and
         $ENV:BHCommitMessage -match '!deploy'
     ) {
         $Params = @{
@@ -143,9 +142,9 @@ Task Publish {
         Invoke-PSDeploy @Verbose @Params
     }
     else {
-        "Skipping deployment: To deploy, ensure that...`n" + 
-        "`t* You are in a known build system (Current: $ENV:BHBuildSystem)`n" + 
-        "`t* You are committing to the master branch (Current: $ENV:BHBranchName) `n" + 
+        "Skipping deployment: To deploy, ensure that...`n" +
+        "`t* You are in a known build system (Current: $ENV:BHBuildSystem)`n" +
+        "`t* You are committing to the master branch (Current: $ENV:BHBranchName) `n" +
         "`t* Your commit message includes !deploy (Current: $ENV:BHCommitMessage)"
     }
 }

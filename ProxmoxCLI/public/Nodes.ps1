@@ -28,12 +28,13 @@ function Get-Node {
     The object(s) returned can be used to manipulate node(s)
     #>
     [CmdletBinding()]
+    [OutputType("System.Object[]")]
     Param(
         [Parameter(ValueFromPipelineByPropertyName)]
         [String]
         $Node
     )
-    $Nodes = @()
+    [PSCustomObject[]] $Nodes = @()
     if ($Node) {
         $Node | ForEach-Object {
             try {
