@@ -32,10 +32,10 @@ Install from the PSGallery and Import the module
 * Run `.\build\ps1`
 * Run `Import-Module .\output\ProxmoxCLI\` -Verbose
 
-###
+### Using ProxmoxCLI
 
-* Connect to a Proxmox sever with `Connect-PveServer -Server "Proxmox1"`, use `-BypassSSLCheck` if you computer doesn't trust the SSL cert from the Promxox server.
-* Run `Get-Node | Get-Guest` and you should see 
+* Connect to a Proxmox sever with `Connect-PveServer -Server "Proxmox1"`, use `-BypassSSLCheck` if your computer doesn't trust the SSL cert from the Proxmox server.
+* Run `Get-Node | Get-Guest` and you should see a list of your guests.
 
 
 ## More Information

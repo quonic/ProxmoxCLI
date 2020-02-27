@@ -33,7 +33,7 @@ function Get-Node {
         [String]
         $Node
     )
-
+    $Nodes = @()
     if ($Node) {
         $Node | ForEach-Object {
             try {
@@ -42,9 +42,8 @@ function Get-Node {
             catch {
                 throw "$Node doesn't exist."
             }
-            $Name = $NodeReturn.node
             $return = [PSCustomObject]@{
-                Name           = $NodeReturn.node
+                Node           = $NodeReturn.node
                 Status         = $(
                     switch ($NodeReturn.status) {
                         ([NodeStatus]::online).ToString() { [NodeStatus]::online }
@@ -59,16 +58,13 @@ function Get-Node {
                 SslFingerprint = $NodeReturn.ssl_fingerprint
                 UpTime         = $NodeReturn.uptime
             }
-            Add-Member -InputObject $return -MemberType ScriptMethod -Name "getGuests" -Force -Value {
-                Get-Guest -Node $Name
-            }
+            $Nodes.Add($return)
         }
     }
     else {
-        return Invoke-ProxmoxAPI -Resource "/nodes" | ForEach-Object {
-            $Name = $_.node
+        Invoke-ProxmoxAPI -Resource "/nodes" | ForEach-Object {
             $return = [PSCustomObject]@{
-                Name           = $_.node
+                Node           = $_.node
                 Status         = $(
                     switch ($_.status) {
                         ([NodeStatus]::online).ToString() { [NodeStatus]::online }
@@ -83,11 +79,30 @@ function Get-Node {
                 SslFingerprint = $_.ssl_fingerprint
                 UpTime         = $_.uptime
             }
-            Add-Member -InputObject $return -MemberType ScriptMethod -Name "getGuests" -Force -Value {
-                Get-Guest -Node $Name
-            }
+            $Nodes.Add($return)
         }
     }
+    $Nodes | ForEach-Object {
+        Add-Member -InputObject $_ -MemberType ScriptMethod -Name "getGuests" -Force -Value {
+            Get-Guest -Node $_.Node
+        }
+        Add-Member -InputObject $_ -MemberType ScriptMethod -Name "subscription" -Force -Value {
+            Invoke-ProxmoxAPI -Resource "nodes/$($_.Node)/subscription"
+        }
+        Add-Member -InputObject $_ -MemberType ScriptMethod -Name "startall" -Force -Value {
+            [CmdletBinding()]
+            param (
+                [Parameter(Mandatory = $false)]
+                [string[]]
+                $Vms,
+                [Parameter(Mandatory = $false)]
+                [switch]
+                $force = $false
+            )
+            Invoke-ProxmoxAPI -Resource "nodes/$($_.Node)/startall" -Options @{force = $force; vms = $Vms }
+        }
+    }
+    return $Nodes
 }
 
 Export-ModuleMember -Function @('Get-Node')
