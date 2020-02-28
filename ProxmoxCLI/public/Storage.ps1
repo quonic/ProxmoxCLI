@@ -46,3 +46,6 @@ function Get-Storage {
         return (Invoke-ProxmoxAPI -Method Post -Resource "storage" -Options $Options)
     }
 }
+
+
+Export-ModuleMember -Function @('Get-Storage')
