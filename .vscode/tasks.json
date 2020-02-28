@@ -2,12 +2,22 @@
     // See https://go.microsoft.com/fwlink/?LinkId=733558
     // for the documentation about the tasks.json format
     "version": "2.0.0",
-    "tasks": [{
-        "type": "grunt",
-        "task": "default",
-        "group": {
-            "kind": "build",
-            "isDefault": true
+    "tasks": [
+        {
+            "label": "Run tests",
+            "type": "shell",
+            "command": "pwsh ./build.ps1 Pester",
+            "windows": {
+                "command": ".\\build.ps1 Pester"
+            },
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            }
         }
-    }]
+    ]
 }
