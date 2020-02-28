@@ -1,6 +1,6 @@
 # ProxmoxCLI
 
-A Proxmox module for accessing your Proxmox APIs
+A Proxmox module for accessing your Proxmox APIs similar in functionality to PowerCLI for VMWare
 
 ## Current Stage
 
@@ -29,8 +29,8 @@ Install from the PSGallery and Import the module
 ### Building
 
 * Clone this repository.
-* Run `.\build\ps1`
-* Run `Import-Module .\output\ProxmoxCLI\` -Verbose
+* `.\build.ps1`
+* `Import-Module .\output\ProxmoxCLI\`
 
 ### Using ProxmoxCLI
 
