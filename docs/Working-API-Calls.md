@@ -1,0 +1,193 @@
+# List of working API calls from cmdlets
+
+- [ ] access
+  - [ ] domains
+    - [ ] {realm}
+  - [ ] groups
+    - [ ] {groupid}
+  - [ ] roles
+    - [ ] {roleid}
+  - [ ] users
+    - [ ] {userid}
+  - [ ] acl
+  - [ ] password
+  - [ ] permissions
+  - [ ] tfa
+  - [ ] tickt
+- [ ] cluster
+  - [ ] acme
+    - [ ] account
+      - [ ] {name}
+    - [ ] directories
+    - [ ] tos
+  - [ ] backup
+    - [ ] {id}
+  - [ ] ceph
+    - [ ] flags
+      - [ ] {flag}
+    - [ ] metadata
+    - [ ] status
+  - [ ] config
+    - [ ] nodes
+      - [ ] {node}
+    - [ ] join
+    - [ ] qdevice
+    - [ ] totem
+  - [ ] firewall
+    - [ ] aliases
+      - [ ] {name}
+    - [ ] groups
+      - [ ] {group}
+    - [ ] ipset
+      - [ ] {name}
+    - [ ] rules
+      - [ ] {pos}
+    - [ ] macros
+    - [ ] options
+    - [ ] refs
+  - [ ] ha
+    - [ ] groups
+      - [ ] {group}
+    - [ ] resources
+      - [ ] {sid}
+        - [ ] migrate
+        - [ ] rlocate
+    - [ ] status
+      - [ ] current
+      - [ ] manager_status
+  - [ ] replication
+    - [ ] {id}
+  - [ ] log
+  - [ ] nextid
+  - [ ] options
+  - [ ] resources
+  - [ ] status
+  - [ ] tasks
+- [x] nodes
+  - [x] {node}
+    - [ ] apt
+      - [ ] changelog
+      - [ ] update
+      - [ ] versions
+    - [ ] ceph
+      - [ ] flags
+        - [ ] {flag}
+      - [ ] fs
+        - [ ] {name}
+      - [ ] mds
+        - [ ] {name}
+      - [ ] mgr
+        - [ ] {id}
+      - [ ] mon
+        - [ ] {monid}
+      - [ ] osd
+        - [ ] {osdid}
+      - [ ] pools
+        - [ ] {name}
+      - [ ] config
+      - [ ] configdb
+      - [ ] crush
+      - [ ] disks
+      - [ ] init
+      - [ ] log
+      - [ ] restart
+      - [ ] rules
+      - [ ] start
+      - [ ] status
+      - [ ] stop
+    - [ ] certificates
+      - [ ] acme
+        - [ ] certificate
+      - [ ] custom
+      - [ ] info
+  - [ ] disks
+    - [ ] zfs
+      - [ ] {name}
+    - [ ] directory
+    - [ ] initgpt
+    - [ ] list
+    - [ ] lvm
+    - [ ] lvmthin
+    - [ ] smart
+  - [ ] firewall
+    - [ ] rules
+      - [ ] {pos}
+    - [ ] log
+    - [ ] options
+  - [ ] hardware
+    - [ ] pci
+      - [ ] {pciid}
+        - [ ] mdev
+  - [x] lxc
+    - [x] {vmid}
+      - [ ] firewall
+        - [ ] aliases
+          - [ ] {name}
+        - [ ] ipset
+          - [ ] {name}
+        - [ ] rules
+          - [ ] {pos}
+        - [ ] log
+        - [ ] options
+        - [ ] refs
+      - [ ] snapshot
+        - [ ] {snapname}
+          - [ ] config
+          - [ ] rollback
+      - [x] status
+        - [x] current
+        - [x] reboot
+        - [x] resume
+        - [x] shutdown
+        - [x] start
+        - [x] stop
+        - [x] suspend
+      - [ ] clone
+      - [ ] config
+      - [ ] feature
+      - [ ] migrate
+      - [ ] move_volume
+      - [ ] pending
+      - [ ] resize
+      - [ ] rrd
+      - [ ] rrddata
+      - [ ] spiceproxy
+      - [ ] template
+      - [ ] termproxy
+      - [ ] vncproxy
+      - [ ] vncwebsocket
+  - [ ] network
+  - [ ] qemu
+  - [ ] replication
+  - [ ] scan
+  - [ ] services
+  - [ ] tasks
+  - [ ] vzdump
+  - [ ] aplinfo
+  - [ ] config
+  - [ ] dns
+  - [ ] execute
+  - [ ] hosts
+  - [ ] journal
+  - [ ] migrateall
+  - [ ] netstat
+  - [ ] report
+  - [ ] rrd
+  - [ ] rrddata
+  - [ ] spiceshell
+  - [ ] startall
+  - [ ] status
+  - [ ] stopall
+  - [ ] subscription
+  - [x] syslog
+  - [ ] termpoxy
+  - [ ] time
+  - [ ] version
+  - [ ] vncshell
+  - [ ] vncwebsocket
+  - [ ] wakeonlan
+- [x] pools
+  - [x] {poolid}
+- [x] storage
+  - [x] {storage}
+- [x] version
