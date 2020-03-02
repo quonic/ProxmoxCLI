@@ -180,5 +180,124 @@ function Get-Syslog {
     return (Invoke-ProxmoxAPI -Method Post -Resource "nodes/$($Node)/qemu/$($Id)/status/reboot" -Options $Options)
 }
 
+function Invoke-ScanNode {
+    <#
+    .SYNOPSIS
+    Index of available scan methods or scan the different storage methods.
 
-Export-ModuleMember -Function @('Get-Node', 'Get-Syslog')
+    .DESCRIPTION
+    Index of available scan methods or scan the different storage methods.
+
+    .PARAMETER Node
+    Name of the Node to scan
+
+    .PARAMETER Type
+    Type of storage to scan
+
+    .PARAMETER Domain
+    CIFS domain name
+
+    .PARAMETER Password
+    CIFS password
+
+    .PARAMETER Username
+    CIFS username
+
+    .PARAMETER Server
+    Server IP or DNS name for CIFS, GlusterFS, iSCSI, or NFS Server/Portal
+
+    .PARAMETER Vg
+    The LVM logical volume group name
+
+    .EXAMPLE
+    Invoke-ScanNode -Node "Proxmox1"
+
+    .EXAMPLE
+    Invoke-ScanNode -Node "Proxmox1" -Type zfs
+
+    .NOTES
+    General notes
+    #>
+    [CmdletBinding()]
+    param (
+        [Parameter(Mandatory = $true)]
+        [Parameter(ValueFromPipelineByPropertyName)]
+        [String[]]
+        $Node,
+        [ValidateSet('cifs', 'glusterfs', 'iscsi', 'lvm', 'lvmthin', 'nfs', 'usb', 'zfs')]
+        [Parameter(Mandatory = $false, ParameterSetName = "none")]
+        [Parameter(Mandatory = $true, ParameterSetName = "cifs")]
+        [Parameter(Mandatory = $true, ParameterSetName = "glusterfs")]
+        [Parameter(Mandatory = $true, ParameterSetName = "iscsi")]
+        [Parameter(Mandatory = $true, ParameterSetName = "lvm")]
+        [Parameter(Mandatory = $true, ParameterSetName = "lvmthin")]
+        [Parameter(Mandatory = $true, ParameterSetName = "nfs")]
+        [Parameter(Mandatory = $true, ParameterSetName = "usb")]
+        [String]
+        $Type,
+        [Parameter(Mandatory = $false, ParameterSetName = "cifs")]
+        [string]
+        $Domain,
+        [Parameter(Mandatory = $false, ParameterSetName = "cifs")]
+        [securestring]
+        $Password,
+        [Parameter(Mandatory = $false, ParameterSetName = "cifs")]
+        [string]
+        $Username,
+        [Parameter(Mandatory = $true, ParameterSetName = "glusterfs")]
+        [Parameter(Mandatory = $true, ParameterSetName = "iscsi")]
+        [Parameter(Mandatory = $true, ParameterSetName = "nfs")]
+        [Alias('Portal')]
+        [string]
+        $Server,
+        [Parameter(Mandatory = $true, ParameterSetName = "lvmthin")]
+        [ValidatePattern("[a-zA-Z0-9\.\+\_][a-zA-Z0-9\.\+\_\-]+")]
+        [string]
+        $Vg
+    )
+    $Options = @()
+    switch ($Type) {
+        cifs {
+            if ($Domain) {
+                $Options.Add("domain", $Domain)
+            }
+            if ($Username) {
+                $Options.Add("username", $Username)
+            }
+            if ($Password) {
+                $Options.Add("password", (ConvertFrom-SecureString $Password))
+            }
+            return (Invoke-ProxmoxAPI -Method Post -Resource "nodes/$($Node)/scan/cifs" -Options $Options)
+        }
+        glusterfs {
+            $Options.Add("server", $Server)
+            return (Invoke-ProxmoxAPI -Method Post -Resource "nodes/$($Node)/scan/glusterfs" -Options $Options)
+        }
+        iscsi {
+            $Options.Add("portal", $Server)
+            return (Invoke-ProxmoxAPI -Method Post -Resource "nodes/$($Node)/scan/iscsi" -Options $Options)
+        }
+        lvm {
+            return (Invoke-ProxmoxAPI -Method Post -Resource "nodes/$($Node)/scan/lvm")
+        }
+        lvmthin {
+            $Options.Add("vg", $Vg)
+            return (Invoke-ProxmoxAPI -Method Post -Resource "nodes/$($Node)/scan/lvmthin" -Options $Options)
+        }
+        nfs {
+            $Options.Add("server", $Server)
+            return (Invoke-ProxmoxAPI -Method Post -Resource "nodes/$($Node)/scan/nfs" -Options $Options)
+        }
+        usb {
+            return (Invoke-ProxmoxAPI -Method Post -Resource "nodes/$($Node)/scan/usb")
+        }
+        zfs {
+            return (Invoke-ProxmoxAPI -Method Post -Resource "nodes/$($Node)/scan/zfs")
+        }
+        Default {
+            return (Invoke-ProxmoxAPI -Method Post -Resource "nodes/$($Node)/scan")
+        }
+    }
+}
+
+Export-ModuleMember -Function @('Get-Node', 'Get-Syslog', 'Invoke-ScanNode')
