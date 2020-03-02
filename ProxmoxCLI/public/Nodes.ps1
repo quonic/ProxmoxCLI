@@ -179,7 +179,7 @@ function Get-Syslog {
         $Options.Add("until" , $Until)
     }
     # TODO parse the lines?
-    return (Invoke-ProxmoxAPI -Method Post -Resource "nodes/$($Node)/qemu/$($Id)/status/reboot" -Options $Options)
+    return (Invoke-ProxmoxAPI -Method Get -Resource "nodes/$($Node)/syslog" -Options $Options)
 }
 
 function Invoke-ScanNode {
@@ -269,35 +269,35 @@ function Invoke-ScanNode {
             if ($Password) {
                 $Options.Add("password", (ConvertFrom-SecureString $Password))
             }
-            return (Invoke-ProxmoxAPI -Method Post -Resource "nodes/$($Node)/scan/cifs" -Options $Options)
+            return (Invoke-ProxmoxAPI -Method Get -Resource "nodes/$($Node)/scan/cifs" -Options $Options)
         }
         glusterfs {
             $Options.Add("server", $Server)
-            return (Invoke-ProxmoxAPI -Method Post -Resource "nodes/$($Node)/scan/glusterfs" -Options $Options)
+            return (Invoke-ProxmoxAPI -Method Get -Resource "nodes/$($Node)/scan/glusterfs" -Options $Options)
         }
         iscsi {
             $Options.Add("portal", $Server)
-            return (Invoke-ProxmoxAPI -Method Post -Resource "nodes/$($Node)/scan/iscsi" -Options $Options)
+            return (Invoke-ProxmoxAPI -Method Get -Resource "nodes/$($Node)/scan/iscsi" -Options $Options)
         }
         lvm {
-            return (Invoke-ProxmoxAPI -Method Post -Resource "nodes/$($Node)/scan/lvm")
+            return (Invoke-ProxmoxAPI -Method Get -Resource "nodes/$($Node)/scan/lvm")
         }
         lvmthin {
             $Options.Add("vg", $Vg)
-            return (Invoke-ProxmoxAPI -Method Post -Resource "nodes/$($Node)/scan/lvmthin" -Options $Options)
+            return (Invoke-ProxmoxAPI -Method Get -Resource "nodes/$($Node)/scan/lvmthin" -Options $Options)
         }
         nfs {
             $Options.Add("server", $Server)
-            return (Invoke-ProxmoxAPI -Method Post -Resource "nodes/$($Node)/scan/nfs" -Options $Options)
+            return (Invoke-ProxmoxAPI -Method Get -Resource "nodes/$($Node)/scan/nfs" -Options $Options)
         }
         usb {
-            return (Invoke-ProxmoxAPI -Method Post -Resource "nodes/$($Node)/scan/usb")
+            return (Invoke-ProxmoxAPI -Method Get -Resource "nodes/$($Node)/scan/usb")
         }
         zfs {
-            return (Invoke-ProxmoxAPI -Method Post -Resource "nodes/$($Node)/scan/zfs")
+            return (Invoke-ProxmoxAPI -Method Get -Resource "nodes/$($Node)/scan/zfs")
         }
         Default {
-            return (Invoke-ProxmoxAPI -Method Post -Resource "nodes/$($Node)/scan")
+            return (Invoke-ProxmoxAPI -Method Get -Resource "nodes/$($Node)/scan")
         }
     }
 }
