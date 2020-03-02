@@ -157,12 +157,106 @@
       - [ ] vncproxy
       - [ ] vncwebsocket
   - [ ] network
-  - [ ] qemu
+    - [ ] {iface}
+  - [x] qemu
+    - [x] {vmid}
+      - [ ] agent
+        - [ ] exec
+        - [ ] exec-status
+        - [ ] file-read
+        - [ ] file-write
+        - [ ] fsfreeze-freeze
+        - [ ] fsfreeze-thaw
+        - [ ] fstrim
+        - [ ] get-fsinfo
+        - [ ] get-memory-block-info
+        - [ ] get-memory-blocks
+        - [ ] get-osinfo
+        - [ ] get-time
+        - [ ] get-timezone
+        - [ ] get-users
+        - [ ] get-vcpus
+        - [ ] info
+        - [ ] network-get-interfaces
+        - [ ] ping
+        - [ ] set-user-password
+        - [ ] shutdown
+        - [ ] suspend-disk
+        - [ ] suspend-hybrid
+        - [ ] suspend-ram
+      - [ ] cloudinit
+        - [ ] dump
+      - [ ] firewall
+        - [ ] aliases
+          - [ ] {name}
+        - [ ] ipset
+          - [ ] {name}
+            - [ ] {cidr}
+        - [ ] rules
+          - [ ] {pos}
+        - [ ] log
+        - [ ] options
+        - [ ] refs
+      - [ ] snapshot
+        - [ ] {snapshotname}
+      - [x] status
+        - [x] current
+        - [x] reboot
+        - [x] reset
+        - [x] resume
+        - [x] shutdown
+        - [x] start
+        - [x] stop
+        - [x] suspend
+      - [ ] clone
+      - [ ] config
+      - [ ] feature
+      - [ ] migrate
+      - [ ] monitor
+      - [ ] move_disk
+      - [ ] pending
+      - [ ] resize
+      - [ ] rrd
+      - [ ] rrddata
+      - [ ] sendkey
+      - [ ] spiceproxy
+      - [ ] template
+      - [ ] termproxy
+      - [ ] unlink
+      - [ ] vncproxy
+      - [ ] vncwebsocket
   - [ ] replication
-  - [ ] scan
+    - [ ] {id}
+  - [x] scan
+    - [x] cifs
+    - [x] glusterfs
+    - [x] iscsi
+    - [x] lvm
+    - [x] lvmthin
+    - [x] nfs
+    - [x] usb
+    - [x] zfs
   - [ ] services
+    - [ ] {service}
+      - [ ] reload
+      - [ ] restart
+      - [ ] start
+      - [ ] state
+      - [ ] stop
+  - [ ] storage
+    - [ ] {storage}
+      - [ ] content
+        - [ ] {volume}
+      - [ ] rrd
+      - [ ] rdddata
+      - [ ] status
+      - [ ] upload
   - [ ] tasks
+    - [ ] {upid}
+      - [ ] log
+      - [ ] status
   - [ ] vzdump
+    - [ ] extractconfig
   - [ ] aplinfo
   - [ ] config
   - [ ] dns
