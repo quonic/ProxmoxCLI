@@ -30,6 +30,7 @@ function Get-Node {
     [CmdletBinding()]
     [OutputType("System.Object[]")]
     Param(
+        [Parameter(Mandatory = $true)]
         [Parameter(ValueFromPipelineByPropertyName)]
         [String]
         $Node
@@ -141,6 +142,7 @@ function Get-Syslog {
 
     [CmdletBinding()]
     param (
+        [Parameter(Mandatory = $true)]
         [Parameter(ValueFromPipelineByPropertyName)]
         [String]
         $Node,
