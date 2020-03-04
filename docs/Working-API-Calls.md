@@ -142,7 +142,7 @@
         - [x] start
         - [x] stop
         - [x] suspend
-      - [ ] clone
+      - [x] clone
       - [ ] config
       - [ ] feature
       - [ ] migrate
@@ -208,7 +208,7 @@
         - [x] start
         - [x] stop
         - [x] suspend
-      - [ ] clone
+      - [x] clone
       - [ ] config
       - [ ] feature
       - [ ] migrate

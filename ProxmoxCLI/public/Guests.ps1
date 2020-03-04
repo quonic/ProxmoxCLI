@@ -581,4 +581,160 @@ function Get-Guest {
     }
 }
 
-Export-ModuleMember -Function @('Start-Guest', 'Stop-Guest', 'Suspend-Guest', 'Shutdown-Guest', 'Resume-Guest', 'Reset-Guest', 'Reboot-Guest', 'Get-Guest')
+function Clone-Node {
+    <#
+    .SYNOPSIS
+    Create a Copy of guest/template
+
+    .DESCRIPTION
+    Create a Copy of guest/template
+
+    .PARAMETER Node
+    Name of the Node that the guest resides
+
+    .PARAMETER Id
+    ID of the source guest
+
+    .PARAMETER NewId
+    ID of the new guest
+
+    .PARAMETER BwLimit
+    Override I/O bandwidth limit (in KiB/s).
+
+    .PARAMETER Description
+    Description of the new Guest
+
+    .PARAMETER Format
+    Target format for file storage. Only valid for full clone of a VM.
+
+    .PARAMETER Full
+    Create a full copy of all disks. This is always done when you clone a normal VM/containter. For VM/Container templates, we try to create a linked clone by default.
+
+    .PARAMETER HostName
+    Set a name for the new guest.
+
+    .PARAMETER Pool
+    Add the new guest to the specified pool.
+
+    .PARAMETER SnapName
+    The name of the snapshot.
+
+    .PARAMETER Storage
+    Target storage for full clone.
+
+    .PARAMETER Target
+    Target node. Only allowed if the original VM is on shared storage.
+
+    .EXAMPLE
+    Clone-Node -Node "Proxmox1" -Id 100 -NewId 101
+
+    .NOTES
+    General notes
+    #>
+
+    [Diagnostics.CodeAnalysis.SuppressMessage("PSUseApprovedVerbs", Scope = "function")]
+    [CmdletBinding()]
+    param (
+        [Parameter(Mandatory = $true)]
+        [string]
+        $Node,
+        [Parameter(Mandatory = $true)] #ValueFromPipelineByPropertyName, ValueFromPipeline
+        [int]
+        $Id,
+        [Parameter(Mandatory = $true)]
+        [int]
+        $NewId,
+        [Parameter(Mandatory = $false, ParameterSetName = "vm")]
+        [Parameter(Mandatory = $false, ParameterSetName = "container")]
+        [int]
+        $BwLimit,
+        [Parameter(Mandatory = $false, ParameterSetName = "vm")]
+        [Parameter(Mandatory = $false, ParameterSetName = "container")]
+        [string]
+        $Description,
+        [Parameter(Mandatory = $false, ParameterSetName = "vm")]
+        [ValidateSet('raw', 'qcow2', 'vmdk')]
+        [string]
+        $Format,
+        [Parameter(Mandatory = $false, ParameterSetName = "vm")]
+        [Parameter(Mandatory = $false, ParameterSetName = "container")]
+        [switch]
+        $Full,
+        [Parameter(Mandatory = $false, ParameterSetName = "vm")]
+        [Parameter(Mandatory = $false, ParameterSetName = "container")]
+        [string]
+        $HostName,
+        [Parameter(Mandatory = $false, ParameterSetName = "vm")]
+        [Parameter(Mandatory = $false, ParameterSetName = "container")]
+        [string]
+        $Pool,
+        [Parameter(Mandatory = $false, ParameterSetName = "vm")]
+        [Parameter(Mandatory = $false, ParameterSetName = "container")]
+        [string]
+        $SnapName,
+        [Parameter(Mandatory = $false, ParameterSetName = "vm")]
+        [Parameter(Mandatory = $false, ParameterSetName = "container")]
+        [string]
+        $Storage,
+        [Parameter(Mandatory = $false, ParameterSetName = "vm")]
+        [Parameter(Mandatory = $false, ParameterSetName = "container")]
+        [string]
+        $Target
+    )
+    begin {
+        if ($Id = $NewId) {
+            throw "Id and NewID can't be the same."
+        }
+        $vms = Invoke-ProxmoxAPI -Resource "nodes/$($Node)/qemu"
+        $containers = Invoke-ProxmoxAPI -Resource "nodes/$($Node)/lxc"
+        [PSCustomObject[]]$guests = [PSCustomObject]@{ }
+        $Options = @()
+    }
+
+    process {
+        $Options.Add('newid', $NewId)
+        if ($BwLimit) {
+            $Options.Add('bwlimit', $BwLimit)
+        }
+        if ($Description) {
+            $Options.Add('description', $Description)
+        }
+        if ($Full) {
+            $Options.Add('full', $Full)
+        }
+        if ($Name) {
+            $Options.Add('name', $Name)
+        }
+        if ($Pool) {
+            $Options.Add('pool', $Pool)
+        }
+        if ($SnapName) {
+            $Options.Add('snapname', $SnapName)
+        }
+        if ($Storage) {
+            $Options.Add('storage', $Storage)
+        }
+        if ($Target) {
+            $Options.Add('target', $Target)
+        }
+        if (($vms | Where-Object { $_.vmid -eq $Id }).Count -eq 1) {
+            if ($Format) {
+                $Options.Add('format', $Format)
+            }
+            $guests.Add((Invoke-ProxmoxAPI -Method Post -Resource "nodes/$($Node)/qemu/$($Id)/clone" -Options $Options))
+        }
+        elseif (($containers | Where-Object { $_.vmid -eq $Id }).Count -eq 1) {
+            $guests.Add((Invoke-ProxmoxAPI -Method Post -Resource "nodes/$($Node)/lxc/$($Id)/clone" -Options $Options))
+        }
+        else {
+            Write-Error "No VM or Container exists with the ID of $Id"
+        }
+        Write-Output $guests
+    }
+
+    end {
+        $guests = $null
+    }
+}
+
+Export-ModuleMember -Function @('Start-Guest', 'Stop-Guest', 'Suspend-Guest', 'Shutdown-Guest', 'Resume-Guest', 'Reset-Guest', 'Reboot-Guest', 'Get-Guest', 'Clone-Node')
