@@ -543,9 +543,6 @@ function Get-Guest {
     .EXAMPLE
     Get-Guest -Node "Promxox1" -Id 100
 
-    .EXAMPLE
-    100..200 | Get-Guest -Node "Promxox1"
-
     .NOTES
     General notes
     #>
@@ -555,7 +552,7 @@ function Get-Guest {
         [Parameter(Mandatory = $true)]
         [string]
         $Node,
-        [Parameter(Mandatory = $false, ValueFromPipelineByPropertyName, ValueFromPipeline)]
+        [Parameter(Mandatory = $false)]
         [int]
         $Id
     )
@@ -567,16 +564,14 @@ function Get-Guest {
     }
 
     process {
-        $Id | ForEach-Object {
-            if (($vms | Where-Object { $_.vmid -eq $Id }).Count -eq 1) {
-                $guests.Add((Invoke-ProxmoxAPI -Method Post -Resource "nodes/$($Node)/qemu/$($Id)/status/current"))
-            }
-            elseif (($containers | Where-Object { $_.vmid -eq $Id }).Count -eq 1) {
-                $guests.Add((Invoke-ProxmoxAPI -Method Post -Resource "nodes/$($Node)/lxc/$($Id)/status/current"))
-            }
-            else {
-                Write-Error "No VM or Container exists with the ID of $Id"
-            }
+        if (($vms | Where-Object { $_.vmid -eq $Id }).Count -eq 1) {
+            $guests.Add((Invoke-ProxmoxAPI -Method Post -Resource "nodes/$($Node)/qemu/$($Id)/status/current"))
+        }
+        elseif (($containers | Where-Object { $_.vmid -eq $Id }).Count -eq 1) {
+            $guests.Add((Invoke-ProxmoxAPI -Method Post -Resource "nodes/$($Node)/lxc/$($Id)/status/current"))
+        }
+        else {
+            Write-Error "No VM or Container exists with the ID of $Id"
         }
         Write-Output $guests
     }
