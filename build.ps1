@@ -6,7 +6,10 @@ Derived from scripts written by Warren F. (RamblingCookieMonster)
 #>
 
 [cmdletbinding()]
-param ($Task = 'Default')
+param (
+    [ValidateSet('Default', 'Build', 'Pester', 'Clean')]
+    $Task = 'Default'
+)
 Write-Output "Starting build"
 
 # Grab nuget bits, install modules, set build variables, start build.
