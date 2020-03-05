@@ -682,7 +682,7 @@ function Clone-Node {
         $Target
     )
     begin {
-        if ($Id = $NewId) {
+        if ($Id -eq $NewId) {
             throw "Id and NewID can't be the same."
         }
         $vms = Invoke-ProxmoxAPI -Resource "nodes/$($Node)/qemu"
