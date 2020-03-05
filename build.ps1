@@ -23,6 +23,7 @@ Set-BuildEnvironment
 Write-Output "  InvokeBuild"
 Invoke-Build $Task -Result result
 if ($Result.Error) {
+    Get-ChildItem -Path .\ProxmoxCLI\ -Filter "*.ps1" -Recurse | Invoke-ScriptAnalyzer
     exit 1
 }
 else {
