@@ -1,0 +1,1 @@
+Get-ChildItem -Path .\ProxmoxCLI\ -Filter "*.ps1" -Recurse | Invoke-ScriptAnalyzer
