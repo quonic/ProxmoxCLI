@@ -581,7 +581,7 @@ function Get-Guest {
     }
 }
 
-function Clone-Node {
+function Clone-Guest {
     <#
     .SYNOPSIS
     Create a Copy of guest/template
@@ -626,7 +626,7 @@ function Clone-Node {
     Target node. Only allowed if the original VM is on shared storage.
 
     .EXAMPLE
-    Clone-Node -Node "Proxmox1" -Id 100 -NewId 101
+    Clone-Guest -Node "Proxmox1" -Id 100 -NewId 101
 
     .NOTES
     General notes
@@ -808,6 +808,6 @@ Export-ModuleMember -Function @(
     'Reset-Guest',
     'Reboot-Guest',
     'Get-Guest',
-    'Clone-Node',
+    'Clone-Guest',
     'Get-Config'
 )
