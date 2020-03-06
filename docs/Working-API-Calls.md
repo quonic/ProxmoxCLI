@@ -144,6 +144,8 @@
         - [x] suspend
       - [x] clone
       - [ ] config
+        - [x] get
+        - [ ] put
       - [ ] feature
       - [ ] migrate
       - [ ] move_volume
@@ -209,6 +211,9 @@
         - [x] stop
         - [x] suspend
       - [x] clone
+        - [x] get
+        - [ ] post
+        - [ ] put
       - [ ] config
       - [ ] feature
       - [ ] migrate

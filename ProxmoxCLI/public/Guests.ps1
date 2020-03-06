@@ -737,4 +737,66 @@ function Clone-Node {
     }
 }
 
-Export-ModuleMember -Function @('Start-Guest', 'Stop-Guest', 'Suspend-Guest', 'Shutdown-Guest', 'Resume-Guest', 'Reset-Guest', 'Reboot-Guest', 'Get-Guest', 'Clone-Node')
+function Get-Config {
+    <#
+    .SYNOPSIS
+    Get guest configuration
+
+    .DESCRIPTION
+    Get guest configuration
+
+    .PARAMETER Node
+    ID of the node
+
+    .PARAMETER Id
+    ID if the Guest
+
+    .PARAMETER Current
+    Get the current values (instead of pending values)
+
+    .PARAMETER SnapShot
+    Fetch config values from given snapshot.
+
+    .EXAMPLE
+    Get-Config -Node "Proxmox1" -Id 100
+
+    .NOTES
+    General notes
+    #>
+    [CmdletBinding()]
+    param (
+        [Parameter(Mandatory = $true)]
+        [string]
+        $Node,
+        [Parameter(Mandatory = $true)]
+        [int]
+        $Id,
+        [switch]
+        $Current,
+        [string]
+        $SnapShot
+    )
+
+    begin {
+        $vms = Invoke-ProxmoxAPI -Resource "nodes/$($Node)/qemu"
+        $containers = Invoke-ProxmoxAPI -Resource "nodes/$($Node)/lxc"
+        $Options = @()
+    }
+
+    process {
+        if ($Current) {
+            $Options.Add('current', $Current)
+        }
+        if ($SnapShot) {
+            $Options.Add('snapshot', $SnapShot)
+        }
+        if (($vms | Where-Object { $_.vmid -eq $Id }).Count -eq 1) {
+            return (Invoke-ProxmoxAPI -Method Get -Resource "nodes/$($Node)/qemu/$($Id)/config" -Options $Options)
+        }
+        elseif (($containers | Where-Object { $_.vmid -eq $Id }).Count -eq 1) {
+            return (Invoke-ProxmoxAPI -Method Get -Resource "nodes/$($Node)/lxc/$($Id)/config" -Options $Options)
+        }
+    }
+}
+
+Export-ModuleMember -Function @('Start-Guest', 'Stop-Guest', 'Suspend-Guest', 'Shutdown-Guest', 'Resume-Guest', 'Reset-Guest', 'Reboot-Guest', 'Get-Guest', 'Clone-Node', 'Get-Config')
