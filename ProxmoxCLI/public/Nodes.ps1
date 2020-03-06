@@ -302,4 +302,8 @@ function Invoke-ScanNode {
     }
 }
 
-Export-ModuleMember -Function @('Get-Node', 'Get-Syslog', 'Invoke-ScanNode')
+Export-ModuleMember -Function @(
+    'Get-Node',
+    'Get-Syslog',
+    'Invoke-ScanNode'
+)

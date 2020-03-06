@@ -18,4 +18,6 @@ function Get-PveVersion {
 }
 
 
-Export-ModuleMember -Function @('Get-PveVersion')
+Export-ModuleMember -Function @(
+    'Get-PveVersion'
+)

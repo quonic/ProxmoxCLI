@@ -36,4 +36,6 @@ function Get-Pool {
 }
 
 
-Export-ModuleMember -Function @('Get-Pool')
+Export-ModuleMember -Function @(
+    'Get-Pool'
+)

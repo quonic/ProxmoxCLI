@@ -105,4 +105,8 @@ function Connect-PveServer {
     }
 }
 
-Export-ModuleMember -Function @('Connect-PveServer') -Variable @('PveTickets')
+Export-ModuleMember -Function @(
+    'Connect-PveServer'
+) -Variable @(
+    'PveTickets'
+)

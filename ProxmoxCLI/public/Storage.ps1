@@ -48,4 +48,6 @@ function Get-Storage {
 }
 
 
-Export-ModuleMember -Function @('Get-Storage')
+Export-ModuleMember -Function @(
+    'Get-Storage'
+)

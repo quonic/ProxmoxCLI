@@ -799,4 +799,15 @@ function Get-Config {
     }
 }
 
-Export-ModuleMember -Function @('Start-Guest', 'Stop-Guest', 'Suspend-Guest', 'Shutdown-Guest', 'Resume-Guest', 'Reset-Guest', 'Reboot-Guest', 'Get-Guest', 'Clone-Node', 'Get-Config')
+Export-ModuleMember -Function @(
+    'Start-Guest',
+    'Stop-Guest',
+    'Suspend-Guest',
+    'Shutdown-Guest',
+    'Resume-Guest',
+    'Reset-Guest',
+    'Reboot-Guest',
+    'Get-Guest',
+    'Clone-Node',
+    'Get-Config'
+)
