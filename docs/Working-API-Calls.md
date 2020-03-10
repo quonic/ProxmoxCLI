@@ -1,8 +1,8 @@
 # List of working API calls from cmdlets
 
 - [ ] access
-  - [ ] domains
-    - [ ] {realm}
+  - [x] domains
+    - [x] {realm}
   - [ ] groups
     - [ ] {groupid}
   - [ ] roles
@@ -13,7 +13,7 @@
   - [ ] password
   - [ ] permissions
   - [ ] tfa
-  - [ ] tickt
+  - [x] tickt
 - [ ] cluster
   - [ ] acme
     - [ ] account
