@@ -1,4 +1,4 @@
-function New-Ticket {
+function Request-Ticket {
     <#
     .SYNOPSIS
     Create or Verify authentication ticket.
@@ -25,13 +25,13 @@ function New-Ticket {
     This is used only if you want to override that the domain part.
 
     .EXAMPLE
-    New-Ticket -Credential (Get-Credential)
+    Request-Ticket -Credential (Get-Credential)
 
     .EXAMPLE
-    New-Ticket -Credential (Get-Credential) -OTP "123456" -Realm "promxox1"
+    Request-Ticket -Credential (Get-Credential) -OTP "123456" -Realm "promxox1"
 
     .EXAMPLE
-    New-Ticket -Credential (Get-Credential) -OTP "123456" -Realm "promxox1"
+    Request-Ticket -Credential (Get-Credential) -OTP "123456" -Realm "promxox1"
 
     .NOTES
     General notes
@@ -107,5 +107,5 @@ function Get-Realm {
         return Invoke-ProxmoxAPI -Method Post -Resource "access/domains"
     }
 }
-New-Alias -Name 'Verify-Ticket' -Value 'New-Ticket'
-Export-ModuleMember -Cmdlet @('Get-Realm' , 'Get-Ticket') -Alias @('Verify-Ticket')
+New-Alias -Name 'Verify-Ticket' -Value 'Request-Ticket'
+Export-ModuleMember -Cmdlet @('Get-Realm' , 'Request-Ticket') -Alias @('Verify-Ticket')
