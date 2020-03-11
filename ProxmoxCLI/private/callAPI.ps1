@@ -28,6 +28,7 @@ function Invoke-ProxmoxAPI {
     switch ($Method) {
         Get { $splat = PrepareGetRequest }
         Post { $splat = PreparePostRequest }
+        Put { $splat = PreparePutRequest }
         Delete { $splat = PrepareGetRequest }
         Default { $splat = PrepareGetRequest }
     }
@@ -69,6 +70,24 @@ function PreparePostRequest() {
     $session.cookies.add($cookie)
     $request = New-Object -TypeName PSCustomObject -Property @{
         Method      = "Post"
+        Headers     = @{CSRFPreventionToken = $Script:PveTickets.CSRFPreventionToken }
+        WebSession  = $session
+        ContentType = "application/json"
+    }
+    return $request
+}
+
+function PreparePutRequest() {
+    $cookie = New-Object System.Net.Cookie -Property @{
+        Name   = "PVEAuthCookie"
+        Path   = "/"
+        Domain = $Script:PveTickets.Server
+        Value  = $Script:PveTickets.Ticket
+    }
+    $session = New-Object Microsoft.PowerShell.Commands.WebRequestSession
+    $session.cookies.add($cookie)
+    $request = New-Object -TypeName PSCustomObject -Property @{
+        Method      = "Put"
         Headers     = @{CSRFPreventionToken = $Script:PveTickets.CSRFPreventionToken }
         WebSession  = $session
         ContentType = "application/json"
