@@ -300,4 +300,9 @@ function Remove-Realm {
 }
 
 New-Alias -Name 'Verify-Ticket' -Value 'Request-Ticket'
-Export-ModuleMember -Cmdlet @('Get-Realm' , 'Request-Ticket') -Alias @('Verify-Ticket')
+Export-ModuleMember -Cmdlet @(
+    'Request-Ticket',
+    'Get-Realm',
+    'Remove-Realm',
+    'Update-Realm'
+) -Alias @('Verify-Ticket')
