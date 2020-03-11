@@ -273,5 +273,31 @@ function Update-Realm {
     Invoke-ProxmoxAPI -Method Put -Resource "access/domains/$Realm" -Options $Options
 }
 
+function Remove-Realm {
+    <#
+    .SYNOPSIS
+    Delete an authenication server
+
+    .DESCRIPTION
+    Delete an authenication server
+
+    .PARAMETER Realm
+    Authentication domain ID
+
+    .EXAMPLE
+    Delete-Realm -Realm "proxmox-realm"
+
+    .NOTES
+    General notes
+    #>
+    [CmdletBinding()]
+    param (
+        [Parameter(Mandatory = $True)]
+        [string]
+        $Realm
+    )
+    Invoke-ProxmoxAPI -Method Delete -Resource "access/domains/$Realm"
+}
+
 New-Alias -Name 'Verify-Ticket' -Value 'Request-Ticket'
 Export-ModuleMember -Cmdlet @('Get-Realm' , 'Request-Ticket') -Alias @('Verify-Ticket')
