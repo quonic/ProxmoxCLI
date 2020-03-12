@@ -475,10 +475,9 @@ function Remove-Realm {
     Invoke-ProxmoxAPI -Method Delete -Resource "access/domains/$Realm"
 }
 
-New-Alias -Name 'Verify-Ticket' -Value 'Request-Ticket'
 Export-ModuleMember -Cmdlet @(
     'Request-Ticket',
     'Get-Realm',
     'Remove-Realm',
     'Update-Realm'
-) -Alias @('Verify-Ticket')
+)
