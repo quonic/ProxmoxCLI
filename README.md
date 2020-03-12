@@ -15,9 +15,7 @@ A Proxmox module for accessing your Proxmox APIs similar in functionality to Pow
 
 ## Contributing
 
-Testing, writing code, submitting bugs, and suggesting ideas are all welcome. At the time of writing I'm primarily focused on creating cmdlets for all related API calls. See [Guests](/ProxmoxCLI/public/Guests.ps1) as an example of how I would like it to look like, but I do welcome ideas.
-
-My only requirement for pull requests is to keep the commits related to each other in the pull request.
+See [CONTRIBUTING.md](/CONTRIBUTING.md).
 
 <!-- ## Getting Started
 
