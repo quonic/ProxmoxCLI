@@ -279,7 +279,7 @@ function Add-Realm {
     if ($Default) { $Options.Add('default', $Default) }
     if ($Secure) { $Options.Add('secure', $Secure) }
     if ($Verify) { $Options.Add('verify', $Verify) }
-    Invoke-ProxmoxAPI -Method Put -Resource "access/domains" -Options $Options
+    Invoke-ProxmoxAPI -Method Post -Resource "access/domains" -Options $Options
 }
 
 function Update-Realm {
