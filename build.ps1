@@ -12,6 +12,16 @@ param (
 )
 Write-Output "Starting build"
 
+# Cleans out old versions of modules from CurrentUser, run as admin to remove System installed Modules
+if (
+    $null -eq $ENV:BHBuildSystem -or
+    $null -eq $ENV:BHBranchName -or
+    $null -eq $ENV:BHCommitMessage
+) {
+    Write-Output "  Remove Duplicate and Old Dependent Modules"
+    .\build.clean.modules.ps1
+}
+
 # Grab nuget bits, install modules, set build variables, start build.
 Write-Output "  Install Dependent Modules"
 Get-PackageProvider -Name NuGet -ForceBootstrap | Out-Null
