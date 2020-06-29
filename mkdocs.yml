@@ -1,11 +1,9 @@
 site_name: ProxmoxCLI
 repo_url: https://github.com/quonic/ProxmoxCLI
 theme: readthedocs
-pages:
+nav:
 - Home: index.md
 - ProxmoxCLI Basics:
   - What is ProxmoxCLI: about.md
   - Quick Start: Quick-Start-Installation-and-Example.md
-- Basic Commands:
-- Examples:
 - Acknowledgements: acknowledgements.md
