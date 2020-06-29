@@ -5,7 +5,7 @@ $script:Output = Join-Path $BuildRoot output
 $script:Destination = Join-Path $Output $ModuleName
 $script:ModulePath = "$Destination\$ModuleName.psm1"
 $script:ManifestPath = "$Destination\$ModuleName.psd1"
-$script:Imports = ( 'private', 'public', 'classes' )
+$script:Imports = ( 'private', 'public' )
 $script:TestFile = "$PSScriptRoot\output\TestResults_PS$PSVersion`_$TimeStamp.xml"
 
 Task "Default" Build, Pester, UpdateSource, Publish
@@ -46,14 +46,14 @@ Task CopyToOutput {
     $null = New-Item -Type Directory -Path $Destination -ErrorAction Ignore
 
     Get-ChildItem $source -File |
-        Where-Object name -NotMatch "$ModuleName\.ps[dm]1" |
-        Copy-Item -Destination $Destination -Force -PassThru |
-        ForEach-Object { "  Create [.{0}]" -f $_.fullname.replace($PSScriptRoot, '') }
+    Where-Object name -NotMatch "$ModuleName\.ps[dm]1" |
+    Copy-Item -Destination $Destination -Force -PassThru |
+    ForEach-Object { "  Create [.{0}]" -f $_.fullname.replace($PSScriptRoot, '') }
 
     Get-ChildItem $source -Directory |
-        Where-Object name -NotIn $imports |
-        Copy-Item -Destination $Destination -Recurse -Force -PassThru |
-        ForEach-Object { "  Create [.{0}]" -f $_.fullname.replace($PSScriptRoot, '') }
+    Where-Object name -NotIn $imports |
+    Copy-Item -Destination $Destination -Recurse -Force -PassThru |
+    ForEach-Object { "  Create [.{0}]" -f $_.fullname.replace($PSScriptRoot, '') }
 }
 
 Task BuildPSM1 -Inputs (Get-Item "$source\*\*.ps1") -Outputs $ModulePath {
@@ -86,14 +86,14 @@ Task BuildPSD1 -inputs (Get-ChildItem $Source -Recurse -File) -Outputs $Manifest
 
     $bumpVersionType = 'Patch'
 
-    $functions = Get-ChildItem "$ModuleName\public\*.ps1" | Where-Object { $_.name -notmatch 'tests' } | Select-Object -ExpandProperty basename
+    #$functions = Get-ChildItem "$ModuleName\public\*.ps1" | Where-Object { $_.name -notmatch 'tests' } | Select-Object -ExpandProperty basename
 
-    $oldFunctions = (Get-Metadata -Path $manifestPath -PropertyName 'FunctionsToExport')
+    #$oldFunctions = (Get-Metadata -Path $manifestPath -PropertyName 'FunctionsToExport')
 
-    $functions | Where-Object { $_ -notin $oldFunctions } | ForEach-Object { $bumpVersionType = 'Minor' }
-    $oldFunctions | Where-Object { $_ -notin $Functions } | ForEach-Object { $bumpVersionType = 'Major' }
+    #$functions | Where-Object { $_ -notin $oldFunctions } | ForEach-Object { $bumpVersionType = 'Minor' }
+    #$oldFunctions | Where-Object { $_ -notin $Functions } | ForEach-Object { $bumpVersionType = 'Major' }
 
-    Set-ModuleFunctions -Name $ManifestPath -FunctionsToExport $functions
+    #Set-ModuleFunctions -Name $ManifestPath -FunctionsToExport $functions
 
     # Bump the module version
     $version = [version] (Get-Metadata -Path $manifestPath -PropertyName 'ModuleVersion')
