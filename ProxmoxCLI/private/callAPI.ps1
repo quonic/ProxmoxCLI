@@ -26,10 +26,10 @@ function Invoke-ProxmoxAPI {
 
     # Setup Headers and cookie for splatting
     switch ($Method) {
-        Get { $splat = PrepareGetRequest }
-        Post { $splat = PreparePostRequest }
-        Put { $splat = PreparePutRequest }
-        Delete { $splat = PrepareGetRequest }
+        Get { $splat = PrepareGetRequest; break }
+        Post { $splat = PreparePostRequest; break }
+        Put { $splat = PreparePutRequest; break }
+        Delete { $splat = PrepareGetRequest; break }
         Default { $splat = PrepareGetRequest }
     }
 
