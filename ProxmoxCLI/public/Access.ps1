@@ -582,6 +582,44 @@ function Get-Group {
     }
 }
 
+function New-Group {
+    <#
+    .SYNOPSIS
+    Create new group
+
+    .DESCRIPTION
+    Create new group
+
+    .PARAMETER GroupId
+    Name of new group
+    
+    .PARAMETER Comment
+    Comment for new group
+
+    .EXAMPLE
+    New-Group -GroupId "proxmox-group"
+
+    .EXAMPLE
+    New-Group -GroupId "proxmox-group" -Comment "Comment for this group"
+    
+    .NOTES
+    General notes
+    #>
+    [CmdletBinding()]
+    param (
+        [Parameter(Mandatory = $True)]
+        [string]
+        $GroupId,
+        [Parameter(Mandatory = $False)]
+        [string]
+        $Comment
+    )
+    $Options = @()
+    $Options.Add('groupid', $GroupId)
+    if ($Comment -and -not [String]::IsNullOrEmpty($Comment) -and -not [String]::IsNullOrWhiteSpace($Comment)) { $Options.Add('comment', $Comment) }
+    return Invoke-ProxmoxAPI -Method Get -Resource "access/groups" -Options $Options
+}
+
 Export-ModuleMember -Cmdlet @(
     'Request-Ticket',
     'Get-Realm',
