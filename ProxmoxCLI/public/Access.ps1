@@ -617,7 +617,7 @@ function New-Group {
     $Options = @()
     $Options.Add('groupid', $GroupId)
     if ($Comment -and -not [String]::IsNullOrEmpty($Comment) -and -not [String]::IsNullOrWhiteSpace($Comment)) { $Options.Add('comment', $Comment) }
-    return Invoke-ProxmoxAPI -Method Get -Resource "access/groups" -Options $Options
+    return Invoke-ProxmoxAPI -Method Post -Resource "access/groups" -Options $Options
 }
 
 Export-ModuleMember -Cmdlet @(
