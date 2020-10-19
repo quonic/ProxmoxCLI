@@ -543,6 +543,45 @@ function Sync-Realm {
     Invoke-ProxmoxAPI -Method Post -Resource "access/domains/$($Realm)/sync" -Options $Options
 }
 
+function Get-Group {
+    <#
+    .SYNOPSIS
+    Get group(s) configuration
+
+    .DESCRIPTION
+    Get group(s) configuration
+
+    .PARAMETER GroupId
+    Returns the group configuration, accepts list of group id's.
+
+    .EXAMPLE
+    Get-Group
+
+    .EXAMPLE
+    Get-Group -GroupId "proxmox-group"
+
+    .EXAMPLE
+    Get-Group -GroupId "proxmox-group1", "proxmox-group2"
+    
+    .NOTES
+    General notes
+    #>
+    [CmdletBinding()]
+    param (
+        [Parameter(Mandatory = $False)]
+        [string[]]
+        $GroupId
+    )
+    if ($GroupId) {
+        return $GroupId | ForEach-Object {
+            Invoke-ProxmoxAPI -Method Get -Resource "access/groups/$GroupId"
+        }
+    }
+    else {
+        return Invoke-ProxmoxAPI -Method Get -Resource "access/groups"
+    }
+}
+
 Export-ModuleMember -Cmdlet @(
     'Request-Ticket',
     'Get-Realm',
