@@ -3,12 +3,16 @@
 - [ ] access
   - [x] domains
     - [x] {realm}
+     - [ ] sync
   - [ ] groups
     - [ ] {groupid}
   - [ ] roles
     - [ ] {roleid}
   - [ ] users
     - [ ] {userid}
+     - [ ] token
+      - [ ] {tokenid}
+     - [ ] tfa
   - [ ] acl
   - [ ] password
   - [ ] permissions
