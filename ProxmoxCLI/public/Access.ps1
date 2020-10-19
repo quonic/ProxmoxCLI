@@ -620,10 +620,80 @@ function New-Group {
     return Invoke-ProxmoxAPI -Method Post -Resource "access/groups" -Options $Options
 }
 
+function Update-Group {
+    <#
+    .SYNOPSIS
+    Update group data
+
+    .DESCRIPTION
+    Update group stat
+
+    .PARAMETER GroupId
+    Name of group
+    
+    .PARAMETER Comment
+    Comment for group
+
+    .EXAMPLE
+    Update-Group -GroupId "proxmox-group"
+
+    .EXAMPLE
+    Update-Group -GroupId "proxmox-group" -Comment "Comment for this group"
+    
+    .NOTES
+    General notes
+    #>
+    [CmdletBinding()]
+    param (
+        [Parameter(Mandatory = $True)]
+        [string]
+        $GroupId,
+        [Parameter(Mandatory = $False)]
+        [string]
+        $Comment
+    )
+    $Options = @()
+    $Options.Add('groupid', $GroupId)
+    if ($Comment -and -not [String]::IsNullOrEmpty($Comment) -and -not [String]::IsNullOrWhiteSpace($Comment)) { $Options.Add('comment', $Comment) }
+    return Invoke-ProxmoxAPI -Method Put -Resource "access/groups" -Options $Options
+}
+
+function Remove-Group {
+    <#
+    .SYNOPSIS
+    Delete group
+
+    .DESCRIPTION
+    Delete group
+
+    .PARAMETER GroupId
+    Name of group
+
+    .EXAMPLE
+    Delete-Group -GroupId "proxmox-group"
+
+    .NOTES
+    General notes
+    #>
+    [CmdletBinding()]
+    param (
+        [Parameter(Mandatory = $True)]
+        [string]
+        $GroupId
+    )
+    $Options = @()
+    $Options.Add('groupid', $GroupId)
+    return Invoke-ProxmoxAPI -Method Delete -Resource "access/groups" -Options $Options
+}
+
 Export-ModuleMember -Cmdlet @(
     'Request-Ticket',
     'Get-Realm',
     'Remove-Realm',
     'Update-Realm',
-    'Sync-Realm'
+    'Sync-Realm',
+    'Set-Group',
+    'New-Group',
+    'Update-Group',
+    'Remove-Group'
 )

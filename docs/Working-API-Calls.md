@@ -4,8 +4,8 @@
   - [x] domains
     - [x] {realm}
      - [x] sync
-  - [ ] groups
-    - [ ] {groupid}
+  - [x] groups
+    - [x] {groupid}
   - [ ] roles
     - [ ] {roleid}
   - [ ] users
