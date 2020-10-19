@@ -3,3 +3,4 @@ node_modules
 /tests/UTSetting.ps1
 scratch.ps1
 .vscode/spellright.dict
+.vs/
