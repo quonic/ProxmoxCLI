@@ -475,9 +475,78 @@ function Remove-Realm {
     Invoke-ProxmoxAPI -Method Delete -Resource "access/domains/$Realm"
 }
 
+function Sync-Realm {
+    <#
+    .SYNOPSIS
+    Syncs users and/or groups from the configured LDAP to user.cfg.
+
+    .DESCRIPTION
+    Syncs users and/or groups from the configured LDAP to user.cfg.
+
+    .PARAMETER Realm
+    Authentication domain ID
+
+    .PARAMETER DryRun
+    If set, does not write anything.
+
+    .PARAMETER EnableNew
+    Enable newly synced users immediately.
+
+    .PARAMETER Full
+    If set, uses LDAP Directory as source of truth, deleting users or groups not returned from the sync. Otherwise only syncs information which is not already present, and does not delete or modify anything else.
+
+    .PARAMETER Purge
+    Remove ACLs for users or groups which were removed from the config during a sync.
+
+    .PARAMETER Scope
+    Select what to sync users, groups or both.
+
+    .EXAMPLE
+    Sync-Realm -Realm "proxmox2"
+    
+    .EXAMPLE
+    Sync-Realm -Realm "proxmox2" -DryRun -EnableNew -Full -Purge -Scope both
+
+    .NOTES
+    Synced groups will have the name 'name-$realm', so make sure those groups do not exist to prevent overwriting.
+    #>
+    [CmdletBinding()]
+    param (
+        [Parameter(Mandatory = $True)]
+        [string]
+        $Realm,
+        [Parameter(Mandatory = $false)]
+        [switch]
+        $Dryrun,
+        [Parameter(Mandatory = $False)]
+        [switch]
+        $EnableNew,
+        [Parameter(Mandatory = $False)]
+        [switch]
+        $Full,
+        [Parameter(Mandatory = $False)]
+        [switch]
+        $Purge,
+        [Parameter(Mandatory = $False)]
+        [ValidateSet('users', 'group', 'both')]
+        [string]
+        $Scope
+    )
+    $Options = @()
+    # string
+    if ($Scope -and -not [String]::IsNullOrEmpty($Cert) -and -not [String]::IsNullOrWhiteSpace($Cert)) { $Options.Add('scope', $Scope) }
+    # boolean
+    if ($DryRun) { $Options.Add('dry-run', $DryRun) }
+    if ($EnableNew) { $Options.Add('enable-new', $EnableNew) }
+    if ($Purge) { $Options.Add('purge', $Purge) }
+    if ($Full) { $Options.Add('full', $Full) }
+    Invoke-ProxmoxAPI -Method Post -Resource "access/domains/$($Realm)/sync" -Options $Options
+}
+
 Export-ModuleMember -Cmdlet @(
     'Request-Ticket',
     'Get-Realm',
     'Remove-Realm',
-    'Update-Realm'
+    'Update-Realm',
+    'Sync-Realm'
 )

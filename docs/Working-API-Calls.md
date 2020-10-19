@@ -3,7 +3,7 @@
 - [ ] access
   - [x] domains
     - [x] {realm}
-     - [ ] sync
+     - [x] sync
   - [ ] groups
     - [ ] {groupid}
   - [ ] roles
