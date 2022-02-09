@@ -1,19 +1,22 @@
 function Get-Cluster {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	)
 	Invoke-ProxmoxAPI -Method GET -Resource "/cluster"
 }
 function Get-ClusterReplication {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	)
 	Invoke-ProxmoxAPI -Method GET -Resource "/cluster/replication"
 }
 function New-ClusterReplication {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		# Description.
@@ -60,7 +63,8 @@ function New-ClusterReplication {
 	Invoke-ProxmoxAPI -Method POST -Resource "/cluster/replication" -Options $Options
 }
 function Get-ClusterReplicationId {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -74,7 +78,8 @@ function Get-ClusterReplicationId {
 	Invoke-ProxmoxAPI -Method GET -Resource "/cluster/replication/{id}" -Options $Options
 }
 function Set-ClusterReplicationId {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		# Description.
@@ -119,7 +124,8 @@ function Set-ClusterReplicationId {
 	Invoke-ProxmoxAPI -Method PUT -Resource "/cluster/replication/{id}" -Options $Options
 }
 function Remove-ClusterReplicationId {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -137,21 +143,24 @@ function Remove-ClusterReplicationId {
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/cluster/replication/{id}" -Options $Options
 }
 function Get-ClusterMetrics {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	)
 	Invoke-ProxmoxAPI -Method GET -Resource "/cluster/metrics"
 }
 function Get-ClusterMetricsServer {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	)
 	Invoke-ProxmoxAPI -Method GET -Resource "/cluster/metrics/server"
 }
 function Get-ClusterMetricsServerId {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -165,7 +174,8 @@ function Get-ClusterMetricsServerId {
 	Invoke-ProxmoxAPI -Method GET -Resource "/cluster/metrics/server/{id}" -Options $Options
 }
 function New-ClusterMetricsServerId {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		# An API path prefix inserted between '<host>:<port>/' and '/api2/'. Can be useful if the InfluxDB service runs behind a reverse proxy.
@@ -241,7 +251,8 @@ function New-ClusterMetricsServerId {
 	Invoke-ProxmoxAPI -Method POST -Resource "/cluster/metrics/server/{id}" -Options $Options
 }
 function Set-ClusterMetricsServerId {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		# An API path prefix inserted between '<host>:<port>/' and '/api2/'. Can be useful if the InfluxDB service runs behind a reverse proxy.
@@ -320,7 +331,8 @@ function Set-ClusterMetricsServerId {
 	Invoke-ProxmoxAPI -Method PUT -Resource "/cluster/metrics/server/{id}" -Options $Options
 }
 function Remove-ClusterMetricsServerId {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -333,14 +345,16 @@ function Remove-ClusterMetricsServerId {
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/cluster/metrics/server/{id}" -Options $Options
 }
 function Get-ClusterConfig {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	)
 	Invoke-ProxmoxAPI -Method GET -Resource "/cluster/config"
 }
 function New-ClusterConfig {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -394,28 +408,32 @@ function New-ClusterConfig {
 	Invoke-ProxmoxAPI -Method POST -Resource "/cluster/config" -Options $Options
 }
 function Get-ClusterConfigApiversion {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	)
 	Invoke-ProxmoxAPI -Method GET -Resource "/cluster/config/apiversion"
 }
 function Get-ClusterFirewall {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	)
 	Invoke-ProxmoxAPI -Method GET -Resource "/cluster/firewall"
 }
 function Get-ClusterConfigNodes {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	)
 	Invoke-ProxmoxAPI -Method GET -Resource "/cluster/config/nodes"
 }
 function New-ClusterConfigNodesNode {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -478,7 +496,8 @@ function New-ClusterConfigNodesNode {
 	Invoke-ProxmoxAPI -Method POST -Resource "/cluster/config/nodes/{node}" -Options $Options
 }
 function Remove-ClusterConfigNodesNode {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -491,14 +510,16 @@ function Remove-ClusterConfigNodesNode {
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/cluster/config/nodes/{node}" -Options $Options
 }
 function Get-ClusterBackup {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	)
 	Invoke-ProxmoxAPI -Method GET -Resource "/cluster/backup"
 }
 function New-ClusterBackup {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		# Backup all known guest systems on this host.
@@ -634,7 +655,8 @@ function New-ClusterBackup {
 	Invoke-ProxmoxAPI -Method POST -Resource "/cluster/backup" -Options $Options
 }
 function Get-ClusterConfigJoin {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -647,7 +669,9 @@ function Get-ClusterConfigJoin {
 	Invoke-ProxmoxAPI -Method GET -Resource "/cluster/config/join" -Options $Options
 }
 function New-ClusterConfigJoin {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingConvertToSecureStringWithPlainText", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -712,49 +736,56 @@ function New-ClusterConfigJoin {
 	Invoke-ProxmoxAPI -Method POST -Resource "/cluster/config/join" -Options $Options
 }
 function Get-ClusterBackupInfo {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	)
 	Invoke-ProxmoxAPI -Method GET -Resource "/cluster/backup-info"
 }
 function Get-ClusterConfigTotem {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	)
 	Invoke-ProxmoxAPI -Method GET -Resource "/cluster/config/totem"
 }
 function Get-ClusterHa {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	)
 	Invoke-ProxmoxAPI -Method GET -Resource "/cluster/ha"
 }
 function Get-ClusterConfigQdevice {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	)
 	Invoke-ProxmoxAPI -Method GET -Resource "/cluster/config/qdevice"
 }
 function Get-ClusterAcme {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	)
 	Invoke-ProxmoxAPI -Method GET -Resource "/cluster/acme"
 }
 function Get-ClusterFirewallGroups {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	)
 	Invoke-ProxmoxAPI -Method GET -Resource "/cluster/firewall/groups"
 }
 function New-ClusterFirewallGroups {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		# 
@@ -779,7 +810,8 @@ function New-ClusterFirewallGroups {
 	Invoke-ProxmoxAPI -Method POST -Resource "/cluster/firewall/groups" -Options $Options
 }
 function Get-ClusterFirewallGroupsGroup {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -793,7 +825,8 @@ function Get-ClusterFirewallGroupsGroup {
 	Invoke-ProxmoxAPI -Method GET -Resource "/cluster/firewall/groups/{group}" -Options $Options
 }
 function New-ClusterFirewallGroupsGroup {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -868,7 +901,8 @@ function New-ClusterFirewallGroupsGroup {
 	Invoke-ProxmoxAPI -Method POST -Resource "/cluster/firewall/groups/{group}" -Options $Options
 }
 function Remove-ClusterFirewallGroupsGroup {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -881,7 +915,8 @@ function Remove-ClusterFirewallGroupsGroup {
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/cluster/firewall/groups/{group}" -Options $Options
 }
 function Get-ClusterFirewallGroupsGroupPos {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -899,7 +934,8 @@ function Get-ClusterFirewallGroupsGroupPos {
 	Invoke-ProxmoxAPI -Method GET -Resource "/cluster/firewall/groups/{group}/{pos}" -Options $Options
 }
 function Set-ClusterFirewallGroupsGroupPos {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		# Rule action ('ACCEPT', 'DROP', 'REJECT') or security group name.
@@ -980,7 +1016,8 @@ function Set-ClusterFirewallGroupsGroupPos {
 	Invoke-ProxmoxAPI -Method PUT -Resource "/cluster/firewall/groups/{group}/{pos}" -Options $Options
 }
 function Remove-ClusterFirewallGroupsGroupPos {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		# Prevent changes if current configuration file has different SHA1 digest. This can be used to prevent concurrent modifications.
@@ -1001,21 +1038,24 @@ function Remove-ClusterFirewallGroupsGroupPos {
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/cluster/firewall/groups/{group}/{pos}" -Options $Options
 }
 function Get-ClusterCeph {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	)
 	Invoke-ProxmoxAPI -Method GET -Resource "/cluster/ceph"
 }
 function Get-ClusterFirewallRules {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	)
 	Invoke-ProxmoxAPI -Method GET -Resource "/cluster/firewall/rules"
 }
 function New-ClusterFirewallRules {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -1085,7 +1125,8 @@ function New-ClusterFirewallRules {
 	Invoke-ProxmoxAPI -Method POST -Resource "/cluster/firewall/rules" -Options $Options
 }
 function Get-ClusterFirewallRulesPos {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -1098,7 +1139,8 @@ function Get-ClusterFirewallRulesPos {
 	Invoke-ProxmoxAPI -Method GET -Resource "/cluster/firewall/rules/{pos}" -Options $Options
 }
 function Set-ClusterFirewallRulesPos {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		# Rule action ('ACCEPT', 'DROP', 'REJECT') or security group name.
@@ -1174,7 +1216,8 @@ function Set-ClusterFirewallRulesPos {
 	Invoke-ProxmoxAPI -Method PUT -Resource "/cluster/firewall/rules/{pos}" -Options $Options
 }
 function Remove-ClusterFirewallRulesPos {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		# Prevent changes if current configuration file has different SHA1 digest. This can be used to prevent concurrent modifications.
@@ -1190,21 +1233,24 @@ function Remove-ClusterFirewallRulesPos {
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/cluster/firewall/rules/{pos}" -Options $Options
 }
 function Get-ClusterJobs {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	)
 	Invoke-ProxmoxAPI -Method GET -Resource "/cluster/jobs"
 }
 function Get-ClusterFirewallIpset {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	)
 	Invoke-ProxmoxAPI -Method GET -Resource "/cluster/firewall/ipset"
 }
 function New-ClusterFirewallIpset {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		# 
@@ -1229,7 +1275,8 @@ function New-ClusterFirewallIpset {
 	Invoke-ProxmoxAPI -Method POST -Resource "/cluster/firewall/ipset" -Options $Options
 }
 function Get-ClusterFirewallIpsetName {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -1243,7 +1290,8 @@ function Get-ClusterFirewallIpsetName {
 	Invoke-ProxmoxAPI -Method GET -Resource "/cluster/firewall/ipset/{name}" -Options $Options
 }
 function New-ClusterFirewallIpsetName {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -1269,7 +1317,8 @@ function New-ClusterFirewallIpsetName {
 	Invoke-ProxmoxAPI -Method POST -Resource "/cluster/firewall/ipset/{name}" -Options $Options
 }
 function Remove-ClusterFirewallIpsetName {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -1282,7 +1331,8 @@ function Remove-ClusterFirewallIpsetName {
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/cluster/firewall/ipset/{name}" -Options $Options
 }
 function Get-ClusterFirewallIpsetNameCidr {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -1301,7 +1351,8 @@ function Get-ClusterFirewallIpsetNameCidr {
 	Invoke-ProxmoxAPI -Method GET -Resource "/cluster/firewall/ipset/{name}/{cidr}" -Options $Options
 }
 function Set-ClusterFirewallIpsetNameCidr {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -1331,7 +1382,8 @@ function Set-ClusterFirewallIpsetNameCidr {
 	Invoke-ProxmoxAPI -Method PUT -Resource "/cluster/firewall/ipset/{name}/{cidr}" -Options $Options
 }
 function Remove-ClusterFirewallIpsetNameCidr {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -1353,28 +1405,32 @@ function Remove-ClusterFirewallIpsetNameCidr {
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/cluster/firewall/ipset/{name}/{cidr}" -Options $Options
 }
 function Get-ClusterSdn {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	)
 	Invoke-ProxmoxAPI -Method GET -Resource "/cluster/sdn"
 }
 function Set-ClusterSdn {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	)
 	Invoke-ProxmoxAPI -Method PUT -Resource "/cluster/sdn"
 }
 function Get-ClusterFirewallAliases {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	)
 	Invoke-ProxmoxAPI -Method GET -Resource "/cluster/firewall/aliases"
 }
 function New-ClusterFirewallAliases {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -1396,7 +1452,8 @@ function New-ClusterFirewallAliases {
 	Invoke-ProxmoxAPI -Method POST -Resource "/cluster/firewall/aliases" -Options $Options
 }
 function Get-ClusterFirewallAliasesName {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -1410,7 +1467,8 @@ function Get-ClusterFirewallAliasesName {
 	Invoke-ProxmoxAPI -Method GET -Resource "/cluster/firewall/aliases/{name}" -Options $Options
 }
 function Set-ClusterFirewallAliasesName {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -1440,7 +1498,8 @@ function Set-ClusterFirewallAliasesName {
 	Invoke-ProxmoxAPI -Method PUT -Resource "/cluster/firewall/aliases/{name}" -Options $Options
 }
 function Remove-ClusterFirewallAliasesName {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		# Prevent changes if current configuration file has different SHA1 digest. This can be used to prevent concurrent modifications.
@@ -1457,7 +1516,8 @@ function Remove-ClusterFirewallAliasesName {
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/cluster/firewall/aliases/{name}" -Options $Options
 }
 function Get-ClusterLog {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -1470,14 +1530,16 @@ function Get-ClusterLog {
 	Invoke-ProxmoxAPI -Method GET -Resource "/cluster/log" -Options $Options
 }
 function Get-ClusterFirewallOptions {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	)
 	Invoke-ProxmoxAPI -Method GET -Resource "/cluster/firewall/options"
 }
 function Set-ClusterFirewallOptions {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		# A list of settings you want to delete.
@@ -1513,7 +1575,8 @@ function Set-ClusterFirewallOptions {
 	Invoke-ProxmoxAPI -Method PUT -Resource "/cluster/firewall/options" -Options $Options
 }
 function Get-ClusterResources {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -1526,21 +1589,24 @@ function Get-ClusterResources {
 	Invoke-ProxmoxAPI -Method GET -Resource "/cluster/resources" -Options $Options
 }
 function Get-ClusterFirewallMacros {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	)
 	Invoke-ProxmoxAPI -Method GET -Resource "/cluster/firewall/macros"
 }
 function Get-ClusterTasks {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	)
 	Invoke-ProxmoxAPI -Method GET -Resource "/cluster/tasks"
 }
 function Get-ClusterFirewallRefs {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -1553,14 +1619,16 @@ function Get-ClusterFirewallRefs {
 	Invoke-ProxmoxAPI -Method GET -Resource "/cluster/firewall/refs" -Options $Options
 }
 function Get-ClusterOptions {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	)
 	Invoke-ProxmoxAPI -Method GET -Resource "/cluster/options"
 }
 function Set-ClusterOptions {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		# Set bandwidth/io limits various operations.
@@ -1632,7 +1700,8 @@ function Set-ClusterOptions {
 	Invoke-ProxmoxAPI -Method PUT -Resource "/cluster/options" -Options $Options
 }
 function Get-ClusterBackupId {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -1646,7 +1715,8 @@ function Get-ClusterBackupId {
 	Invoke-ProxmoxAPI -Method GET -Resource "/cluster/backup/{id}" -Options $Options
 }
 function Set-ClusterBackupId {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		# Backup all known guest systems on this host.
@@ -1787,7 +1857,8 @@ function Set-ClusterBackupId {
 	Invoke-ProxmoxAPI -Method PUT -Resource "/cluster/backup/{id}" -Options $Options
 }
 function Remove-ClusterBackupId {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -1800,7 +1871,8 @@ function Remove-ClusterBackupId {
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/cluster/backup/{id}" -Options $Options
 }
 function Get-ClusterBackupIncludedVolumes {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -1814,21 +1886,24 @@ function Get-ClusterBackupIncludedVolumes {
 	Invoke-ProxmoxAPI -Method GET -Resource "/cluster/backup/{id}/included_volumes" -Options $Options
 }
 function Get-ClusterStatus {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	)
 	Invoke-ProxmoxAPI -Method GET -Resource "/cluster/status"
 }
 function Get-ClusterBackupInfoNotBackedUp {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	)
 	Invoke-ProxmoxAPI -Method GET -Resource "/cluster/backup-info/not-backed-up"
 }
 function Get-ClusterNextid {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([Int32])]
@@ -1841,7 +1916,8 @@ function Get-ClusterNextid {
 	Invoke-ProxmoxAPI -Method GET -Resource "/cluster/nextid" -Options $Options
 }
 function Get-ClusterHaResources {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -1854,7 +1930,8 @@ function Get-ClusterHaResources {
 	Invoke-ProxmoxAPI -Method GET -Resource "/cluster/ha/resources" -Options $Options
 }
 function New-ClusterHaResources {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		# Description.
@@ -1891,7 +1968,8 @@ function New-ClusterHaResources {
 	Invoke-ProxmoxAPI -Method POST -Resource "/cluster/ha/resources" -Options $Options
 }
 function Get-ClusterHaResourcesSid {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -1905,7 +1983,8 @@ function Get-ClusterHaResourcesSid {
 	Invoke-ProxmoxAPI -Method GET -Resource "/cluster/ha/resources/{sid}" -Options $Options
 }
 function Set-ClusterHaResourcesSid {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		# Description.
@@ -1946,7 +2025,8 @@ function Set-ClusterHaResourcesSid {
 	Invoke-ProxmoxAPI -Method PUT -Resource "/cluster/ha/resources/{sid}" -Options $Options
 }
 function Remove-ClusterHaResourcesSid {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -1959,7 +2039,8 @@ function Remove-ClusterHaResourcesSid {
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/cluster/ha/resources/{sid}" -Options $Options
 }
 function New-ClusterHaResourcesMigrate {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -1977,7 +2058,8 @@ function New-ClusterHaResourcesMigrate {
 	Invoke-ProxmoxAPI -Method POST -Resource "/cluster/ha/resources/{sid}/migrate" -Options $Options
 }
 function New-ClusterHaResourcesRelocate {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -1995,14 +2077,16 @@ function New-ClusterHaResourcesRelocate {
 	Invoke-ProxmoxAPI -Method POST -Resource "/cluster/ha/resources/{sid}/relocate" -Options $Options
 }
 function Get-Nodes {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes"
 }
 function Get-Node {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -2016,7 +2100,8 @@ function Get-Node {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}" -Options $Options
 }
 function Get-NodeQemu {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -2034,7 +2119,8 @@ function Get-NodeQemu {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu" -Options $Options
 }
 function New-NodeQemu {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -2786,7 +2872,8 @@ function New-NodeQemu {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/qemu" -Options $Options
 }
 function Get-NodeQemuVmid {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -2805,7 +2892,8 @@ function Get-NodeQemuVmid {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}" -Options $Options
 }
 function Remove-NodeQemuVmid {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -2836,7 +2924,8 @@ function Remove-NodeQemuVmid {
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/nodes/{node}/qemu/{vmid}" -Options $Options
 }
 function Get-NodeQemuFirewall {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -2855,7 +2944,8 @@ function Get-NodeQemuFirewall {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/firewall" -Options $Options
 }
 function Get-NodeQemuFirewallRules {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -2874,7 +2964,8 @@ function Get-NodeQemuFirewallRules {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/firewall/rules" -Options $Options
 }
 function New-NodeQemuFirewallRules {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -2954,7 +3045,8 @@ function New-NodeQemuFirewallRules {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/qemu/{vmid}/firewall/rules" -Options $Options
 }
 function Get-NodeQemuFirewallRulesPos {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -2977,7 +3069,8 @@ function Get-NodeQemuFirewallRulesPos {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/firewall/rules/{pos}" -Options $Options
 }
 function Set-NodeQemuFirewallRulesPos {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		# Rule action ('ACCEPT', 'DROP', 'REJECT') or security group name.
@@ -3063,7 +3156,8 @@ function Set-NodeQemuFirewallRulesPos {
 	Invoke-ProxmoxAPI -Method PUT -Resource "/nodes/{node}/qemu/{vmid}/firewall/rules/{pos}" -Options $Options
 }
 function Remove-NodeQemuFirewallRulesPos {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		# Prevent changes if current configuration file has different SHA1 digest. This can be used to prevent concurrent modifications.
@@ -3089,7 +3183,8 @@ function Remove-NodeQemuFirewallRulesPos {
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/nodes/{node}/qemu/{vmid}/firewall/rules/{pos}" -Options $Options
 }
 function Get-NodeQemuAgent {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -3108,7 +3203,8 @@ function Get-NodeQemuAgent {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/agent" -Options $Options
 }
 function New-NodeQemuAgent {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -3132,7 +3228,8 @@ function New-NodeQemuAgent {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/qemu/{vmid}/agent" -Options $Options
 }
 function Get-NodeQemuFirewallAliases {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -3151,7 +3248,8 @@ function Get-NodeQemuFirewallAliases {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/firewall/aliases" -Options $Options
 }
 function New-NodeQemuFirewallAliases {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -3183,7 +3281,8 @@ function New-NodeQemuFirewallAliases {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/qemu/{vmid}/firewall/aliases" -Options $Options
 }
 function Get-NodeQemuFirewallAliasesName {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -3207,7 +3306,8 @@ function Get-NodeQemuFirewallAliasesName {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/firewall/aliases/{name}" -Options $Options
 }
 function Set-NodeQemuFirewallAliasesName {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -3247,7 +3347,8 @@ function Set-NodeQemuFirewallAliasesName {
 	Invoke-ProxmoxAPI -Method PUT -Resource "/nodes/{node}/qemu/{vmid}/firewall/aliases/{name}" -Options $Options
 }
 function Remove-NodeQemuFirewallAliasesName {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		# Prevent changes if current configuration file has different SHA1 digest. This can be used to prevent concurrent modifications.
@@ -3274,7 +3375,8 @@ function Remove-NodeQemuFirewallAliasesName {
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/nodes/{node}/qemu/{vmid}/firewall/aliases/{name}" -Options $Options
 }
 function Get-NodeQemuRrd {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -3307,7 +3409,8 @@ function Get-NodeQemuRrd {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/rrd" -Options $Options
 }
 function Get-NodeQemuFirewallIpset {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -3326,7 +3429,8 @@ function Get-NodeQemuFirewallIpset {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/firewall/ipset" -Options $Options
 }
 function New-NodeQemuFirewallIpset {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		# 
@@ -3361,7 +3465,8 @@ function New-NodeQemuFirewallIpset {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/qemu/{vmid}/firewall/ipset" -Options $Options
 }
 function Get-NodeQemuFirewallIpsetName {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -3385,7 +3490,8 @@ function Get-NodeQemuFirewallIpsetName {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/firewall/ipset/{name}" -Options $Options
 }
 function New-NodeQemuFirewallIpsetName {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -3421,7 +3527,8 @@ function New-NodeQemuFirewallIpsetName {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/qemu/{vmid}/firewall/ipset/{name}" -Options $Options
 }
 function Remove-NodeQemuFirewallIpsetName {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -3444,7 +3551,8 @@ function Remove-NodeQemuFirewallIpsetName {
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/nodes/{node}/qemu/{vmid}/firewall/ipset/{name}" -Options $Options
 }
 function Get-NodeQemuFirewallIpsetNameCidr {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -3473,7 +3581,8 @@ function Get-NodeQemuFirewallIpsetNameCidr {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/firewall/ipset/{name}/{cidr}" -Options $Options
 }
 function Set-NodeQemuFirewallIpsetNameCidr {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -3513,7 +3622,8 @@ function Set-NodeQemuFirewallIpsetNameCidr {
 	Invoke-ProxmoxAPI -Method PUT -Resource "/nodes/{node}/qemu/{vmid}/firewall/ipset/{name}/{cidr}" -Options $Options
 }
 function Remove-NodeQemuFirewallIpsetNameCidr {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -3545,7 +3655,8 @@ function Remove-NodeQemuFirewallIpsetNameCidr {
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/nodes/{node}/qemu/{vmid}/firewall/ipset/{name}/{cidr}" -Options $Options
 }
 function Get-NodeQemuRrddata {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -3573,7 +3684,8 @@ function Get-NodeQemuRrddata {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/rrddata" -Options $Options
 }
 function Get-NodeQemuFirewallOptions {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -3592,7 +3704,8 @@ function Get-NodeQemuFirewallOptions {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/firewall/options" -Options $Options
 }
 function Set-NodeQemuFirewallOptions {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		# A list of settings you want to delete.
@@ -3658,7 +3771,8 @@ function Set-NodeQemuFirewallOptions {
 	Invoke-ProxmoxAPI -Method PUT -Resource "/nodes/{node}/qemu/{vmid}/firewall/options" -Options $Options
 }
 function Get-NodeQemuConfig {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -3685,7 +3799,8 @@ function Get-NodeQemuConfig {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/config" -Options $Options
 }
 function New-NodeQemuConfig {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -4429,7 +4544,8 @@ function New-NodeQemuConfig {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/qemu/{vmid}/config" -Options $Options
 }
 function Set-NodeQemuConfig {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		# Enable/disable ACPI.
@@ -5168,7 +5284,8 @@ function Set-NodeQemuConfig {
 	Invoke-ProxmoxAPI -Method PUT -Resource "/nodes/{node}/qemu/{vmid}/config" -Options $Options
 }
 function Get-NodeQemuFirewallLog {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -5195,7 +5312,8 @@ function Get-NodeQemuFirewallLog {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/firewall/log" -Options $Options
 }
 function Get-NodeQemuPending {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -5214,7 +5332,8 @@ function Get-NodeQemuPending {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/pending" -Options $Options
 }
 function Get-NodeQemuFirewallRefs {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -5237,7 +5356,8 @@ function Get-NodeQemuFirewallRefs {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/firewall/refs" -Options $Options
 }
 function Set-NodeQemuUnlink {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -5261,7 +5381,8 @@ function Set-NodeQemuUnlink {
 	Invoke-ProxmoxAPI -Method PUT -Resource "/nodes/{node}/qemu/{vmid}/unlink" -Options $Options
 }
 function New-NodeQemuAgentFsfreezeFreeze {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -5280,7 +5401,8 @@ function New-NodeQemuAgentFsfreezeFreeze {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/qemu/{vmid}/agent/fsfreeze-freeze" -Options $Options
 }
 function New-NodeQemuVncproxy {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		# Generates a random password to be used as ticket instead of the API ticket.
@@ -5306,7 +5428,8 @@ function New-NodeQemuVncproxy {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/qemu/{vmid}/vncproxy" -Options $Options
 }
 function New-NodeQemuAgentFsfreezeStatus {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -5325,7 +5448,8 @@ function New-NodeQemuAgentFsfreezeStatus {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/qemu/{vmid}/agent/fsfreeze-status" -Options $Options
 }
 function New-NodeQemuTermproxy {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -5347,7 +5471,8 @@ function New-NodeQemuTermproxy {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/qemu/{vmid}/termproxy" -Options $Options
 }
 function New-NodeQemuAgentFsfreezeThaw {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -5366,7 +5491,8 @@ function New-NodeQemuAgentFsfreezeThaw {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/qemu/{vmid}/agent/fsfreeze-thaw" -Options $Options
 }
 function Get-NodeQemuVncwebsocket {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -5395,7 +5521,8 @@ function Get-NodeQemuVncwebsocket {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/vncwebsocket" -Options $Options
 }
 function New-NodeQemuAgentFstrim {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -5414,7 +5541,8 @@ function New-NodeQemuAgentFstrim {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/qemu/{vmid}/agent/fstrim" -Options $Options
 }
 function New-NodeQemuSpiceproxy {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -5436,7 +5564,8 @@ function New-NodeQemuSpiceproxy {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/qemu/{vmid}/spiceproxy" -Options $Options
 }
 function Get-NodeQemuAgentGetFsinfo {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -5455,7 +5584,8 @@ function Get-NodeQemuAgentGetFsinfo {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/agent/get-fsinfo" -Options $Options
 }
 function Get-NodeQemuStatus {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -5474,7 +5604,8 @@ function Get-NodeQemuStatus {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/status" -Options $Options
 }
 function Get-NodeQemuAgentGetHostName {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -5493,7 +5624,8 @@ function Get-NodeQemuAgentGetHostName {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/agent/get-host-name" -Options $Options
 }
 function Set-NodeQemuSendkey {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -5520,7 +5652,8 @@ function Set-NodeQemuSendkey {
 	Invoke-ProxmoxAPI -Method PUT -Resource "/nodes/{node}/qemu/{vmid}/sendkey" -Options $Options
 }
 function Get-NodeQemuAgentGetMemoryBlockInfo {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -5539,7 +5672,8 @@ function Get-NodeQemuAgentGetMemoryBlockInfo {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/agent/get-memory-block-info" -Options $Options
 }
 function Get-NodeQemuFeature {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -5567,7 +5701,8 @@ function Get-NodeQemuFeature {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/feature" -Options $Options
 }
 function Get-NodeQemuAgentGetMemoryBlocks {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -5586,7 +5721,8 @@ function Get-NodeQemuAgentGetMemoryBlocks {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/agent/get-memory-blocks" -Options $Options
 }
 function New-NodeQemuClone {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -5646,7 +5782,8 @@ function New-NodeQemuClone {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/qemu/{vmid}/clone" -Options $Options
 }
 function Get-NodeQemuAgentGetOsinfo {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -5665,7 +5802,8 @@ function Get-NodeQemuAgentGetOsinfo {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/agent/get-osinfo" -Options $Options
 }
 function New-NodeQemuMoveDisk {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -5721,7 +5859,8 @@ function New-NodeQemuMoveDisk {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/qemu/{vmid}/move_disk" -Options $Options
 }
 function Get-NodeQemuAgentGetTime {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -5740,7 +5879,8 @@ function Get-NodeQemuAgentGetTime {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/agent/get-time" -Options $Options
 }
 function Get-NodeQemuMigrate {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -5763,7 +5903,8 @@ function Get-NodeQemuMigrate {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/migrate" -Options $Options
 }
 function New-NodeQemuMigrate {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -5812,7 +5953,8 @@ function New-NodeQemuMigrate {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/qemu/{vmid}/migrate" -Options $Options
 }
 function Get-NodeQemuAgentGetTimezone {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -5831,7 +5973,8 @@ function Get-NodeQemuAgentGetTimezone {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/agent/get-timezone" -Options $Options
 }
 function New-NodeQemuMonitor {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -5855,7 +5998,8 @@ function New-NodeQemuMonitor {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/qemu/{vmid}/monitor" -Options $Options
 }
 function Get-NodeQemuAgentGetUsers {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -5874,7 +6018,8 @@ function Get-NodeQemuAgentGetUsers {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/agent/get-users" -Options $Options
 }
 function Set-NodeQemuResize {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		# Prevent changes if current configuration file has different SHA1 digest. This can be used to prevent concurrent modifications.
@@ -5910,7 +6055,8 @@ function Set-NodeQemuResize {
 	Invoke-ProxmoxAPI -Method PUT -Resource "/nodes/{node}/qemu/{vmid}/resize" -Options $Options
 }
 function Get-NodeQemuAgentGetVcpus {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -5929,7 +6075,8 @@ function Get-NodeQemuAgentGetVcpus {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/agent/get-vcpus" -Options $Options
 }
 function Get-NodeQemuSnapshot {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -5948,7 +6095,8 @@ function Get-NodeQemuSnapshot {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/snapshot" -Options $Options
 }
 function New-NodeQemuSnapshot {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -5980,7 +6128,8 @@ function New-NodeQemuSnapshot {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/qemu/{vmid}/snapshot" -Options $Options
 }
 function Get-NodeQemuAgentInfo {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -5999,7 +6148,8 @@ function Get-NodeQemuAgentInfo {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/agent/info" -Options $Options
 }
 function New-NodeQemuTemplate {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -6022,7 +6172,8 @@ function New-NodeQemuTemplate {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/qemu/{vmid}/template" -Options $Options
 }
 function Get-NodeQemuAgentNetworkGetInterfaces {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -6041,7 +6192,8 @@ function Get-NodeQemuAgentNetworkGetInterfaces {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/agent/network-get-interfaces" -Options $Options
 }
 function New-NodeQemuAgentPing {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -6060,7 +6212,8 @@ function New-NodeQemuAgentPing {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/qemu/{vmid}/agent/ping" -Options $Options
 }
 function Get-NodeLxc {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -6074,7 +6227,9 @@ function Get-NodeLxc {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/lxc" -Options $Options
 }
 function New-NodeLxc {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingConvertToSecureStringWithPlainText", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -6327,7 +6482,8 @@ function New-NodeLxc {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/lxc" -Options $Options
 }
 function Get-NodeLxcVmid {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -6346,7 +6502,8 @@ function Get-NodeLxcVmid {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/lxc/{vmid}" -Options $Options
 }
 function Remove-NodeLxcVmid {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -6374,7 +6531,8 @@ function Remove-NodeLxcVmid {
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/nodes/{node}/lxc/{vmid}" -Options $Options
 }
 function Get-NodeLxcConfig {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -6401,7 +6559,8 @@ function Get-NodeLxcConfig {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/lxc/{vmid}/config" -Options $Options
 }
 function Set-NodeLxcConfig {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		# OS architecture type.
@@ -6623,7 +6782,8 @@ function Set-NodeLxcConfig {
 	Invoke-ProxmoxAPI -Method PUT -Resource "/nodes/{node}/lxc/{vmid}/config" -Options $Options
 }
 function Get-NodeLxcStatus {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -6642,7 +6802,8 @@ function Get-NodeLxcStatus {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/lxc/{vmid}/status" -Options $Options
 }
 function Get-NodeLxcStatusCurrent {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -6661,7 +6822,8 @@ function Get-NodeLxcStatusCurrent {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/lxc/{vmid}/status/current" -Options $Options
 }
 function Get-NodeLxcSnapshot {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -6680,7 +6842,8 @@ function Get-NodeLxcSnapshot {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/lxc/{vmid}/snapshot" -Options $Options
 }
 function New-NodeLxcSnapshot {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -6708,7 +6871,8 @@ function New-NodeLxcSnapshot {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/lxc/{vmid}/snapshot" -Options $Options
 }
 function New-NodeLxcStatusStart {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -6735,7 +6899,8 @@ function New-NodeLxcStatusStart {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/lxc/{vmid}/status/start" -Options $Options
 }
 function Get-NodeLxcFirewall {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -6754,7 +6919,8 @@ function Get-NodeLxcFirewall {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/lxc/{vmid}/firewall" -Options $Options
 }
 function New-NodeLxcStatusStop {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -6777,7 +6943,8 @@ function New-NodeLxcStatusStop {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/lxc/{vmid}/status/stop" -Options $Options
 }
 function Get-NodeLxcRrd {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -6810,7 +6977,8 @@ function Get-NodeLxcRrd {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/lxc/{vmid}/rrd" -Options $Options
 }
 function New-NodeLxcStatusShutdown {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -6837,7 +7005,8 @@ function New-NodeLxcStatusShutdown {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/lxc/{vmid}/status/shutdown" -Options $Options
 }
 function Get-NodeLxcRrddata {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -6865,7 +7034,8 @@ function Get-NodeLxcRrddata {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/lxc/{vmid}/rrddata" -Options $Options
 }
 function New-NodeLxcStatusSuspend {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -6884,7 +7054,8 @@ function New-NodeLxcStatusSuspend {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/lxc/{vmid}/status/suspend" -Options $Options
 }
 function New-NodeLxcVncproxy {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		# sets the height of the console in pixels.
@@ -6914,7 +7085,8 @@ function New-NodeLxcVncproxy {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/lxc/{vmid}/vncproxy" -Options $Options
 }
 function New-NodeLxcStatusResume {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -6933,7 +7105,8 @@ function New-NodeLxcStatusResume {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/lxc/{vmid}/status/resume" -Options $Options
 }
 function New-NodeLxcTermproxy {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -6951,7 +7124,8 @@ function New-NodeLxcTermproxy {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/lxc/{vmid}/termproxy" -Options $Options
 }
 function New-NodeLxcStatusReboot {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -6974,7 +7148,8 @@ function New-NodeLxcStatusReboot {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/lxc/{vmid}/status/reboot" -Options $Options
 }
 function Get-NodeLxcVncwebsocket {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -7003,7 +7178,8 @@ function Get-NodeLxcVncwebsocket {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/lxc/{vmid}/vncwebsocket" -Options $Options
 }
 function Get-NodeLxcSnapshotSnapname {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -7027,7 +7203,8 @@ function Get-NodeLxcSnapshotSnapname {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/lxc/{vmid}/snapshot/{snapname}" -Options $Options
 }
 function Remove-NodeLxcSnapshotSnapname {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -7052,7 +7229,8 @@ function Remove-NodeLxcSnapshotSnapname {
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/nodes/{node}/lxc/{vmid}/snapshot/{snapname}" -Options $Options
 }
 function New-NodeLxcSnapshotSnapnameRollback {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -7076,7 +7254,8 @@ function New-NodeLxcSnapshotSnapnameRollback {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/lxc/{vmid}/snapshot/{snapname}/rollback" -Options $Options
 }
 function Get-NodeLxcSnapshotSnapnameConfig {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -7100,7 +7279,8 @@ function Get-NodeLxcSnapshotSnapnameConfig {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/lxc/{vmid}/snapshot/{snapname}/config" -Options $Options
 }
 function Set-NodeLxcSnapshotSnapnameConfig {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		# A textual description or comment.
@@ -7127,7 +7307,8 @@ function Set-NodeLxcSnapshotSnapnameConfig {
 	Invoke-ProxmoxAPI -Method PUT -Resource "/nodes/{node}/lxc/{vmid}/snapshot/{snapname}/config" -Options $Options
 }
 function New-NodeLxcSpiceproxy {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -7149,7 +7330,8 @@ function New-NodeLxcSpiceproxy {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/lxc/{vmid}/spiceproxy" -Options $Options
 }
 function Get-NodeLxcFirewallRules {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -7168,7 +7350,8 @@ function Get-NodeLxcFirewallRules {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/lxc/{vmid}/firewall/rules" -Options $Options
 }
 function New-NodeLxcFirewallRules {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -7248,7 +7431,8 @@ function New-NodeLxcFirewallRules {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/lxc/{vmid}/firewall/rules" -Options $Options
 }
 function Get-NodeLxcFirewallRulesPos {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -7271,7 +7455,8 @@ function Get-NodeLxcFirewallRulesPos {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/lxc/{vmid}/firewall/rules/{pos}" -Options $Options
 }
 function Set-NodeLxcFirewallRulesPos {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		# Rule action ('ACCEPT', 'DROP', 'REJECT') or security group name.
@@ -7357,7 +7542,8 @@ function Set-NodeLxcFirewallRulesPos {
 	Invoke-ProxmoxAPI -Method PUT -Resource "/nodes/{node}/lxc/{vmid}/firewall/rules/{pos}" -Options $Options
 }
 function Remove-NodeLxcFirewallRulesPos {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		# Prevent changes if current configuration file has different SHA1 digest. This can be used to prevent concurrent modifications.
@@ -7383,7 +7569,8 @@ function Remove-NodeLxcFirewallRulesPos {
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/nodes/{node}/lxc/{vmid}/firewall/rules/{pos}" -Options $Options
 }
 function New-NodeLxcMigrate {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -7423,7 +7610,8 @@ function New-NodeLxcMigrate {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/lxc/{vmid}/migrate" -Options $Options
 }
 function Get-NodeLxcFirewallAliases {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -7442,7 +7630,8 @@ function Get-NodeLxcFirewallAliases {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/lxc/{vmid}/firewall/aliases" -Options $Options
 }
 function New-NodeLxcFirewallAliases {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -7474,7 +7663,8 @@ function New-NodeLxcFirewallAliases {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/lxc/{vmid}/firewall/aliases" -Options $Options
 }
 function Get-NodeLxcFirewallAliasesName {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -7498,7 +7688,8 @@ function Get-NodeLxcFirewallAliasesName {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/lxc/{vmid}/firewall/aliases/{name}" -Options $Options
 }
 function Set-NodeLxcFirewallAliasesName {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -7538,7 +7729,8 @@ function Set-NodeLxcFirewallAliasesName {
 	Invoke-ProxmoxAPI -Method PUT -Resource "/nodes/{node}/lxc/{vmid}/firewall/aliases/{name}" -Options $Options
 }
 function Remove-NodeLxcFirewallAliasesName {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		# Prevent changes if current configuration file has different SHA1 digest. This can be used to prevent concurrent modifications.
@@ -7565,7 +7757,8 @@ function Remove-NodeLxcFirewallAliasesName {
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/nodes/{node}/lxc/{vmid}/firewall/aliases/{name}" -Options $Options
 }
 function Get-NodeLxcFeature {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -7593,7 +7786,8 @@ function Get-NodeLxcFeature {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/lxc/{vmid}/feature" -Options $Options
 }
 function Get-NodeLxcFirewallIpset {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -7612,7 +7806,8 @@ function Get-NodeLxcFirewallIpset {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/lxc/{vmid}/firewall/ipset" -Options $Options
 }
 function New-NodeLxcFirewallIpset {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		# 
@@ -7647,7 +7842,8 @@ function New-NodeLxcFirewallIpset {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/lxc/{vmid}/firewall/ipset" -Options $Options
 }
 function Get-NodeLxcFirewallIpsetName {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -7671,7 +7867,8 @@ function Get-NodeLxcFirewallIpsetName {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/lxc/{vmid}/firewall/ipset/{name}" -Options $Options
 }
 function New-NodeLxcFirewallIpsetName {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -7707,7 +7904,8 @@ function New-NodeLxcFirewallIpsetName {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/lxc/{vmid}/firewall/ipset/{name}" -Options $Options
 }
 function Remove-NodeLxcFirewallIpsetName {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -7730,7 +7928,8 @@ function Remove-NodeLxcFirewallIpsetName {
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/nodes/{node}/lxc/{vmid}/firewall/ipset/{name}" -Options $Options
 }
 function Get-NodeLxcFirewallIpsetNameCidr {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -7759,7 +7958,8 @@ function Get-NodeLxcFirewallIpsetNameCidr {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/lxc/{vmid}/firewall/ipset/{name}/{cidr}" -Options $Options
 }
 function Set-NodeLxcFirewallIpsetNameCidr {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -7799,7 +7999,8 @@ function Set-NodeLxcFirewallIpsetNameCidr {
 	Invoke-ProxmoxAPI -Method PUT -Resource "/nodes/{node}/lxc/{vmid}/firewall/ipset/{name}/{cidr}" -Options $Options
 }
 function Remove-NodeLxcFirewallIpsetNameCidr {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -7831,7 +8032,8 @@ function Remove-NodeLxcFirewallIpsetNameCidr {
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/nodes/{node}/lxc/{vmid}/firewall/ipset/{name}/{cidr}" -Options $Options
 }
 function New-NodeLxcTemplate {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -7849,7 +8051,8 @@ function New-NodeLxcTemplate {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/lxc/{vmid}/template" -Options $Options
 }
 function Get-NodeLxcFirewallOptions {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -7868,7 +8071,8 @@ function Get-NodeLxcFirewallOptions {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/lxc/{vmid}/firewall/options" -Options $Options
 }
 function Set-NodeLxcFirewallOptions {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		# A list of settings you want to delete.
@@ -7934,7 +8138,8 @@ function Set-NodeLxcFirewallOptions {
 	Invoke-ProxmoxAPI -Method PUT -Resource "/nodes/{node}/lxc/{vmid}/firewall/options" -Options $Options
 }
 function New-NodeLxcClone {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -7990,7 +8195,8 @@ function New-NodeLxcClone {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/lxc/{vmid}/clone" -Options $Options
 }
 function Get-NodeLxcFirewallLog {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -8017,7 +8223,8 @@ function Get-NodeLxcFirewallLog {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/lxc/{vmid}/firewall/log" -Options $Options
 }
 function Set-NodeLxcResize {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -8050,7 +8257,8 @@ function Set-NodeLxcResize {
 	Invoke-ProxmoxAPI -Method PUT -Resource "/nodes/{node}/lxc/{vmid}/resize" -Options $Options
 }
 function Get-NodeLxcFirewallRefs {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -8073,7 +8281,8 @@ function Get-NodeLxcFirewallRefs {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/lxc/{vmid}/firewall/refs" -Options $Options
 }
 function New-NodeLxcMoveVolume {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -8125,7 +8334,8 @@ function New-NodeLxcMoveVolume {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/lxc/{vmid}/move_volume" -Options $Options
 }
 function Get-NodeLxcPending {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -8144,7 +8354,8 @@ function Get-NodeLxcPending {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/lxc/{vmid}/pending" -Options $Options
 }
 function Get-NodeCeph {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -8158,7 +8369,8 @@ function Get-NodeCeph {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/ceph" -Options $Options
 }
 function Get-NodeCephOsd {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -8172,7 +8384,8 @@ function Get-NodeCephOsd {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/ceph/osd" -Options $Options
 }
 function New-NodeCephOsd {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -8215,7 +8428,8 @@ function New-NodeCephOsd {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/ceph/osd" -Options $Options
 }
 function Remove-NodeCephOsdOsdid {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -8238,7 +8452,8 @@ function Remove-NodeCephOsdOsdid {
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/nodes/{node}/ceph/osd/{osdid}" -Options $Options
 }
 function New-NodeCephOsdIn {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -8256,7 +8471,8 @@ function New-NodeCephOsdIn {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/ceph/osd/{osdid}/in" -Options $Options
 }
 function New-NodeCephOsdOut {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -8274,7 +8490,8 @@ function New-NodeCephOsdOut {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/ceph/osd/{osdid}/out" -Options $Options
 }
 function New-NodeCephOsdScrub {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		# If set, instructs a deep scrub instead of a normal one.
@@ -8296,7 +8513,8 @@ function New-NodeCephOsdScrub {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/ceph/osd/{osdid}/scrub" -Options $Options
 }
 function New-NodeVzdump {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -8413,7 +8631,8 @@ function New-NodeVzdump {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/vzdump" -Options $Options
 }
 function Get-NodeCephMds {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -8427,7 +8646,8 @@ function Get-NodeCephMds {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/ceph/mds" -Options $Options
 }
 function New-NodeCephMdsName {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -8449,7 +8669,8 @@ function New-NodeCephMdsName {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/ceph/mds/{name}" -Options $Options
 }
 function Remove-NodeCephMdsName {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -8468,7 +8689,8 @@ function Remove-NodeCephMdsName {
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/nodes/{node}/ceph/mds/{name}" -Options $Options
 }
 function Get-NodeServices {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -8482,7 +8704,8 @@ function Get-NodeServices {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/services" -Options $Options
 }
 function Get-NodeCephMgr {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -8496,7 +8719,8 @@ function Get-NodeCephMgr {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/ceph/mgr" -Options $Options
 }
 function New-NodeCephMgrId {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -8514,7 +8738,8 @@ function New-NodeCephMgrId {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/ceph/mgr/{id}" -Options $Options
 }
 function Remove-NodeCephMgrId {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -8533,7 +8758,8 @@ function Remove-NodeCephMgrId {
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/nodes/{node}/ceph/mgr/{id}" -Options $Options
 }
 function Get-NodeSubscription {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -8547,7 +8773,8 @@ function Get-NodeSubscription {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/subscription" -Options $Options
 }
 function New-NodeSubscription {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -8561,7 +8788,8 @@ function New-NodeSubscription {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/subscription" -Options $Options
 }
 function Set-NodeSubscription {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -8579,7 +8807,8 @@ function Set-NodeSubscription {
 	Invoke-ProxmoxAPI -Method PUT -Resource "/nodes/{node}/subscription" -Options $Options
 }
 function Remove-NodeSubscription {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -8592,7 +8821,8 @@ function Remove-NodeSubscription {
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/nodes/{node}/subscription" -Options $Options
 }
 function Get-NodeCephMon {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -8606,7 +8836,8 @@ function Get-NodeCephMon {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/ceph/mon" -Options $Options
 }
 function New-NodeCephMonMonid {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -8628,7 +8859,8 @@ function New-NodeCephMonMonid {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/ceph/mon/{monid}" -Options $Options
 }
 function Remove-NodeCephMonMonid {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -8647,7 +8879,8 @@ function Remove-NodeCephMonMonid {
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/nodes/{node}/ceph/mon/{monid}" -Options $Options
 }
 function Get-NodeNetwork {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -8665,7 +8898,8 @@ function Get-NodeNetwork {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/network" -Options $Options
 }
 function New-NodeNetwork {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		# IP address.
@@ -8788,7 +9022,8 @@ function New-NodeNetwork {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/network" -Options $Options
 }
 function Set-NodeNetwork {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -8802,7 +9037,8 @@ function Set-NodeNetwork {
 	Invoke-ProxmoxAPI -Method PUT -Resource "/nodes/{node}/network" -Options $Options
 }
 function Remove-NodeNetwork {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -8815,7 +9051,8 @@ function Remove-NodeNetwork {
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/nodes/{node}/network" -Options $Options
 }
 function Get-NodeCephFs {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -8829,7 +9066,8 @@ function Get-NodeCephFs {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/ceph/fs" -Options $Options
 }
 function New-NodeCephFsName {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -8855,7 +9093,8 @@ function New-NodeCephFsName {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/ceph/fs/{name}" -Options $Options
 }
 function Get-NodeTasks {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -8909,7 +9148,8 @@ function Get-NodeTasks {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/tasks" -Options $Options
 }
 function Get-NodeCephPools {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -8923,7 +9163,8 @@ function Get-NodeCephPools {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/ceph/pools" -Options $Options
 }
 function New-NodeCephPools {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -8982,7 +9223,8 @@ function New-NodeCephPools {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/ceph/pools" -Options $Options
 }
 function Get-NodeCephPoolsName {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -9005,7 +9247,8 @@ function Get-NodeCephPoolsName {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/ceph/pools/{name}" -Options $Options
 }
 function Set-NodeCephPoolsName {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -9060,7 +9303,8 @@ function Set-NodeCephPoolsName {
 	Invoke-ProxmoxAPI -Method PUT -Resource "/nodes/{node}/ceph/pools/{name}" -Options $Options
 }
 function Remove-NodeCephPoolsName {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -9084,7 +9328,8 @@ function Remove-NodeCephPoolsName {
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/nodes/{node}/ceph/pools/{name}" -Options $Options
 }
 function Get-NodeScan {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -9098,7 +9343,8 @@ function Get-NodeScan {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/scan" -Options $Options
 }
 function Get-NodeCephConfig {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -9112,7 +9358,8 @@ function Get-NodeCephConfig {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/ceph/config" -Options $Options
 }
 function Get-NodeHardware {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -9126,7 +9373,8 @@ function Get-NodeHardware {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/hardware" -Options $Options
 }
 function Get-NodeCephConfigdb {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -9140,7 +9388,8 @@ function Get-NodeCephConfigdb {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/ceph/configdb" -Options $Options
 }
 function Get-NodeCapabilities {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -9154,7 +9403,8 @@ function Get-NodeCapabilities {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/capabilities" -Options $Options
 }
 function New-NodeCephInit {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		# Declare a separate cluster network, OSDs will routeheartbeat, object replication and recovery traffic over it
@@ -9191,7 +9441,8 @@ function New-NodeCephInit {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/ceph/init" -Options $Options
 }
 function Get-NodeStorage {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -9225,7 +9476,8 @@ function Get-NodeStorage {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/storage" -Options $Options
 }
 function New-NodeCephStop {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -9243,7 +9495,8 @@ function New-NodeCephStop {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/ceph/stop" -Options $Options
 }
 function Get-NodeDisks {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -9257,7 +9510,8 @@ function Get-NodeDisks {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/disks" -Options $Options
 }
 function New-NodeCephStart {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -9275,7 +9529,8 @@ function New-NodeCephStart {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/ceph/start" -Options $Options
 }
 function Get-NodeApt {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -9289,7 +9544,8 @@ function Get-NodeApt {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/apt" -Options $Options
 }
 function New-NodeCephRestart {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -9307,7 +9563,8 @@ function New-NodeCephRestart {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/ceph/restart" -Options $Options
 }
 function Get-NodeFirewall {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -9321,7 +9578,8 @@ function Get-NodeFirewall {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/firewall" -Options $Options
 }
 function Get-NodeCephStatus {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -9335,7 +9593,8 @@ function Get-NodeCephStatus {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/ceph/status" -Options $Options
 }
 function Get-NodeReplication {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -9353,7 +9612,8 @@ function Get-NodeReplication {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/replication" -Options $Options
 }
 function Get-NodeCephCrush {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -9367,7 +9627,8 @@ function Get-NodeCephCrush {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/ceph/crush" -Options $Options
 }
 function Get-NodeCertificates {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -9381,7 +9642,8 @@ function Get-NodeCertificates {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/certificates" -Options $Options
 }
 function Get-NodeCephLog {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -9403,7 +9665,8 @@ function Get-NodeCephLog {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/ceph/log" -Options $Options
 }
 function Get-NodeConfig {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -9421,7 +9684,8 @@ function Get-NodeConfig {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/config" -Options $Options
 }
 function Set-NodeConfig {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		# Node specific ACME settings.
@@ -9502,7 +9766,8 @@ function Set-NodeConfig {
 	Invoke-ProxmoxAPI -Method PUT -Resource "/nodes/{node}/config" -Options $Options
 }
 function Get-NodeCephRules {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -9516,7 +9781,8 @@ function Get-NodeCephRules {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/ceph/rules" -Options $Options
 }
 function Get-NodeSdn {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -9530,7 +9796,8 @@ function Get-NodeSdn {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/sdn" -Options $Options
 }
 function Get-NodeVzdumpDefaults {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -9548,7 +9815,8 @@ function Get-NodeVzdumpDefaults {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/vzdump/defaults" -Options $Options
 }
 function Get-NodeVersion {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -9562,7 +9830,8 @@ function Get-NodeVersion {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/version" -Options $Options
 }
 function Get-NodeVzdumpExtractconfig {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -9581,7 +9850,8 @@ function Get-NodeVzdumpExtractconfig {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/vzdump/extractconfig" -Options $Options
 }
 function Get-NodeStatus {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -9595,7 +9865,8 @@ function Get-NodeStatus {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/status" -Options $Options
 }
 function New-NodeStatus {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -9613,7 +9884,8 @@ function New-NodeStatus {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/status" -Options $Options
 }
 function Get-NodeServicesService {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -9632,7 +9904,8 @@ function Get-NodeServicesService {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/services/{service}" -Options $Options
 }
 function Get-NodeServicesServiceState {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -9651,7 +9924,8 @@ function Get-NodeServicesServiceState {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/services/{service}/state" -Options $Options
 }
 function New-NodeServicesServiceStart {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -9670,7 +9944,8 @@ function New-NodeServicesServiceStart {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/services/{service}/start" -Options $Options
 }
 function New-NodeServicesServiceStop {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -9689,7 +9964,8 @@ function New-NodeServicesServiceStop {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/services/{service}/stop" -Options $Options
 }
 function New-NodeServicesServiceRestart {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -9708,7 +9984,8 @@ function New-NodeServicesServiceRestart {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/services/{service}/restart" -Options $Options
 }
 function New-NodeServicesServiceReload {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -9727,7 +10004,8 @@ function New-NodeServicesServiceReload {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/services/{service}/reload" -Options $Options
 }
 function Get-NodeNetstat {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -9741,7 +10019,8 @@ function Get-NodeNetstat {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/netstat" -Options $Options
 }
 function New-NodeExecute {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -9760,7 +10039,8 @@ function New-NodeExecute {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/execute" -Options $Options
 }
 function Get-NodeNetworkIface {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -9779,7 +10059,8 @@ function Get-NodeNetworkIface {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/network/{iface}" -Options $Options
 }
 function Set-NodeNetworkIface {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		# IP address.
@@ -9906,7 +10187,8 @@ function Set-NodeNetworkIface {
 	Invoke-ProxmoxAPI -Method PUT -Resource "/nodes/{node}/network/{iface}" -Options $Options
 }
 function Remove-NodeNetworkIface {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -9924,7 +10206,8 @@ function Remove-NodeNetworkIface {
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/nodes/{node}/network/{iface}" -Options $Options
 }
 function New-NodeWakeonlan {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -9938,7 +10221,8 @@ function New-NodeWakeonlan {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/wakeonlan" -Options $Options
 }
 function Get-NodeTasksUpid {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -9957,7 +10241,8 @@ function Get-NodeTasksUpid {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/tasks/{upid}" -Options $Options
 }
 function Remove-NodeTasksUpid {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -9975,7 +10260,8 @@ function Remove-NodeTasksUpid {
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/nodes/{node}/tasks/{upid}" -Options $Options
 }
 function Get-NodeTasksLog {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -10002,7 +10288,8 @@ function Get-NodeTasksLog {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/tasks/{upid}/log" -Options $Options
 }
 function Get-NodeTasksStatus {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -10021,7 +10308,8 @@ function Get-NodeTasksStatus {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/tasks/{upid}/status" -Options $Options
 }
 function Get-NodeRrd {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -10049,7 +10337,8 @@ function Get-NodeRrd {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/rrd" -Options $Options
 }
 function Get-NodeScanNfs {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -10068,7 +10357,8 @@ function Get-NodeScanNfs {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/scan/nfs" -Options $Options
 }
 function Get-NodeRrddata {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -10091,7 +10381,9 @@ function Get-NodeRrddata {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/rrddata" -Options $Options
 }
 function Get-NodeScanCifs {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingConvertToSecureStringWithPlainText", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -10122,7 +10414,8 @@ function Get-NodeScanCifs {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/scan/cifs" -Options $Options
 }
 function Get-NodeSyslog {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -10156,7 +10449,9 @@ function Get-NodeSyslog {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/syslog" -Options $Options
 }
 function Get-NodeScanPbs {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingConvertToSecureStringWithPlainText", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -10193,7 +10488,8 @@ function Get-NodeScanPbs {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/scan/pbs" -Options $Options
 }
 function Get-NodeJournal {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -10227,7 +10523,8 @@ function Get-NodeJournal {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/journal" -Options $Options
 }
 function Get-NodeScanGlusterfs {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -10246,7 +10543,8 @@ function Get-NodeScanGlusterfs {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/scan/glusterfs" -Options $Options
 }
 function New-NodeVncshell {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		# Run specific command or default to login.
@@ -10279,7 +10577,8 @@ function New-NodeVncshell {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/vncshell" -Options $Options
 }
 function Get-NodeScanIscsi {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -10298,7 +10597,8 @@ function Get-NodeScanIscsi {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/scan/iscsi" -Options $Options
 }
 function New-NodeTermproxy {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		# Run specific command or default to login.
@@ -10319,7 +10619,8 @@ function New-NodeTermproxy {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/termproxy" -Options $Options
 }
 function Get-NodeScanLvm {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -10333,7 +10634,8 @@ function Get-NodeScanLvm {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/scan/lvm" -Options $Options
 }
 function Get-NodeVncwebsocket {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -10357,7 +10659,8 @@ function Get-NodeVncwebsocket {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/vncwebsocket" -Options $Options
 }
 function Get-NodeScanLvmthin {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -10376,7 +10679,8 @@ function Get-NodeScanLvmthin {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/scan/lvmthin" -Options $Options
 }
 function New-NodeSpiceshell {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		# Run specific command or default to login.
@@ -10401,7 +10705,8 @@ function New-NodeSpiceshell {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/spiceshell" -Options $Options
 }
 function Get-NodeScanZfs {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -10415,7 +10720,8 @@ function Get-NodeScanZfs {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/scan/zfs" -Options $Options
 }
 function Get-NodeDns {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -10429,7 +10735,8 @@ function Get-NodeDns {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/dns" -Options $Options
 }
 function Set-NodeDns {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		# First name server IP address.
@@ -10459,7 +10766,8 @@ function Set-NodeDns {
 	Invoke-ProxmoxAPI -Method PUT -Resource "/nodes/{node}/dns" -Options $Options
 }
 function Get-NodeHardwarePci {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -10481,7 +10789,8 @@ function Get-NodeHardwarePci {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/hardware/pci" -Options $Options
 }
 function Get-NodeHardwarePciPciid {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -10500,7 +10809,8 @@ function Get-NodeHardwarePciPciid {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/hardware/pci/{pciid}" -Options $Options
 }
 function Get-NodeHardwarePciMdev {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -10519,7 +10829,8 @@ function Get-NodeHardwarePciMdev {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/hardware/pci/{pciid}/mdev" -Options $Options
 }
 function Get-NodeTime {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -10533,7 +10844,8 @@ function Get-NodeTime {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/time" -Options $Options
 }
 function Set-NodeTime {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -10551,7 +10863,8 @@ function Set-NodeTime {
 	Invoke-ProxmoxAPI -Method PUT -Resource "/nodes/{node}/time" -Options $Options
 }
 function Get-NodeHardwareUsb {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -10565,7 +10878,8 @@ function Get-NodeHardwareUsb {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/hardware/usb" -Options $Options
 }
 function Get-NodeAplinfo {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -10579,7 +10893,8 @@ function Get-NodeAplinfo {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/aplinfo" -Options $Options
 }
 function New-NodeAplinfo {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -10603,7 +10918,8 @@ function New-NodeAplinfo {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/aplinfo" -Options $Options
 }
 function Get-NodeCapabilitiesQemu {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -10617,7 +10933,8 @@ function Get-NodeCapabilitiesQemu {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/capabilities/qemu" -Options $Options
 }
 function Get-NodeCapabilitiesQemuCpu {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -10631,7 +10948,8 @@ function Get-NodeCapabilitiesQemuCpu {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/capabilities/qemu/cpu" -Options $Options
 }
 function Get-NodeCapabilitiesQemuMachines {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -10645,7 +10963,8 @@ function Get-NodeCapabilitiesQemuMachines {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/capabilities/qemu/machines" -Options $Options
 }
 function Get-NodeQueryUrlMetadata {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -10668,7 +10987,8 @@ function Get-NodeQueryUrlMetadata {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/query-url-metadata" -Options $Options
 }
 function Get-NodeStorage {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -10687,7 +11007,8 @@ function Get-NodeStorage {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/storage/{storage}" -Options $Options
 }
 function Get-NodeStoragePrunebackups {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -10718,7 +11039,8 @@ function Get-NodeStoragePrunebackups {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/storage/{storage}/prunebackups" -Options $Options
 }
 function Remove-NodeStoragePrunebackups {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -10749,7 +11071,8 @@ function Remove-NodeStoragePrunebackups {
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/nodes/{node}/storage/{storage}/prunebackups" -Options $Options
 }
 function Get-NodeStorageContent {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -10776,7 +11099,8 @@ function Get-NodeStorageContent {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/storage/{storage}/content" -Options $Options
 }
 function New-NodeStorageContent {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -10814,7 +11138,8 @@ function New-NodeStorageContent {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/storage/{storage}/content" -Options $Options
 }
 function Get-NodeStorageContentVolume {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -10837,7 +11162,8 @@ function Get-NodeStorageContentVolume {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/storage/{storage}/content/{volume}" -Options $Options
 }
 function New-NodeStorageContentVolume {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -10869,7 +11195,8 @@ function New-NodeStorageContentVolume {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/storage/{storage}/content/{volume}" -Options $Options
 }
 function Set-NodeStorageContentVolume {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -10899,7 +11226,8 @@ function Set-NodeStorageContentVolume {
 	Invoke-ProxmoxAPI -Method PUT -Resource "/nodes/{node}/storage/{storage}/content/{volume}" -Options $Options
 }
 function Remove-NodeStorageContentVolume {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -10926,7 +11254,8 @@ function Remove-NodeStorageContentVolume {
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/nodes/{node}/storage/{storage}/content/{volume}" -Options $Options
 }
 function Get-NodeStorageFileRestoreList {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -10955,7 +11284,8 @@ function Get-NodeStorageFileRestoreList {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/storage/{storage}/file-restore/list" -Options $Options
 }
 function Get-NodeStorageStatus {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -10974,7 +11304,8 @@ function Get-NodeStorageStatus {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/storage/{storage}/status" -Options $Options
 }
 function Get-NodeStorageFileRestoreDownload {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -11002,7 +11333,8 @@ function Get-NodeStorageFileRestoreDownload {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/storage/{storage}/file-restore/download" -Options $Options
 }
 function Get-NodeStorageRrd {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -11035,7 +11367,8 @@ function Get-NodeStorageRrd {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/storage/{storage}/rrd" -Options $Options
 }
 function Get-NodeStorageRrddata {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -11063,7 +11396,8 @@ function Get-NodeStorageRrddata {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/storage/{storage}/rrddata" -Options $Options
 }
 function New-NodeStorageUpload {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -11104,7 +11438,8 @@ function New-NodeStorageUpload {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/storage/{storage}/upload" -Options $Options
 }
 function New-NodeStorageDownloadUrl {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -11150,7 +11485,8 @@ function New-NodeStorageDownloadUrl {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/storage/{storage}/download-url" -Options $Options
 }
 function Get-NodeReport {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -11164,7 +11500,8 @@ function Get-NodeReport {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/report" -Options $Options
 }
 function Get-NodeDisksLvm {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -11178,7 +11515,8 @@ function Get-NodeDisksLvm {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/disks/lvm" -Options $Options
 }
 function New-NodeDisksLvm {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -11206,7 +11544,8 @@ function New-NodeDisksLvm {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/disks/lvm" -Options $Options
 }
 function Remove-NodeDisksLvmName {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -11233,7 +11572,8 @@ function Remove-NodeDisksLvmName {
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/nodes/{node}/disks/lvm/{name}" -Options $Options
 }
 function New-NodeStartall {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -11252,7 +11592,8 @@ function New-NodeStartall {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/startall" -Options $Options
 }
 function Get-NodeDisksLvmthin {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -11266,7 +11607,8 @@ function Get-NodeDisksLvmthin {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/disks/lvmthin" -Options $Options
 }
 function New-NodeDisksLvmthin {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -11294,7 +11636,8 @@ function New-NodeDisksLvmthin {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/disks/lvmthin" -Options $Options
 }
 function Remove-NodeDisksLvmthinName {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -11326,7 +11669,8 @@ function Remove-NodeDisksLvmthinName {
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/nodes/{node}/disks/lvmthin/{name}" -Options $Options
 }
 function New-NodeStopall {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -11344,7 +11688,8 @@ function New-NodeStopall {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/stopall" -Options $Options
 }
 function Get-NodeDisksDirectory {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -11358,7 +11703,8 @@ function Get-NodeDisksDirectory {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/disks/directory" -Options $Options
 }
 function New-NodeDisksDirectory {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -11390,7 +11736,8 @@ function New-NodeDisksDirectory {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/disks/directory" -Options $Options
 }
 function Remove-NodeDisksDirectoryName {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -11417,7 +11764,8 @@ function Remove-NodeDisksDirectoryName {
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/nodes/{node}/disks/directory/{name}" -Options $Options
 }
 function New-NodeMigrateall {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -11448,7 +11796,8 @@ function New-NodeMigrateall {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/migrateall" -Options $Options
 }
 function Get-NodeDisksZfs {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -11462,7 +11811,8 @@ function Get-NodeDisksZfs {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/disks/zfs" -Options $Options
 }
 function New-NodeDisksZfs {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -11503,7 +11853,8 @@ function New-NodeDisksZfs {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/disks/zfs" -Options $Options
 }
 function Get-NodeDisksZfsName {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -11522,7 +11873,8 @@ function Get-NodeDisksZfsName {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/disks/zfs/{name}" -Options $Options
 }
 function Remove-NodeDisksZfsName {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -11549,7 +11901,8 @@ function Remove-NodeDisksZfsName {
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/nodes/{node}/disks/zfs/{name}" -Options $Options
 }
 function Get-NodeHosts {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -11563,7 +11916,8 @@ function Get-NodeHosts {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/hosts" -Options $Options
 }
 function New-NodeHosts {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -11585,7 +11939,8 @@ function New-NodeHosts {
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/hosts" -Options $Options
 }
 function Get-NodeDisksList {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -11611,7 +11966,8 @@ function Get-NodeDisksList {
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/disks/list" -Options $Options
 }
 function Get-Storage {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -11624,7 +11980,9 @@ function Get-Storage {
 	Invoke-ProxmoxAPI -Method GET -Resource "/storage" -Options $Options
 }
 function New-Storage {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingConvertToSecureStringWithPlainText", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -11859,7 +12217,8 @@ function New-Storage {
 	Invoke-ProxmoxAPI -Method POST -Resource "/storage" -Options $Options
 }
 function Get-Storage {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -11873,7 +12232,9 @@ function Get-Storage {
 	Invoke-ProxmoxAPI -Method GET -Resource "/storage/{storage}" -Options $Options
 }
 function Set-Storage {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingConvertToSecureStringWithPlainText", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -12063,7 +12424,8 @@ function Set-Storage {
 	Invoke-ProxmoxAPI -Method PUT -Resource "/storage/{storage}" -Options $Options
 }
 function Remove-Storage {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -12076,14 +12438,16 @@ function Remove-Storage {
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/storage/{storage}" -Options $Options
 }
 function Get-Access {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	)
 	Invoke-ProxmoxAPI -Method GET -Resource "/access"
 }
 function Get-AccessUsers {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -12100,7 +12464,9 @@ function Get-AccessUsers {
 	Invoke-ProxmoxAPI -Method GET -Resource "/access/users" -Options $Options
 }
 function New-AccessUsers {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingConvertToSecureStringWithPlainText", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		# 
@@ -12149,7 +12515,8 @@ function New-AccessUsers {
 	Invoke-ProxmoxAPI -Method POST -Resource "/access/users" -Options $Options
 }
 function Get-AccessUsersUserid {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -12163,7 +12530,8 @@ function Get-AccessUsersUserid {
 	Invoke-ProxmoxAPI -Method GET -Resource "/access/users/{userid}" -Options $Options
 }
 function Set-AccessUsersUserid {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		# 
@@ -12212,7 +12580,8 @@ function Set-AccessUsersUserid {
 	Invoke-ProxmoxAPI -Method PUT -Resource "/access/users/{userid}" -Options $Options
 }
 function Remove-AccessUsersUserid {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -12225,7 +12594,8 @@ function Remove-AccessUsersUserid {
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/access/users/{userid}" -Options $Options
 }
 function Get-AccessUsersTfa {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -12243,7 +12613,8 @@ function Get-AccessUsersTfa {
 	Invoke-ProxmoxAPI -Method GET -Resource "/access/users/{userid}/tfa" -Options $Options
 }
 function Get-AccessUsersToken {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -12257,7 +12628,8 @@ function Get-AccessUsersToken {
 	Invoke-ProxmoxAPI -Method GET -Resource "/access/users/{userid}/token" -Options $Options
 }
 function Get-AccessUsersTokenTokenid {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -12276,7 +12648,8 @@ function Get-AccessUsersTokenTokenid {
 	Invoke-ProxmoxAPI -Method GET -Resource "/access/users/{userid}/token/{tokenid}" -Options $Options
 }
 function New-AccessUsersTokenTokenid {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -12307,7 +12680,8 @@ function New-AccessUsersTokenTokenid {
 	Invoke-ProxmoxAPI -Method POST -Resource "/access/users/{userid}/token/{tokenid}" -Options $Options
 }
 function Set-AccessUsersTokenTokenid {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -12338,7 +12712,8 @@ function Set-AccessUsersTokenTokenid {
 	Invoke-ProxmoxAPI -Method PUT -Resource "/access/users/{userid}/token/{tokenid}" -Options $Options
 }
 function Remove-AccessUsersTokenTokenid {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -12356,14 +12731,16 @@ function Remove-AccessUsersTokenTokenid {
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/access/users/{userid}/token/{tokenid}" -Options $Options
 }
 function Get-AccessGroups {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	)
 	Invoke-ProxmoxAPI -Method GET -Resource "/access/groups"
 }
 function New-AccessGroups {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		# 
@@ -12380,7 +12757,8 @@ function New-AccessGroups {
 	Invoke-ProxmoxAPI -Method POST -Resource "/access/groups" -Options $Options
 }
 function Get-AccessGroupsGroupid {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -12394,7 +12772,8 @@ function Get-AccessGroupsGroupid {
 	Invoke-ProxmoxAPI -Method GET -Resource "/access/groups/{groupid}" -Options $Options
 }
 function Set-AccessGroupsGroupid {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		# 
@@ -12411,7 +12790,8 @@ function Set-AccessGroupsGroupid {
 	Invoke-ProxmoxAPI -Method PUT -Resource "/access/groups/{groupid}" -Options $Options
 }
 function Remove-AccessGroupsGroupid {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -12424,14 +12804,16 @@ function Remove-AccessGroupsGroupid {
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/access/groups/{groupid}" -Options $Options
 }
 function Get-AccessRoles {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	)
 	Invoke-ProxmoxAPI -Method GET -Resource "/access/roles"
 }
 function New-AccessRoles {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		# 
@@ -12448,7 +12830,8 @@ function New-AccessRoles {
 	Invoke-ProxmoxAPI -Method POST -Resource "/access/roles" -Options $Options
 }
 function Get-AccessRolesRoleid {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -12462,7 +12845,8 @@ function Get-AccessRolesRoleid {
 	Invoke-ProxmoxAPI -Method GET -Resource "/access/roles/{roleid}" -Options $Options
 }
 function Set-AccessRolesRoleid {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		# 
@@ -12483,7 +12867,8 @@ function Set-AccessRolesRoleid {
 	Invoke-ProxmoxAPI -Method PUT -Resource "/access/roles/{roleid}" -Options $Options
 }
 function Remove-AccessRolesRoleid {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -12496,14 +12881,16 @@ function Remove-AccessRolesRoleid {
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/access/roles/{roleid}" -Options $Options
 }
 function Get-AccessAcl {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	)
 	Invoke-ProxmoxAPI -Method GET -Resource "/access/acl"
 }
 function Set-AccessAcl {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		# Remove permissions (instead of adding it).
@@ -12541,14 +12928,17 @@ function Set-AccessAcl {
 	Invoke-ProxmoxAPI -Method PUT -Resource "/access/acl" -Options $Options
 }
 function Get-AccessDomains {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	)
 	Invoke-ProxmoxAPI -Method GET -Resource "/access/domains"
 }
 function New-AccessDomains {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingConvertToSecureStringWithPlainText", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		# Automatically create users if they do not exist.
@@ -12694,7 +13084,8 @@ function New-AccessDomains {
 	Invoke-ProxmoxAPI -Method POST -Resource "/access/domains" -Options $Options
 }
 function Get-AccessDomainsRealm {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -12707,7 +13098,9 @@ function Get-AccessDomainsRealm {
 	Invoke-ProxmoxAPI -Method GET -Resource "/access/domains/{realm}" -Options $Options
 }
 function Set-AccessDomainsRealm {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingConvertToSecureStringWithPlainText", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		# Automatically create users if they do not exist.
@@ -12852,7 +13245,8 @@ function Set-AccessDomainsRealm {
 	Invoke-ProxmoxAPI -Method PUT -Resource "/access/domains/{realm}" -Options $Options
 }
 function Remove-AccessDomainsRealm {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -12865,7 +13259,8 @@ function Remove-AccessDomainsRealm {
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/access/domains/{realm}" -Options $Options
 }
 function New-AccessDomainsRealmSync {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -12899,14 +13294,16 @@ function New-AccessDomainsRealmSync {
 	Invoke-ProxmoxAPI -Method POST -Resource "/access/domains/{realm}/sync" -Options $Options
 }
 function Get-AccessOpenid {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	)
 	Invoke-ProxmoxAPI -Method GET -Resource "/access/openid"
 }
 function New-AccessAuthUrl {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([string])]
@@ -12925,14 +13322,16 @@ function New-AccessAuthUrl {
 	Invoke-ProxmoxAPI -Method POST -Resource "/access/openid/auth-url" -Options $Options
 }
 function Get-AccessTfa {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	)
 	Invoke-ProxmoxAPI -Method GET -Resource "/access/tfa"
 }
 function New-AccessTfa {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -12946,7 +13345,8 @@ function New-AccessTfa {
 	Invoke-ProxmoxAPI -Method POST -Resource "/access/tfa" -Options $Options
 }
 function New-AccessLogin {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -12969,14 +13369,16 @@ function New-AccessLogin {
 	Invoke-ProxmoxAPI -Method POST -Resource "/access/openid/login" -Options $Options
 }
 function Get-AccessTicket {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	)
 	Invoke-ProxmoxAPI -Method GET -Resource "/access/ticket"
 }
 function Get-AccessTfaUserid {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject[]])]
@@ -12990,7 +13392,9 @@ function Get-AccessTfaUserid {
 	Invoke-ProxmoxAPI -Method GET -Resource "/access/tfa/{userid}" -Options $Options
 }
 function New-AccessTfaUserid {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingConvertToSecureStringWithPlainText", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -13029,7 +13433,8 @@ function New-AccessTfaUserid {
 	Invoke-ProxmoxAPI -Method POST -Resource "/access/tfa/{userid}" -Options $Options
 }
 function Get-AccessTfaId {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -13048,7 +13453,9 @@ function Get-AccessTfaId {
 	Invoke-ProxmoxAPI -Method GET -Resource "/access/tfa/{userid}/{id}" -Options $Options
 }
 function Set-AccessTfaId {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingConvertToSecureStringWithPlainText", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		# A description to distinguish multiple entries from one another
@@ -13078,7 +13485,9 @@ function Set-AccessTfaId {
 	Invoke-ProxmoxAPI -Method PUT -Resource "/access/tfa/{userid}/{id}" -Options $Options
 }
 function Remove-AccessTfaId {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingConvertToSecureStringWithPlainText", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -13100,7 +13509,9 @@ function Remove-AccessTfaId {
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/access/tfa/{userid}/{id}" -Options $Options
 }
 function Set-AccessPassword {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingConvertToSecureStringWithPlainText", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -13118,7 +13529,8 @@ function Set-AccessPassword {
 	Invoke-ProxmoxAPI -Method PUT -Resource "/access/password" -Options $Options
 }
 function Get-AccessPermissions {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -13135,14 +13547,16 @@ function Get-AccessPermissions {
 	Invoke-ProxmoxAPI -Method GET -Resource "/access/permissions" -Options $Options
 }
 function Get-Pools {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	)
 	Invoke-ProxmoxAPI -Method GET -Resource "/pools"
 }
 function New-Pools {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		# 
@@ -13159,7 +13573,8 @@ function New-Pools {
 	Invoke-ProxmoxAPI -Method POST -Resource "/pools" -Options $Options
 }
 function Get-PoolsPoolid {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	[OutputType([PSCustomObject])]
@@ -13173,7 +13588,8 @@ function Get-PoolsPoolid {
 	Invoke-ProxmoxAPI -Method GET -Resource "/pools/{poolid}" -Options $Options
 }
 function Set-PoolsPoolid {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		# 
@@ -13202,7 +13618,8 @@ function Set-PoolsPoolid {
 	Invoke-ProxmoxAPI -Method PUT -Resource "/pools/{poolid}" -Options $Options
 }
 function Remove-PoolsPoolid {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -13215,7 +13632,8 @@ function Remove-PoolsPoolid {
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/pools/{poolid}" -Options $Options
 }
 function Get-Version {
-	[Diagnostics.CodeAnalysis.SuppressMessage("PSUseShouldProcessForStateChangingFunctions", Scope = "function")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
 	[CmdletBinding()]
 	param(
 	)
