@@ -24,6 +24,6 @@ Describe "PSScriptAnalyzer rule-sets" -Tag Build {
 Describe "General project validation: $moduleName" -Tags Build {
 
     It "Module '$moduleName' can import cleanly" {
-        { Import-Module (Join-Path $moduleRoot "$moduleName.psm1") -force } | Should Not Throw
+        { Import-Module (Join-Path $moduleRoot "$moduleName.psm1") -force } | Should -Not -Throw
     }
 }
