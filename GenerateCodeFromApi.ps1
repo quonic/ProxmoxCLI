@@ -177,7 +177,13 @@ function Build-ApiCmdlets {
             if ($Verb -and -not [string]::IsNullOrEmpty($Verb) -and -not [string]::IsNullOrWhiteSpace($Verb) -and "$Verb-$Noun" -notlike "New-AccessTicket") {
 
                 "function $Verb-$Noun `{"
-                "`t[Diagnostics.CodeAnalysis.SuppressMessage(`"PSUseShouldProcessForStateChangingFunctions`", Scope = `"function`")]"
+                if ($_.Parameters.Name -contains "password") {
+                    # TO DO: Need to figure out a good way to automate the code for passwords as SecureStrings
+                    "`t[Diagnostics.CodeAnalysis.SuppressMessageAttribute(`"PSAvoidUsingConvertToSecureStringWithPlainText`", `"`")]"
+                }
+                # Plurals are okay for now as the CmdLets match the API fairly close
+                "`t[Diagnostics.CodeAnalysis.SuppressMessageAttribute(`"PSUseSingularNouns`", `"`")]"
+                "`t[Diagnostics.CodeAnalysis.SuppressMessageAttribute(`"PSUseShouldProcessForStateChangingFunctions`", `"`")]"
                 "`t[CmdletBinding()]"
                 "`tparam("
                 if ($_.Parameters) {
