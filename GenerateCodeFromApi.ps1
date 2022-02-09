@@ -175,7 +175,7 @@ function Build-ApiCmdlets {
             }
             # debug
             Write-Host "$Verb-$Noun"
-            if ($Verb -and -not [string]::IsNullOrEmpty($Verb) -and -not [string]::IsNullOrWhiteSpace($Verb)) {
+            if ($Verb -and -not [string]::IsNullOrEmpty($Verb) -and -not [string]::IsNullOrWhiteSpace($Verb) -and "$Verb-$Noun" -notlike "New-AccessTicket") {
                 # Write-Host "function $Verb-$((Get-Culture).TextInfo.ToTitleCase($Name) -replace '_' -replace '-' -replace '{' -replace '}') `{"
 
                 "function $Verb-$Noun `{"
@@ -461,7 +461,7 @@ $data = Invoke-WebRequest -Uri $apidataurl
 $d = $data.Content -split "`n"
 $d[0] = $d[0] -replace "const apiSchema \= \[", "["
 $json = $d[0..($d.Count - 4)] -join "`r`n"
-$json | Out-File ".\pveapi.json" -Force
+# $json | Out-File ".\pveapi.json" -Force
 $api = $json | ConvertFrom-Json | ForEach-Object {
     Get-ApiChild -Child $_
 }
