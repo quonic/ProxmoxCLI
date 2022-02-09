@@ -13,7 +13,7 @@ Describe "PSScriptAnalyzer rule-sets" -Tag Build {
             foreach ( $rule in $rules ) {
                 $results = Invoke-ScriptAnalyzer -Path $script.FullName -IncludeRule $rule.RuleName | Format-List *
                 It "Rule [$rule]" {
-                    $results.Count | Should Be 0
+                    $results.Count | Should -Be 0
                 }
             }
         }

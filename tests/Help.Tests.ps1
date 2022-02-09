@@ -9,15 +9,15 @@ Describe "Help tests for $moduleName" -Tags Build {
         Context $node.name {
 
             It "has a description" {
-                $node.description | Should Not BeNullOrEmpty
+                $node.description | Should -Not -BeNullOrEmpty
             }
             It "has an example" {
-                $node.examples | Should Not BeNullOrEmpty
+                $node.examples | Should -Not -BeNullOrEmpty
             }
             foreach ($parameter in $node.parameters.parameter) {
                 if ($parameter -notmatch 'whatif|confirm') {
                     It "parameter $($parameter.name) has a description" {
-                        $parameter.Description.text | Should Not BeNullOrEmpty
+                        $parameter.Description.text | Should -Not -BeNullOrEmpty
                     }
                 }
             }
