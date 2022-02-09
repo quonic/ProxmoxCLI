@@ -173,10 +173,8 @@ function Build-ApiCmdlets {
                     }
                 }
             }
-            # debug
-            Write-Host "$Verb-$Noun"
+            
             if ($Verb -and -not [string]::IsNullOrEmpty($Verb) -and -not [string]::IsNullOrWhiteSpace($Verb) -and "$Verb-$Noun" -notlike "New-AccessTicket") {
-                # Write-Host "function $Verb-$((Get-Culture).TextInfo.ToTitleCase($Name) -replace '_' -replace '-' -replace '{' -replace '}') `{"
 
                 "function $Verb-$Noun `{"
                 "`t[Diagnostics.CodeAnalysis.SuppressMessage(`"PSUseShouldProcessForStateChangingFunctions`", Scope = `"function`")]"
@@ -198,10 +196,6 @@ function Build-ApiCmdlets {
                     # Create parameters
                     $Params = $_.Parameters | ForEach-Object {
                         if ($_.Name -and -not [string]::IsNullOrEmpty($_.Name) -and -not [string]::IsNullOrWhiteSpace($_.Name)) {
-                            # if ("$Verb-$Noun" -like "New-Vzdump") {
-                            #     Write-Host "$Verb-$Noun :"
-                            #     Write-Host $_
-                            # }
                             
                             if ($_.Required) {
                                 "`t`t[Parameter(Mandatory)]"
