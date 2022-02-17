@@ -178,20 +178,20 @@ function Build-ApiCmdlets {
 
                 "function $Verb-$Noun `{"
                 "`t[CmdletBinding()]"
+                # Create OutputType
+                if ($_.Returns -and $_.Returns.type) {
+                    switch ($_.Returns.type) {
+                        "null" {  }
+                        "array" { "`t[OutputType([PSCustomObject[]])]" }
+                        "string" { "`t[OutputType([string])]" }
+                        "integer" { "`t[OutputType([Int32])]" }
+                        "object" { "`t[OutputType([PSCustomObject])]" }
+                    }
+                }
                 "`tparam("
                 if ($_.Parameters) {
                     # Create param block
-                    
-                    # Create OutputType
-                    if ($_.Returns -and $_.Returns.type) {
-                        switch ($_.Returns.type) {
-                            "null" {  }
-                            "array" { "`t[OutputType([PSCustomObject[]])]" }
-                            "string" { "`t[OutputType([string])]" }
-                            "integer" { "`t[OutputType([Int32])]" }
-                            "object" { "`t[OutputType([PSCustomObject])]" }
-                        }
-                    }
+
                     # Create parameters
                     $Params = $_.Parameters | ForEach-Object {
                         if (
@@ -208,9 +208,6 @@ function Build-ApiCmdlets {
                                 $pDesc = $_.Description
                                 if ($_.Type -like "boolean") {
                                     $pType = "switch"
-                                }
-                                elseif ($_.Name -like "*password*") {
-                                    $pType = "securestring"
                                 }
                                 else {
                                     $pType = $_.Type
@@ -325,6 +322,9 @@ function Build-ApiCmdlets {
                                 if ($_.Type -like "boolean") {
                                     "`t`t[switch]"
                                 }
+                                elseif ($_.Name -like "*password*") {
+                                    "`t`t[securestring]"
+                                }
                                 else {
                                     "`t`t[$($_.Type)]"
                                 }
@@ -332,12 +332,14 @@ function Build-ApiCmdlets {
                             }
                         }
                     }
-                    ($Params -join "`n").TrimEnd(',')
-                    # Figure out what params are need in the path/uri
-                    $ParamUri = ($_.Parameters | Where-Object { $Path -like "{$($_.Name)}" }).Name
+                    if ($Params) {
+                        ($Params -join "`n").TrimEnd(',')
+                        # Figure out what params are need in the path/uri
+                        $ParamUri = ($_.Parameters | Where-Object { $Path -like "{$($_.Name)}" }).Name
                 
-                    $ParamUri | ForEach-Object {
-                        $NewPath = $NewPath -replace "{$($_)}", "`$$($_ -replace '_')"
+                        $ParamUri | ForEach-Object {
+                            $NewPath = $NewPath -replace "{$($_)}", "`$$($_ -replace '_')"
+                        }
                     }
                 
                     "`t)"
