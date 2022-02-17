@@ -201,7 +201,12 @@ function Build-ApiCmdlets {
                     }
                     # Create parameters
                     $Params = $_.Parameters | ForEach-Object {
-                        if ($_.Name -and -not [string]::IsNullOrEmpty($_.Name) -and -not [string]::IsNullOrWhiteSpace($_.Name)) {
+                        if (
+                            $_.Name -and
+                            -not [string]::IsNullOrEmpty($_.Name) -and
+                            -not [string]::IsNullOrWhiteSpace($_.Name) -and
+                            $_.Name -notin $("debug", "verbose", "force") # Exlude reserved common parameters
+                        ) {
                             
                             if ($_.Required) {
                                 "`t`t[Parameter(Mandatory)]"
@@ -210,6 +215,9 @@ function Build-ApiCmdlets {
                                 $pDesc = $_.Description
                                 if ($_.Type -like "boolean") {
                                     $pType = "switch"
+                                }
+                                elseif ($_.Name -like "*password*") {
+                                    $pType = "securestring"
                                 }
                                 else {
                                     $pType = $_.Type
@@ -320,19 +328,14 @@ function Build-ApiCmdlets {
                                 }
                             }
                             else {
-                                if ($_.Name -like "force") {
-                                    # Do nothing, already provided by Cmdlet
+                                "`t`t# $(($_.Description -split "`n")[0])"
+                                if ($_.Type -like "boolean") {
+                                    "`t`t[switch]"
                                 }
                                 else {
-                                    "`t`t# $(($_.Description -split "`n")[0])"
-                                    if ($_.Type -like "boolean") {
-                                        "`t`t[switch]"
-                                    }
-                                    else {
-                                        "`t`t[$($_.Type)]"
-                                    }
-                                    "`t`t`$$($_.Name -replace '-'),"
+                                    "`t`t[$($_.Type)]"
                                 }
+                                "`t`t`$$($_.Name -replace '-'),"
                             }
                         }
                     }
@@ -433,6 +436,9 @@ function Build-ApiCmdlets {
                         else {
                             if ($_.Type -like "boolean") {
                                 "`tif (`$$($_.Name -replace '-')) { `$Options.Add('$($_.Name)', `$$($_.Name -replace '-')) }"
+                            }
+                            elseif ($_.Name -like "*password*") {
+                                "`tif (`$$($_.Name -replace '-')) { `$Options.Add('$($_.Name)', `$$($_.Name -replace '-') | ConvertFrom-SecureString -AsPlainText) }"
                             }
                             else {
                                 "`tif (`$$($_.Name -replace '-') -and -not [String]::IsNullOrEmpty(`$$($_.Name -replace '-')) -and -not [String]::IsNullOrWhiteSpace(`$$($_.Name -replace '-'))) { `$Options.Add('$($_.Name)', `$$($_.Name -replace '-')) }"

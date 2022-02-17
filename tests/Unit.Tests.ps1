@@ -3,7 +3,7 @@ $script:ModuleName = 'ProxmoxCLI'
 $UnitTestSettingsFile = Resolve-Path "$projectRoot\tests\UTSettings.ps1"
 . $UnitTestSettingsFile
 $SecurePassword = $Password | ConvertTo-SecureString -AsPlainText -Force
-$Credentials = New-Object System.Management.Automation.PSCredential -ArgumentList $UserName, $SecurePassword
+$Credentials = [PSCredential]::new($UserName, $SecurePassword)
 
 Describe "Connect-PveServer" {
     Context "With BypassSSLCheck switch" {
@@ -22,19 +22,19 @@ Describe "Connect-PveServer" {
 
         # assert
         It "Should call 'Invoke-RestMethod' with the expected result" {
-            Assert-MockCalled Invoke-RestMethod -Times 1 -Exactly
+            Should -Invoke Invoke-RestMethod -Times 1 -Exactly
         }
         It "Should call 'GetCertificatePolicy' once" {
-            Assert-MockCalled GetCertificatePolicy -Times 1 -Exactly
+            Should -Invoke GetCertificatePolicy -Times 1 -Exactly
         }
         It "Should call 'GetTrustAllCertsPolicy' once" {
-            Assert-MockCalled GetTrustAllCertsPolicy -Times 1 -Exactly
+            Should -Invoke GetTrustAllCertsPolicy -Times 1 -Exactly
         }
         It "Should call 'SetCertificatePolicy' twice" {
-            Assert-MockCalled SetCertificatePolicy -Times 2 -Exactly
+            Should -Invoke SetCertificatePolicy -Times 2 -Exactly
         }
 
-    }
+    } -Skip
     Context "With out BypassSSLCheck switch" {
         # arrange
         Mock Invoke-RestMethod -MockWith {
@@ -51,16 +51,16 @@ Describe "Connect-PveServer" {
 
         # assert
         It "Should call 'Invoke-RestMethod' with the expected result" {
-            Assert-MockCalled Invoke-RestMethod -Times 1 -Exactly
+            Should -Invoke Invoke-RestMethod -Times 1 -Exactly
         }
         It "Should call 'GetCertificatePolicy' once" {
-            Assert-MockCalled GetCertificatePolicy -Times 0 -Exactly
+            Should -Invoke GetCertificatePolicy -Times 0 -Exactly
         }
         It "Should call 'GetTrustAllCertsPolicy' once" {
-            Assert-MockCalled GetTrustAllCertsPolicy -Times 0 -Exactly
+            Should -Invoke GetTrustAllCertsPolicy -Times 0 -Exactly
         }
         It "Should call 'SetCertificatePolicy' twice" {
-            Assert-MockCalled SetCertificatePolicy -Times 0 -Exactly
+            Should -Invoke SetCertificatePolicy -Times 0 -Exactly
         }
-    }
-} -Skip
+    } -Skip
+}

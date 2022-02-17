@@ -1,16 +1,17 @@
 # See http://www.appveyor.com/docs/appveyor-yml for many more options
 
 
-# Allow WMF5 (i.e. PowerShellGallery functionality)
-os: WMF 5
+image:
+  - Visual Studio 2013 # Windows - PowerShell 5.1
+  - Visual Studio 2022 # Windows - PowerShell 7
+  - Ubuntu # Linux - PowerShell 7
 
-# Skip on updates to the readme.
-# We can force this by adding [skip ci] or [ci skip] anywhere in commit message 
+# Skip on updates to the readme, doc, package in the commit message.
 skip_commits:
-  message: /updated (package|gruntfile|readme|doc).*|update (package|gruntfile|readme|doc).*s/
-
-build: false
+  message: /updated (package|readme|doc).*|update (package|readme|doc).*s/
 
 #Kick off the CI/CD pipeline
 test_script:
-  - ps: . .\build.ps1
+  - ps: . .\build.ps1 -Task Default
+  - pwsh: . .\build.ps1 -Task Default
+build: false
