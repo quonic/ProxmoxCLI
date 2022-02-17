@@ -328,7 +328,13 @@ function Build-ApiCmdlets {
                                 else {
                                     "`t`t[$($_.Type)]"
                                 }
-                                "`t`t`$$($_.Name -replace '-'),"
+                                if ($_.Name -like "args") {
+                                    "`t`t`$AudioArgs,"
+                                }
+                                else {
+                                    "`t`t`$$($_.Name -replace '-'),"
+                                }
+                                
                             }
                         }
                     }
@@ -433,7 +439,10 @@ function Build-ApiCmdlets {
                                 "`tif (`$$($_.Name -replace '-')) { `$Options.Add('$($_.Name)', `$$($_.Name -replace '-')) }"
                             }
                             elseif ($_.Name -like "*password*") {
-                                "`tif (`$$($_.Name -replace '-')) { `$Options.Add('$($_.Name)', `$$($_.Name -replace '-') | ConvertFrom-SecureString -AsPlainText) }"
+                                "`tif (`$$($_.Name -replace '-')) { `$Options.Add('$($_.Name)', `$(`$$($_.Name -replace '-') | ConvertFrom-SecureString -AsPlainText)) }"
+                            }
+                            elseif ($_.Name -like "args") {
+                                "`tif (`$AudioArgs -and -not [String]::IsNullOrEmpty(`$AudioArgs) -and -not [String]::IsNullOrWhiteSpace(`$AudioArgs)) { `$Options.Add('$($_.Name)', `$AudioArgs) }"
                             }
                             else {
                                 "`tif (`$$($_.Name -replace '-') -and -not [String]::IsNullOrEmpty(`$$($_.Name -replace '-')) -and -not [String]::IsNullOrWhiteSpace(`$$($_.Name -replace '-'))) { `$Options.Add('$($_.Name)', `$$($_.Name -replace '-')) }"
