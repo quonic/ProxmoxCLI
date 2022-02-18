@@ -362,73 +362,73 @@ function Build-ApiCmdlets {
                             switch ($pName) {
                                 'acmedomain[n]' {
                                     0..10 | ForEach-Object {
-                                        "`tif (`$$($pName -replace "\[n\]")$_ -and -not [String]::IsNullOrEmpty(`$$($pName -replace "\[n\]")$_) -and -not [String]::IsNullOrWhiteSpace(`$$($pName -replace "\[n\]")$_)) { `$Options.Add('$($pName -replace "\[n\]")$_', `$$($pName -replace "\[n\]")$_) }"
+                                        "`tif (`$$($pName -replace "\[n\]")$_ -and -not [String]::IsNullOrEmpty(`$$($pName -replace "\[n\]")$_) -and -not [String]::IsNullOrWhiteSpace(`$$($pName -replace "\[n\]")$_)) { `$Options.Add('$($pName -replace "\[n\]")$_',`$$($pName -replace "\[n\]")$_) }"
                                     }
                                 }
                                 'hostpci[n]' { 
                                     0..10 | ForEach-Object {
-                                        "`tif (`$$($pName -replace "\[n\]")$_ -and -not [String]::IsNullOrEmpty(`$$($pName -replace "\[n\]")$_) -and -not [String]::IsNullOrWhiteSpace(`$$($pName -replace "\[n\]")$_)) { `$Options.Add('$($pName -replace "\[n\]")$_', `$$($pName -replace "\[n\]")$_) }"
+                                        "`tif (`$$($pName -replace "\[n\]")$_ -and -not [String]::IsNullOrEmpty(`$$($pName -replace "\[n\]")$_) -and -not [String]::IsNullOrWhiteSpace(`$$($pName -replace "\[n\]")$_)) { `$Options.Add('$($pName -replace "\[n\]")$_',`$$($pName -replace "\[n\]")$_) }"
                                     }
                                 }
                                 'ide[n]' {
                                     0..3 | ForEach-Object {
-                                        "`tif (`$$($pName -replace "\[n\]")$_ -and -not [String]::IsNullOrEmpty(`$$($pName -replace "\[n\]")$_) -and -not [String]::IsNullOrWhiteSpace(`$$($pName -replace "\[n\]")$_)) { `$Options.Add('$($pName -replace "\[n\]")$_', `$$($pName -replace "\[n\]")$_) }"
+                                        "`tif (`$$($pName -replace "\[n\]")$_ -and -not [String]::IsNullOrEmpty(`$$($pName -replace "\[n\]")$_) -and -not [String]::IsNullOrWhiteSpace(`$$($pName -replace "\[n\]")$_)) { `$Options.Add('$($pName -replace "\[n\]")$_',`$$($pName -replace "\[n\]")$_) }"
                                     }
                                 }
                                 'ipconfig[n]' {
                                     0..10 | ForEach-Object {
-                                        "`tif (`$$($pName -replace "\[n\]")$_ -and -not [String]::IsNullOrEmpty(`$$($pName -replace "\[n\]")$_) -and -not [String]::IsNullOrWhiteSpace(`$$($pName -replace "\[n\]")$_)) { `$Options.Add('$($pName -replace "\[n\]")$_', `$$($pName -replace "\[n\]")$_) }"
+                                        "`tif (`$$($pName -replace "\[n\]")$_ -and -not [String]::IsNullOrEmpty(`$$($pName -replace "\[n\]")$_) -and -not [String]::IsNullOrWhiteSpace(`$$($pName -replace "\[n\]")$_)) { `$Options.Add('$($pName -replace "\[n\]")$_',`$$($pName -replace "\[n\]")$_) }"
                                     }
                                 }
                                 'link[n]' {
                                     0..7 | ForEach-Object {
-                                        "`tif (`$$($pName -replace "\[n\]")$_ -and -not [String]::IsNullOrEmpty(`$$($pName -replace "\[n\]")$_) -and -not [String]::IsNullOrWhiteSpace(`$$($pName -replace "\[n\]")$_)) { `$Options.Add('$($pName -replace "\[n\]")$_', `$$($pName -replace "\[n\]")$_) }"
+                                        "`tif (`$$($pName -replace "\[n\]")$_ -and -not [String]::IsNullOrEmpty(`$$($pName -replace "\[n\]")$_) -and -not [String]::IsNullOrWhiteSpace(`$$($pName -replace "\[n\]")$_)) { `$Options.Add('$($pName -replace "\[n\]")$_',`$$($pName -replace "\[n\]")$_) }"
                                     }
                                 }
                                 'mp[n]' {
                                     0..10 | ForEach-Object {
-                                        "`tif (`$$($pName -replace "\[n\]")$_ -and -not [String]::IsNullOrEmpty(`$$($pName -replace "\[n\]")$_) -and -not [String]::IsNullOrWhiteSpace(`$$($pName -replace "\[n\]")$_)) { `$Options.Add('$($pName -replace "\[n\]")$_', `$$($pName -replace "\[n\]")$_) }"
+                                        "`tif (`$$($pName -replace "\[n\]")$_ -and -not [String]::IsNullOrEmpty(`$$($pName -replace "\[n\]")$_) -and -not [String]::IsNullOrWhiteSpace(`$$($pName -replace "\[n\]")$_)) { `$Options.Add('$($pName -replace "\[n\]")$_',`$$($pName -replace "\[n\]")$_) }"
                                     }
                                 }
                                 'net[n]' {
                                     0..10 | ForEach-Object {
-                                        "`tif (`$$($pName -replace "\[n\]")$_ -and -not [String]::IsNullOrEmpty(`$$($pName -replace "\[n\]")$_) -and -not [String]::IsNullOrWhiteSpace(`$$($pName -replace "\[n\]")$_)) { `$Options.Add('$($pName -replace "\[n\]")$_', `$$($pName -replace "\[n\]")$_) }"
+                                        "`tif (`$$($pName -replace "\[n\]")$_ -and -not [String]::IsNullOrEmpty(`$$($pName -replace "\[n\]")$_) -and -not [String]::IsNullOrWhiteSpace(`$$($pName -replace "\[n\]")$_)) { `$Options.Add('$($pName -replace "\[n\]")$_',`$$($pName -replace "\[n\]")$_) }"
                                     }
                                 }
                                 'numa[n]' {
                                     0..10 | ForEach-Object {
-                                        "`tif (`$$($pName -replace "\[n\]")$_ -and -not [String]::IsNullOrEmpty(`$$($pName -replace "\[n\]")$_) -and -not [String]::IsNullOrWhiteSpace(`$$($pName -replace "\[n\]")$_)) { `$Options.Add('$($pName -replace "\[n\]")$_', `$$($pName -replace "\[n\]")$_) }"
+                                        "`tif (`$$($pName -replace "\[n\]")$_ -and -not [String]::IsNullOrEmpty(`$$($pName -replace "\[n\]")$_) -and -not [String]::IsNullOrWhiteSpace(`$$($pName -replace "\[n\]")$_)) { `$Options.Add('$($pName -replace "\[n\]")$_',`$$($pName -replace "\[n\]")$_) }"
                                     }
                                 }
                                 'parallel[n]' {
                                     0..2 | ForEach-Object {
-                                        "`tif (`$$($pName -replace "\[n\]")$_ -and -not [String]::IsNullOrEmpty(`$$($pName -replace "\[n\]")$_) -and -not [String]::IsNullOrWhiteSpace(`$$($pName -replace "\[n\]")$_)) { `$Options.Add('$($pName -replace "\[n\]")$_', `$$($pName -replace "\[n\]")$_) }"
+                                        "`tif (`$$($pName -replace "\[n\]")$_ -and -not [String]::IsNullOrEmpty(`$$($pName -replace "\[n\]")$_) -and -not [String]::IsNullOrWhiteSpace(`$$($pName -replace "\[n\]")$_)) { `$Options.Add('$($pName -replace "\[n\]")$_',`$$($pName -replace "\[n\]")$_) }"
                                     }
                                 }
                                 'sata[n]' {
                                     0..5 | ForEach-Object {
-                                        "`tif (`$$($pName -replace "\[n\]")$_ -and -not [String]::IsNullOrEmpty(`$$($pName -replace "\[n\]")$_) -and -not [String]::IsNullOrWhiteSpace(`$$($pName -replace "\[n\]")$_)) { `$Options.Add('$($pName -replace "\[n\]")$_', `$$($pName -replace "\[n\]")$_) }"
+                                        "`tif (`$$($pName -replace "\[n\]")$_ -and -not [String]::IsNullOrEmpty(`$$($pName -replace "\[n\]")$_) -and -not [String]::IsNullOrWhiteSpace(`$$($pName -replace "\[n\]")$_)) { `$Options.Add('$($pName -replace "\[n\]")$_',`$$($pName -replace "\[n\]")$_) }"
                                     }
                                 }
                                 'scsi[n]' {
                                     0..30 | ForEach-Object {
-                                        "`tif (`$$($pName -replace "\[n\]")$_ -and -not [String]::IsNullOrEmpty(`$$($pName -replace "\[n\]")$_) -and -not [String]::IsNullOrWhiteSpace(`$$($pName -replace "\[n\]")$_)) { `$Options.Add('$($pName -replace "\[n\]")$_', `$$($pName -replace "\[n\]")$_) }"
+                                        "`tif (`$$($pName -replace "\[n\]")$_ -and -not [String]::IsNullOrEmpty(`$$($pName -replace "\[n\]")$_) -and -not [String]::IsNullOrWhiteSpace(`$$($pName -replace "\[n\]")$_)) { `$Options.Add('$($pName -replace "\[n\]")$_',`$$($pName -replace "\[n\]")$_) }"
                                     }
                                 }
                                 'serial[n]' {
                                     0..3 | ForEach-Object {
-                                        "`tif (`$$($pName -replace "\[n\]")$_ -and -not [String]::IsNullOrEmpty(`$$($pName -replace "\[n\]")$_) -and -not [String]::IsNullOrWhiteSpace(`$$($pName -replace "\[n\]")$_)) { `$Options.Add('$($pName -replace "\[n\]")$_', `$$($pName -replace "\[n\]")$_) }"
+                                        "`tif (`$$($pName -replace "\[n\]")$_ -and -not [String]::IsNullOrEmpty(`$$($pName -replace "\[n\]")$_) -and -not [String]::IsNullOrWhiteSpace(`$$($pName -replace "\[n\]")$_)) { `$Options.Add('$($pName -replace "\[n\]")$_',`$$($pName -replace "\[n\]")$_) }"
                                     }
                                 }
                                 'unused[n]' {}
                                 'usb[n]' {
                                     0..4 | ForEach-Object {
-                                        "`tif (`$$($pName -replace "\[n\]")$_ -and -not [String]::IsNullOrEmpty(`$$($pName -replace "\[n\]")$_) -and -not [String]::IsNullOrWhiteSpace(`$$($pName -replace "\[n\]")$_)) { `$Options.Add('$($pName -replace "\[n\]")$_', `$$($pName -replace "\[n\]")$_) }"
+                                        "`tif (`$$($pName -replace "\[n\]")$_ -and -not [String]::IsNullOrEmpty(`$$($pName -replace "\[n\]")$_) -and -not [String]::IsNullOrWhiteSpace(`$$($pName -replace "\[n\]")$_)) { `$Options.Add('$($pName -replace "\[n\]")$_',`$$($pName -replace "\[n\]")$_) }"
                                     }
                                 }
                                 'virtio[n]' {
                                     0..15 | ForEach-Object {
-                                        "`tif (`$$($pName -replace "\[n\]")$_ -and -not [String]::IsNullOrEmpty(`$$($pName -replace "\[n\]")$_) -and -not [String]::IsNullOrWhiteSpace(`$$($pName -replace "\[n\]")$_)) { `$Options.Add('$($pName -replace "\[n\]")$_', `$$($pName -replace "\[n\]")$_) }"
+                                        "`tif (`$$($pName -replace "\[n\]")$_ -and -not [String]::IsNullOrEmpty(`$$($pName -replace "\[n\]")$_) -and -not [String]::IsNullOrWhiteSpace(`$$($pName -replace "\[n\]")$_)) { `$Options.Add('$($pName -replace "\[n\]")$_',`$$($pName -replace "\[n\]")$_) }"
                                     }
                                 }
                                 Default {}
@@ -436,16 +436,16 @@ function Build-ApiCmdlets {
                         }
                         else {
                             if ($_.Type -like "boolean") {
-                                "`tif (`$$($_.Name -replace '-')) { `$Options.Add('$($_.Name)', `$$($_.Name -replace '-')) }"
+                                "`tif (`$$($_.Name -replace '-')) { `$Options.Add('$($_.Name)',`$$($_.Name -replace '-')) }"
                             }
                             elseif ($_.Name -like "*password*") {
-                                "`tif (`$$($_.Name -replace '-')) { `$Options.Add('$($_.Name)', `$(`$$($_.Name -replace '-') | ConvertFrom-SecureString -AsPlainText)) }"
+                                "`tif (`$$($_.Name -replace '-')) { `$Options.Add('$($_.Name)',`$(`$$($_.Name -replace '-') | ConvertFrom-SecureString -AsPlainText)) }"
                             }
                             elseif ($_.Name -like "args") {
-                                "`tif (`$AudioArgs -and -not [String]::IsNullOrEmpty(`$AudioArgs) -and -not [String]::IsNullOrWhiteSpace(`$AudioArgs)) { `$Options.Add('$($_.Name)', `$AudioArgs) }"
+                                "`tif (`$AudioArgs -and -not [String]::IsNullOrEmpty(`$AudioArgs) -and -not [String]::IsNullOrWhiteSpace(`$AudioArgs)) { `$Options.Add('$($_.Name)',`$AudioArgs) }"
                             }
                             else {
-                                "`tif (`$$($_.Name -replace '-') -and -not [String]::IsNullOrEmpty(`$$($_.Name -replace '-')) -and -not [String]::IsNullOrWhiteSpace(`$$($_.Name -replace '-'))) { `$Options.Add('$($_.Name)', `$$($_.Name -replace '-')) }"
+                                "`tif (`$$($_.Name -replace '-') -and -not [String]::IsNullOrEmpty(`$$($_.Name -replace '-')) -and -not [String]::IsNullOrWhiteSpace(`$$($_.Name -replace '-'))) { `$Options.Add('$($_.Name)',`$$($_.Name -replace '-')) }"
                             }
                         }
                     }

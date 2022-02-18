@@ -47,9 +47,9 @@ function New-ClusterReplication {
 		$type
 	)
 	$Options = @()
-	$Options.Add('id',$id)
-	$Options.Add('target',$target)
-	$Options.Add('type',$type)
+	$Options.Add('id', $id)
+	$Options.Add('target', $target)
+	$Options.Add('type', $type)
 	if ($comment -and -not [String]::IsNullOrEmpty($comment) -and -not [String]::IsNullOrWhiteSpace($comment)) { $Options.Add('comment', $comment) }
 	if ($disable) { $Options.Add('disable', $disable) }
 	if ($rate -and -not [String]::IsNullOrEmpty($rate) -and -not [String]::IsNullOrWhiteSpace($rate)) { $Options.Add('rate', $rate) }
@@ -68,7 +68,7 @@ function Get-ClusterReplicationId {
 		$id
 	)
 	$Options = @()
-	$Options.Add('id',$id)
+	$Options.Add('id', $id)
 	Invoke-ProxmoxAPI -Method GET -Resource "/cluster/replication/{id}" -Options $Options
 }
 function Set-ClusterReplicationId {
@@ -104,7 +104,7 @@ function Set-ClusterReplicationId {
 		$source
 	)
 	$Options = @()
-	$Options.Add('id',$id)
+	$Options.Add('id', $id)
 	if ($comment -and -not [String]::IsNullOrEmpty($comment) -and -not [String]::IsNullOrWhiteSpace($comment)) { $Options.Add('comment', $comment) }
 	if ($delete -and -not [String]::IsNullOrEmpty($delete) -and -not [String]::IsNullOrWhiteSpace($delete)) { $Options.Add('delete', $delete) }
 	if ($digest -and -not [String]::IsNullOrEmpty($digest) -and -not [String]::IsNullOrWhiteSpace($digest)) { $Options.Add('digest', $digest) }
@@ -127,7 +127,7 @@ function Remove-ClusterReplicationId {
 		$keep
 	)
 	$Options = @()
-	$Options.Add('id',$id)
+	$Options.Add('id', $id)
 	if ($force) { $Options.Add('force', $force) }
 	if ($keep) { $Options.Add('keep', $keep) }
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/cluster/replication/{id}" -Options $Options
@@ -156,7 +156,7 @@ function Get-ClusterMetricsServerId {
 		$id
 	)
 	$Options = @()
-	$Options.Add('id',$id)
+	$Options.Add('id', $id)
 	Invoke-ProxmoxAPI -Method GET -Resource "/cluster/metrics/server/{id}" -Options $Options
 }
 function New-ClusterMetricsServerId {
@@ -216,10 +216,10 @@ function New-ClusterMetricsServerId {
 		$verifycertificate
 	)
 	$Options = @()
-	$Options.Add('id',$id)
-	$Options.Add('port',$port)
-	$Options.Add('server',$server)
-	$Options.Add('type',$type)
+	$Options.Add('id', $id)
+	$Options.Add('port', $port)
+	$Options.Add('server', $server)
+	$Options.Add('type', $type)
 	if ($apipathprefix -and -not [String]::IsNullOrEmpty($apipathprefix) -and -not [String]::IsNullOrWhiteSpace($apipathprefix)) { $Options.Add('api-path-prefix', $apipathprefix) }
 	if ($bucket -and -not [String]::IsNullOrEmpty($bucket) -and -not [String]::IsNullOrWhiteSpace($bucket)) { $Options.Add('bucket', $bucket) }
 	if ($disable) { $Options.Add('disable', $disable) }
@@ -293,9 +293,9 @@ function Set-ClusterMetricsServerId {
 		$verifycertificate
 	)
 	$Options = @()
-	$Options.Add('id',$id)
-	$Options.Add('port',$port)
-	$Options.Add('server',$server)
+	$Options.Add('id', $id)
+	$Options.Add('port', $port)
+	$Options.Add('server', $server)
 	if ($apipathprefix -and -not [String]::IsNullOrEmpty($apipathprefix) -and -not [String]::IsNullOrWhiteSpace($apipathprefix)) { $Options.Add('api-path-prefix', $apipathprefix) }
 	if ($bucket -and -not [String]::IsNullOrEmpty($bucket) -and -not [String]::IsNullOrWhiteSpace($bucket)) { $Options.Add('bucket', $bucket) }
 	if ($delete -and -not [String]::IsNullOrEmpty($delete) -and -not [String]::IsNullOrWhiteSpace($delete)) { $Options.Add('delete', $delete) }
@@ -321,7 +321,7 @@ function Remove-ClusterMetricsServerId {
 		$id
 	)
 	$Options = @()
-	$Options.Add('id',$id)
+	$Options.Add('id', $id)
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/cluster/metrics/server/{id}" -Options $Options
 }
 function Get-ClusterConfig {
@@ -371,7 +371,7 @@ function New-ClusterConfig {
 		$votes
 	)
 	$Options = @()
-	$Options.Add('clustername',$clustername)
+	$Options.Add('clustername', $clustername)
 	if ($link0 -and -not [String]::IsNullOrEmpty($link0) -and -not [String]::IsNullOrWhiteSpace($link0)) { $Options.Add('link0', $link0) }
 	if ($link1 -and -not [String]::IsNullOrEmpty($link1) -and -not [String]::IsNullOrWhiteSpace($link1)) { $Options.Add('link1', $link1) }
 	if ($link2 -and -not [String]::IsNullOrEmpty($link2) -and -not [String]::IsNullOrWhiteSpace($link2)) { $Options.Add('link2', $link2) }
@@ -451,7 +451,7 @@ function New-ClusterConfigNodesNode {
 		$votes
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	if ($apiversion -and -not [String]::IsNullOrEmpty($apiversion) -and -not [String]::IsNullOrWhiteSpace($apiversion)) { $Options.Add('apiversion', $apiversion) }
 	if ($force) { $Options.Add('force', $force) }
 	if ($link0 -and -not [String]::IsNullOrEmpty($link0) -and -not [String]::IsNullOrWhiteSpace($link0)) { $Options.Add('link0', $link0) }
@@ -476,7 +476,7 @@ function Remove-ClusterConfigNodesNode {
 		$node
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/cluster/config/nodes/{node}" -Options $Options
 }
 function Get-ClusterBackup {
@@ -681,9 +681,9 @@ function New-ClusterConfigJoin {
 		$votes
 	)
 	$Options = @()
-	$Options.Add('fingerprint',$fingerprint)
-	$Options.Add('hostname',$hostname)
-	$Options.Add('password',$password)
+	$Options.Add('fingerprint', $fingerprint)
+	$Options.Add('hostname', $hostname)
+	$Options.Add('password', $password)
 	if ($force) { $Options.Add('force', $force) }
 	if ($link0 -and -not [String]::IsNullOrEmpty($link0) -and -not [String]::IsNullOrWhiteSpace($link0)) { $Options.Add('link0', $link0) }
 	if ($link1 -and -not [String]::IsNullOrEmpty($link1) -and -not [String]::IsNullOrWhiteSpace($link1)) { $Options.Add('link1', $link1) }
@@ -757,7 +757,7 @@ function New-ClusterFirewallGroups {
 		$rename
 	)
 	$Options = @()
-	$Options.Add('group',$group)
+	$Options.Add('group', $group)
 	if ($comment -and -not [String]::IsNullOrEmpty($comment) -and -not [String]::IsNullOrWhiteSpace($comment)) { $Options.Add('comment', $comment) }
 	if ($digest -and -not [String]::IsNullOrEmpty($digest) -and -not [String]::IsNullOrWhiteSpace($digest)) { $Options.Add('digest', $digest) }
 	if ($rename -and -not [String]::IsNullOrEmpty($rename) -and -not [String]::IsNullOrWhiteSpace($rename)) { $Options.Add('rename', $rename) }
@@ -773,7 +773,7 @@ function Get-ClusterFirewallGroupsGroup {
 		$group
 	)
 	$Options = @()
-	$Options.Add('group',$group)
+	$Options.Add('group', $group)
 	Invoke-ProxmoxAPI -Method GET -Resource "/cluster/firewall/groups/{group}" -Options $Options
 }
 function New-ClusterFirewallGroupsGroup {
@@ -832,9 +832,9 @@ function New-ClusterFirewallGroupsGroup {
 		$type
 	)
 	$Options = @()
-	$Options.Add('action',$action)
-	$Options.Add('group',$group)
-	$Options.Add('type',$type)
+	$Options.Add('action', $action)
+	$Options.Add('group', $group)
+	$Options.Add('type', $type)
 	if ($comment -and -not [String]::IsNullOrEmpty($comment) -and -not [String]::IsNullOrWhiteSpace($comment)) { $Options.Add('comment', $comment) }
 	if ($dest -and -not [String]::IsNullOrEmpty($dest) -and -not [String]::IsNullOrWhiteSpace($dest)) { $Options.Add('dest', $dest) }
 	if ($digest -and -not [String]::IsNullOrEmpty($digest) -and -not [String]::IsNullOrWhiteSpace($digest)) { $Options.Add('digest', $digest) }
@@ -859,7 +859,7 @@ function Remove-ClusterFirewallGroupsGroup {
 		$group
 	)
 	$Options = @()
-	$Options.Add('group',$group)
+	$Options.Add('group', $group)
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/cluster/firewall/groups/{group}" -Options $Options
 }
 function Get-ClusterFirewallGroupsGroupPos {
@@ -875,7 +875,7 @@ function Get-ClusterFirewallGroupsGroupPos {
 		$pos
 	)
 	$Options = @()
-	$Options.Add('group',$group)
+	$Options.Add('group', $group)
 	if ($pos -and -not [String]::IsNullOrEmpty($pos) -and -not [String]::IsNullOrWhiteSpace($pos)) { $Options.Add('pos', $pos) }
 	Invoke-ProxmoxAPI -Method GET -Resource "/cluster/firewall/groups/{group}/{pos}" -Options $Options
 }
@@ -939,7 +939,7 @@ function Set-ClusterFirewallGroupsGroupPos {
 		$type
 	)
 	$Options = @()
-	$Options.Add('group',$group)
+	$Options.Add('group', $group)
 	if ($action -and -not [String]::IsNullOrEmpty($action) -and -not [String]::IsNullOrWhiteSpace($action)) { $Options.Add('action', $action) }
 	if ($comment -and -not [String]::IsNullOrEmpty($comment) -and -not [String]::IsNullOrWhiteSpace($comment)) { $Options.Add('comment', $comment) }
 	if ($delete -and -not [String]::IsNullOrEmpty($delete) -and -not [String]::IsNullOrWhiteSpace($delete)) { $Options.Add('delete', $delete) }
@@ -974,7 +974,7 @@ function Remove-ClusterFirewallGroupsGroupPos {
 		$pos
 	)
 	$Options = @()
-	$Options.Add('group',$group)
+	$Options.Add('group', $group)
 	if ($digest -and -not [String]::IsNullOrEmpty($digest) -and -not [String]::IsNullOrWhiteSpace($digest)) { $Options.Add('digest', $digest) }
 	if ($pos -and -not [String]::IsNullOrEmpty($pos) -and -not [String]::IsNullOrWhiteSpace($pos)) { $Options.Add('pos', $pos) }
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/cluster/firewall/groups/{group}/{pos}" -Options $Options
@@ -1045,8 +1045,8 @@ function New-ClusterFirewallRules {
 		$type
 	)
 	$Options = @()
-	$Options.Add('action',$action)
-	$Options.Add('type',$type)
+	$Options.Add('action', $action)
+	$Options.Add('type', $type)
 	if ($comment -and -not [String]::IsNullOrEmpty($comment) -and -not [String]::IsNullOrWhiteSpace($comment)) { $Options.Add('comment', $comment) }
 	if ($dest -and -not [String]::IsNullOrEmpty($dest) -and -not [String]::IsNullOrWhiteSpace($dest)) { $Options.Add('dest', $dest) }
 	if ($digest -and -not [String]::IsNullOrEmpty($digest) -and -not [String]::IsNullOrWhiteSpace($digest)) { $Options.Add('digest', $digest) }
@@ -1196,7 +1196,7 @@ function New-ClusterFirewallIpset {
 		$rename
 	)
 	$Options = @()
-	$Options.Add('name',$name)
+	$Options.Add('name', $name)
 	if ($comment -and -not [String]::IsNullOrEmpty($comment) -and -not [String]::IsNullOrWhiteSpace($comment)) { $Options.Add('comment', $comment) }
 	if ($digest -and -not [String]::IsNullOrEmpty($digest) -and -not [String]::IsNullOrWhiteSpace($digest)) { $Options.Add('digest', $digest) }
 	if ($rename -and -not [String]::IsNullOrEmpty($rename) -and -not [String]::IsNullOrWhiteSpace($rename)) { $Options.Add('rename', $rename) }
@@ -1212,7 +1212,7 @@ function Get-ClusterFirewallIpsetName {
 		$name
 	)
 	$Options = @()
-	$Options.Add('name',$name)
+	$Options.Add('name', $name)
 	Invoke-ProxmoxAPI -Method GET -Resource "/cluster/firewall/ipset/{name}" -Options $Options
 }
 function New-ClusterFirewallIpsetName {
@@ -1234,8 +1234,8 @@ function New-ClusterFirewallIpsetName {
 		$nomatch
 	)
 	$Options = @()
-	$Options.Add('cidr',$cidr)
-	$Options.Add('name',$name)
+	$Options.Add('cidr', $cidr)
+	$Options.Add('name', $name)
 	if ($comment -and -not [String]::IsNullOrEmpty($comment) -and -not [String]::IsNullOrWhiteSpace($comment)) { $Options.Add('comment', $comment) }
 	if ($nomatch) { $Options.Add('nomatch', $nomatch) }
 	Invoke-ProxmoxAPI -Method POST -Resource "/cluster/firewall/ipset/{name}" -Options $Options
@@ -1249,7 +1249,7 @@ function Remove-ClusterFirewallIpsetName {
 		$name
 	)
 	$Options = @()
-	$Options.Add('name',$name)
+	$Options.Add('name', $name)
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/cluster/firewall/ipset/{name}" -Options $Options
 }
 function Get-ClusterFirewallIpsetNameCidr {
@@ -1266,8 +1266,8 @@ function Get-ClusterFirewallIpsetNameCidr {
 		$name
 	)
 	$Options = @()
-	$Options.Add('cidr',$cidr)
-	$Options.Add('name',$name)
+	$Options.Add('cidr', $cidr)
+	$Options.Add('name', $name)
 	Invoke-ProxmoxAPI -Method GET -Resource "/cluster/firewall/ipset/{name}/{cidr}" -Options $Options
 }
 function Set-ClusterFirewallIpsetNameCidr {
@@ -1292,8 +1292,8 @@ function Set-ClusterFirewallIpsetNameCidr {
 		$nomatch
 	)
 	$Options = @()
-	$Options.Add('cidr',$cidr)
-	$Options.Add('name',$name)
+	$Options.Add('cidr', $cidr)
+	$Options.Add('name', $name)
 	if ($comment -and -not [String]::IsNullOrEmpty($comment) -and -not [String]::IsNullOrWhiteSpace($comment)) { $Options.Add('comment', $comment) }
 	if ($digest -and -not [String]::IsNullOrEmpty($digest) -and -not [String]::IsNullOrWhiteSpace($digest)) { $Options.Add('digest', $digest) }
 	if ($nomatch) { $Options.Add('nomatch', $nomatch) }
@@ -1315,8 +1315,8 @@ function Remove-ClusterFirewallIpsetNameCidr {
 		$name
 	)
 	$Options = @()
-	$Options.Add('cidr',$cidr)
-	$Options.Add('name',$name)
+	$Options.Add('cidr', $cidr)
+	$Options.Add('name', $name)
 	if ($digest -and -not [String]::IsNullOrEmpty($digest) -and -not [String]::IsNullOrWhiteSpace($digest)) { $Options.Add('digest', $digest) }
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/cluster/firewall/ipset/{name}/{cidr}" -Options $Options
 }
@@ -1357,8 +1357,8 @@ function New-ClusterFirewallAliases {
 		$name
 	)
 	$Options = @()
-	$Options.Add('cidr',$cidr)
-	$Options.Add('name',$name)
+	$Options.Add('cidr', $cidr)
+	$Options.Add('name', $name)
 	if ($comment -and -not [String]::IsNullOrEmpty($comment) -and -not [String]::IsNullOrWhiteSpace($comment)) { $Options.Add('comment', $comment) }
 	Invoke-ProxmoxAPI -Method POST -Resource "/cluster/firewall/aliases" -Options $Options
 }
@@ -1372,7 +1372,7 @@ function Get-ClusterFirewallAliasesName {
 		$name
 	)
 	$Options = @()
-	$Options.Add('name',$name)
+	$Options.Add('name', $name)
 	Invoke-ProxmoxAPI -Method GET -Resource "/cluster/firewall/aliases/{name}" -Options $Options
 }
 function Set-ClusterFirewallAliasesName {
@@ -1397,8 +1397,8 @@ function Set-ClusterFirewallAliasesName {
 		$rename
 	)
 	$Options = @()
-	$Options.Add('cidr',$cidr)
-	$Options.Add('name',$name)
+	$Options.Add('cidr', $cidr)
+	$Options.Add('name', $name)
 	if ($comment -and -not [String]::IsNullOrEmpty($comment) -and -not [String]::IsNullOrWhiteSpace($comment)) { $Options.Add('comment', $comment) }
 	if ($digest -and -not [String]::IsNullOrEmpty($digest) -and -not [String]::IsNullOrWhiteSpace($digest)) { $Options.Add('digest', $digest) }
 	if ($rename -and -not [String]::IsNullOrEmpty($rename) -and -not [String]::IsNullOrWhiteSpace($rename)) { $Options.Add('rename', $rename) }
@@ -1416,7 +1416,7 @@ function Remove-ClusterFirewallAliasesName {
 		$name
 	)
 	$Options = @()
-	$Options.Add('name',$name)
+	$Options.Add('name', $name)
 	if ($digest -and -not [String]::IsNullOrEmpty($digest) -and -not [String]::IsNullOrWhiteSpace($digest)) { $Options.Add('digest', $digest) }
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/cluster/firewall/aliases/{name}" -Options $Options
 }
@@ -1600,7 +1600,7 @@ function Get-ClusterBackupId {
 		$id
 	)
 	$Options = @()
-	$Options.Add('id',$id)
+	$Options.Add('id', $id)
 	Invoke-ProxmoxAPI -Method GET -Resource "/cluster/backup/{id}" -Options $Options
 }
 function Set-ClusterBackupId {
@@ -1708,7 +1708,7 @@ function Set-ClusterBackupId {
 		$zstd
 	)
 	$Options = @()
-	$Options.Add('id',$id)
+	$Options.Add('id', $id)
 	if ($all) { $Options.Add('all', $all) }
 	if ($bwlimit -and -not [String]::IsNullOrEmpty($bwlimit) -and -not [String]::IsNullOrWhiteSpace($bwlimit)) { $Options.Add('bwlimit', $bwlimit) }
 	if ($comment -and -not [String]::IsNullOrEmpty($comment) -and -not [String]::IsNullOrWhiteSpace($comment)) { $Options.Add('comment', $comment) }
@@ -1752,7 +1752,7 @@ function Remove-ClusterBackupId {
 		$id
 	)
 	$Options = @()
-	$Options.Add('id',$id)
+	$Options.Add('id', $id)
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/cluster/backup/{id}" -Options $Options
 }
 function Get-ClusterBackupIncludedVolumes {
@@ -1765,7 +1765,7 @@ function Get-ClusterBackupIncludedVolumes {
 		$id
 	)
 	$Options = @()
-	$Options.Add('id',$id)
+	$Options.Add('id', $id)
 	Invoke-ProxmoxAPI -Method GET -Resource "/cluster/backup/{id}/included_volumes" -Options $Options
 }
 function Get-ClusterStatus {
@@ -1833,7 +1833,7 @@ function New-ClusterHaResources {
 		$type
 	)
 	$Options = @()
-	$Options.Add('sid',$sid)
+	$Options.Add('sid', $sid)
 	if ($comment -and -not [String]::IsNullOrEmpty($comment) -and -not [String]::IsNullOrWhiteSpace($comment)) { $Options.Add('comment', $comment) }
 	if ($group -and -not [String]::IsNullOrEmpty($group) -and -not [String]::IsNullOrWhiteSpace($group)) { $Options.Add('group', $group) }
 	if ($max_relocate -and -not [String]::IsNullOrEmpty($max_relocate) -and -not [String]::IsNullOrWhiteSpace($max_relocate)) { $Options.Add('max_relocate', $max_relocate) }
@@ -1852,7 +1852,7 @@ function Get-ClusterHaResourcesSid {
 		$sid
 	)
 	$Options = @()
-	$Options.Add('sid',$sid)
+	$Options.Add('sid', $sid)
 	Invoke-ProxmoxAPI -Method GET -Resource "/cluster/ha/resources/{sid}" -Options $Options
 }
 function Set-ClusterHaResourcesSid {
@@ -1885,7 +1885,7 @@ function Set-ClusterHaResourcesSid {
 		$state
 	)
 	$Options = @()
-	$Options.Add('sid',$sid)
+	$Options.Add('sid', $sid)
 	if ($comment -and -not [String]::IsNullOrEmpty($comment) -and -not [String]::IsNullOrWhiteSpace($comment)) { $Options.Add('comment', $comment) }
 	if ($delete -and -not [String]::IsNullOrEmpty($delete) -and -not [String]::IsNullOrWhiteSpace($delete)) { $Options.Add('delete', $delete) }
 	if ($digest -and -not [String]::IsNullOrEmpty($digest) -and -not [String]::IsNullOrWhiteSpace($digest)) { $Options.Add('digest', $digest) }
@@ -1904,7 +1904,7 @@ function Remove-ClusterHaResourcesSid {
 		$sid
 	)
 	$Options = @()
-	$Options.Add('sid',$sid)
+	$Options.Add('sid', $sid)
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/cluster/ha/resources/{sid}" -Options $Options
 }
 function New-ClusterHaResourcesMigrate {
@@ -1920,8 +1920,8 @@ function New-ClusterHaResourcesMigrate {
 		$sid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('sid',$sid)
+	$Options.Add('node', $node)
+	$Options.Add('sid', $sid)
 	Invoke-ProxmoxAPI -Method POST -Resource "/cluster/ha/resources/{sid}/migrate" -Options $Options
 }
 function New-ClusterHaResourcesRelocate {
@@ -1937,8 +1937,8 @@ function New-ClusterHaResourcesRelocate {
 		$sid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('sid',$sid)
+	$Options.Add('node', $node)
+	$Options.Add('sid', $sid)
 	Invoke-ProxmoxAPI -Method POST -Resource "/cluster/ha/resources/{sid}/relocate" -Options $Options
 }
 function Get-Nodes {
@@ -1958,7 +1958,7 @@ function Get-Node {
 		$node
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}" -Options $Options
 }
 function Get-NodeQemu {
@@ -1974,7 +1974,7 @@ function Get-NodeQemu {
 		$node
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	if ($full) { $Options.Add('full', $full) }
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu" -Options $Options
 }
@@ -2541,8 +2541,8 @@ function New-NodeQemu {
 		$watchdog
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	if ($acpi) { $Options.Add('acpi', $acpi) }
 	if ($agent -and -not [String]::IsNullOrEmpty($agent) -and -not [String]::IsNullOrWhiteSpace($agent)) { $Options.Add('agent', $agent) }
 	if ($arch -and -not [String]::IsNullOrEmpty($arch) -and -not [String]::IsNullOrWhiteSpace($arch)) { $Options.Add('arch', $arch) }
@@ -2743,8 +2743,8 @@ function Get-NodeQemuVmid {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}" -Options $Options
 }
 function Remove-NodeQemuVmid {
@@ -2770,8 +2770,8 @@ function Remove-NodeQemuVmid {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	if ($destroyunreferenceddisks) { $Options.Add('destroy-unreferenced-disks', $destroyunreferenceddisks) }
 	if ($purge) { $Options.Add('purge', $purge) }
 	if ($skiplock) { $Options.Add('skiplock', $skiplock) }
@@ -2791,8 +2791,8 @@ function Get-NodeQemuFirewall {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/firewall" -Options $Options
 }
 function Get-NodeQemuFirewallRules {
@@ -2809,8 +2809,8 @@ function Get-NodeQemuFirewallRules {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/firewall/rules" -Options $Options
 }
 function New-NodeQemuFirewallRules {
@@ -2873,10 +2873,10 @@ function New-NodeQemuFirewallRules {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('action',$action)
-	$Options.Add('node',$node)
-	$Options.Add('type',$type)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('action', $action)
+	$Options.Add('node', $node)
+	$Options.Add('type', $type)
+	$Options.Add('vmid', $vmid)
 	if ($comment -and -not [String]::IsNullOrEmpty($comment) -and -not [String]::IsNullOrWhiteSpace($comment)) { $Options.Add('comment', $comment) }
 	if ($dest -and -not [String]::IsNullOrEmpty($dest) -and -not [String]::IsNullOrWhiteSpace($dest)) { $Options.Add('dest', $dest) }
 	if ($digest -and -not [String]::IsNullOrEmpty($digest) -and -not [String]::IsNullOrWhiteSpace($digest)) { $Options.Add('digest', $digest) }
@@ -2909,8 +2909,8 @@ function Get-NodeQemuFirewallRulesPos {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	if ($pos -and -not [String]::IsNullOrEmpty($pos) -and -not [String]::IsNullOrWhiteSpace($pos)) { $Options.Add('pos', $pos) }
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/firewall/rules/{pos}" -Options $Options
 }
@@ -2978,8 +2978,8 @@ function Set-NodeQemuFirewallRulesPos {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	if ($action -and -not [String]::IsNullOrEmpty($action) -and -not [String]::IsNullOrWhiteSpace($action)) { $Options.Add('action', $action) }
 	if ($comment -and -not [String]::IsNullOrEmpty($comment) -and -not [String]::IsNullOrWhiteSpace($comment)) { $Options.Add('comment', $comment) }
 	if ($delete -and -not [String]::IsNullOrEmpty($delete) -and -not [String]::IsNullOrWhiteSpace($delete)) { $Options.Add('delete', $delete) }
@@ -3018,8 +3018,8 @@ function Remove-NodeQemuFirewallRulesPos {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	if ($digest -and -not [String]::IsNullOrEmpty($digest) -and -not [String]::IsNullOrWhiteSpace($digest)) { $Options.Add('digest', $digest) }
 	if ($pos -and -not [String]::IsNullOrEmpty($pos) -and -not [String]::IsNullOrWhiteSpace($pos)) { $Options.Add('pos', $pos) }
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/nodes/{node}/qemu/{vmid}/firewall/rules/{pos}" -Options $Options
@@ -3038,8 +3038,8 @@ function Get-NodeQemuAgent {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/agent" -Options $Options
 }
 function New-NodeQemuAgent {
@@ -3060,9 +3060,9 @@ function New-NodeQemuAgent {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('command',$command)
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('command', $command)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/qemu/{vmid}/agent" -Options $Options
 }
 function Get-NodeQemuFirewallAliases {
@@ -3079,8 +3079,8 @@ function Get-NodeQemuFirewallAliases {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/firewall/aliases" -Options $Options
 }
 function New-NodeQemuFirewallAliases {
@@ -3107,10 +3107,10 @@ function New-NodeQemuFirewallAliases {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('cidr',$cidr)
-	$Options.Add('name',$name)
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('cidr', $cidr)
+	$Options.Add('name', $name)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	if ($comment -and -not [String]::IsNullOrEmpty($comment) -and -not [String]::IsNullOrWhiteSpace($comment)) { $Options.Add('comment', $comment) }
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/qemu/{vmid}/firewall/aliases" -Options $Options
 }
@@ -3132,9 +3132,9 @@ function Get-NodeQemuFirewallAliasesName {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('name',$name)
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('name', $name)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/firewall/aliases/{name}" -Options $Options
 }
 function Set-NodeQemuFirewallAliasesName {
@@ -3167,10 +3167,10 @@ function Set-NodeQemuFirewallAliasesName {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('cidr',$cidr)
-	$Options.Add('name',$name)
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('cidr', $cidr)
+	$Options.Add('name', $name)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	if ($comment -and -not [String]::IsNullOrEmpty($comment) -and -not [String]::IsNullOrWhiteSpace($comment)) { $Options.Add('comment', $comment) }
 	if ($digest -and -not [String]::IsNullOrEmpty($digest) -and -not [String]::IsNullOrWhiteSpace($digest)) { $Options.Add('digest', $digest) }
 	if ($rename -and -not [String]::IsNullOrEmpty($rename) -and -not [String]::IsNullOrWhiteSpace($rename)) { $Options.Add('rename', $rename) }
@@ -3196,9 +3196,9 @@ function Remove-NodeQemuFirewallAliasesName {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('name',$name)
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('name', $name)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	if ($digest -and -not [String]::IsNullOrEmpty($digest) -and -not [String]::IsNullOrWhiteSpace($digest)) { $Options.Add('digest', $digest) }
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/nodes/{node}/qemu/{vmid}/firewall/aliases/{name}" -Options $Options
 }
@@ -3227,10 +3227,10 @@ function Get-NodeQemuRrd {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('ds',$ds)
-	$Options.Add('node',$node)
-	$Options.Add('timeframe',$timeframe)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('ds', $ds)
+	$Options.Add('node', $node)
+	$Options.Add('timeframe', $timeframe)
+	$Options.Add('vmid', $vmid)
 	if ($cf -and -not [String]::IsNullOrEmpty($cf) -and -not [String]::IsNullOrWhiteSpace($cf)) { $Options.Add('cf', $cf) }
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/rrd" -Options $Options
 }
@@ -3248,8 +3248,8 @@ function Get-NodeQemuFirewallIpset {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/firewall/ipset" -Options $Options
 }
 function New-NodeQemuFirewallIpset {
@@ -3278,9 +3278,9 @@ function New-NodeQemuFirewallIpset {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('name',$name)
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('name', $name)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	if ($comment -and -not [String]::IsNullOrEmpty($comment) -and -not [String]::IsNullOrWhiteSpace($comment)) { $Options.Add('comment', $comment) }
 	if ($digest -and -not [String]::IsNullOrEmpty($digest) -and -not [String]::IsNullOrWhiteSpace($digest)) { $Options.Add('digest', $digest) }
 	if ($rename -and -not [String]::IsNullOrEmpty($rename) -and -not [String]::IsNullOrWhiteSpace($rename)) { $Options.Add('rename', $rename) }
@@ -3304,9 +3304,9 @@ function Get-NodeQemuFirewallIpsetName {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('name',$name)
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('name', $name)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/firewall/ipset/{name}" -Options $Options
 }
 function New-NodeQemuFirewallIpsetName {
@@ -3336,10 +3336,10 @@ function New-NodeQemuFirewallIpsetName {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('cidr',$cidr)
-	$Options.Add('name',$name)
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('cidr', $cidr)
+	$Options.Add('name', $name)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	if ($comment -and -not [String]::IsNullOrEmpty($comment) -and -not [String]::IsNullOrWhiteSpace($comment)) { $Options.Add('comment', $comment) }
 	if ($nomatch) { $Options.Add('nomatch', $nomatch) }
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/qemu/{vmid}/firewall/ipset/{name}" -Options $Options
@@ -3361,9 +3361,9 @@ function Remove-NodeQemuFirewallIpsetName {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('name',$name)
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('name', $name)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/nodes/{node}/qemu/{vmid}/firewall/ipset/{name}" -Options $Options
 }
 function Get-NodeQemuFirewallIpsetNameCidr {
@@ -3388,10 +3388,10 @@ function Get-NodeQemuFirewallIpsetNameCidr {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('cidr',$cidr)
-	$Options.Add('name',$name)
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('cidr', $cidr)
+	$Options.Add('name', $name)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/firewall/ipset/{name}/{cidr}" -Options $Options
 }
 function Set-NodeQemuFirewallIpsetNameCidr {
@@ -3424,10 +3424,10 @@ function Set-NodeQemuFirewallIpsetNameCidr {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('cidr',$cidr)
-	$Options.Add('name',$name)
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('cidr', $cidr)
+	$Options.Add('name', $name)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	if ($comment -and -not [String]::IsNullOrEmpty($comment) -and -not [String]::IsNullOrWhiteSpace($comment)) { $Options.Add('comment', $comment) }
 	if ($digest -and -not [String]::IsNullOrEmpty($digest) -and -not [String]::IsNullOrWhiteSpace($digest)) { $Options.Add('digest', $digest) }
 	if ($nomatch) { $Options.Add('nomatch', $nomatch) }
@@ -3457,10 +3457,10 @@ function Remove-NodeQemuFirewallIpsetNameCidr {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('cidr',$cidr)
-	$Options.Add('name',$name)
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('cidr', $cidr)
+	$Options.Add('name', $name)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	if ($digest -and -not [String]::IsNullOrEmpty($digest) -and -not [String]::IsNullOrWhiteSpace($digest)) { $Options.Add('digest', $digest) }
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/nodes/{node}/qemu/{vmid}/firewall/ipset/{name}/{cidr}" -Options $Options
 }
@@ -3485,9 +3485,9 @@ function Get-NodeQemuRrddata {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('timeframe',$timeframe)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('timeframe', $timeframe)
+	$Options.Add('vmid', $vmid)
 	if ($cf -and -not [String]::IsNullOrEmpty($cf) -and -not [String]::IsNullOrWhiteSpace($cf)) { $Options.Add('cf', $cf) }
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/rrddata" -Options $Options
 }
@@ -3505,8 +3505,8 @@ function Get-NodeQemuFirewallOptions {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/firewall/options" -Options $Options
 }
 function Set-NodeQemuFirewallOptions {
@@ -3558,8 +3558,8 @@ function Set-NodeQemuFirewallOptions {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	if ($delete -and -not [String]::IsNullOrEmpty($delete) -and -not [String]::IsNullOrWhiteSpace($delete)) { $Options.Add('delete', $delete) }
 	if ($dhcp) { $Options.Add('dhcp', $dhcp) }
 	if ($digest -and -not [String]::IsNullOrEmpty($digest) -and -not [String]::IsNullOrWhiteSpace($digest)) { $Options.Add('digest', $digest) }
@@ -3594,8 +3594,8 @@ function Get-NodeQemuConfig {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	if ($current) { $Options.Add('current', $current) }
 	if ($snapshot -and -not [String]::IsNullOrEmpty($snapshot) -and -not [String]::IsNullOrWhiteSpace($snapshot)) { $Options.Add('snapshot', $snapshot) }
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/config" -Options $Options
@@ -4157,8 +4157,8 @@ function New-NodeQemuConfig {
 		$watchdog
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	if ($acpi) { $Options.Add('acpi', $acpi) }
 	if ($agent -and -not [String]::IsNullOrEmpty($agent) -and -not [String]::IsNullOrWhiteSpace($agent)) { $Options.Add('agent', $agent) }
 	if ($arch -and -not [String]::IsNullOrEmpty($arch) -and -not [String]::IsNullOrWhiteSpace($arch)) { $Options.Add('arch', $arch) }
@@ -4896,8 +4896,8 @@ function Set-NodeQemuConfig {
 		$watchdog
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	if ($acpi) { $Options.Add('acpi', $acpi) }
 	if ($agent -and -not [String]::IsNullOrEmpty($agent) -and -not [String]::IsNullOrWhiteSpace($agent)) { $Options.Add('agent', $agent) }
 	if ($arch -and -not [String]::IsNullOrEmpty($arch) -and -not [String]::IsNullOrWhiteSpace($arch)) { $Options.Add('arch', $arch) }
@@ -5101,8 +5101,8 @@ function Get-NodeQemuFirewallLog {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	if ($limit -and -not [String]::IsNullOrEmpty($limit) -and -not [String]::IsNullOrWhiteSpace($limit)) { $Options.Add('limit', $limit) }
 	if ($start -and -not [String]::IsNullOrEmpty($start) -and -not [String]::IsNullOrWhiteSpace($start)) { $Options.Add('start', $start) }
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/firewall/log" -Options $Options
@@ -5121,8 +5121,8 @@ function Get-NodeQemuPending {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/pending" -Options $Options
 }
 function Get-NodeQemuFirewallRefs {
@@ -5142,8 +5142,8 @@ function Get-NodeQemuFirewallRefs {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	if ($type -and -not [String]::IsNullOrEmpty($type) -and -not [String]::IsNullOrWhiteSpace($type)) { $Options.Add('type', $type) }
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/firewall/refs" -Options $Options
 }
@@ -5164,9 +5164,9 @@ function Set-NodeQemuUnlink {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('idlist',$idlist)
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('idlist', $idlist)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	if ($force) { $Options.Add('force', $force) }
 	Invoke-ProxmoxAPI -Method PUT -Resource "/nodes/{node}/qemu/{vmid}/unlink" -Options $Options
 }
@@ -5184,8 +5184,8 @@ function New-NodeQemuAgentFsfreezeFreeze {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/qemu/{vmid}/agent/fsfreeze-freeze" -Options $Options
 }
 function New-NodeQemuVncproxy {
@@ -5207,8 +5207,8 @@ function New-NodeQemuVncproxy {
 		$websocket
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	if ($generatepassword) { $Options.Add('generate-password', $generatepassword) }
 	if ($websocket) { $Options.Add('websocket', $websocket) }
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/qemu/{vmid}/vncproxy" -Options $Options
@@ -5227,8 +5227,8 @@ function New-NodeQemuAgentFsfreezeStatus {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/qemu/{vmid}/agent/fsfreeze-status" -Options $Options
 }
 function New-NodeQemuTermproxy {
@@ -5247,8 +5247,8 @@ function New-NodeQemuTermproxy {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	if ($serial -and -not [String]::IsNullOrEmpty($serial) -and -not [String]::IsNullOrWhiteSpace($serial)) { $Options.Add('serial', $serial) }
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/qemu/{vmid}/termproxy" -Options $Options
 }
@@ -5266,8 +5266,8 @@ function New-NodeQemuAgentFsfreezeThaw {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/qemu/{vmid}/agent/fsfreeze-thaw" -Options $Options
 }
 function Get-NodeQemuVncwebsocket {
@@ -5292,10 +5292,10 @@ function Get-NodeQemuVncwebsocket {
 		$vncticket
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('port',$port)
-	$Options.Add('vmid',$vmid)
-	$Options.Add('vncticket',$vncticket)
+	$Options.Add('node', $node)
+	$Options.Add('port', $port)
+	$Options.Add('vmid', $vmid)
+	$Options.Add('vncticket', $vncticket)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/vncwebsocket" -Options $Options
 }
 function New-NodeQemuAgentFstrim {
@@ -5312,8 +5312,8 @@ function New-NodeQemuAgentFstrim {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/qemu/{vmid}/agent/fstrim" -Options $Options
 }
 function New-NodeQemuSpiceproxy {
@@ -5332,8 +5332,8 @@ function New-NodeQemuSpiceproxy {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	if ($proxy -and -not [String]::IsNullOrEmpty($proxy) -and -not [String]::IsNullOrWhiteSpace($proxy)) { $Options.Add('proxy', $proxy) }
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/qemu/{vmid}/spiceproxy" -Options $Options
 }
@@ -5351,8 +5351,8 @@ function Get-NodeQemuAgentGetFsinfo {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/agent/get-fsinfo" -Options $Options
 }
 function Get-NodeQemuStatus {
@@ -5369,8 +5369,8 @@ function Get-NodeQemuStatus {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/status" -Options $Options
 }
 function Get-NodeQemuAgentGetHostName {
@@ -5387,8 +5387,8 @@ function Get-NodeQemuAgentGetHostName {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/agent/get-host-name" -Options $Options
 }
 function Set-NodeQemuSendkey {
@@ -5411,9 +5411,9 @@ function Set-NodeQemuSendkey {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('key',$key)
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('key', $key)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	if ($skiplock) { $Options.Add('skiplock', $skiplock) }
 	Invoke-ProxmoxAPI -Method PUT -Resource "/nodes/{node}/qemu/{vmid}/sendkey" -Options $Options
 }
@@ -5431,8 +5431,8 @@ function Get-NodeQemuAgentGetMemoryBlockInfo {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/agent/get-memory-block-info" -Options $Options
 }
 function Get-NodeQemuFeature {
@@ -5456,9 +5456,9 @@ function Get-NodeQemuFeature {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('feature',$feature)
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('feature', $feature)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	if ($snapname -and -not [String]::IsNullOrEmpty($snapname) -and -not [String]::IsNullOrWhiteSpace($snapname)) { $Options.Add('snapname', $snapname) }
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/feature" -Options $Options
 }
@@ -5476,8 +5476,8 @@ function Get-NodeQemuAgentGetMemoryBlocks {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/agent/get-memory-blocks" -Options $Options
 }
 function New-NodeQemuClone {
@@ -5525,9 +5525,9 @@ function New-NodeQemuClone {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('newid',$newid)
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('newid', $newid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	if ($bwlimit -and -not [String]::IsNullOrEmpty($bwlimit) -and -not [String]::IsNullOrWhiteSpace($bwlimit)) { $Options.Add('bwlimit', $bwlimit) }
 	if ($description -and -not [String]::IsNullOrEmpty($description) -and -not [String]::IsNullOrWhiteSpace($description)) { $Options.Add('description', $description) }
 	if ($format -and -not [String]::IsNullOrEmpty($format) -and -not [String]::IsNullOrWhiteSpace($format)) { $Options.Add('format', $format) }
@@ -5553,8 +5553,8 @@ function Get-NodeQemuAgentGetOsinfo {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/agent/get-osinfo" -Options $Options
 }
 function New-NodeQemuMoveDisk {
@@ -5599,9 +5599,9 @@ function New-NodeQemuMoveDisk {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('disk',$disk)
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('disk', $disk)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	if ($bwlimit -and -not [String]::IsNullOrEmpty($bwlimit) -and -not [String]::IsNullOrWhiteSpace($bwlimit)) { $Options.Add('bwlimit', $bwlimit) }
 	if ($delete) { $Options.Add('delete', $delete) }
 	if ($digest -and -not [String]::IsNullOrEmpty($digest) -and -not [String]::IsNullOrWhiteSpace($digest)) { $Options.Add('digest', $digest) }
@@ -5626,8 +5626,8 @@ function Get-NodeQemuAgentGetTime {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/agent/get-time" -Options $Options
 }
 function Get-NodeQemuMigrate {
@@ -5647,8 +5647,8 @@ function Get-NodeQemuMigrate {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	if ($target -and -not [String]::IsNullOrEmpty($target) -and -not [String]::IsNullOrWhiteSpace($target)) { $Options.Add('target', $target) }
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/migrate" -Options $Options
 }
@@ -5688,9 +5688,9 @@ function New-NodeQemuMigrate {
 		$withlocaldisks
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('target',$target)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('target', $target)
+	$Options.Add('vmid', $vmid)
 	if ($bwlimit -and -not [String]::IsNullOrEmpty($bwlimit) -and -not [String]::IsNullOrWhiteSpace($bwlimit)) { $Options.Add('bwlimit', $bwlimit) }
 	if ($force) { $Options.Add('force', $force) }
 	if ($migration_network -and -not [String]::IsNullOrEmpty($migration_network) -and -not [String]::IsNullOrWhiteSpace($migration_network)) { $Options.Add('migration_network', $migration_network) }
@@ -5714,8 +5714,8 @@ function Get-NodeQemuAgentGetTimezone {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/agent/get-timezone" -Options $Options
 }
 function New-NodeQemuMonitor {
@@ -5736,9 +5736,9 @@ function New-NodeQemuMonitor {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('command',$command)
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('command', $command)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/qemu/{vmid}/monitor" -Options $Options
 }
 function Get-NodeQemuAgentGetUsers {
@@ -5755,8 +5755,8 @@ function Get-NodeQemuAgentGetUsers {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/agent/get-users" -Options $Options
 }
 function Set-NodeQemuResize {
@@ -5786,10 +5786,10 @@ function Set-NodeQemuResize {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('disk',$disk)
-	$Options.Add('node',$node)
-	$Options.Add('size',$size)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('disk', $disk)
+	$Options.Add('node', $node)
+	$Options.Add('size', $size)
+	$Options.Add('vmid', $vmid)
 	if ($digest -and -not [String]::IsNullOrEmpty($digest) -and -not [String]::IsNullOrWhiteSpace($digest)) { $Options.Add('digest', $digest) }
 	if ($skiplock) { $Options.Add('skiplock', $skiplock) }
 	Invoke-ProxmoxAPI -Method PUT -Resource "/nodes/{node}/qemu/{vmid}/resize" -Options $Options
@@ -5808,8 +5808,8 @@ function Get-NodeQemuAgentGetVcpus {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/agent/get-vcpus" -Options $Options
 }
 function Get-NodeQemuSnapshot {
@@ -5826,8 +5826,8 @@ function Get-NodeQemuSnapshot {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/snapshot" -Options $Options
 }
 function New-NodeQemuSnapshot {
@@ -5854,9 +5854,9 @@ function New-NodeQemuSnapshot {
 		$vmstate
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('snapname',$snapname)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('snapname', $snapname)
+	$Options.Add('vmid', $vmid)
 	if ($description -and -not [String]::IsNullOrEmpty($description) -and -not [String]::IsNullOrWhiteSpace($description)) { $Options.Add('description', $description) }
 	if ($vmstate) { $Options.Add('vmstate', $vmstate) }
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/qemu/{vmid}/snapshot" -Options $Options
@@ -5875,8 +5875,8 @@ function Get-NodeQemuAgentInfo {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/agent/info" -Options $Options
 }
 function New-NodeQemuTemplate {
@@ -5896,8 +5896,8 @@ function New-NodeQemuTemplate {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	if ($disk -and -not [String]::IsNullOrEmpty($disk) -and -not [String]::IsNullOrWhiteSpace($disk)) { $Options.Add('disk', $disk) }
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/qemu/{vmid}/template" -Options $Options
 }
@@ -5915,8 +5915,8 @@ function Get-NodeQemuAgentNetworkGetInterfaces {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/qemu/{vmid}/agent/network-get-interfaces" -Options $Options
 }
 function New-NodeQemuAgentPing {
@@ -5933,8 +5933,8 @@ function New-NodeQemuAgentPing {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/qemu/{vmid}/agent/ping" -Options $Options
 }
 function Get-NodeLxc {
@@ -5947,7 +5947,7 @@ function Get-NodeLxc {
 		$node
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/lxc" -Options $Options
 }
 function New-NodeLxc {
@@ -6136,9 +6136,9 @@ function New-NodeLxc {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('ostemplate',$ostemplate)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('ostemplate', $ostemplate)
+	$Options.Add('vmid', $vmid)
 	if ($arch -and -not [String]::IsNullOrEmpty($arch) -and -not [String]::IsNullOrWhiteSpace($arch)) { $Options.Add('arch', $arch) }
 	if ($bwlimit -and -not [String]::IsNullOrEmpty($bwlimit) -and -not [String]::IsNullOrWhiteSpace($bwlimit)) { $Options.Add('bwlimit', $bwlimit) }
 	if ($cmode -and -not [String]::IsNullOrEmpty($cmode) -and -not [String]::IsNullOrWhiteSpace($cmode)) { $Options.Add('cmode', $cmode) }
@@ -6213,8 +6213,8 @@ function Get-NodeLxcVmid {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/lxc/{vmid}" -Options $Options
 }
 function Remove-NodeLxcVmid {
@@ -6237,8 +6237,8 @@ function Remove-NodeLxcVmid {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	if ($destroyunreferenceddisks) { $Options.Add('destroy-unreferenced-disks', $destroyunreferenceddisks) }
 	if ($force) { $Options.Add('force', $force) }
 	if ($purge) { $Options.Add('purge', $purge) }
@@ -6264,8 +6264,8 @@ function Get-NodeLxcConfig {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	if ($current) { $Options.Add('current', $current) }
 	if ($snapshot -and -not [String]::IsNullOrEmpty($snapshot) -and -not [String]::IsNullOrWhiteSpace($snapshot)) { $Options.Add('snapshot', $snapshot) }
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/lxc/{vmid}/config" -Options $Options
@@ -6433,8 +6433,8 @@ function Set-NodeLxcConfig {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	if ($arch -and -not [String]::IsNullOrEmpty($arch) -and -not [String]::IsNullOrWhiteSpace($arch)) { $Options.Add('arch', $arch) }
 	if ($cmode -and -not [String]::IsNullOrEmpty($cmode) -and -not [String]::IsNullOrWhiteSpace($cmode)) { $Options.Add('cmode', $cmode) }
 	if ($console) { $Options.Add('console', $console) }
@@ -6502,8 +6502,8 @@ function Get-NodeLxcStatus {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/lxc/{vmid}/status" -Options $Options
 }
 function Get-NodeLxcStatusCurrent {
@@ -6520,8 +6520,8 @@ function Get-NodeLxcStatusCurrent {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/lxc/{vmid}/status/current" -Options $Options
 }
 function Get-NodeLxcSnapshot {
@@ -6538,8 +6538,8 @@ function Get-NodeLxcSnapshot {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/lxc/{vmid}/snapshot" -Options $Options
 }
 function New-NodeLxcSnapshot {
@@ -6563,9 +6563,9 @@ function New-NodeLxcSnapshot {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('snapname',$snapname)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('snapname', $snapname)
+	$Options.Add('vmid', $vmid)
 	if ($description -and -not [String]::IsNullOrEmpty($description) -and -not [String]::IsNullOrWhiteSpace($description)) { $Options.Add('description', $description) }
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/lxc/{vmid}/snapshot" -Options $Options
 }
@@ -6586,8 +6586,8 @@ function New-NodeLxcStatusStart {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	if ($debug) { $Options.Add('debug', $debug) }
 	if ($skiplock) { $Options.Add('skiplock', $skiplock) }
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/lxc/{vmid}/status/start" -Options $Options
@@ -6606,8 +6606,8 @@ function Get-NodeLxcFirewall {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/lxc/{vmid}/firewall" -Options $Options
 }
 function New-NodeLxcStatusStop {
@@ -6627,8 +6627,8 @@ function New-NodeLxcStatusStop {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	if ($skiplock) { $Options.Add('skiplock', $skiplock) }
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/lxc/{vmid}/status/stop" -Options $Options
 }
@@ -6657,10 +6657,10 @@ function Get-NodeLxcRrd {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('ds',$ds)
-	$Options.Add('node',$node)
-	$Options.Add('timeframe',$timeframe)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('ds', $ds)
+	$Options.Add('node', $node)
+	$Options.Add('timeframe', $timeframe)
+	$Options.Add('vmid', $vmid)
 	if ($cf -and -not [String]::IsNullOrEmpty($cf) -and -not [String]::IsNullOrWhiteSpace($cf)) { $Options.Add('cf', $cf) }
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/lxc/{vmid}/rrd" -Options $Options
 }
@@ -6684,8 +6684,8 @@ function New-NodeLxcStatusShutdown {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	if ($forceStop) { $Options.Add('forceStop', $forceStop) }
 	if ($timeout -and -not [String]::IsNullOrEmpty($timeout) -and -not [String]::IsNullOrWhiteSpace($timeout)) { $Options.Add('timeout', $timeout) }
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/lxc/{vmid}/status/shutdown" -Options $Options
@@ -6711,9 +6711,9 @@ function Get-NodeLxcRrddata {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('timeframe',$timeframe)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('timeframe', $timeframe)
+	$Options.Add('vmid', $vmid)
 	if ($cf -and -not [String]::IsNullOrEmpty($cf) -and -not [String]::IsNullOrWhiteSpace($cf)) { $Options.Add('cf', $cf) }
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/lxc/{vmid}/rrddata" -Options $Options
 }
@@ -6731,8 +6731,8 @@ function New-NodeLxcStatusSuspend {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/lxc/{vmid}/status/suspend" -Options $Options
 }
 function New-NodeLxcVncproxy {
@@ -6757,8 +6757,8 @@ function New-NodeLxcVncproxy {
 		$width
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	if ($height -and -not [String]::IsNullOrEmpty($height) -and -not [String]::IsNullOrWhiteSpace($height)) { $Options.Add('height', $height) }
 	if ($websocket) { $Options.Add('websocket', $websocket) }
 	if ($width -and -not [String]::IsNullOrEmpty($width) -and -not [String]::IsNullOrWhiteSpace($width)) { $Options.Add('width', $width) }
@@ -6778,8 +6778,8 @@ function New-NodeLxcStatusResume {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/lxc/{vmid}/status/resume" -Options $Options
 }
 function New-NodeLxcTermproxy {
@@ -6795,8 +6795,8 @@ function New-NodeLxcTermproxy {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/lxc/{vmid}/termproxy" -Options $Options
 }
 function New-NodeLxcStatusReboot {
@@ -6816,8 +6816,8 @@ function New-NodeLxcStatusReboot {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	if ($timeout -and -not [String]::IsNullOrEmpty($timeout) -and -not [String]::IsNullOrWhiteSpace($timeout)) { $Options.Add('timeout', $timeout) }
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/lxc/{vmid}/status/reboot" -Options $Options
 }
@@ -6843,10 +6843,10 @@ function Get-NodeLxcVncwebsocket {
 		$vncticket
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('port',$port)
-	$Options.Add('vmid',$vmid)
-	$Options.Add('vncticket',$vncticket)
+	$Options.Add('node', $node)
+	$Options.Add('port', $port)
+	$Options.Add('vmid', $vmid)
+	$Options.Add('vncticket', $vncticket)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/lxc/{vmid}/vncwebsocket" -Options $Options
 }
 function Get-NodeLxcSnapshotSnapname {
@@ -6867,9 +6867,9 @@ function Get-NodeLxcSnapshotSnapname {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('snapname',$snapname)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('snapname', $snapname)
+	$Options.Add('vmid', $vmid)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/lxc/{vmid}/snapshot/{snapname}" -Options $Options
 }
 function Remove-NodeLxcSnapshotSnapname {
@@ -6890,9 +6890,9 @@ function Remove-NodeLxcSnapshotSnapname {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('snapname',$snapname)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('snapname', $snapname)
+	$Options.Add('vmid', $vmid)
 	if ($force) { $Options.Add('force', $force) }
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/nodes/{node}/lxc/{vmid}/snapshot/{snapname}" -Options $Options
 }
@@ -6914,9 +6914,9 @@ function New-NodeLxcSnapshotSnapnameRollback {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('snapname',$snapname)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('snapname', $snapname)
+	$Options.Add('vmid', $vmid)
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/lxc/{vmid}/snapshot/{snapname}/rollback" -Options $Options
 }
 function Get-NodeLxcSnapshotSnapnameConfig {
@@ -6937,9 +6937,9 @@ function Get-NodeLxcSnapshotSnapnameConfig {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('snapname',$snapname)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('snapname', $snapname)
+	$Options.Add('vmid', $vmid)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/lxc/{vmid}/snapshot/{snapname}/config" -Options $Options
 }
 function Set-NodeLxcSnapshotSnapnameConfig {
@@ -6962,9 +6962,9 @@ function Set-NodeLxcSnapshotSnapnameConfig {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('snapname',$snapname)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('snapname', $snapname)
+	$Options.Add('vmid', $vmid)
 	if ($description -and -not [String]::IsNullOrEmpty($description) -and -not [String]::IsNullOrWhiteSpace($description)) { $Options.Add('description', $description) }
 	Invoke-ProxmoxAPI -Method PUT -Resource "/nodes/{node}/lxc/{vmid}/snapshot/{snapname}/config" -Options $Options
 }
@@ -6984,8 +6984,8 @@ function New-NodeLxcSpiceproxy {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	if ($proxy -and -not [String]::IsNullOrEmpty($proxy) -and -not [String]::IsNullOrWhiteSpace($proxy)) { $Options.Add('proxy', $proxy) }
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/lxc/{vmid}/spiceproxy" -Options $Options
 }
@@ -7003,8 +7003,8 @@ function Get-NodeLxcFirewallRules {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/lxc/{vmid}/firewall/rules" -Options $Options
 }
 function New-NodeLxcFirewallRules {
@@ -7067,10 +7067,10 @@ function New-NodeLxcFirewallRules {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('action',$action)
-	$Options.Add('node',$node)
-	$Options.Add('type',$type)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('action', $action)
+	$Options.Add('node', $node)
+	$Options.Add('type', $type)
+	$Options.Add('vmid', $vmid)
 	if ($comment -and -not [String]::IsNullOrEmpty($comment) -and -not [String]::IsNullOrWhiteSpace($comment)) { $Options.Add('comment', $comment) }
 	if ($dest -and -not [String]::IsNullOrEmpty($dest) -and -not [String]::IsNullOrWhiteSpace($dest)) { $Options.Add('dest', $dest) }
 	if ($digest -and -not [String]::IsNullOrEmpty($digest) -and -not [String]::IsNullOrWhiteSpace($digest)) { $Options.Add('digest', $digest) }
@@ -7103,8 +7103,8 @@ function Get-NodeLxcFirewallRulesPos {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	if ($pos -and -not [String]::IsNullOrEmpty($pos) -and -not [String]::IsNullOrWhiteSpace($pos)) { $Options.Add('pos', $pos) }
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/lxc/{vmid}/firewall/rules/{pos}" -Options $Options
 }
@@ -7172,8 +7172,8 @@ function Set-NodeLxcFirewallRulesPos {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	if ($action -and -not [String]::IsNullOrEmpty($action) -and -not [String]::IsNullOrWhiteSpace($action)) { $Options.Add('action', $action) }
 	if ($comment -and -not [String]::IsNullOrEmpty($comment) -and -not [String]::IsNullOrWhiteSpace($comment)) { $Options.Add('comment', $comment) }
 	if ($delete -and -not [String]::IsNullOrEmpty($delete) -and -not [String]::IsNullOrWhiteSpace($delete)) { $Options.Add('delete', $delete) }
@@ -7212,8 +7212,8 @@ function Remove-NodeLxcFirewallRulesPos {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	if ($digest -and -not [String]::IsNullOrEmpty($digest) -and -not [String]::IsNullOrWhiteSpace($digest)) { $Options.Add('digest', $digest) }
 	if ($pos -and -not [String]::IsNullOrEmpty($pos) -and -not [String]::IsNullOrWhiteSpace($pos)) { $Options.Add('pos', $pos) }
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/nodes/{node}/lxc/{vmid}/firewall/rules/{pos}" -Options $Options
@@ -7248,9 +7248,9 @@ function New-NodeLxcMigrate {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('target',$target)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('target', $target)
+	$Options.Add('vmid', $vmid)
 	if ($bwlimit -and -not [String]::IsNullOrEmpty($bwlimit) -and -not [String]::IsNullOrWhiteSpace($bwlimit)) { $Options.Add('bwlimit', $bwlimit) }
 	if ($online) { $Options.Add('online', $online) }
 	if ($restart) { $Options.Add('restart', $restart) }
@@ -7271,8 +7271,8 @@ function Get-NodeLxcFirewallAliases {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/lxc/{vmid}/firewall/aliases" -Options $Options
 }
 function New-NodeLxcFirewallAliases {
@@ -7299,10 +7299,10 @@ function New-NodeLxcFirewallAliases {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('cidr',$cidr)
-	$Options.Add('name',$name)
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('cidr', $cidr)
+	$Options.Add('name', $name)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	if ($comment -and -not [String]::IsNullOrEmpty($comment) -and -not [String]::IsNullOrWhiteSpace($comment)) { $Options.Add('comment', $comment) }
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/lxc/{vmid}/firewall/aliases" -Options $Options
 }
@@ -7324,9 +7324,9 @@ function Get-NodeLxcFirewallAliasesName {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('name',$name)
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('name', $name)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/lxc/{vmid}/firewall/aliases/{name}" -Options $Options
 }
 function Set-NodeLxcFirewallAliasesName {
@@ -7359,10 +7359,10 @@ function Set-NodeLxcFirewallAliasesName {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('cidr',$cidr)
-	$Options.Add('name',$name)
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('cidr', $cidr)
+	$Options.Add('name', $name)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	if ($comment -and -not [String]::IsNullOrEmpty($comment) -and -not [String]::IsNullOrWhiteSpace($comment)) { $Options.Add('comment', $comment) }
 	if ($digest -and -not [String]::IsNullOrEmpty($digest) -and -not [String]::IsNullOrWhiteSpace($digest)) { $Options.Add('digest', $digest) }
 	if ($rename -and -not [String]::IsNullOrEmpty($rename) -and -not [String]::IsNullOrWhiteSpace($rename)) { $Options.Add('rename', $rename) }
@@ -7388,9 +7388,9 @@ function Remove-NodeLxcFirewallAliasesName {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('name',$name)
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('name', $name)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	if ($digest -and -not [String]::IsNullOrEmpty($digest) -and -not [String]::IsNullOrWhiteSpace($digest)) { $Options.Add('digest', $digest) }
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/nodes/{node}/lxc/{vmid}/firewall/aliases/{name}" -Options $Options
 }
@@ -7415,9 +7415,9 @@ function Get-NodeLxcFeature {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('feature',$feature)
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('feature', $feature)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	if ($snapname -and -not [String]::IsNullOrEmpty($snapname) -and -not [String]::IsNullOrWhiteSpace($snapname)) { $Options.Add('snapname', $snapname) }
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/lxc/{vmid}/feature" -Options $Options
 }
@@ -7435,8 +7435,8 @@ function Get-NodeLxcFirewallIpset {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/lxc/{vmid}/firewall/ipset" -Options $Options
 }
 function New-NodeLxcFirewallIpset {
@@ -7465,9 +7465,9 @@ function New-NodeLxcFirewallIpset {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('name',$name)
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('name', $name)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	if ($comment -and -not [String]::IsNullOrEmpty($comment) -and -not [String]::IsNullOrWhiteSpace($comment)) { $Options.Add('comment', $comment) }
 	if ($digest -and -not [String]::IsNullOrEmpty($digest) -and -not [String]::IsNullOrWhiteSpace($digest)) { $Options.Add('digest', $digest) }
 	if ($rename -and -not [String]::IsNullOrEmpty($rename) -and -not [String]::IsNullOrWhiteSpace($rename)) { $Options.Add('rename', $rename) }
@@ -7491,9 +7491,9 @@ function Get-NodeLxcFirewallIpsetName {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('name',$name)
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('name', $name)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/lxc/{vmid}/firewall/ipset/{name}" -Options $Options
 }
 function New-NodeLxcFirewallIpsetName {
@@ -7523,10 +7523,10 @@ function New-NodeLxcFirewallIpsetName {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('cidr',$cidr)
-	$Options.Add('name',$name)
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('cidr', $cidr)
+	$Options.Add('name', $name)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	if ($comment -and -not [String]::IsNullOrEmpty($comment) -and -not [String]::IsNullOrWhiteSpace($comment)) { $Options.Add('comment', $comment) }
 	if ($nomatch) { $Options.Add('nomatch', $nomatch) }
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/lxc/{vmid}/firewall/ipset/{name}" -Options $Options
@@ -7548,9 +7548,9 @@ function Remove-NodeLxcFirewallIpsetName {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('name',$name)
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('name', $name)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/nodes/{node}/lxc/{vmid}/firewall/ipset/{name}" -Options $Options
 }
 function Get-NodeLxcFirewallIpsetNameCidr {
@@ -7575,10 +7575,10 @@ function Get-NodeLxcFirewallIpsetNameCidr {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('cidr',$cidr)
-	$Options.Add('name',$name)
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('cidr', $cidr)
+	$Options.Add('name', $name)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/lxc/{vmid}/firewall/ipset/{name}/{cidr}" -Options $Options
 }
 function Set-NodeLxcFirewallIpsetNameCidr {
@@ -7611,10 +7611,10 @@ function Set-NodeLxcFirewallIpsetNameCidr {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('cidr',$cidr)
-	$Options.Add('name',$name)
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('cidr', $cidr)
+	$Options.Add('name', $name)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	if ($comment -and -not [String]::IsNullOrEmpty($comment) -and -not [String]::IsNullOrWhiteSpace($comment)) { $Options.Add('comment', $comment) }
 	if ($digest -and -not [String]::IsNullOrEmpty($digest) -and -not [String]::IsNullOrWhiteSpace($digest)) { $Options.Add('digest', $digest) }
 	if ($nomatch) { $Options.Add('nomatch', $nomatch) }
@@ -7644,10 +7644,10 @@ function Remove-NodeLxcFirewallIpsetNameCidr {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('cidr',$cidr)
-	$Options.Add('name',$name)
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('cidr', $cidr)
+	$Options.Add('name', $name)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	if ($digest -and -not [String]::IsNullOrEmpty($digest) -and -not [String]::IsNullOrWhiteSpace($digest)) { $Options.Add('digest', $digest) }
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/nodes/{node}/lxc/{vmid}/firewall/ipset/{name}/{cidr}" -Options $Options
 }
@@ -7664,8 +7664,8 @@ function New-NodeLxcTemplate {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/lxc/{vmid}/template" -Options $Options
 }
 function Get-NodeLxcFirewallOptions {
@@ -7682,8 +7682,8 @@ function Get-NodeLxcFirewallOptions {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/lxc/{vmid}/firewall/options" -Options $Options
 }
 function Set-NodeLxcFirewallOptions {
@@ -7735,8 +7735,8 @@ function Set-NodeLxcFirewallOptions {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	if ($delete -and -not [String]::IsNullOrEmpty($delete) -and -not [String]::IsNullOrWhiteSpace($delete)) { $Options.Add('delete', $delete) }
 	if ($dhcp) { $Options.Add('dhcp', $dhcp) }
 	if ($digest -and -not [String]::IsNullOrEmpty($digest) -and -not [String]::IsNullOrWhiteSpace($digest)) { $Options.Add('digest', $digest) }
@@ -7793,9 +7793,9 @@ function New-NodeLxcClone {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('newid',$newid)
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('newid', $newid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	if ($bwlimit -and -not [String]::IsNullOrEmpty($bwlimit) -and -not [String]::IsNullOrWhiteSpace($bwlimit)) { $Options.Add('bwlimit', $bwlimit) }
 	if ($description -and -not [String]::IsNullOrEmpty($description) -and -not [String]::IsNullOrWhiteSpace($description)) { $Options.Add('description', $description) }
 	if ($full) { $Options.Add('full', $full) }
@@ -7826,8 +7826,8 @@ function Get-NodeLxcFirewallLog {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	if ($limit -and -not [String]::IsNullOrEmpty($limit) -and -not [String]::IsNullOrWhiteSpace($limit)) { $Options.Add('limit', $limit) }
 	if ($start -and -not [String]::IsNullOrEmpty($start) -and -not [String]::IsNullOrWhiteSpace($start)) { $Options.Add('start', $start) }
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/lxc/{vmid}/firewall/log" -Options $Options
@@ -7857,10 +7857,10 @@ function Set-NodeLxcResize {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('disk',$disk)
-	$Options.Add('node',$node)
-	$Options.Add('size',$size)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('disk', $disk)
+	$Options.Add('node', $node)
+	$Options.Add('size', $size)
+	$Options.Add('vmid', $vmid)
 	if ($digest -and -not [String]::IsNullOrEmpty($digest) -and -not [String]::IsNullOrWhiteSpace($digest)) { $Options.Add('digest', $digest) }
 	Invoke-ProxmoxAPI -Method PUT -Resource "/nodes/{node}/lxc/{vmid}/resize" -Options $Options
 }
@@ -7881,8 +7881,8 @@ function Get-NodeLxcFirewallRefs {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	if ($type -and -not [String]::IsNullOrEmpty($type) -and -not [String]::IsNullOrWhiteSpace($type)) { $Options.Add('type', $type) }
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/lxc/{vmid}/firewall/refs" -Options $Options
 }
@@ -7925,9 +7925,9 @@ function New-NodeLxcMoveVolume {
 		$volume
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
-	$Options.Add('volume',$volume)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
+	$Options.Add('volume', $volume)
 	if ($bwlimit -and -not [String]::IsNullOrEmpty($bwlimit) -and -not [String]::IsNullOrWhiteSpace($bwlimit)) { $Options.Add('bwlimit', $bwlimit) }
 	if ($delete) { $Options.Add('delete', $delete) }
 	if ($digest -and -not [String]::IsNullOrEmpty($digest) -and -not [String]::IsNullOrWhiteSpace($digest)) { $Options.Add('digest', $digest) }
@@ -7951,8 +7951,8 @@ function Get-NodeLxcPending {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('node', $node)
+	$Options.Add('vmid', $vmid)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/lxc/{vmid}/pending" -Options $Options
 }
 function Get-NodeCeph {
@@ -7965,7 +7965,7 @@ function Get-NodeCeph {
 		$node
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/ceph" -Options $Options
 }
 function Get-NodeCephOsd {
@@ -7978,7 +7978,7 @@ function Get-NodeCephOsd {
 		$node
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/ceph/osd" -Options $Options
 }
 function New-NodeCephOsd {
@@ -8013,8 +8013,8 @@ function New-NodeCephOsd {
 		$wal_dev_size
 	)
 	$Options = @()
-	$Options.Add('dev',$dev)
-	$Options.Add('node',$node)
+	$Options.Add('dev', $dev)
+	$Options.Add('node', $node)
 	if ($crushdeviceclass -and -not [String]::IsNullOrEmpty($crushdeviceclass) -and -not [String]::IsNullOrWhiteSpace($crushdeviceclass)) { $Options.Add('crush-device-class', $crushdeviceclass) }
 	if ($db_dev -and -not [String]::IsNullOrEmpty($db_dev) -and -not [String]::IsNullOrWhiteSpace($db_dev)) { $Options.Add('db_dev', $db_dev) }
 	if ($db_dev_size -and -not [String]::IsNullOrEmpty($db_dev_size) -and -not [String]::IsNullOrWhiteSpace($db_dev_size)) { $Options.Add('db_dev_size', $db_dev_size) }
@@ -8040,8 +8040,8 @@ function Remove-NodeCephOsdOsdid {
 		$osdid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('osdid',$osdid)
+	$Options.Add('node', $node)
+	$Options.Add('osdid', $osdid)
 	if ($cleanup) { $Options.Add('cleanup', $cleanup) }
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/nodes/{node}/ceph/osd/{osdid}" -Options $Options
 }
@@ -8058,8 +8058,8 @@ function New-NodeCephOsdIn {
 		$osdid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('osdid',$osdid)
+	$Options.Add('node', $node)
+	$Options.Add('osdid', $osdid)
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/ceph/osd/{osdid}/in" -Options $Options
 }
 function New-NodeCephOsdOut {
@@ -8075,8 +8075,8 @@ function New-NodeCephOsdOut {
 		$osdid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('osdid',$osdid)
+	$Options.Add('node', $node)
+	$Options.Add('osdid', $osdid)
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/ceph/osd/{osdid}/out" -Options $Options
 }
 function New-NodeCephOsdScrub {
@@ -8095,8 +8095,8 @@ function New-NodeCephOsdScrub {
 		$osdid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('osdid',$osdid)
+	$Options.Add('node', $node)
+	$Options.Add('osdid', $osdid)
 	if ($deep) { $Options.Add('deep', $deep) }
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/ceph/osd/{osdid}/scrub" -Options $Options
 }
@@ -8226,7 +8226,7 @@ function Get-NodeCephMds {
 		$node
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/ceph/mds" -Options $Options
 }
 function New-NodeCephMdsName {
@@ -8245,7 +8245,7 @@ function New-NodeCephMdsName {
 		$node
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	if ($hotstandby) { $Options.Add('hotstandby', $hotstandby) }
 	if ($name -and -not [String]::IsNullOrEmpty($name) -and -not [String]::IsNullOrWhiteSpace($name)) { $Options.Add('name', $name) }
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/ceph/mds/{name}" -Options $Options
@@ -8264,8 +8264,8 @@ function Remove-NodeCephMdsName {
 		$node
 	)
 	$Options = @()
-	$Options.Add('name',$name)
-	$Options.Add('node',$node)
+	$Options.Add('name', $name)
+	$Options.Add('node', $node)
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/nodes/{node}/ceph/mds/{name}" -Options $Options
 }
 function Get-NodeServices {
@@ -8278,7 +8278,7 @@ function Get-NodeServices {
 		$node
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/services" -Options $Options
 }
 function Get-NodeCephMgr {
@@ -8291,7 +8291,7 @@ function Get-NodeCephMgr {
 		$node
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/ceph/mgr" -Options $Options
 }
 function New-NodeCephMgrId {
@@ -8307,7 +8307,7 @@ function New-NodeCephMgrId {
 		$node
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	if ($id -and -not [String]::IsNullOrEmpty($id) -and -not [String]::IsNullOrWhiteSpace($id)) { $Options.Add('id', $id) }
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/ceph/mgr/{id}" -Options $Options
 }
@@ -8325,8 +8325,8 @@ function Remove-NodeCephMgrId {
 		$node
 	)
 	$Options = @()
-	$Options.Add('id',$id)
-	$Options.Add('node',$node)
+	$Options.Add('id', $id)
+	$Options.Add('node', $node)
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/nodes/{node}/ceph/mgr/{id}" -Options $Options
 }
 function Get-NodeSubscription {
@@ -8339,7 +8339,7 @@ function Get-NodeSubscription {
 		$node
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/subscription" -Options $Options
 }
 function New-NodeSubscription {
@@ -8351,7 +8351,7 @@ function New-NodeSubscription {
 		$node
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	if ($force) { $Options.Add('force', $force) }
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/subscription" -Options $Options
 }
@@ -8368,8 +8368,8 @@ function Set-NodeSubscription {
 		$node
 	)
 	$Options = @()
-	$Options.Add('key',$key)
-	$Options.Add('node',$node)
+	$Options.Add('key', $key)
+	$Options.Add('node', $node)
 	Invoke-ProxmoxAPI -Method PUT -Resource "/nodes/{node}/subscription" -Options $Options
 }
 function Remove-NodeSubscription {
@@ -8381,7 +8381,7 @@ function Remove-NodeSubscription {
 		$node
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/nodes/{node}/subscription" -Options $Options
 }
 function Get-NodeCephMon {
@@ -8394,7 +8394,7 @@ function Get-NodeCephMon {
 		$node
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/ceph/mon" -Options $Options
 }
 function New-NodeCephMonMonid {
@@ -8413,7 +8413,7 @@ function New-NodeCephMonMonid {
 		$node
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	if ($monaddress -and -not [String]::IsNullOrEmpty($monaddress) -and -not [String]::IsNullOrWhiteSpace($monaddress)) { $Options.Add('mon-address', $monaddress) }
 	if ($monid -and -not [String]::IsNullOrEmpty($monid) -and -not [String]::IsNullOrWhiteSpace($monid)) { $Options.Add('monid', $monid) }
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/ceph/mon/{monid}" -Options $Options
@@ -8432,8 +8432,8 @@ function Remove-NodeCephMonMonid {
 		$node
 	)
 	$Options = @()
-	$Options.Add('monid',$monid)
-	$Options.Add('node',$node)
+	$Options.Add('monid', $monid)
+	$Options.Add('node', $node)
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/nodes/{node}/ceph/mon/{monid}" -Options $Options
 }
 function Get-NodeNetwork {
@@ -8449,7 +8449,7 @@ function Get-NodeNetwork {
 		$type
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	if ($type -and -not [String]::IsNullOrEmpty($type) -and -not [String]::IsNullOrWhiteSpace($type)) { $Options.Add('type', $type) }
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/network" -Options $Options
 }
@@ -8545,9 +8545,9 @@ function New-NodeNetwork {
 		$vlanrawdevice
 	)
 	$Options = @()
-	$Options.Add('iface',$iface)
-	$Options.Add('node',$node)
-	$Options.Add('type',$type)
+	$Options.Add('iface', $iface)
+	$Options.Add('node', $node)
+	$Options.Add('type', $type)
 	if ($address -and -not [String]::IsNullOrEmpty($address) -and -not [String]::IsNullOrWhiteSpace($address)) { $Options.Add('address', $address) }
 	if ($address6 -and -not [String]::IsNullOrEmpty($address6) -and -not [String]::IsNullOrWhiteSpace($address6)) { $Options.Add('address6', $address6) }
 	if ($autostart) { $Options.Add('autostart', $autostart) }
@@ -8585,7 +8585,7 @@ function Set-NodeNetwork {
 		$node
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	Invoke-ProxmoxAPI -Method PUT -Resource "/nodes/{node}/network" -Options $Options
 }
 function Remove-NodeNetwork {
@@ -8597,7 +8597,7 @@ function Remove-NodeNetwork {
 		$node
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/nodes/{node}/network" -Options $Options
 }
 function Get-NodeCephFs {
@@ -8610,7 +8610,7 @@ function Get-NodeCephFs {
 		$node
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/ceph/fs" -Options $Options
 }
 function New-NodeCephFsName {
@@ -8632,7 +8632,7 @@ function New-NodeCephFsName {
 		$pg_num
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	if ($addstorage) { $Options.Add('add-storage', $addstorage) }
 	if ($name -and -not [String]::IsNullOrEmpty($name) -and -not [String]::IsNullOrWhiteSpace($name)) { $Options.Add('name', $name) }
 	if ($pg_num -and -not [String]::IsNullOrEmpty($pg_num) -and -not [String]::IsNullOrWhiteSpace($pg_num)) { $Options.Add('pg_num', $pg_num) }
@@ -8678,7 +8678,7 @@ function Get-NodeTasks {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	if ($errors) { $Options.Add('errors', $errors) }
 	if ($limit -and -not [String]::IsNullOrEmpty($limit) -and -not [String]::IsNullOrWhiteSpace($limit)) { $Options.Add('limit', $limit) }
 	if ($since -and -not [String]::IsNullOrEmpty($since) -and -not [String]::IsNullOrWhiteSpace($since)) { $Options.Add('since', $since) }
@@ -8701,7 +8701,7 @@ function Get-NodeCephPools {
 		$node
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/ceph/pools" -Options $Options
 }
 function New-NodeCephPools {
@@ -8748,8 +8748,8 @@ function New-NodeCephPools {
 		$target_size_ratio
 	)
 	$Options = @()
-	$Options.Add('name',$name)
-	$Options.Add('node',$node)
+	$Options.Add('name', $name)
+	$Options.Add('node', $node)
 	if ($add_storages) { $Options.Add('add_storages', $add_storages) }
 	if ($application -and -not [String]::IsNullOrEmpty($application) -and -not [String]::IsNullOrWhiteSpace($application)) { $Options.Add('application', $application) }
 	if ($crush_rule -and -not [String]::IsNullOrEmpty($crush_rule) -and -not [String]::IsNullOrWhiteSpace($crush_rule)) { $Options.Add('crush_rule', $crush_rule) }
@@ -8776,8 +8776,8 @@ function Get-NodeCephPoolsName {
 		$node
 	)
 	$Options = @()
-	$Options.Add('name',$name)
-	$Options.Add('node',$node)
+	$Options.Add('name', $name)
+	$Options.Add('node', $node)
 	if ($verbose) { $Options.Add('verbose', $verbose) }
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/ceph/pools/{name}" -Options $Options
 }
@@ -8822,8 +8822,8 @@ function Set-NodeCephPoolsName {
 		$target_size_ratio
 	)
 	$Options = @()
-	$Options.Add('name',$name)
-	$Options.Add('node',$node)
+	$Options.Add('name', $name)
+	$Options.Add('node', $node)
 	if ($application -and -not [String]::IsNullOrEmpty($application) -and -not [String]::IsNullOrWhiteSpace($application)) { $Options.Add('application', $application) }
 	if ($crush_rule -and -not [String]::IsNullOrEmpty($crush_rule) -and -not [String]::IsNullOrWhiteSpace($crush_rule)) { $Options.Add('crush_rule', $crush_rule) }
 	if ($min_size -and -not [String]::IsNullOrEmpty($min_size) -and -not [String]::IsNullOrWhiteSpace($min_size)) { $Options.Add('min_size', $min_size) }
@@ -8852,8 +8852,8 @@ function Remove-NodeCephPoolsName {
 		$remove_storages
 	)
 	$Options = @()
-	$Options.Add('name',$name)
-	$Options.Add('node',$node)
+	$Options.Add('name', $name)
+	$Options.Add('node', $node)
 	if ($force) { $Options.Add('force', $force) }
 	if ($remove_storages) { $Options.Add('remove_storages', $remove_storages) }
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/nodes/{node}/ceph/pools/{name}" -Options $Options
@@ -8868,7 +8868,7 @@ function Get-NodeScan {
 		$node
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/scan" -Options $Options
 }
 function Get-NodeCephConfig {
@@ -8881,7 +8881,7 @@ function Get-NodeCephConfig {
 		$node
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/ceph/config" -Options $Options
 }
 function Get-NodeHardware {
@@ -8894,7 +8894,7 @@ function Get-NodeHardware {
 		$node
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/hardware" -Options $Options
 }
 function Get-NodeCephConfigdb {
@@ -8907,7 +8907,7 @@ function Get-NodeCephConfigdb {
 		$node
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/ceph/configdb" -Options $Options
 }
 function Get-NodeCapabilities {
@@ -8920,7 +8920,7 @@ function Get-NodeCapabilities {
 		$node
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/capabilities" -Options $Options
 }
 function New-NodeCephInit {
@@ -8950,7 +8950,7 @@ function New-NodeCephInit {
 		$size
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	if ($clusternetwork -and -not [String]::IsNullOrEmpty($clusternetwork) -and -not [String]::IsNullOrWhiteSpace($clusternetwork)) { $Options.Add('cluster-network', $clusternetwork) }
 	if ($disable_cephx) { $Options.Add('disable_cephx', $disable_cephx) }
 	if ($min_size -and -not [String]::IsNullOrEmpty($min_size) -and -not [String]::IsNullOrWhiteSpace($min_size)) { $Options.Add('min_size', $min_size) }
@@ -8984,7 +8984,7 @@ function Get-NodeStorage {
 		$target
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	if ($content -and -not [String]::IsNullOrEmpty($content) -and -not [String]::IsNullOrWhiteSpace($content)) { $Options.Add('content', $content) }
 	if ($enabled) { $Options.Add('enabled', $enabled) }
 	if ($format) { $Options.Add('format', $format) }
@@ -9005,7 +9005,7 @@ function New-NodeCephStop {
 		$service
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	if ($service -and -not [String]::IsNullOrEmpty($service) -and -not [String]::IsNullOrWhiteSpace($service)) { $Options.Add('service', $service) }
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/ceph/stop" -Options $Options
 }
@@ -9019,7 +9019,7 @@ function Get-NodeDisks {
 		$node
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/disks" -Options $Options
 }
 function New-NodeCephStart {
@@ -9035,7 +9035,7 @@ function New-NodeCephStart {
 		$service
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	if ($service -and -not [String]::IsNullOrEmpty($service) -and -not [String]::IsNullOrWhiteSpace($service)) { $Options.Add('service', $service) }
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/ceph/start" -Options $Options
 }
@@ -9049,7 +9049,7 @@ function Get-NodeApt {
 		$node
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/apt" -Options $Options
 }
 function New-NodeCephRestart {
@@ -9065,7 +9065,7 @@ function New-NodeCephRestart {
 		$service
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	if ($service -and -not [String]::IsNullOrEmpty($service) -and -not [String]::IsNullOrWhiteSpace($service)) { $Options.Add('service', $service) }
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/ceph/restart" -Options $Options
 }
@@ -9079,7 +9079,7 @@ function Get-NodeFirewall {
 		$node
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/firewall" -Options $Options
 }
 function Get-NodeCephStatus {
@@ -9092,7 +9092,7 @@ function Get-NodeCephStatus {
 		$node
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/ceph/status" -Options $Options
 }
 function Get-NodeReplication {
@@ -9108,7 +9108,7 @@ function Get-NodeReplication {
 		$node
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	if ($guest -and -not [String]::IsNullOrEmpty($guest) -and -not [String]::IsNullOrWhiteSpace($guest)) { $Options.Add('guest', $guest) }
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/replication" -Options $Options
 }
@@ -9122,7 +9122,7 @@ function Get-NodeCephCrush {
 		$node
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/ceph/crush" -Options $Options
 }
 function Get-NodeCertificates {
@@ -9135,7 +9135,7 @@ function Get-NodeCertificates {
 		$node
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/certificates" -Options $Options
 }
 function Get-NodeCephLog {
@@ -9154,7 +9154,7 @@ function Get-NodeCephLog {
 		$start
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	if ($limit -and -not [String]::IsNullOrEmpty($limit) -and -not [String]::IsNullOrWhiteSpace($limit)) { $Options.Add('limit', $limit) }
 	if ($start -and -not [String]::IsNullOrEmpty($start) -and -not [String]::IsNullOrWhiteSpace($start)) { $Options.Add('start', $start) }
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/ceph/log" -Options $Options
@@ -9172,7 +9172,7 @@ function Get-NodeConfig {
 		$property
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	if ($property -and -not [String]::IsNullOrEmpty($property) -and -not [String]::IsNullOrWhiteSpace($property)) { $Options.Add('property', $property) }
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/config" -Options $Options
 }
@@ -9236,7 +9236,7 @@ function Set-NodeConfig {
 		$wakeonlan
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	if ($acme -and -not [String]::IsNullOrEmpty($acme) -and -not [String]::IsNullOrWhiteSpace($acme)) { $Options.Add('acme', $acme) }
 	if ($acmedomain0 -and -not [String]::IsNullOrEmpty($acmedomain0) -and -not [String]::IsNullOrWhiteSpace($acmedomain0)) { $Options.Add('acmedomain0', $acmedomain0) }
 	if ($acmedomain1 -and -not [String]::IsNullOrEmpty($acmedomain1) -and -not [String]::IsNullOrWhiteSpace($acmedomain1)) { $Options.Add('acmedomain1', $acmedomain1) }
@@ -9266,7 +9266,7 @@ function Get-NodeCephRules {
 		$node
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/ceph/rules" -Options $Options
 }
 function Get-NodeSdn {
@@ -9279,7 +9279,7 @@ function Get-NodeSdn {
 		$node
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/sdn" -Options $Options
 }
 function Get-NodeVzdumpDefaults {
@@ -9295,7 +9295,7 @@ function Get-NodeVzdumpDefaults {
 		$storage
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	if ($storage -and -not [String]::IsNullOrEmpty($storage) -and -not [String]::IsNullOrWhiteSpace($storage)) { $Options.Add('storage', $storage) }
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/vzdump/defaults" -Options $Options
 }
@@ -9309,7 +9309,7 @@ function Get-NodeVersion {
 		$node
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/version" -Options $Options
 }
 function Get-NodeVzdumpExtractconfig {
@@ -9326,8 +9326,8 @@ function Get-NodeVzdumpExtractconfig {
 		$volume
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('volume',$volume)
+	$Options.Add('node', $node)
+	$Options.Add('volume', $volume)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/vzdump/extractconfig" -Options $Options
 }
 function Get-NodeStatus {
@@ -9340,7 +9340,7 @@ function Get-NodeStatus {
 		$node
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/status" -Options $Options
 }
 function New-NodeStatus {
@@ -9356,8 +9356,8 @@ function New-NodeStatus {
 		$node
 	)
 	$Options = @()
-	$Options.Add('command',$command)
-	$Options.Add('node',$node)
+	$Options.Add('command', $command)
+	$Options.Add('node', $node)
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/status" -Options $Options
 }
 function Get-NodeServicesService {
@@ -9374,8 +9374,8 @@ function Get-NodeServicesService {
 		$service
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('service',$service)
+	$Options.Add('node', $node)
+	$Options.Add('service', $service)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/services/{service}" -Options $Options
 }
 function Get-NodeServicesServiceState {
@@ -9392,8 +9392,8 @@ function Get-NodeServicesServiceState {
 		$service
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('service',$service)
+	$Options.Add('node', $node)
+	$Options.Add('service', $service)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/services/{service}/state" -Options $Options
 }
 function New-NodeServicesServiceStart {
@@ -9410,8 +9410,8 @@ function New-NodeServicesServiceStart {
 		$service
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('service',$service)
+	$Options.Add('node', $node)
+	$Options.Add('service', $service)
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/services/{service}/start" -Options $Options
 }
 function New-NodeServicesServiceStop {
@@ -9428,8 +9428,8 @@ function New-NodeServicesServiceStop {
 		$service
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('service',$service)
+	$Options.Add('node', $node)
+	$Options.Add('service', $service)
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/services/{service}/stop" -Options $Options
 }
 function New-NodeServicesServiceRestart {
@@ -9446,8 +9446,8 @@ function New-NodeServicesServiceRestart {
 		$service
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('service',$service)
+	$Options.Add('node', $node)
+	$Options.Add('service', $service)
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/services/{service}/restart" -Options $Options
 }
 function New-NodeServicesServiceReload {
@@ -9464,8 +9464,8 @@ function New-NodeServicesServiceReload {
 		$service
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('service',$service)
+	$Options.Add('node', $node)
+	$Options.Add('service', $service)
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/services/{service}/reload" -Options $Options
 }
 function Get-NodeNetstat {
@@ -9478,7 +9478,7 @@ function Get-NodeNetstat {
 		$node
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/netstat" -Options $Options
 }
 function New-NodeExecute {
@@ -9495,8 +9495,8 @@ function New-NodeExecute {
 		$node
 	)
 	$Options = @()
-	$Options.Add('commands',$commands)
-	$Options.Add('node',$node)
+	$Options.Add('commands', $commands)
+	$Options.Add('node', $node)
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/execute" -Options $Options
 }
 function Get-NodeNetworkIface {
@@ -9513,8 +9513,8 @@ function Get-NodeNetworkIface {
 		$node
 	)
 	$Options = @()
-	$Options.Add('iface',$iface)
-	$Options.Add('node',$node)
+	$Options.Add('iface', $iface)
+	$Options.Add('node', $node)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/network/{iface}" -Options $Options
 }
 function Set-NodeNetworkIface {
@@ -9612,9 +9612,9 @@ function Set-NodeNetworkIface {
 		$vlanrawdevice
 	)
 	$Options = @()
-	$Options.Add('iface',$iface)
-	$Options.Add('node',$node)
-	$Options.Add('type',$type)
+	$Options.Add('iface', $iface)
+	$Options.Add('node', $node)
+	$Options.Add('type', $type)
 	if ($address -and -not [String]::IsNullOrEmpty($address) -and -not [String]::IsNullOrWhiteSpace($address)) { $Options.Add('address', $address) }
 	if ($address6 -and -not [String]::IsNullOrEmpty($address6) -and -not [String]::IsNullOrWhiteSpace($address6)) { $Options.Add('address6', $address6) }
 	if ($autostart) { $Options.Add('autostart', $autostart) }
@@ -9656,8 +9656,8 @@ function Remove-NodeNetworkIface {
 		$node
 	)
 	$Options = @()
-	$Options.Add('iface',$iface)
-	$Options.Add('node',$node)
+	$Options.Add('iface', $iface)
+	$Options.Add('node', $node)
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/nodes/{node}/network/{iface}" -Options $Options
 }
 function New-NodeWakeonlan {
@@ -9670,7 +9670,7 @@ function New-NodeWakeonlan {
 		$node
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/wakeonlan" -Options $Options
 }
 function Get-NodeTasksUpid {
@@ -9687,8 +9687,8 @@ function Get-NodeTasksUpid {
 		$upid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('upid',$upid)
+	$Options.Add('node', $node)
+	$Options.Add('upid', $upid)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/tasks/{upid}" -Options $Options
 }
 function Remove-NodeTasksUpid {
@@ -9704,8 +9704,8 @@ function Remove-NodeTasksUpid {
 		$upid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('upid',$upid)
+	$Options.Add('node', $node)
+	$Options.Add('upid', $upid)
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/nodes/{node}/tasks/{upid}" -Options $Options
 }
 function Get-NodeTasksLog {
@@ -9728,8 +9728,8 @@ function Get-NodeTasksLog {
 		$upid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('upid',$upid)
+	$Options.Add('node', $node)
+	$Options.Add('upid', $upid)
 	if ($limit -and -not [String]::IsNullOrEmpty($limit) -and -not [String]::IsNullOrWhiteSpace($limit)) { $Options.Add('limit', $limit) }
 	if ($start -and -not [String]::IsNullOrEmpty($start) -and -not [String]::IsNullOrWhiteSpace($start)) { $Options.Add('start', $start) }
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/tasks/{upid}/log" -Options $Options
@@ -9748,8 +9748,8 @@ function Get-NodeTasksStatus {
 		$upid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('upid',$upid)
+	$Options.Add('node', $node)
+	$Options.Add('upid', $upid)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/tasks/{upid}/status" -Options $Options
 }
 function Get-NodeRrd {
@@ -9773,9 +9773,9 @@ function Get-NodeRrd {
 		$timeframe
 	)
 	$Options = @()
-	$Options.Add('ds',$ds)
-	$Options.Add('node',$node)
-	$Options.Add('timeframe',$timeframe)
+	$Options.Add('ds', $ds)
+	$Options.Add('node', $node)
+	$Options.Add('timeframe', $timeframe)
 	if ($cf -and -not [String]::IsNullOrEmpty($cf) -and -not [String]::IsNullOrWhiteSpace($cf)) { $Options.Add('cf', $cf) }
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/rrd" -Options $Options
 }
@@ -9793,8 +9793,8 @@ function Get-NodeScanNfs {
 		$server
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('server',$server)
+	$Options.Add('node', $node)
+	$Options.Add('server', $server)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/scan/nfs" -Options $Options
 }
 function Get-NodeRrddata {
@@ -9814,8 +9814,8 @@ function Get-NodeRrddata {
 		$timeframe
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('timeframe',$timeframe)
+	$Options.Add('node', $node)
+	$Options.Add('timeframe', $timeframe)
 	if ($cf -and -not [String]::IsNullOrEmpty($cf) -and -not [String]::IsNullOrWhiteSpace($cf)) { $Options.Add('cf', $cf) }
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/rrddata" -Options $Options
 }
@@ -9842,8 +9842,8 @@ function Get-NodeScanCifs {
 		$username
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('server',$server)
+	$Options.Add('node', $node)
+	$Options.Add('server', $server)
 	if ($domain -and -not [String]::IsNullOrEmpty($domain) -and -not [String]::IsNullOrWhiteSpace($domain)) { $Options.Add('domain', $domain) }
 	if ($password) { $Options.Add('password', $($password | ConvertFrom-SecureString -AsPlainText)) }
 	if ($username -and -not [String]::IsNullOrEmpty($username) -and -not [String]::IsNullOrWhiteSpace($username)) { $Options.Add('username', $username) }
@@ -9874,7 +9874,7 @@ function Get-NodeSyslog {
 		$until
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	if ($limit -and -not [String]::IsNullOrEmpty($limit) -and -not [String]::IsNullOrWhiteSpace($limit)) { $Options.Add('limit', $limit) }
 	if ($service -and -not [String]::IsNullOrEmpty($service) -and -not [String]::IsNullOrWhiteSpace($service)) { $Options.Add('service', $service) }
 	if ($since -and -not [String]::IsNullOrEmpty($since) -and -not [String]::IsNullOrWhiteSpace($since)) { $Options.Add('since', $since) }
@@ -9910,10 +9910,10 @@ function Get-NodeScanPbs {
 		$username
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('password',$password)
-	$Options.Add('server',$server)
-	$Options.Add('username',$username)
+	$Options.Add('node', $node)
+	$Options.Add('password', $password)
+	$Options.Add('server', $server)
+	$Options.Add('username', $username)
 	if ($fingerprint -and -not [String]::IsNullOrEmpty($fingerprint) -and -not [String]::IsNullOrWhiteSpace($fingerprint)) { $Options.Add('fingerprint', $fingerprint) }
 	if ($port -and -not [String]::IsNullOrEmpty($port) -and -not [String]::IsNullOrWhiteSpace($port)) { $Options.Add('port', $port) }
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/scan/pbs" -Options $Options
@@ -9943,7 +9943,7 @@ function Get-NodeJournal {
 		$until
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	if ($endcursor -and -not [String]::IsNullOrEmpty($endcursor) -and -not [String]::IsNullOrWhiteSpace($endcursor)) { $Options.Add('endcursor', $endcursor) }
 	if ($lastentries -and -not [String]::IsNullOrEmpty($lastentries) -and -not [String]::IsNullOrWhiteSpace($lastentries)) { $Options.Add('lastentries', $lastentries) }
 	if ($since -and -not [String]::IsNullOrEmpty($since) -and -not [String]::IsNullOrWhiteSpace($since)) { $Options.Add('since', $since) }
@@ -9965,8 +9965,8 @@ function Get-NodeScanGlusterfs {
 		$server
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('server',$server)
+	$Options.Add('node', $node)
+	$Options.Add('server', $server)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/scan/glusterfs" -Options $Options
 }
 function New-NodeVncshell {
@@ -9993,7 +9993,7 @@ function New-NodeVncshell {
 		$width
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	if ($cmd -and -not [String]::IsNullOrEmpty($cmd) -and -not [String]::IsNullOrWhiteSpace($cmd)) { $Options.Add('cmd', $cmd) }
 	if ($cmdopts -and -not [String]::IsNullOrEmpty($cmdopts) -and -not [String]::IsNullOrWhiteSpace($cmdopts)) { $Options.Add('cmd-opts', $cmdopts) }
 	if ($height -and -not [String]::IsNullOrEmpty($height) -and -not [String]::IsNullOrWhiteSpace($height)) { $Options.Add('height', $height) }
@@ -10015,8 +10015,8 @@ function Get-NodeScanIscsi {
 		$portal
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('portal',$portal)
+	$Options.Add('node', $node)
+	$Options.Add('portal', $portal)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/scan/iscsi" -Options $Options
 }
 function New-NodeTermproxy {
@@ -10034,7 +10034,7 @@ function New-NodeTermproxy {
 		$node
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	if ($cmd -and -not [String]::IsNullOrEmpty($cmd) -and -not [String]::IsNullOrWhiteSpace($cmd)) { $Options.Add('cmd', $cmd) }
 	if ($cmdopts -and -not [String]::IsNullOrEmpty($cmdopts) -and -not [String]::IsNullOrWhiteSpace($cmdopts)) { $Options.Add('cmd-opts', $cmdopts) }
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/termproxy" -Options $Options
@@ -10049,7 +10049,7 @@ function Get-NodeScanLvm {
 		$node
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/scan/lvm" -Options $Options
 }
 function Get-NodeVncwebsocket {
@@ -10070,9 +10070,9 @@ function Get-NodeVncwebsocket {
 		$vncticket
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('port',$port)
-	$Options.Add('vncticket',$vncticket)
+	$Options.Add('node', $node)
+	$Options.Add('port', $port)
+	$Options.Add('vncticket', $vncticket)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/vncwebsocket" -Options $Options
 }
 function Get-NodeScanLvmthin {
@@ -10089,8 +10089,8 @@ function Get-NodeScanLvmthin {
 		$vg
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('vg',$vg)
+	$Options.Add('node', $node)
+	$Options.Add('vg', $vg)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/scan/lvmthin" -Options $Options
 }
 function New-NodeSpiceshell {
@@ -10111,7 +10111,7 @@ function New-NodeSpiceshell {
 		$proxy
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	if ($cmd -and -not [String]::IsNullOrEmpty($cmd) -and -not [String]::IsNullOrWhiteSpace($cmd)) { $Options.Add('cmd', $cmd) }
 	if ($cmdopts -and -not [String]::IsNullOrEmpty($cmdopts) -and -not [String]::IsNullOrWhiteSpace($cmdopts)) { $Options.Add('cmd-opts', $cmdopts) }
 	if ($proxy -and -not [String]::IsNullOrEmpty($proxy) -and -not [String]::IsNullOrWhiteSpace($proxy)) { $Options.Add('proxy', $proxy) }
@@ -10127,7 +10127,7 @@ function Get-NodeScanZfs {
 		$node
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/scan/zfs" -Options $Options
 }
 function Get-NodeDns {
@@ -10140,7 +10140,7 @@ function Get-NodeDns {
 		$node
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/dns" -Options $Options
 }
 function Set-NodeDns {
@@ -10165,8 +10165,8 @@ function Set-NodeDns {
 		$search
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('search',$search)
+	$Options.Add('node', $node)
+	$Options.Add('search', $search)
 	if ($dns1 -and -not [String]::IsNullOrEmpty($dns1) -and -not [String]::IsNullOrWhiteSpace($dns1)) { $Options.Add('dns1', $dns1) }
 	if ($dns2 -and -not [String]::IsNullOrEmpty($dns2) -and -not [String]::IsNullOrWhiteSpace($dns2)) { $Options.Add('dns2', $dns2) }
 	if ($dns3 -and -not [String]::IsNullOrEmpty($dns3) -and -not [String]::IsNullOrWhiteSpace($dns3)) { $Options.Add('dns3', $dns3) }
@@ -10185,7 +10185,7 @@ function Get-NodeHardwarePci {
 		$pciclassblacklist
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	if ($pciclassblacklist -and -not [String]::IsNullOrEmpty($pciclassblacklist) -and -not [String]::IsNullOrWhiteSpace($pciclassblacklist)) { $Options.Add('pci-class-blacklist', $pciclassblacklist) }
 	if ($verbose) { $Options.Add('verbose', $verbose) }
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/hardware/pci" -Options $Options
@@ -10204,8 +10204,8 @@ function Get-NodeHardwarePciPciid {
 		$pciid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('pciid',$pciid)
+	$Options.Add('node', $node)
+	$Options.Add('pciid', $pciid)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/hardware/pci/{pciid}" -Options $Options
 }
 function Get-NodeHardwarePciMdev {
@@ -10222,8 +10222,8 @@ function Get-NodeHardwarePciMdev {
 		$pciid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('pciid',$pciid)
+	$Options.Add('node', $node)
+	$Options.Add('pciid', $pciid)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/hardware/pci/{pciid}/mdev" -Options $Options
 }
 function Get-NodeTime {
@@ -10236,7 +10236,7 @@ function Get-NodeTime {
 		$node
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/time" -Options $Options
 }
 function Set-NodeTime {
@@ -10252,8 +10252,8 @@ function Set-NodeTime {
 		$timezone
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('timezone',$timezone)
+	$Options.Add('node', $node)
+	$Options.Add('timezone', $timezone)
 	Invoke-ProxmoxAPI -Method PUT -Resource "/nodes/{node}/time" -Options $Options
 }
 function Get-NodeHardwareUsb {
@@ -10266,7 +10266,7 @@ function Get-NodeHardwareUsb {
 		$node
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/hardware/usb" -Options $Options
 }
 function Get-NodeAplinfo {
@@ -10279,7 +10279,7 @@ function Get-NodeAplinfo {
 		$node
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/aplinfo" -Options $Options
 }
 function New-NodeAplinfo {
@@ -10300,9 +10300,9 @@ function New-NodeAplinfo {
 		$template
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('storage',$storage)
-	$Options.Add('template',$template)
+	$Options.Add('node', $node)
+	$Options.Add('storage', $storage)
+	$Options.Add('template', $template)
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/aplinfo" -Options $Options
 }
 function Get-NodeCapabilitiesQemu {
@@ -10315,7 +10315,7 @@ function Get-NodeCapabilitiesQemu {
 		$node
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/capabilities/qemu" -Options $Options
 }
 function Get-NodeCapabilitiesQemuCpu {
@@ -10328,7 +10328,7 @@ function Get-NodeCapabilitiesQemuCpu {
 		$node
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/capabilities/qemu/cpu" -Options $Options
 }
 function Get-NodeCapabilitiesQemuMachines {
@@ -10341,7 +10341,7 @@ function Get-NodeCapabilitiesQemuMachines {
 		$node
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/capabilities/qemu/machines" -Options $Options
 }
 function Get-NodeQueryUrlMetadata {
@@ -10361,8 +10361,8 @@ function Get-NodeQueryUrlMetadata {
 		$verifycertificates
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('url',$url)
+	$Options.Add('node', $node)
+	$Options.Add('url', $url)
 	if ($verifycertificates) { $Options.Add('verify-certificates', $verifycertificates) }
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/query-url-metadata" -Options $Options
 }
@@ -10380,8 +10380,8 @@ function Get-NodeStorage {
 		$storage
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('storage',$storage)
+	$Options.Add('node', $node)
+	$Options.Add('storage', $storage)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/storage/{storage}" -Options $Options
 }
 function Get-NodeStoragePrunebackups {
@@ -10407,8 +10407,8 @@ function Get-NodeStoragePrunebackups {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('storage',$storage)
+	$Options.Add('node', $node)
+	$Options.Add('storage', $storage)
 	if ($prunebackups -and -not [String]::IsNullOrEmpty($prunebackups) -and -not [String]::IsNullOrWhiteSpace($prunebackups)) { $Options.Add('prune-backups', $prunebackups) }
 	if ($type -and -not [String]::IsNullOrEmpty($type) -and -not [String]::IsNullOrWhiteSpace($type)) { $Options.Add('type', $type) }
 	if ($vmid -and -not [String]::IsNullOrEmpty($vmid) -and -not [String]::IsNullOrWhiteSpace($vmid)) { $Options.Add('vmid', $vmid) }
@@ -10437,8 +10437,8 @@ function Remove-NodeStoragePrunebackups {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('storage',$storage)
+	$Options.Add('node', $node)
+	$Options.Add('storage', $storage)
 	if ($prunebackups -and -not [String]::IsNullOrEmpty($prunebackups) -and -not [String]::IsNullOrWhiteSpace($prunebackups)) { $Options.Add('prune-backups', $prunebackups) }
 	if ($type -and -not [String]::IsNullOrEmpty($type) -and -not [String]::IsNullOrWhiteSpace($type)) { $Options.Add('type', $type) }
 	if ($vmid -and -not [String]::IsNullOrEmpty($vmid) -and -not [String]::IsNullOrWhiteSpace($vmid)) { $Options.Add('vmid', $vmid) }
@@ -10464,8 +10464,8 @@ function Get-NodeStorageContent {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('storage',$storage)
+	$Options.Add('node', $node)
+	$Options.Add('storage', $storage)
 	if ($content -and -not [String]::IsNullOrEmpty($content) -and -not [String]::IsNullOrWhiteSpace($content)) { $Options.Add('content', $content) }
 	if ($vmid -and -not [String]::IsNullOrEmpty($vmid) -and -not [String]::IsNullOrWhiteSpace($vmid)) { $Options.Add('vmid', $vmid) }
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/storage/{storage}/content" -Options $Options
@@ -10499,11 +10499,11 @@ function New-NodeStorageContent {
 		$vmid
 	)
 	$Options = @()
-	$Options.Add('filename',$filename)
-	$Options.Add('node',$node)
-	$Options.Add('size',$size)
-	$Options.Add('storage',$storage)
-	$Options.Add('vmid',$vmid)
+	$Options.Add('filename', $filename)
+	$Options.Add('node', $node)
+	$Options.Add('size', $size)
+	$Options.Add('storage', $storage)
+	$Options.Add('vmid', $vmid)
 	if ($format -and -not [String]::IsNullOrEmpty($format) -and -not [String]::IsNullOrWhiteSpace($format)) { $Options.Add('format', $format) }
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/storage/{storage}/content" -Options $Options
 }
@@ -10524,8 +10524,8 @@ function Get-NodeStorageContentVolume {
 		$volume
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('volume',$volume)
+	$Options.Add('node', $node)
+	$Options.Add('volume', $volume)
 	if ($storage -and -not [String]::IsNullOrEmpty($storage) -and -not [String]::IsNullOrWhiteSpace($storage)) { $Options.Add('storage', $storage) }
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/storage/{storage}/content/{volume}" -Options $Options
 }
@@ -10553,9 +10553,9 @@ function New-NodeStorageContentVolume {
 		$volume
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('target',$target)
-	$Options.Add('volume',$volume)
+	$Options.Add('node', $node)
+	$Options.Add('target', $target)
+	$Options.Add('volume', $volume)
 	if ($storage -and -not [String]::IsNullOrEmpty($storage) -and -not [String]::IsNullOrWhiteSpace($storage)) { $Options.Add('storage', $storage) }
 	if ($target_node -and -not [String]::IsNullOrEmpty($target_node) -and -not [String]::IsNullOrWhiteSpace($target_node)) { $Options.Add('target_node', $target_node) }
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/storage/{storage}/content/{volume}" -Options $Options
@@ -10582,8 +10582,8 @@ function Set-NodeStorageContentVolume {
 		$volume
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('volume',$volume)
+	$Options.Add('node', $node)
+	$Options.Add('volume', $volume)
 	if ($notes -and -not [String]::IsNullOrEmpty($notes) -and -not [String]::IsNullOrWhiteSpace($notes)) { $Options.Add('notes', $notes) }
 	if ($protected) { $Options.Add('protected', $protected) }
 	if ($storage -and -not [String]::IsNullOrEmpty($storage) -and -not [String]::IsNullOrWhiteSpace($storage)) { $Options.Add('storage', $storage) }
@@ -10609,8 +10609,8 @@ function Remove-NodeStorageContentVolume {
 		$volume
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('volume',$volume)
+	$Options.Add('node', $node)
+	$Options.Add('volume', $volume)
 	if ($delay -and -not [String]::IsNullOrEmpty($delay) -and -not [String]::IsNullOrWhiteSpace($delay)) { $Options.Add('delay', $delay) }
 	if ($storage -and -not [String]::IsNullOrEmpty($storage) -and -not [String]::IsNullOrWhiteSpace($storage)) { $Options.Add('storage', $storage) }
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/nodes/{node}/storage/{storage}/content/{volume}" -Options $Options
@@ -10637,10 +10637,10 @@ function Get-NodeStorageFileRestoreList {
 		$volume
 	)
 	$Options = @()
-	$Options.Add('filepath',$filepath)
-	$Options.Add('node',$node)
-	$Options.Add('storage',$storage)
-	$Options.Add('volume',$volume)
+	$Options.Add('filepath', $filepath)
+	$Options.Add('node', $node)
+	$Options.Add('storage', $storage)
+	$Options.Add('volume', $volume)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/storage/{storage}/file-restore/list" -Options $Options
 }
 function Get-NodeStorageStatus {
@@ -10657,8 +10657,8 @@ function Get-NodeStorageStatus {
 		$storage
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('storage',$storage)
+	$Options.Add('node', $node)
+	$Options.Add('storage', $storage)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/storage/{storage}/status" -Options $Options
 }
 function Get-NodeStorageFileRestoreDownload {
@@ -10682,10 +10682,10 @@ function Get-NodeStorageFileRestoreDownload {
 		$volume
 	)
 	$Options = @()
-	$Options.Add('filepath',$filepath)
-	$Options.Add('node',$node)
-	$Options.Add('storage',$storage)
-	$Options.Add('volume',$volume)
+	$Options.Add('filepath', $filepath)
+	$Options.Add('node', $node)
+	$Options.Add('storage', $storage)
+	$Options.Add('volume', $volume)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/storage/{storage}/file-restore/download" -Options $Options
 }
 function Get-NodeStorageRrd {
@@ -10713,10 +10713,10 @@ function Get-NodeStorageRrd {
 		$timeframe
 	)
 	$Options = @()
-	$Options.Add('ds',$ds)
-	$Options.Add('node',$node)
-	$Options.Add('storage',$storage)
-	$Options.Add('timeframe',$timeframe)
+	$Options.Add('ds', $ds)
+	$Options.Add('node', $node)
+	$Options.Add('storage', $storage)
+	$Options.Add('timeframe', $timeframe)
 	if ($cf -and -not [String]::IsNullOrEmpty($cf) -and -not [String]::IsNullOrWhiteSpace($cf)) { $Options.Add('cf', $cf) }
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/storage/{storage}/rrd" -Options $Options
 }
@@ -10741,9 +10741,9 @@ function Get-NodeStorageRrddata {
 		$timeframe
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('storage',$storage)
-	$Options.Add('timeframe',$timeframe)
+	$Options.Add('node', $node)
+	$Options.Add('storage', $storage)
+	$Options.Add('timeframe', $timeframe)
 	if ($cf -and -not [String]::IsNullOrEmpty($cf) -and -not [String]::IsNullOrWhiteSpace($cf)) { $Options.Add('cf', $cf) }
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/storage/{storage}/rrddata" -Options $Options
 }
@@ -10778,10 +10778,10 @@ function New-NodeStorageUpload {
 		$tmpfilename
 	)
 	$Options = @()
-	$Options.Add('content',$content)
-	$Options.Add('filename',$filename)
-	$Options.Add('node',$node)
-	$Options.Add('storage',$storage)
+	$Options.Add('content', $content)
+	$Options.Add('filename', $filename)
+	$Options.Add('node', $node)
+	$Options.Add('storage', $storage)
 	if ($checksum -and -not [String]::IsNullOrEmpty($checksum) -and -not [String]::IsNullOrWhiteSpace($checksum)) { $Options.Add('checksum', $checksum) }
 	if ($checksumalgorithm -and -not [String]::IsNullOrEmpty($checksumalgorithm) -and -not [String]::IsNullOrWhiteSpace($checksumalgorithm)) { $Options.Add('checksum-algorithm', $checksumalgorithm) }
 	if ($tmpfilename -and -not [String]::IsNullOrEmpty($tmpfilename) -and -not [String]::IsNullOrWhiteSpace($tmpfilename)) { $Options.Add('tmpfilename', $tmpfilename) }
@@ -10822,11 +10822,11 @@ function New-NodeStorageDownloadUrl {
 		$verifycertificates
 	)
 	$Options = @()
-	$Options.Add('content',$content)
-	$Options.Add('filename',$filename)
-	$Options.Add('node',$node)
-	$Options.Add('storage',$storage)
-	$Options.Add('url',$url)
+	$Options.Add('content', $content)
+	$Options.Add('filename', $filename)
+	$Options.Add('node', $node)
+	$Options.Add('storage', $storage)
+	$Options.Add('url', $url)
 	if ($checksum -and -not [String]::IsNullOrEmpty($checksum) -and -not [String]::IsNullOrWhiteSpace($checksum)) { $Options.Add('checksum', $checksum) }
 	if ($checksumalgorithm -and -not [String]::IsNullOrEmpty($checksumalgorithm) -and -not [String]::IsNullOrWhiteSpace($checksumalgorithm)) { $Options.Add('checksum-algorithm', $checksumalgorithm) }
 	if ($verifycertificates) { $Options.Add('verify-certificates', $verifycertificates) }
@@ -10842,7 +10842,7 @@ function Get-NodeReport {
 		$node
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/report" -Options $Options
 }
 function Get-NodeDisksLvm {
@@ -10855,7 +10855,7 @@ function Get-NodeDisksLvm {
 		$node
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/disks/lvm" -Options $Options
 }
 function New-NodeDisksLvm {
@@ -10879,9 +10879,9 @@ function New-NodeDisksLvm {
 		$node
 	)
 	$Options = @()
-	$Options.Add('device',$device)
-	$Options.Add('name',$name)
-	$Options.Add('node',$node)
+	$Options.Add('device', $device)
+	$Options.Add('name', $name)
+	$Options.Add('node', $node)
 	if ($add_storage) { $Options.Add('add_storage', $add_storage) }
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/disks/lvm" -Options $Options
 }
@@ -10905,8 +10905,8 @@ function Remove-NodeDisksLvmName {
 		$node
 	)
 	$Options = @()
-	$Options.Add('name',$name)
-	$Options.Add('node',$node)
+	$Options.Add('name', $name)
+	$Options.Add('node', $node)
 	if ($cleanupconfig) { $Options.Add('cleanup-config', $cleanupconfig) }
 	if ($cleanupdisks) { $Options.Add('cleanup-disks', $cleanupdisks) }
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/nodes/{node}/disks/lvm/{name}" -Options $Options
@@ -10924,7 +10924,7 @@ function New-NodeStartall {
 		$vms
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	if ($force) { $Options.Add('force', $force) }
 	if ($vms -and -not [String]::IsNullOrEmpty($vms) -and -not [String]::IsNullOrWhiteSpace($vms)) { $Options.Add('vms', $vms) }
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/startall" -Options $Options
@@ -10939,7 +10939,7 @@ function Get-NodeDisksLvmthin {
 		$node
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/disks/lvmthin" -Options $Options
 }
 function New-NodeDisksLvmthin {
@@ -10963,9 +10963,9 @@ function New-NodeDisksLvmthin {
 		$node
 	)
 	$Options = @()
-	$Options.Add('device',$device)
-	$Options.Add('name',$name)
-	$Options.Add('node',$node)
+	$Options.Add('device', $device)
+	$Options.Add('name', $name)
+	$Options.Add('node', $node)
 	if ($add_storage) { $Options.Add('add_storage', $add_storage) }
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/disks/lvmthin" -Options $Options
 }
@@ -10993,9 +10993,9 @@ function Remove-NodeDisksLvmthinName {
 		$volumegroup
 	)
 	$Options = @()
-	$Options.Add('name',$name)
-	$Options.Add('node',$node)
-	$Options.Add('volume-group',$volumegroup)
+	$Options.Add('name', $name)
+	$Options.Add('node', $node)
+	$Options.Add('volume-group', $volumegroup)
 	if ($cleanupconfig) { $Options.Add('cleanup-config', $cleanupconfig) }
 	if ($cleanupdisks) { $Options.Add('cleanup-disks', $cleanupdisks) }
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/nodes/{node}/disks/lvmthin/{name}" -Options $Options
@@ -11013,7 +11013,7 @@ function New-NodeStopall {
 		$vms
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	if ($vms -and -not [String]::IsNullOrEmpty($vms) -and -not [String]::IsNullOrWhiteSpace($vms)) { $Options.Add('vms', $vms) }
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/stopall" -Options $Options
 }
@@ -11027,7 +11027,7 @@ function Get-NodeDisksDirectory {
 		$node
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/disks/directory" -Options $Options
 }
 function New-NodeDisksDirectory {
@@ -11054,9 +11054,9 @@ function New-NodeDisksDirectory {
 		$node
 	)
 	$Options = @()
-	$Options.Add('device',$device)
-	$Options.Add('name',$name)
-	$Options.Add('node',$node)
+	$Options.Add('device', $device)
+	$Options.Add('name', $name)
+	$Options.Add('node', $node)
 	if ($add_storage) { $Options.Add('add_storage', $add_storage) }
 	if ($filesystem -and -not [String]::IsNullOrEmpty($filesystem) -and -not [String]::IsNullOrWhiteSpace($filesystem)) { $Options.Add('filesystem', $filesystem) }
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/disks/directory" -Options $Options
@@ -11081,8 +11081,8 @@ function Remove-NodeDisksDirectoryName {
 		$node
 	)
 	$Options = @()
-	$Options.Add('name',$name)
-	$Options.Add('node',$node)
+	$Options.Add('name', $name)
+	$Options.Add('node', $node)
 	if ($cleanupconfig) { $Options.Add('cleanup-config', $cleanupconfig) }
 	if ($cleanupdisks) { $Options.Add('cleanup-disks', $cleanupdisks) }
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/nodes/{node}/disks/directory/{name}" -Options $Options
@@ -11110,8 +11110,8 @@ function New-NodeMigrateall {
 		$withlocaldisks
 	)
 	$Options = @()
-	$Options.Add('node',$node)
-	$Options.Add('target',$target)
+	$Options.Add('node', $node)
+	$Options.Add('target', $target)
 	if ($maxworkers -and -not [String]::IsNullOrEmpty($maxworkers) -and -not [String]::IsNullOrWhiteSpace($maxworkers)) { $Options.Add('maxworkers', $maxworkers) }
 	if ($vms -and -not [String]::IsNullOrEmpty($vms) -and -not [String]::IsNullOrWhiteSpace($vms)) { $Options.Add('vms', $vms) }
 	if ($withlocaldisks) { $Options.Add('with-local-disks', $withlocaldisks) }
@@ -11127,7 +11127,7 @@ function Get-NodeDisksZfs {
 		$node
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/disks/zfs" -Options $Options
 }
 function New-NodeDisksZfs {
@@ -11161,10 +11161,10 @@ function New-NodeDisksZfs {
 		$raidlevel
 	)
 	$Options = @()
-	$Options.Add('devices',$devices)
-	$Options.Add('name',$name)
-	$Options.Add('node',$node)
-	$Options.Add('raidlevel',$raidlevel)
+	$Options.Add('devices', $devices)
+	$Options.Add('name', $name)
+	$Options.Add('node', $node)
+	$Options.Add('raidlevel', $raidlevel)
 	if ($add_storage) { $Options.Add('add_storage', $add_storage) }
 	if ($ashift -and -not [String]::IsNullOrEmpty($ashift) -and -not [String]::IsNullOrWhiteSpace($ashift)) { $Options.Add('ashift', $ashift) }
 	if ($compression -and -not [String]::IsNullOrEmpty($compression) -and -not [String]::IsNullOrWhiteSpace($compression)) { $Options.Add('compression', $compression) }
@@ -11184,8 +11184,8 @@ function Get-NodeDisksZfsName {
 		$node
 	)
 	$Options = @()
-	$Options.Add('name',$name)
-	$Options.Add('node',$node)
+	$Options.Add('name', $name)
+	$Options.Add('node', $node)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/disks/zfs/{name}" -Options $Options
 }
 function Remove-NodeDisksZfsName {
@@ -11208,8 +11208,8 @@ function Remove-NodeDisksZfsName {
 		$node
 	)
 	$Options = @()
-	$Options.Add('name',$name)
-	$Options.Add('node',$node)
+	$Options.Add('name', $name)
+	$Options.Add('node', $node)
 	if ($cleanupconfig) { $Options.Add('cleanup-config', $cleanupconfig) }
 	if ($cleanupdisks) { $Options.Add('cleanup-disks', $cleanupdisks) }
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/nodes/{node}/disks/zfs/{name}" -Options $Options
@@ -11224,7 +11224,7 @@ function Get-NodeHosts {
 		$node
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	Invoke-ProxmoxAPI -Method GET -Resource "/nodes/{node}/hosts" -Options $Options
 }
 function New-NodeHosts {
@@ -11243,8 +11243,8 @@ function New-NodeHosts {
 		$node
 	)
 	$Options = @()
-	$Options.Add('data',$data)
-	$Options.Add('node',$node)
+	$Options.Add('data', $data)
+	$Options.Add('node', $node)
 	if ($digest -and -not [String]::IsNullOrEmpty($digest) -and -not [String]::IsNullOrWhiteSpace($digest)) { $Options.Add('digest', $digest) }
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/{node}/hosts" -Options $Options
 }
@@ -11267,7 +11267,7 @@ function Get-NodeDisksList {
 		$type
 	)
 	$Options = @()
-	$Options.Add('node',$node)
+	$Options.Add('node', $node)
 	if ($includepartitions) { $Options.Add('include-partitions', $includepartitions) }
 	if ($skipsmart) { $Options.Add('skipsmart', $skipsmart) }
 	if ($type -and -not [String]::IsNullOrEmpty($type) -and -not [String]::IsNullOrWhiteSpace($type)) { $Options.Add('type', $type) }
@@ -11461,8 +11461,8 @@ function New-Storage {
 		$volume
 	)
 	$Options = @()
-	$Options.Add('storage',$storage)
-	$Options.Add('type',$type)
+	$Options.Add('storage', $storage)
+	$Options.Add('type', $type)
 	if ($authsupported -and -not [String]::IsNullOrEmpty($authsupported) -and -not [String]::IsNullOrWhiteSpace($authsupported)) { $Options.Add('authsupported', $authsupported) }
 	if ($base -and -not [String]::IsNullOrEmpty($base) -and -not [String]::IsNullOrWhiteSpace($base)) { $Options.Add('base', $base) }
 	if ($blocksize -and -not [String]::IsNullOrEmpty($blocksize) -and -not [String]::IsNullOrWhiteSpace($blocksize)) { $Options.Add('blocksize', $blocksize) }
@@ -11529,7 +11529,7 @@ function Get-Storage {
 		$storage
 	)
 	$Options = @()
-	$Options.Add('storage',$storage)
+	$Options.Add('storage', $storage)
 	Invoke-ProxmoxAPI -Method GET -Resource "/storage/{storage}" -Options $Options
 }
 function Set-Storage {
@@ -11674,7 +11674,7 @@ function Set-Storage {
 		$username
 	)
 	$Options = @()
-	$Options.Add('storage',$storage)
+	$Options.Add('storage', $storage)
 	if ($blocksize -and -not [String]::IsNullOrEmpty($blocksize) -and -not [String]::IsNullOrWhiteSpace($blocksize)) { $Options.Add('blocksize', $blocksize) }
 	if ($bwlimit -and -not [String]::IsNullOrEmpty($bwlimit) -and -not [String]::IsNullOrWhiteSpace($bwlimit)) { $Options.Add('bwlimit', $bwlimit) }
 	if ($comstar_hg -and -not [String]::IsNullOrEmpty($comstar_hg) -and -not [String]::IsNullOrWhiteSpace($comstar_hg)) { $Options.Add('comstar_hg', $comstar_hg) }
@@ -11730,7 +11730,7 @@ function Remove-Storage {
 		$storage
 	)
 	$Options = @()
-	$Options.Add('storage',$storage)
+	$Options.Add('storage', $storage)
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/storage/{storage}" -Options $Options
 }
 function Get-Access {
@@ -11792,7 +11792,7 @@ function New-AccessUsers {
 		$userid
 	)
 	$Options = @()
-	$Options.Add('userid',$userid)
+	$Options.Add('userid', $userid)
 	if ($comment -and -not [String]::IsNullOrEmpty($comment) -and -not [String]::IsNullOrWhiteSpace($comment)) { $Options.Add('comment', $comment) }
 	if ($email -and -not [String]::IsNullOrEmpty($email) -and -not [String]::IsNullOrWhiteSpace($email)) { $Options.Add('email', $email) }
 	if ($enable) { $Options.Add('enable', $enable) }
@@ -11814,7 +11814,7 @@ function Get-AccessUsersUserid {
 		$userid
 	)
 	$Options = @()
-	$Options.Add('userid',$userid)
+	$Options.Add('userid', $userid)
 	Invoke-ProxmoxAPI -Method GET -Resource "/access/users/{userid}" -Options $Options
 }
 function Set-AccessUsersUserid {
@@ -11853,7 +11853,7 @@ function Set-AccessUsersUserid {
 		$userid
 	)
 	$Options = @()
-	$Options.Add('userid',$userid)
+	$Options.Add('userid', $userid)
 	if ($append) { $Options.Add('append', $append) }
 	if ($comment -and -not [String]::IsNullOrEmpty($comment) -and -not [String]::IsNullOrWhiteSpace($comment)) { $Options.Add('comment', $comment) }
 	if ($email -and -not [String]::IsNullOrEmpty($email) -and -not [String]::IsNullOrWhiteSpace($email)) { $Options.Add('email', $email) }
@@ -11874,7 +11874,7 @@ function Remove-AccessUsersUserid {
 		$userid
 	)
 	$Options = @()
-	$Options.Add('userid',$userid)
+	$Options.Add('userid', $userid)
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/access/users/{userid}" -Options $Options
 }
 function Get-AccessUsersTfa {
@@ -11890,7 +11890,7 @@ function Get-AccessUsersTfa {
 		$userid
 	)
 	$Options = @()
-	$Options.Add('userid',$userid)
+	$Options.Add('userid', $userid)
 	if ($multiple) { $Options.Add('multiple', $multiple) }
 	Invoke-ProxmoxAPI -Method GET -Resource "/access/users/{userid}/tfa" -Options $Options
 }
@@ -11904,7 +11904,7 @@ function Get-AccessUsersToken {
 		$userid
 	)
 	$Options = @()
-	$Options.Add('userid',$userid)
+	$Options.Add('userid', $userid)
 	Invoke-ProxmoxAPI -Method GET -Resource "/access/users/{userid}/token" -Options $Options
 }
 function Get-AccessUsersTokenTokenid {
@@ -11921,8 +11921,8 @@ function Get-AccessUsersTokenTokenid {
 		$userid
 	)
 	$Options = @()
-	$Options.Add('tokenid',$tokenid)
-	$Options.Add('userid',$userid)
+	$Options.Add('tokenid', $tokenid)
+	$Options.Add('userid', $userid)
 	Invoke-ProxmoxAPI -Method GET -Resource "/access/users/{userid}/token/{tokenid}" -Options $Options
 }
 function New-AccessUsersTokenTokenid {
@@ -11948,8 +11948,8 @@ function New-AccessUsersTokenTokenid {
 		$userid
 	)
 	$Options = @()
-	$Options.Add('tokenid',$tokenid)
-	$Options.Add('userid',$userid)
+	$Options.Add('tokenid', $tokenid)
+	$Options.Add('userid', $userid)
 	if ($comment -and -not [String]::IsNullOrEmpty($comment) -and -not [String]::IsNullOrWhiteSpace($comment)) { $Options.Add('comment', $comment) }
 	if ($expire -and -not [String]::IsNullOrEmpty($expire) -and -not [String]::IsNullOrWhiteSpace($expire)) { $Options.Add('expire', $expire) }
 	if ($privsep) { $Options.Add('privsep', $privsep) }
@@ -11978,8 +11978,8 @@ function Set-AccessUsersTokenTokenid {
 		$userid
 	)
 	$Options = @()
-	$Options.Add('tokenid',$tokenid)
-	$Options.Add('userid',$userid)
+	$Options.Add('tokenid', $tokenid)
+	$Options.Add('userid', $userid)
 	if ($comment -and -not [String]::IsNullOrEmpty($comment) -and -not [String]::IsNullOrWhiteSpace($comment)) { $Options.Add('comment', $comment) }
 	if ($expire -and -not [String]::IsNullOrEmpty($expire) -and -not [String]::IsNullOrWhiteSpace($expire)) { $Options.Add('expire', $expire) }
 	if ($privsep) { $Options.Add('privsep', $privsep) }
@@ -11998,8 +11998,8 @@ function Remove-AccessUsersTokenTokenid {
 		$userid
 	)
 	$Options = @()
-	$Options.Add('tokenid',$tokenid)
-	$Options.Add('userid',$userid)
+	$Options.Add('tokenid', $tokenid)
+	$Options.Add('userid', $userid)
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/access/users/{userid}/token/{tokenid}" -Options $Options
 }
 function Get-AccessGroups {
@@ -12021,7 +12021,7 @@ function New-AccessGroups {
 		$groupid
 	)
 	$Options = @()
-	$Options.Add('groupid',$groupid)
+	$Options.Add('groupid', $groupid)
 	if ($comment -and -not [String]::IsNullOrEmpty($comment) -and -not [String]::IsNullOrWhiteSpace($comment)) { $Options.Add('comment', $comment) }
 	Invoke-ProxmoxAPI -Method POST -Resource "/access/groups" -Options $Options
 }
@@ -12035,7 +12035,7 @@ function Get-AccessGroupsGroupid {
 		$groupid
 	)
 	$Options = @()
-	$Options.Add('groupid',$groupid)
+	$Options.Add('groupid', $groupid)
 	Invoke-ProxmoxAPI -Method GET -Resource "/access/groups/{groupid}" -Options $Options
 }
 function Set-AccessGroupsGroupid {
@@ -12050,7 +12050,7 @@ function Set-AccessGroupsGroupid {
 		$groupid
 	)
 	$Options = @()
-	$Options.Add('groupid',$groupid)
+	$Options.Add('groupid', $groupid)
 	if ($comment -and -not [String]::IsNullOrEmpty($comment) -and -not [String]::IsNullOrWhiteSpace($comment)) { $Options.Add('comment', $comment) }
 	Invoke-ProxmoxAPI -Method PUT -Resource "/access/groups/{groupid}" -Options $Options
 }
@@ -12063,7 +12063,7 @@ function Remove-AccessGroupsGroupid {
 		$groupid
 	)
 	$Options = @()
-	$Options.Add('groupid',$groupid)
+	$Options.Add('groupid', $groupid)
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/access/groups/{groupid}" -Options $Options
 }
 function Get-AccessRoles {
@@ -12085,7 +12085,7 @@ function New-AccessRoles {
 		$roleid
 	)
 	$Options = @()
-	$Options.Add('roleid',$roleid)
+	$Options.Add('roleid', $roleid)
 	if ($privs -and -not [String]::IsNullOrEmpty($privs) -and -not [String]::IsNullOrWhiteSpace($privs)) { $Options.Add('privs', $privs) }
 	Invoke-ProxmoxAPI -Method POST -Resource "/access/roles" -Options $Options
 }
@@ -12099,7 +12099,7 @@ function Get-AccessRolesRoleid {
 		$roleid
 	)
 	$Options = @()
-	$Options.Add('roleid',$roleid)
+	$Options.Add('roleid', $roleid)
 	Invoke-ProxmoxAPI -Method GET -Resource "/access/roles/{roleid}" -Options $Options
 }
 function Set-AccessRolesRoleid {
@@ -12117,7 +12117,7 @@ function Set-AccessRolesRoleid {
 		$roleid
 	)
 	$Options = @()
-	$Options.Add('roleid',$roleid)
+	$Options.Add('roleid', $roleid)
 	if ($append) { $Options.Add('append', $append) }
 	if ($privs -and -not [String]::IsNullOrEmpty($privs) -and -not [String]::IsNullOrWhiteSpace($privs)) { $Options.Add('privs', $privs) }
 	Invoke-ProxmoxAPI -Method PUT -Resource "/access/roles/{roleid}" -Options $Options
@@ -12131,7 +12131,7 @@ function Remove-AccessRolesRoleid {
 		$roleid
 	)
 	$Options = @()
-	$Options.Add('roleid',$roleid)
+	$Options.Add('roleid', $roleid)
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/access/roles/{roleid}" -Options $Options
 }
 function Get-AccessAcl {
@@ -12169,8 +12169,8 @@ function Set-AccessAcl {
 		$users
 	)
 	$Options = @()
-	$Options.Add('path',$path)
-	$Options.Add('roles',$roles)
+	$Options.Add('path', $path)
+	$Options.Add('roles', $roles)
 	if ($delete) { $Options.Add('delete', $delete) }
 	if ($groups -and -not [String]::IsNullOrEmpty($groups) -and -not [String]::IsNullOrWhiteSpace($groups)) { $Options.Add('groups', $groups) }
 	if ($propagate) { $Options.Add('propagate', $propagate) }
@@ -12294,8 +12294,8 @@ function New-AccessDomains {
 		$verify
 	)
 	$Options = @()
-	$Options.Add('realm',$realm)
-	$Options.Add('type',$type)
+	$Options.Add('realm', $realm)
+	$Options.Add('type', $type)
 	if ($autocreate) { $Options.Add('autocreate', $autocreate) }
 	if ($base_dn -and -not [String]::IsNullOrEmpty($base_dn) -and -not [String]::IsNullOrWhiteSpace($base_dn)) { $Options.Add('base_dn', $base_dn) }
 	if ($bind_dn -and -not [String]::IsNullOrEmpty($bind_dn) -and -not [String]::IsNullOrWhiteSpace($bind_dn)) { $Options.Add('bind_dn', $bind_dn) }
@@ -12339,7 +12339,7 @@ function Get-AccessDomainsRealm {
 		$realm
 	)
 	$Options = @()
-	$Options.Add('realm',$realm)
+	$Options.Add('realm', $realm)
 	Invoke-ProxmoxAPI -Method GET -Resource "/access/domains/{realm}" -Options $Options
 }
 function Set-AccessDomainsRealm {
@@ -12450,7 +12450,7 @@ function Set-AccessDomainsRealm {
 		$verify
 	)
 	$Options = @()
-	$Options.Add('realm',$realm)
+	$Options.Add('realm', $realm)
 	if ($autocreate) { $Options.Add('autocreate', $autocreate) }
 	if ($base_dn -and -not [String]::IsNullOrEmpty($base_dn) -and -not [String]::IsNullOrWhiteSpace($base_dn)) { $Options.Add('base_dn', $base_dn) }
 	if ($bind_dn -and -not [String]::IsNullOrEmpty($bind_dn) -and -not [String]::IsNullOrWhiteSpace($bind_dn)) { $Options.Add('bind_dn', $bind_dn) }
@@ -12495,7 +12495,7 @@ function Remove-AccessDomainsRealm {
 		$realm
 	)
 	$Options = @()
-	$Options.Add('realm',$realm)
+	$Options.Add('realm', $realm)
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/access/domains/{realm}" -Options $Options
 }
 function New-AccessDomainsRealmSync {
@@ -12523,7 +12523,7 @@ function New-AccessDomainsRealmSync {
 		$scope
 	)
 	$Options = @()
-	$Options.Add('realm',$realm)
+	$Options.Add('realm', $realm)
 	if ($dryrun) { $Options.Add('dry-run', $dryrun) }
 	if ($enablenew) { $Options.Add('enable-new', $enablenew) }
 	if ($full) { $Options.Add('full', $full) }
@@ -12552,8 +12552,8 @@ function New-AccessAuthUrl {
 		$redirecturl
 	)
 	$Options = @()
-	$Options.Add('realm',$realm)
-	$Options.Add('redirect-url',$redirecturl)
+	$Options.Add('realm', $realm)
+	$Options.Add('redirect-url', $redirecturl)
 	Invoke-ProxmoxAPI -Method POST -Resource "/access/openid/auth-url" -Options $Options
 }
 function Get-AccessTfa {
@@ -12573,7 +12573,7 @@ function New-AccessTfa {
 		$response
 	)
 	$Options = @()
-	$Options.Add('response',$response)
+	$Options.Add('response', $response)
 	Invoke-ProxmoxAPI -Method POST -Resource "/access/tfa" -Options $Options
 }
 function New-AccessLogin {
@@ -12593,9 +12593,9 @@ function New-AccessLogin {
 		$state
 	)
 	$Options = @()
-	$Options.Add('code',$code)
-	$Options.Add('redirect-url',$redirecturl)
-	$Options.Add('state',$state)
+	$Options.Add('code', $code)
+	$Options.Add('redirect-url', $redirecturl)
+	$Options.Add('state', $state)
 	Invoke-ProxmoxAPI -Method POST -Resource "/access/openid/login" -Options $Options
 }
 function Get-AccessTicket {
@@ -12614,7 +12614,7 @@ function Get-AccessTfaUserid {
 		$userid
 	)
 	$Options = @()
-	$Options.Add('userid',$userid)
+	$Options.Add('userid', $userid)
 	Invoke-ProxmoxAPI -Method GET -Resource "/access/tfa/{userid}" -Options $Options
 }
 function New-AccessTfaUserid {
@@ -12646,8 +12646,8 @@ function New-AccessTfaUserid {
 		$value
 	)
 	$Options = @()
-	$Options.Add('type',$type)
-	$Options.Add('userid',$userid)
+	$Options.Add('type', $type)
+	$Options.Add('userid', $userid)
 	if ($challenge -and -not [String]::IsNullOrEmpty($challenge) -and -not [String]::IsNullOrWhiteSpace($challenge)) { $Options.Add('challenge', $challenge) }
 	if ($description -and -not [String]::IsNullOrEmpty($description) -and -not [String]::IsNullOrWhiteSpace($description)) { $Options.Add('description', $description) }
 	if ($password) { $Options.Add('password', $($password | ConvertFrom-SecureString -AsPlainText)) }
@@ -12669,8 +12669,8 @@ function Get-AccessTfaId {
 		$userid
 	)
 	$Options = @()
-	$Options.Add('id',$id)
-	$Options.Add('userid',$userid)
+	$Options.Add('id', $id)
+	$Options.Add('userid', $userid)
 	Invoke-ProxmoxAPI -Method GET -Resource "/access/tfa/{userid}/{id}" -Options $Options
 }
 function Set-AccessTfaId {
@@ -12695,8 +12695,8 @@ function Set-AccessTfaId {
 		$userid
 	)
 	$Options = @()
-	$Options.Add('id',$id)
-	$Options.Add('userid',$userid)
+	$Options.Add('id', $id)
+	$Options.Add('userid', $userid)
 	if ($description -and -not [String]::IsNullOrEmpty($description) -and -not [String]::IsNullOrWhiteSpace($description)) { $Options.Add('description', $description) }
 	if ($enable) { $Options.Add('enable', $enable) }
 	if ($password) { $Options.Add('password', $($password | ConvertFrom-SecureString -AsPlainText)) }
@@ -12718,8 +12718,8 @@ function Remove-AccessTfaId {
 		$userid
 	)
 	$Options = @()
-	$Options.Add('id',$id)
-	$Options.Add('userid',$userid)
+	$Options.Add('id', $id)
+	$Options.Add('userid', $userid)
 	if ($password) { $Options.Add('password', $($password | ConvertFrom-SecureString -AsPlainText)) }
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/access/tfa/{userid}/{id}" -Options $Options
 }
@@ -12736,8 +12736,8 @@ function Set-AccessPassword {
 		$userid
 	)
 	$Options = @()
-	$Options.Add('password',$password)
-	$Options.Add('userid',$userid)
+	$Options.Add('password', $password)
+	$Options.Add('userid', $userid)
 	Invoke-ProxmoxAPI -Method PUT -Resource "/access/password" -Options $Options
 }
 function Get-AccessPermissions {
@@ -12775,7 +12775,7 @@ function New-Pools {
 		$poolid
 	)
 	$Options = @()
-	$Options.Add('poolid',$poolid)
+	$Options.Add('poolid', $poolid)
 	if ($comment -and -not [String]::IsNullOrEmpty($comment) -and -not [String]::IsNullOrWhiteSpace($comment)) { $Options.Add('comment', $comment) }
 	Invoke-ProxmoxAPI -Method POST -Resource "/pools" -Options $Options
 }
@@ -12789,7 +12789,7 @@ function Get-PoolsPoolid {
 		$poolid
 	)
 	$Options = @()
-	$Options.Add('poolid',$poolid)
+	$Options.Add('poolid', $poolid)
 	Invoke-ProxmoxAPI -Method GET -Resource "/pools/{poolid}" -Options $Options
 }
 function Set-PoolsPoolid {
@@ -12813,7 +12813,7 @@ function Set-PoolsPoolid {
 		$vms
 	)
 	$Options = @()
-	$Options.Add('poolid',$poolid)
+	$Options.Add('poolid', $poolid)
 	if ($comment -and -not [String]::IsNullOrEmpty($comment) -and -not [String]::IsNullOrWhiteSpace($comment)) { $Options.Add('comment', $comment) }
 	if ($delete) { $Options.Add('delete', $delete) }
 	if ($storage -and -not [String]::IsNullOrEmpty($storage) -and -not [String]::IsNullOrWhiteSpace($storage)) { $Options.Add('storage', $storage) }
@@ -12829,7 +12829,7 @@ function Remove-PoolsPoolid {
 		$poolid
 	)
 	$Options = @()
-	$Options.Add('poolid',$poolid)
+	$Options.Add('poolid', $poolid)
 	Invoke-ProxmoxAPI -Method DELETE -Resource "/pools/{poolid}" -Options $Options
 }
 function Get-Version {
@@ -12841,409 +12841,409 @@ function Get-Version {
 }
 Export-ModuleMember -Function @(
 	'Get-Cluster'
- 	'Get-ClusterReplication'
- 	'New-ClusterReplication'
- 	'Get-ClusterReplicationId'
- 	'Set-ClusterReplicationId'
- 	'Remove-ClusterReplicationId'
- 	'Get-ClusterMetrics'
- 	'Get-ClusterMetricsServer'
- 	'Get-ClusterMetricsServerId'
- 	'New-ClusterMetricsServerId'
- 	'Set-ClusterMetricsServerId'
- 	'Remove-ClusterMetricsServerId'
- 	'Get-ClusterConfig'
- 	'New-ClusterConfig'
- 	'Get-ClusterConfigApiversion'
- 	'Get-ClusterFirewall'
- 	'Get-ClusterConfigNodes'
- 	'New-ClusterConfigNodesNode'
- 	'Remove-ClusterConfigNodesNode'
- 	'Get-ClusterBackup'
- 	'New-ClusterBackup'
- 	'Get-ClusterConfigJoin'
- 	'New-ClusterConfigJoin'
- 	'Get-ClusterBackupInfo'
- 	'Get-ClusterConfigTotem'
- 	'Get-ClusterHa'
- 	'Get-ClusterConfigQdevice'
- 	'Get-ClusterAcme'
- 	'Get-ClusterFirewallGroups'
- 	'New-ClusterFirewallGroups'
- 	'Get-ClusterFirewallGroupsGroup'
- 	'New-ClusterFirewallGroupsGroup'
- 	'Remove-ClusterFirewallGroupsGroup'
- 	'Get-ClusterFirewallGroupsGroupPos'
- 	'Set-ClusterFirewallGroupsGroupPos'
- 	'Remove-ClusterFirewallGroupsGroupPos'
- 	'Get-ClusterCeph'
- 	'Get-ClusterFirewallRules'
- 	'New-ClusterFirewallRules'
- 	'Get-ClusterFirewallRulesPos'
- 	'Set-ClusterFirewallRulesPos'
- 	'Remove-ClusterFirewallRulesPos'
- 	'Get-ClusterJobs'
- 	'Get-ClusterFirewallIpset'
- 	'New-ClusterFirewallIpset'
- 	'Get-ClusterFirewallIpsetName'
- 	'New-ClusterFirewallIpsetName'
- 	'Remove-ClusterFirewallIpsetName'
- 	'Get-ClusterFirewallIpsetNameCidr'
- 	'Set-ClusterFirewallIpsetNameCidr'
- 	'Remove-ClusterFirewallIpsetNameCidr'
- 	'Get-ClusterSdn'
- 	'Set-ClusterSdn'
- 	'Get-ClusterFirewallAliases'
- 	'New-ClusterFirewallAliases'
- 	'Get-ClusterFirewallAliasesName'
- 	'Set-ClusterFirewallAliasesName'
- 	'Remove-ClusterFirewallAliasesName'
- 	'Get-ClusterLog'
- 	'Get-ClusterFirewallOptions'
- 	'Set-ClusterFirewallOptions'
- 	'Get-ClusterResources'
- 	'Get-ClusterFirewallMacros'
- 	'Get-ClusterTasks'
- 	'Get-ClusterFirewallRefs'
- 	'Get-ClusterOptions'
- 	'Set-ClusterOptions'
- 	'Get-ClusterBackupId'
- 	'Set-ClusterBackupId'
- 	'Remove-ClusterBackupId'
- 	'Get-ClusterBackupIncludedVolumes'
- 	'Get-ClusterStatus'
- 	'Get-ClusterBackupInfoNotBackedUp'
- 	'Get-ClusterNextid'
- 	'Get-ClusterHaResources'
- 	'New-ClusterHaResources'
- 	'Get-ClusterHaResourcesSid'
- 	'Set-ClusterHaResourcesSid'
- 	'Remove-ClusterHaResourcesSid'
- 	'New-ClusterHaResourcesMigrate'
- 	'New-ClusterHaResourcesRelocate'
- 	'Get-Nodes'
- 	'Get-Node'
- 	'Get-NodeQemu'
- 	'New-NodeQemu'
- 	'Get-NodeQemuVmid'
- 	'Remove-NodeQemuVmid'
- 	'Get-NodeQemuFirewall'
- 	'Get-NodeQemuFirewallRules'
- 	'New-NodeQemuFirewallRules'
- 	'Get-NodeQemuFirewallRulesPos'
- 	'Set-NodeQemuFirewallRulesPos'
- 	'Remove-NodeQemuFirewallRulesPos'
- 	'Get-NodeQemuAgent'
- 	'New-NodeQemuAgent'
- 	'Get-NodeQemuFirewallAliases'
- 	'New-NodeQemuFirewallAliases'
- 	'Get-NodeQemuFirewallAliasesName'
- 	'Set-NodeQemuFirewallAliasesName'
- 	'Remove-NodeQemuFirewallAliasesName'
- 	'Get-NodeQemuRrd'
- 	'Get-NodeQemuFirewallIpset'
- 	'New-NodeQemuFirewallIpset'
- 	'Get-NodeQemuFirewallIpsetName'
- 	'New-NodeQemuFirewallIpsetName'
- 	'Remove-NodeQemuFirewallIpsetName'
- 	'Get-NodeQemuFirewallIpsetNameCidr'
- 	'Set-NodeQemuFirewallIpsetNameCidr'
- 	'Remove-NodeQemuFirewallIpsetNameCidr'
- 	'Get-NodeQemuRrddata'
- 	'Get-NodeQemuFirewallOptions'
- 	'Set-NodeQemuFirewallOptions'
- 	'Get-NodeQemuConfig'
- 	'New-NodeQemuConfig'
- 	'Set-NodeQemuConfig'
- 	'Get-NodeQemuFirewallLog'
- 	'Get-NodeQemuPending'
- 	'Get-NodeQemuFirewallRefs'
- 	'Set-NodeQemuUnlink'
- 	'New-NodeQemuAgentFsfreezeFreeze'
- 	'New-NodeQemuVncproxy'
- 	'New-NodeQemuAgentFsfreezeStatus'
- 	'New-NodeQemuTermproxy'
- 	'New-NodeQemuAgentFsfreezeThaw'
- 	'Get-NodeQemuVncwebsocket'
- 	'New-NodeQemuAgentFstrim'
- 	'New-NodeQemuSpiceproxy'
- 	'Get-NodeQemuAgentGetFsinfo'
- 	'Get-NodeQemuStatus'
- 	'Get-NodeQemuAgentGetHostName'
- 	'Set-NodeQemuSendkey'
- 	'Get-NodeQemuAgentGetMemoryBlockInfo'
- 	'Get-NodeQemuFeature'
- 	'Get-NodeQemuAgentGetMemoryBlocks'
- 	'New-NodeQemuClone'
- 	'Get-NodeQemuAgentGetOsinfo'
- 	'New-NodeQemuMoveDisk'
- 	'Get-NodeQemuAgentGetTime'
- 	'Get-NodeQemuMigrate'
- 	'New-NodeQemuMigrate'
- 	'Get-NodeQemuAgentGetTimezone'
- 	'New-NodeQemuMonitor'
- 	'Get-NodeQemuAgentGetUsers'
- 	'Set-NodeQemuResize'
- 	'Get-NodeQemuAgentGetVcpus'
- 	'Get-NodeQemuSnapshot'
- 	'New-NodeQemuSnapshot'
- 	'Get-NodeQemuAgentInfo'
- 	'New-NodeQemuTemplate'
- 	'Get-NodeQemuAgentNetworkGetInterfaces'
- 	'New-NodeQemuAgentPing'
- 	'Get-NodeLxc'
- 	'New-NodeLxc'
- 	'Get-NodeLxcVmid'
- 	'Remove-NodeLxcVmid'
- 	'Get-NodeLxcConfig'
- 	'Set-NodeLxcConfig'
- 	'Get-NodeLxcStatus'
- 	'Get-NodeLxcStatusCurrent'
- 	'Get-NodeLxcSnapshot'
- 	'New-NodeLxcSnapshot'
- 	'New-NodeLxcStatusStart'
- 	'Get-NodeLxcFirewall'
- 	'New-NodeLxcStatusStop'
- 	'Get-NodeLxcRrd'
- 	'New-NodeLxcStatusShutdown'
- 	'Get-NodeLxcRrddata'
- 	'New-NodeLxcStatusSuspend'
- 	'New-NodeLxcVncproxy'
- 	'New-NodeLxcStatusResume'
- 	'New-NodeLxcTermproxy'
- 	'New-NodeLxcStatusReboot'
- 	'Get-NodeLxcVncwebsocket'
- 	'Get-NodeLxcSnapshotSnapname'
- 	'Remove-NodeLxcSnapshotSnapname'
- 	'New-NodeLxcSnapshotSnapnameRollback'
- 	'Get-NodeLxcSnapshotSnapnameConfig'
- 	'Set-NodeLxcSnapshotSnapnameConfig'
- 	'New-NodeLxcSpiceproxy'
- 	'Get-NodeLxcFirewallRules'
- 	'New-NodeLxcFirewallRules'
- 	'Get-NodeLxcFirewallRulesPos'
- 	'Set-NodeLxcFirewallRulesPos'
- 	'Remove-NodeLxcFirewallRulesPos'
- 	'New-NodeLxcMigrate'
- 	'Get-NodeLxcFirewallAliases'
- 	'New-NodeLxcFirewallAliases'
- 	'Get-NodeLxcFirewallAliasesName'
- 	'Set-NodeLxcFirewallAliasesName'
- 	'Remove-NodeLxcFirewallAliasesName'
- 	'Get-NodeLxcFeature'
- 	'Get-NodeLxcFirewallIpset'
- 	'New-NodeLxcFirewallIpset'
- 	'Get-NodeLxcFirewallIpsetName'
- 	'New-NodeLxcFirewallIpsetName'
- 	'Remove-NodeLxcFirewallIpsetName'
- 	'Get-NodeLxcFirewallIpsetNameCidr'
- 	'Set-NodeLxcFirewallIpsetNameCidr'
- 	'Remove-NodeLxcFirewallIpsetNameCidr'
- 	'New-NodeLxcTemplate'
- 	'Get-NodeLxcFirewallOptions'
- 	'Set-NodeLxcFirewallOptions'
- 	'New-NodeLxcClone'
- 	'Get-NodeLxcFirewallLog'
- 	'Set-NodeLxcResize'
- 	'Get-NodeLxcFirewallRefs'
- 	'New-NodeLxcMoveVolume'
- 	'Get-NodeLxcPending'
- 	'Get-NodeCeph'
- 	'Get-NodeCephOsd'
- 	'New-NodeCephOsd'
- 	'Remove-NodeCephOsdOsdid'
- 	'New-NodeCephOsdIn'
- 	'New-NodeCephOsdOut'
- 	'New-NodeCephOsdScrub'
- 	'New-NodeVzdump'
- 	'Get-NodeCephMds'
- 	'New-NodeCephMdsName'
- 	'Remove-NodeCephMdsName'
- 	'Get-NodeServices'
- 	'Get-NodeCephMgr'
- 	'New-NodeCephMgrId'
- 	'Remove-NodeCephMgrId'
- 	'Get-NodeSubscription'
- 	'New-NodeSubscription'
- 	'Set-NodeSubscription'
- 	'Remove-NodeSubscription'
- 	'Get-NodeCephMon'
- 	'New-NodeCephMonMonid'
- 	'Remove-NodeCephMonMonid'
- 	'Get-NodeNetwork'
- 	'New-NodeNetwork'
- 	'Set-NodeNetwork'
- 	'Remove-NodeNetwork'
- 	'Get-NodeCephFs'
- 	'New-NodeCephFsName'
- 	'Get-NodeTasks'
- 	'Get-NodeCephPools'
- 	'New-NodeCephPools'
- 	'Get-NodeCephPoolsName'
- 	'Set-NodeCephPoolsName'
- 	'Remove-NodeCephPoolsName'
- 	'Get-NodeScan'
- 	'Get-NodeCephConfig'
- 	'Get-NodeHardware'
- 	'Get-NodeCephConfigdb'
- 	'Get-NodeCapabilities'
- 	'New-NodeCephInit'
- 	'Get-NodeStorage'
- 	'New-NodeCephStop'
- 	'Get-NodeDisks'
- 	'New-NodeCephStart'
- 	'Get-NodeApt'
- 	'New-NodeCephRestart'
- 	'Get-NodeFirewall'
- 	'Get-NodeCephStatus'
- 	'Get-NodeReplication'
- 	'Get-NodeCephCrush'
- 	'Get-NodeCertificates'
- 	'Get-NodeCephLog'
- 	'Get-NodeConfig'
- 	'Set-NodeConfig'
- 	'Get-NodeCephRules'
- 	'Get-NodeSdn'
- 	'Get-NodeVzdumpDefaults'
- 	'Get-NodeVersion'
- 	'Get-NodeVzdumpExtractconfig'
- 	'Get-NodeStatus'
- 	'New-NodeStatus'
- 	'Get-NodeServicesService'
- 	'Get-NodeServicesServiceState'
- 	'New-NodeServicesServiceStart'
- 	'New-NodeServicesServiceStop'
- 	'New-NodeServicesServiceRestart'
- 	'New-NodeServicesServiceReload'
- 	'Get-NodeNetstat'
- 	'New-NodeExecute'
- 	'Get-NodeNetworkIface'
- 	'Set-NodeNetworkIface'
- 	'Remove-NodeNetworkIface'
- 	'New-NodeWakeonlan'
- 	'Get-NodeTasksUpid'
- 	'Remove-NodeTasksUpid'
- 	'Get-NodeTasksLog'
- 	'Get-NodeTasksStatus'
- 	'Get-NodeRrd'
- 	'Get-NodeScanNfs'
- 	'Get-NodeRrddata'
- 	'Get-NodeScanCifs'
- 	'Get-NodeSyslog'
- 	'Get-NodeScanPbs'
- 	'Get-NodeJournal'
- 	'Get-NodeScanGlusterfs'
- 	'New-NodeVncshell'
- 	'Get-NodeScanIscsi'
- 	'New-NodeTermproxy'
- 	'Get-NodeScanLvm'
- 	'Get-NodeVncwebsocket'
- 	'Get-NodeScanLvmthin'
- 	'New-NodeSpiceshell'
- 	'Get-NodeScanZfs'
- 	'Get-NodeDns'
- 	'Set-NodeDns'
- 	'Get-NodeHardwarePci'
- 	'Get-NodeHardwarePciPciid'
- 	'Get-NodeHardwarePciMdev'
- 	'Get-NodeTime'
- 	'Set-NodeTime'
- 	'Get-NodeHardwareUsb'
- 	'Get-NodeAplinfo'
- 	'New-NodeAplinfo'
- 	'Get-NodeCapabilitiesQemu'
- 	'Get-NodeCapabilitiesQemuCpu'
- 	'Get-NodeCapabilitiesQemuMachines'
- 	'Get-NodeQueryUrlMetadata'
- 	'Get-NodeStorage'
- 	'Get-NodeStoragePrunebackups'
- 	'Remove-NodeStoragePrunebackups'
- 	'Get-NodeStorageContent'
- 	'New-NodeStorageContent'
- 	'Get-NodeStorageContentVolume'
- 	'New-NodeStorageContentVolume'
- 	'Set-NodeStorageContentVolume'
- 	'Remove-NodeStorageContentVolume'
- 	'Get-NodeStorageFileRestoreList'
- 	'Get-NodeStorageStatus'
- 	'Get-NodeStorageFileRestoreDownload'
- 	'Get-NodeStorageRrd'
- 	'Get-NodeStorageRrddata'
- 	'New-NodeStorageUpload'
- 	'New-NodeStorageDownloadUrl'
- 	'Get-NodeReport'
- 	'Get-NodeDisksLvm'
- 	'New-NodeDisksLvm'
- 	'Remove-NodeDisksLvmName'
- 	'New-NodeStartall'
- 	'Get-NodeDisksLvmthin'
- 	'New-NodeDisksLvmthin'
- 	'Remove-NodeDisksLvmthinName'
- 	'New-NodeStopall'
- 	'Get-NodeDisksDirectory'
- 	'New-NodeDisksDirectory'
- 	'Remove-NodeDisksDirectoryName'
- 	'New-NodeMigrateall'
- 	'Get-NodeDisksZfs'
- 	'New-NodeDisksZfs'
- 	'Get-NodeDisksZfsName'
- 	'Remove-NodeDisksZfsName'
- 	'Get-NodeHosts'
- 	'New-NodeHosts'
- 	'Get-NodeDisksList'
- 	'Get-Storage'
- 	'New-Storage'
- 	'Get-Storage'
- 	'Set-Storage'
- 	'Remove-Storage'
- 	'Get-Access'
- 	'Get-AccessUsers'
- 	'New-AccessUsers'
- 	'Get-AccessUsersUserid'
- 	'Set-AccessUsersUserid'
- 	'Remove-AccessUsersUserid'
- 	'Get-AccessUsersTfa'
- 	'Get-AccessUsersToken'
- 	'Get-AccessUsersTokenTokenid'
- 	'New-AccessUsersTokenTokenid'
- 	'Set-AccessUsersTokenTokenid'
- 	'Remove-AccessUsersTokenTokenid'
- 	'Get-AccessGroups'
- 	'New-AccessGroups'
- 	'Get-AccessGroupsGroupid'
- 	'Set-AccessGroupsGroupid'
- 	'Remove-AccessGroupsGroupid'
- 	'Get-AccessRoles'
- 	'New-AccessRoles'
- 	'Get-AccessRolesRoleid'
- 	'Set-AccessRolesRoleid'
- 	'Remove-AccessRolesRoleid'
- 	'Get-AccessAcl'
- 	'Set-AccessAcl'
- 	'Get-AccessDomains'
- 	'New-AccessDomains'
- 	'Get-AccessDomainsRealm'
- 	'Set-AccessDomainsRealm'
- 	'Remove-AccessDomainsRealm'
- 	'New-AccessDomainsRealmSync'
- 	'Get-AccessOpenid'
- 	'New-AccessAuthUrl'
- 	'Get-AccessTfa'
- 	'New-AccessTfa'
- 	'New-AccessLogin'
- 	'Get-AccessTicket'
- 	'Get-AccessTfaUserid'
- 	'New-AccessTfaUserid'
- 	'Get-AccessTfaId'
- 	'Set-AccessTfaId'
- 	'Remove-AccessTfaId'
- 	'Set-AccessPassword'
- 	'Get-AccessPermissions'
- 	'Get-Pools'
- 	'New-Pools'
- 	'Get-PoolsPoolid'
- 	'Set-PoolsPoolid'
- 	'Remove-PoolsPoolid'
- 	'Get-Version'
+	'Get-ClusterReplication'
+	'New-ClusterReplication'
+	'Get-ClusterReplicationId'
+	'Set-ClusterReplicationId'
+	'Remove-ClusterReplicationId'
+	'Get-ClusterMetrics'
+	'Get-ClusterMetricsServer'
+	'Get-ClusterMetricsServerId'
+	'New-ClusterMetricsServerId'
+	'Set-ClusterMetricsServerId'
+	'Remove-ClusterMetricsServerId'
+	'Get-ClusterConfig'
+	'New-ClusterConfig'
+	'Get-ClusterConfigApiversion'
+	'Get-ClusterFirewall'
+	'Get-ClusterConfigNodes'
+	'New-ClusterConfigNodesNode'
+	'Remove-ClusterConfigNodesNode'
+	'Get-ClusterBackup'
+	'New-ClusterBackup'
+	'Get-ClusterConfigJoin'
+	'New-ClusterConfigJoin'
+	'Get-ClusterBackupInfo'
+	'Get-ClusterConfigTotem'
+	'Get-ClusterHa'
+	'Get-ClusterConfigQdevice'
+	'Get-ClusterAcme'
+	'Get-ClusterFirewallGroups'
+	'New-ClusterFirewallGroups'
+	'Get-ClusterFirewallGroupsGroup'
+	'New-ClusterFirewallGroupsGroup'
+	'Remove-ClusterFirewallGroupsGroup'
+	'Get-ClusterFirewallGroupsGroupPos'
+	'Set-ClusterFirewallGroupsGroupPos'
+	'Remove-ClusterFirewallGroupsGroupPos'
+	'Get-ClusterCeph'
+	'Get-ClusterFirewallRules'
+	'New-ClusterFirewallRules'
+	'Get-ClusterFirewallRulesPos'
+	'Set-ClusterFirewallRulesPos'
+	'Remove-ClusterFirewallRulesPos'
+	'Get-ClusterJobs'
+	'Get-ClusterFirewallIpset'
+	'New-ClusterFirewallIpset'
+	'Get-ClusterFirewallIpsetName'
+	'New-ClusterFirewallIpsetName'
+	'Remove-ClusterFirewallIpsetName'
+	'Get-ClusterFirewallIpsetNameCidr'
+	'Set-ClusterFirewallIpsetNameCidr'
+	'Remove-ClusterFirewallIpsetNameCidr'
+	'Get-ClusterSdn'
+	'Set-ClusterSdn'
+	'Get-ClusterFirewallAliases'
+	'New-ClusterFirewallAliases'
+	'Get-ClusterFirewallAliasesName'
+	'Set-ClusterFirewallAliasesName'
+	'Remove-ClusterFirewallAliasesName'
+	'Get-ClusterLog'
+	'Get-ClusterFirewallOptions'
+	'Set-ClusterFirewallOptions'
+	'Get-ClusterResources'
+	'Get-ClusterFirewallMacros'
+	'Get-ClusterTasks'
+	'Get-ClusterFirewallRefs'
+	'Get-ClusterOptions'
+	'Set-ClusterOptions'
+	'Get-ClusterBackupId'
+	'Set-ClusterBackupId'
+	'Remove-ClusterBackupId'
+	'Get-ClusterBackupIncludedVolumes'
+	'Get-ClusterStatus'
+	'Get-ClusterBackupInfoNotBackedUp'
+	'Get-ClusterNextid'
+	'Get-ClusterHaResources'
+	'New-ClusterHaResources'
+	'Get-ClusterHaResourcesSid'
+	'Set-ClusterHaResourcesSid'
+	'Remove-ClusterHaResourcesSid'
+	'New-ClusterHaResourcesMigrate'
+	'New-ClusterHaResourcesRelocate'
+	'Get-Nodes'
+	'Get-Node'
+	'Get-NodeQemu'
+	'New-NodeQemu'
+	'Get-NodeQemuVmid'
+	'Remove-NodeQemuVmid'
+	'Get-NodeQemuFirewall'
+	'Get-NodeQemuFirewallRules'
+	'New-NodeQemuFirewallRules'
+	'Get-NodeQemuFirewallRulesPos'
+	'Set-NodeQemuFirewallRulesPos'
+	'Remove-NodeQemuFirewallRulesPos'
+	'Get-NodeQemuAgent'
+	'New-NodeQemuAgent'
+	'Get-NodeQemuFirewallAliases'
+	'New-NodeQemuFirewallAliases'
+	'Get-NodeQemuFirewallAliasesName'
+	'Set-NodeQemuFirewallAliasesName'
+	'Remove-NodeQemuFirewallAliasesName'
+	'Get-NodeQemuRrd'
+	'Get-NodeQemuFirewallIpset'
+	'New-NodeQemuFirewallIpset'
+	'Get-NodeQemuFirewallIpsetName'
+	'New-NodeQemuFirewallIpsetName'
+	'Remove-NodeQemuFirewallIpsetName'
+	'Get-NodeQemuFirewallIpsetNameCidr'
+	'Set-NodeQemuFirewallIpsetNameCidr'
+	'Remove-NodeQemuFirewallIpsetNameCidr'
+	'Get-NodeQemuRrddata'
+	'Get-NodeQemuFirewallOptions'
+	'Set-NodeQemuFirewallOptions'
+	'Get-NodeQemuConfig'
+	'New-NodeQemuConfig'
+	'Set-NodeQemuConfig'
+	'Get-NodeQemuFirewallLog'
+	'Get-NodeQemuPending'
+	'Get-NodeQemuFirewallRefs'
+	'Set-NodeQemuUnlink'
+	'New-NodeQemuAgentFsfreezeFreeze'
+	'New-NodeQemuVncproxy'
+	'New-NodeQemuAgentFsfreezeStatus'
+	'New-NodeQemuTermproxy'
+	'New-NodeQemuAgentFsfreezeThaw'
+	'Get-NodeQemuVncwebsocket'
+	'New-NodeQemuAgentFstrim'
+	'New-NodeQemuSpiceproxy'
+	'Get-NodeQemuAgentGetFsinfo'
+	'Get-NodeQemuStatus'
+	'Get-NodeQemuAgentGetHostName'
+	'Set-NodeQemuSendkey'
+	'Get-NodeQemuAgentGetMemoryBlockInfo'
+	'Get-NodeQemuFeature'
+	'Get-NodeQemuAgentGetMemoryBlocks'
+	'New-NodeQemuClone'
+	'Get-NodeQemuAgentGetOsinfo'
+	'New-NodeQemuMoveDisk'
+	'Get-NodeQemuAgentGetTime'
+	'Get-NodeQemuMigrate'
+	'New-NodeQemuMigrate'
+	'Get-NodeQemuAgentGetTimezone'
+	'New-NodeQemuMonitor'
+	'Get-NodeQemuAgentGetUsers'
+	'Set-NodeQemuResize'
+	'Get-NodeQemuAgentGetVcpus'
+	'Get-NodeQemuSnapshot'
+	'New-NodeQemuSnapshot'
+	'Get-NodeQemuAgentInfo'
+	'New-NodeQemuTemplate'
+	'Get-NodeQemuAgentNetworkGetInterfaces'
+	'New-NodeQemuAgentPing'
+	'Get-NodeLxc'
+	'New-NodeLxc'
+	'Get-NodeLxcVmid'
+	'Remove-NodeLxcVmid'
+	'Get-NodeLxcConfig'
+	'Set-NodeLxcConfig'
+	'Get-NodeLxcStatus'
+	'Get-NodeLxcStatusCurrent'
+	'Get-NodeLxcSnapshot'
+	'New-NodeLxcSnapshot'
+	'New-NodeLxcStatusStart'
+	'Get-NodeLxcFirewall'
+	'New-NodeLxcStatusStop'
+	'Get-NodeLxcRrd'
+	'New-NodeLxcStatusShutdown'
+	'Get-NodeLxcRrddata'
+	'New-NodeLxcStatusSuspend'
+	'New-NodeLxcVncproxy'
+	'New-NodeLxcStatusResume'
+	'New-NodeLxcTermproxy'
+	'New-NodeLxcStatusReboot'
+	'Get-NodeLxcVncwebsocket'
+	'Get-NodeLxcSnapshotSnapname'
+	'Remove-NodeLxcSnapshotSnapname'
+	'New-NodeLxcSnapshotSnapnameRollback'
+	'Get-NodeLxcSnapshotSnapnameConfig'
+	'Set-NodeLxcSnapshotSnapnameConfig'
+	'New-NodeLxcSpiceproxy'
+	'Get-NodeLxcFirewallRules'
+	'New-NodeLxcFirewallRules'
+	'Get-NodeLxcFirewallRulesPos'
+	'Set-NodeLxcFirewallRulesPos'
+	'Remove-NodeLxcFirewallRulesPos'
+	'New-NodeLxcMigrate'
+	'Get-NodeLxcFirewallAliases'
+	'New-NodeLxcFirewallAliases'
+	'Get-NodeLxcFirewallAliasesName'
+	'Set-NodeLxcFirewallAliasesName'
+	'Remove-NodeLxcFirewallAliasesName'
+	'Get-NodeLxcFeature'
+	'Get-NodeLxcFirewallIpset'
+	'New-NodeLxcFirewallIpset'
+	'Get-NodeLxcFirewallIpsetName'
+	'New-NodeLxcFirewallIpsetName'
+	'Remove-NodeLxcFirewallIpsetName'
+	'Get-NodeLxcFirewallIpsetNameCidr'
+	'Set-NodeLxcFirewallIpsetNameCidr'
+	'Remove-NodeLxcFirewallIpsetNameCidr'
+	'New-NodeLxcTemplate'
+	'Get-NodeLxcFirewallOptions'
+	'Set-NodeLxcFirewallOptions'
+	'New-NodeLxcClone'
+	'Get-NodeLxcFirewallLog'
+	'Set-NodeLxcResize'
+	'Get-NodeLxcFirewallRefs'
+	'New-NodeLxcMoveVolume'
+	'Get-NodeLxcPending'
+	'Get-NodeCeph'
+	'Get-NodeCephOsd'
+	'New-NodeCephOsd'
+	'Remove-NodeCephOsdOsdid'
+	'New-NodeCephOsdIn'
+	'New-NodeCephOsdOut'
+	'New-NodeCephOsdScrub'
+	'New-NodeVzdump'
+	'Get-NodeCephMds'
+	'New-NodeCephMdsName'
+	'Remove-NodeCephMdsName'
+	'Get-NodeServices'
+	'Get-NodeCephMgr'
+	'New-NodeCephMgrId'
+	'Remove-NodeCephMgrId'
+	'Get-NodeSubscription'
+	'New-NodeSubscription'
+	'Set-NodeSubscription'
+	'Remove-NodeSubscription'
+	'Get-NodeCephMon'
+	'New-NodeCephMonMonid'
+	'Remove-NodeCephMonMonid'
+	'Get-NodeNetwork'
+	'New-NodeNetwork'
+	'Set-NodeNetwork'
+	'Remove-NodeNetwork'
+	'Get-NodeCephFs'
+	'New-NodeCephFsName'
+	'Get-NodeTasks'
+	'Get-NodeCephPools'
+	'New-NodeCephPools'
+	'Get-NodeCephPoolsName'
+	'Set-NodeCephPoolsName'
+	'Remove-NodeCephPoolsName'
+	'Get-NodeScan'
+	'Get-NodeCephConfig'
+	'Get-NodeHardware'
+	'Get-NodeCephConfigdb'
+	'Get-NodeCapabilities'
+	'New-NodeCephInit'
+	'Get-NodeStorage'
+	'New-NodeCephStop'
+	'Get-NodeDisks'
+	'New-NodeCephStart'
+	'Get-NodeApt'
+	'New-NodeCephRestart'
+	'Get-NodeFirewall'
+	'Get-NodeCephStatus'
+	'Get-NodeReplication'
+	'Get-NodeCephCrush'
+	'Get-NodeCertificates'
+	'Get-NodeCephLog'
+	'Get-NodeConfig'
+	'Set-NodeConfig'
+	'Get-NodeCephRules'
+	'Get-NodeSdn'
+	'Get-NodeVzdumpDefaults'
+	'Get-NodeVersion'
+	'Get-NodeVzdumpExtractconfig'
+	'Get-NodeStatus'
+	'New-NodeStatus'
+	'Get-NodeServicesService'
+	'Get-NodeServicesServiceState'
+	'New-NodeServicesServiceStart'
+	'New-NodeServicesServiceStop'
+	'New-NodeServicesServiceRestart'
+	'New-NodeServicesServiceReload'
+	'Get-NodeNetstat'
+	'New-NodeExecute'
+	'Get-NodeNetworkIface'
+	'Set-NodeNetworkIface'
+	'Remove-NodeNetworkIface'
+	'New-NodeWakeonlan'
+	'Get-NodeTasksUpid'
+	'Remove-NodeTasksUpid'
+	'Get-NodeTasksLog'
+	'Get-NodeTasksStatus'
+	'Get-NodeRrd'
+	'Get-NodeScanNfs'
+	'Get-NodeRrddata'
+	'Get-NodeScanCifs'
+	'Get-NodeSyslog'
+	'Get-NodeScanPbs'
+	'Get-NodeJournal'
+	'Get-NodeScanGlusterfs'
+	'New-NodeVncshell'
+	'Get-NodeScanIscsi'
+	'New-NodeTermproxy'
+	'Get-NodeScanLvm'
+	'Get-NodeVncwebsocket'
+	'Get-NodeScanLvmthin'
+	'New-NodeSpiceshell'
+	'Get-NodeScanZfs'
+	'Get-NodeDns'
+	'Set-NodeDns'
+	'Get-NodeHardwarePci'
+	'Get-NodeHardwarePciPciid'
+	'Get-NodeHardwarePciMdev'
+	'Get-NodeTime'
+	'Set-NodeTime'
+	'Get-NodeHardwareUsb'
+	'Get-NodeAplinfo'
+	'New-NodeAplinfo'
+	'Get-NodeCapabilitiesQemu'
+	'Get-NodeCapabilitiesQemuCpu'
+	'Get-NodeCapabilitiesQemuMachines'
+	'Get-NodeQueryUrlMetadata'
+	'Get-NodeStorage'
+	'Get-NodeStoragePrunebackups'
+	'Remove-NodeStoragePrunebackups'
+	'Get-NodeStorageContent'
+	'New-NodeStorageContent'
+	'Get-NodeStorageContentVolume'
+	'New-NodeStorageContentVolume'
+	'Set-NodeStorageContentVolume'
+	'Remove-NodeStorageContentVolume'
+	'Get-NodeStorageFileRestoreList'
+	'Get-NodeStorageStatus'
+	'Get-NodeStorageFileRestoreDownload'
+	'Get-NodeStorageRrd'
+	'Get-NodeStorageRrddata'
+	'New-NodeStorageUpload'
+	'New-NodeStorageDownloadUrl'
+	'Get-NodeReport'
+	'Get-NodeDisksLvm'
+	'New-NodeDisksLvm'
+	'Remove-NodeDisksLvmName'
+	'New-NodeStartall'
+	'Get-NodeDisksLvmthin'
+	'New-NodeDisksLvmthin'
+	'Remove-NodeDisksLvmthinName'
+	'New-NodeStopall'
+	'Get-NodeDisksDirectory'
+	'New-NodeDisksDirectory'
+	'Remove-NodeDisksDirectoryName'
+	'New-NodeMigrateall'
+	'Get-NodeDisksZfs'
+	'New-NodeDisksZfs'
+	'Get-NodeDisksZfsName'
+	'Remove-NodeDisksZfsName'
+	'Get-NodeHosts'
+	'New-NodeHosts'
+	'Get-NodeDisksList'
+	'Get-Storage'
+	'New-Storage'
+	'Get-Storage'
+	'Set-Storage'
+	'Remove-Storage'
+	'Get-Access'
+	'Get-AccessUsers'
+	'New-AccessUsers'
+	'Get-AccessUsersUserid'
+	'Set-AccessUsersUserid'
+	'Remove-AccessUsersUserid'
+	'Get-AccessUsersTfa'
+	'Get-AccessUsersToken'
+	'Get-AccessUsersTokenTokenid'
+	'New-AccessUsersTokenTokenid'
+	'Set-AccessUsersTokenTokenid'
+	'Remove-AccessUsersTokenTokenid'
+	'Get-AccessGroups'
+	'New-AccessGroups'
+	'Get-AccessGroupsGroupid'
+	'Set-AccessGroupsGroupid'
+	'Remove-AccessGroupsGroupid'
+	'Get-AccessRoles'
+	'New-AccessRoles'
+	'Get-AccessRolesRoleid'
+	'Set-AccessRolesRoleid'
+	'Remove-AccessRolesRoleid'
+	'Get-AccessAcl'
+	'Set-AccessAcl'
+	'Get-AccessDomains'
+	'New-AccessDomains'
+	'Get-AccessDomainsRealm'
+	'Set-AccessDomainsRealm'
+	'Remove-AccessDomainsRealm'
+	'New-AccessDomainsRealmSync'
+	'Get-AccessOpenid'
+	'New-AccessAuthUrl'
+	'Get-AccessTfa'
+	'New-AccessTfa'
+	'New-AccessLogin'
+	'Get-AccessTicket'
+	'Get-AccessTfaUserid'
+	'New-AccessTfaUserid'
+	'Get-AccessTfaId'
+	'Set-AccessTfaId'
+	'Remove-AccessTfaId'
+	'Set-AccessPassword'
+	'Get-AccessPermissions'
+	'Get-Pools'
+	'New-Pools'
+	'Get-PoolsPoolid'
+	'Set-PoolsPoolid'
+	'Remove-PoolsPoolid'
+	'Get-Version'
 
 )
