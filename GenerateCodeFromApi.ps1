@@ -344,6 +344,8 @@ function Build-ApiCmdlets {
                         $ParamUri = ($_.Parameters | Where-Object { $Path -like "{$($_.Name)}" }).Name
                 
                         $ParamUri | ForEach-Object {
+                            # $PathParams = $null
+                            # $PathParams = $NewPath -split "/" | Where-Object { $_ -like "{*}" } | ForEach-Object { $_ -replace "{$($_)}", "$($_ -replace '_')" }
                             $NewPath = $NewPath -replace "{$($_)}", "`$$($_ -replace '_')"
                         }
                     }
@@ -352,8 +354,8 @@ function Build-ApiCmdlets {
                     # Init $Options array
                     "`t`$Options = @()"
                     # Add required to $Options and skip any in the path/uri
-                    $_.Parameters | Where-Object { $_.Required -and $Path -notlike "{$($_.Name)}" } | ForEach-Object {
-                        "`t`$Options.Add('$($_.Name)',`$$($_.Name -replace '-'))"
+                    $_.Parameters | Where-Object { $_.Required -and $Path -match "{$($_.Name)}" } | ForEach-Object {
+                        "`t`$Options.Add('$($_.Name)', `$$($_.Name -replace '-'))"
                     }
                     # Add optional params to $Options
                     $_.Parameters | Where-Object { -not $_.Required } | ForEach-Object {
@@ -436,25 +438,25 @@ function Build-ApiCmdlets {
                         }
                         else {
                             if ($_.Type -like "boolean") {
-                                "`tif (`$$($_.Name -replace '-')) { `$Options.Add('$($_.Name)',`$$($_.Name -replace '-')) }"
+                                "`tif (`$$($_.Name -replace '-')) { `$Options.Add('$($_.Name)', `$$($_.Name -replace '-')) }"
                             }
                             elseif ($_.Name -like "*password*") {
-                                "`tif (`$$($_.Name -replace '-')) { `$Options.Add('$($_.Name)',`$(`$$($_.Name -replace '-') | ConvertFrom-SecureString -AsPlainText)) }"
+                                "`tif (`$$($_.Name -replace '-')) { `$Options.Add('$($_.Name)', `$(`$$($_.Name -replace '-') | ConvertFrom-SecureString -AsPlainText)) }"
                             }
                             elseif ($_.Name -like "args") {
-                                "`tif (`$AudioArgs -and -not [String]::IsNullOrEmpty(`$AudioArgs) -and -not [String]::IsNullOrWhiteSpace(`$AudioArgs)) { `$Options.Add('$($_.Name)',`$AudioArgs) }"
+                                "`tif (`$AudioArgs -and -not [String]::IsNullOrEmpty(`$AudioArgs) -and -not [String]::IsNullOrWhiteSpace(`$AudioArgs)) { `$Options.Add('$($_.Name)', `$AudioArgs) }"
                             }
                             else {
-                                "`tif (`$$($_.Name -replace '-') -and -not [String]::IsNullOrEmpty(`$$($_.Name -replace '-')) -and -not [String]::IsNullOrWhiteSpace(`$$($_.Name -replace '-'))) { `$Options.Add('$($_.Name)',`$$($_.Name -replace '-')) }"
+                                "`tif (`$$($_.Name -replace '-') -and -not [String]::IsNullOrEmpty(`$$($_.Name -replace '-')) -and -not [String]::IsNullOrWhiteSpace(`$$($_.Name -replace '-'))) { `$Options.Add('$($_.Name)', `$$($_.Name -replace '-')) }"
                             }
                         }
                     }
                     # Invoke API call
-                    "`tInvoke-ProxmoxAPI -Method $($_.Method) -Resource `"$($NewPath)`" -Options `$Options"
+                    "`tInvoke-ProxmoxAPI -Method $($_.Method) -Resource `"$($NewPath -replace "{","$" -replace "}")`" -Options `$Options"
                 }
                 else {
                     "`t)"
-                    "`tInvoke-ProxmoxAPI -Method $($_.Method) -Resource `"$($NewPath)`""
+                    "`tInvoke-ProxmoxAPI -Method $($_.Method) -Resource `"$($NewPath -replace "{","$" -replace "}")`""
                 }
                 "}"
             }
@@ -477,7 +479,7 @@ $api = $json | ConvertFrom-Json | ForEach-Object {
 }
 
 $ScriptPath = "./ProxmoxCLI/public/Api.ps1"
-
+Remove-Item -Path $ScriptPath
 Build-Api -Data $api | Out-File -FilePath $ScriptPath -Force
 
 # Add module members via Export-ModuleMember
