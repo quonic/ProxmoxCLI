@@ -446,12 +446,15 @@ function Build-ApiCmdlets {
                         }
                         else {
                             if ($_.Type -like "boolean") {
+                                # Handle booleans
                                 "`tif (`$$($_.Name -replace '-')) { `$Options.Add('$($_.Name)', `$$($_.Name -replace '-')) }"
                             }
                             elseif ($_.Name -like "*password*") {
+                                # Handle password parameters
                                 "`tif (`$$($_.Name -replace '-')) { `$Options.Add('$($_.Name)', `$(`$$($_.Name -replace '-') | ConvertFrom-SecureString -AsPlainText)) }"
                             }
                             elseif ($_.Name -like "args") {
+                                # Handle AudioArgs
                                 "`tif (`$AudioArgs -and -not [String]::IsNullOrEmpty(`$AudioArgs) -and -not [String]::IsNullOrWhiteSpace(`$AudioArgs)) { `$Options.Add('$($_.Name)', `$AudioArgs) }"
                             }
                             else {
@@ -479,21 +482,27 @@ function Build-ApiCmdlets {
     }
 }
 
+# Api descrition file
 $apidataurl = "https://raw.githubusercontent.com/proxmox/pve-docs/master/api-viewer/apidata.js"
 
+# Get apidata.js
 $data = Invoke-WebRequest -Uri $apidataurl
+# Split into an array of strings
 $d = $data.Content -split "`n"
+# Remove javascript code
 $d[0] = $d[0] -replace "const apiSchema \= \[", "["
+# Join everything back together
 $json = $d[0..($d.Count - 4)] -join "`r`n"
-# $json | Out-File ".\pveapi.json" -Force
+# Convert from json and Loop through each parent object
 $api = $json | ConvertFrom-Json | ForEach-Object {
+    # Create each child object
     Get-ApiChild -Child $_
 }
 
 $ScriptPath = "./ProxmoxCLI/public/Api.ps1"
 # Remove current Api.ps1
 Remove-Item -Path $ScriptPath
-# Build Api.ps1
+# Build Api.ps1 from child object
 Build-Api -Data $api | Out-File -FilePath $ScriptPath -Force
 
 # Add module members via Export-ModuleMember
