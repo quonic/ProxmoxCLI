@@ -1,4 +1,8 @@
-
+[CmdletBinding()]
+param(
+    [switch]
+    $Test
+)
 function Get-ApiChild {
     [OutputType([PSCustomObject[]])]
     param (
@@ -487,10 +491,12 @@ $api = $json | ConvertFrom-Json | ForEach-Object {
 }
 
 $ScriptPath = "./ProxmoxCLI/public/Api.ps1"
+# Remove current Api.ps1
 Remove-Item -Path $ScriptPath
+# Build Api.ps1
 Build-Api -Data $api | Out-File -FilePath $ScriptPath -Force
 
 # Add module members via Export-ModuleMember
-$functionList = (Select-String -Path $ScriptPath -Pattern "function " -Raw) -replace "function ", "`t'" -replace " \{", "'`n"
-$ExportMemberList = "Export-ModuleMember -Function @(`n" + $($functionList) + "`n)"
-$ExportMemberList | Out-File -FilePath $ScriptPath -Append -Force
+# $functionList = (Select-String -Path $ScriptPath -Pattern "function " -Raw) -replace "function ", "`t'" -replace " \{", "'`n"
+# $ExportMemberList = "Export-ModuleMember -Function @(`n" + $($functionList) + "`n)"
+# $ExportMemberList | Out-File -FilePath $ScriptPath -Append -Force
