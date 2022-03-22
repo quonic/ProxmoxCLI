@@ -351,11 +351,15 @@ function Build-ApiCmdlets {
                     }
                 
                     "`t)"
-                    # Init $Options array
-                    "`t`$Options = @()"
                     # Add required to $Options and skip any in the path/uri
+                    $OptionsList = ""
                     $_.Parameters | Where-Object { $_.Required -and $Path -match "{$($_.Name)}" } | ForEach-Object {
-                        "`t`$Options.Add('$($_.Name)', `$$($_.Name -replace '-'))"
+                        $OptionsList += "`t`$Options.Add('$($_.Name)', `$$($_.Name -replace '-'))"
+                    }
+                    if($OptionsList){
+                        # Init $Options array if there are options to use
+                        "`t`$Options = @()"
+                        $OptionsList
                     }
                     # Add optional params to $Options
                     $_.Parameters | Where-Object { -not $_.Required } | ForEach-Object {
@@ -452,7 +456,11 @@ function Build-ApiCmdlets {
                         }
                     }
                     # Invoke API call
-                    "`tInvoke-ProxmoxAPI -Method $($_.Method) -Resource `"$($NewPath -replace "{","$" -replace "}")`" -Options `$Options"
+                    if ($OptionsList) {
+                        "`tInvoke-ProxmoxAPI -Method $($_.Method) -Resource `"$($NewPath -replace "{","$" -replace "}")`" -Options `$Options"
+                    }else{
+                        "`tInvoke-ProxmoxAPI -Method $($_.Method) -Resource `"$($NewPath -replace "{","$" -replace "}")`""
+                    }
                 }
                 else {
                     "`t)"
