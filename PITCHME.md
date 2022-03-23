@@ -4,7 +4,7 @@ A Proxmox PowerShell module for accessing your Proxmox APIs
 
 ---
 
-### Getting Started
+## Getting Started
 
 Install from the PSGallery and Import the module
 

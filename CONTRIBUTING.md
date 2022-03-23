@@ -23,7 +23,6 @@ Please note we have a code of conduct, please follow it in all your interactions
 
 ## Code of Conduct
 
-
 # Contributor Covenant Code of Conduct
 
 ## Our Pledge

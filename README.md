@@ -35,7 +35,6 @@ Install from the PSGallery and Import the module
 * Connect to a Proxmox sever with `Connect-PveServer -Server "Proxmox1"`, use `-BypassSSLCheck` if your computer doesn't trust the SSL cert from the Proxmox server.
 * Run `Get-Node | Get-Guest` and you should see a list of your guests.
 
-
 ## More Information
 
 For more information
@@ -43,6 +42,5 @@ For more information
 <!-- * [ProxmoxCLI.readthedocs.io](http://ProxmoxCLI.readthedocs.io) -->
 * [github.com/quonic/ProxmoxCLI](https://github.com/quonic/ProxmoxCLI)
 <!-- * [quonic.github.io](https://quonic.github.io) -->
-
 
 This project was generated using [Kevin Marquette](http://kevinmarquette.github.io)'s [Full Module Plaster Template](https://github.com/KevinMarquette/PlasterTemplates/tree/master/FullModuleTemplate).
