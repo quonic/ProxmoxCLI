@@ -499,7 +499,7 @@ $api = $json | ConvertFrom-Json | ForEach-Object {
     Get-ApiChild -Child $_
 }
 
-$ScriptPath = "./ProxmoxCLI/public/Api.ps1"
+$ScriptPath = "./ProxmoxCLI/private/Api.ps1"
 # Remove current Api.ps1
 Remove-Item -Path $ScriptPath
 # Build Api.ps1 from child object
