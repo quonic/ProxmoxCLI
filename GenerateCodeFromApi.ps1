@@ -48,6 +48,7 @@ function Get-ApiProperties {
                 Required    = if (($Properties | Select-Object -ExpandProperty $_).optional -eq 1) { $false } else { $true }
                 Type        = ($Properties | Select-Object -ExpandProperty $_).type
                 Description = ($Properties | Select-Object -ExpandProperty $_).description
+                Format      = ($Properties | Select-Object -ExpandProperty $_).format
             }
         }
         else {
@@ -56,6 +57,7 @@ function Get-ApiProperties {
                 Required    = if ($Properties."$Name".optional -eq 1) { $false } else { $true }
                 Type        = $Properties."$Name".type
                 Description = $Properties."$Name".description
+                Format      = $Properties."$Name".format
             }
         }
     }
@@ -208,6 +210,26 @@ function Build-ApiCmdlets {
                             if ($_.Required) {
                                 "`t`t[Parameter(Mandatory)]"
                             }
+                            if ($_.Format -and $_.Format -isnot [String]) {
+                                $_.Format | Get-Member -MemberType NoteProperty | ForEach-Object {
+                                    if ($_.pattern) {
+                                        "`t`t[ValidatePattern(""$($_.pattern)"")]"
+                                    }
+                                    if ($_.minimum -and $_.maximum) {
+                                        "`t`t[ValidateRange($($_.minimum), $($_.maximum))]"
+                                    }
+                                    elseif ($_.minimum -and -not $_.maximum) {
+                                        "`t`t[ValidateRange($($_.minimum), $([Int32]::MaxValue))]"
+                                    }
+                                    elseif (-not $_.minimum -and $_.maximum) {
+                                        "`t`t[ValidateRange(0, $($_.maximum))]"
+                                    }
+                                    if ($_.format_description) {
+                                        "# Format: $($_.format_description)"
+                                    }
+                                    $_ | Select-Object -Property format, type
+                                }
+                            }
                             if ($($_.Name -replace '-') -match ".+\[n\]") {
                                 $pDesc = $_.Description
                                 if ($_.Type -like "boolean") {
@@ -323,6 +345,7 @@ function Build-ApiCmdlets {
                             }
                             else {
                                 "`t`t# $(($_.Description -split "`n")[0])"
+                                "`t`t# $(($_.Format -split "`n")[0])"
                                 if ($_.Type -like "boolean") {
                                     "`t`t[switch]"
                                 }
@@ -333,7 +356,7 @@ function Build-ApiCmdlets {
                                     "`t`t[$($_.Type)]"
                                 }
                                 if ($_.Name -like "args") {
-                                    "`t`t`$AudioArgs,"
+                                    "`t`t`$args,"
                                 }
                                 else {
                                     "`t`t`$$($_.Name -replace '-'),"
@@ -360,7 +383,7 @@ function Build-ApiCmdlets {
                     $_.Parameters | Where-Object { $_.Required -and $Path -match "{$($_.Name)}" } | ForEach-Object {
                         $OptionsList += "`t`$Options.Add('$($_.Name)', `$$($_.Name -replace '-'))"
                     }
-                    if($OptionsList){
+                    if ($OptionsList) {
                         # Init $Options array if there are options to use
                         "`t`$Options = @()"
                         $OptionsList
@@ -454,8 +477,8 @@ function Build-ApiCmdlets {
                                 "`tif (`$$($_.Name -replace '-')) { `$Options.Add('$($_.Name)', `$(`$$($_.Name -replace '-') | ConvertFrom-SecureString -AsPlainText)) }"
                             }
                             elseif ($_.Name -like "args") {
-                                # Handle AudioArgs
-                                "`tif (`$AudioArgs -and -not [String]::IsNullOrEmpty(`$AudioArgs) -and -not [String]::IsNullOrWhiteSpace(`$AudioArgs)) { `$Options.Add('$($_.Name)', `$AudioArgs) }"
+                                # Handle args
+                                "`tif (`$args -and -not [String]::IsNullOrEmpty(`$args) -and -not [String]::IsNullOrWhiteSpace(`$args)) { `$Options.Add('$($_.Name)', `$args) }"
                             }
                             else {
                                 "`tif (`$$($_.Name -replace '-') -and -not [String]::IsNullOrEmpty(`$$($_.Name -replace '-')) -and -not [String]::IsNullOrWhiteSpace(`$$($_.Name -replace '-'))) { `$Options.Add('$($_.Name)', `$$($_.Name -replace '-')) }"
@@ -465,7 +488,8 @@ function Build-ApiCmdlets {
                     # Invoke API call
                     if ($OptionsList) {
                         "`tInvoke-ProxmoxAPI -Method $($_.Method) -Resource `"$($NewPath -replace "{","$" -replace "}")`" -Options `$Options"
-                    }else{
+                    }
+                    else {
                         "`tInvoke-ProxmoxAPI -Method $($_.Method) -Resource `"$($NewPath -replace "{","$" -replace "}")`""
                     }
                 }
