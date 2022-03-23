@@ -211,25 +211,30 @@ function Build-ApiCmdlets {
                                 "`t`t[Parameter(Mandatory)]"
                             }
                             if ($_.Format -and $_.Format -isnot [String]) {
-                                $_.Format | Get-Member -MemberType NoteProperty | ForEach-Object {
-                                    if ($_.pattern) {
-                                        "`t`t[ValidatePattern(""$($_.pattern)"")]"
+                                "`t`t# Format:"
+                                $Format = $_.Format
+                                $Format | Get-Member -MemberType NoteProperty | ForEach-Object {
+                                    $Name = $_.Name
+                                    $FormatString = "`t`t# "
+                                    # $Format.$Name | Select-Object -Property format_description, minimum, maximum, pattern
+                                    $FormatString = "$($FormatString) $Name="
+                                    if ($Format.$Name.minimum -and -not $Format.$Name.maximum) {
+                                        $FormatString = "$($FormatString)<$($Format.$Name.minimum)-N>"
+                                    }elseif (-not $Format.$Name.minimum -and $Format.$Name.maximum) {
+                                        $FormatString = "$($FormatString)<0-$($Format.$Name.maximum)>"
                                     }
-                                    if ($_.minimum -and $_.maximum) {
-                                        "`t`t[ValidateRange($($_.minimum), $($_.maximum))]"
+                                    elseif ($Format.$Name.minimum -and $Format.$Name.maximum) {
+                                        $FormatString = "$($FormatString)<$($Format.$Name.minimum)-$($Format.$Name.maximum)>"
                                     }
-                                    elseif ($_.minimum -and -not $_.maximum) {
-                                        "`t`t[ValidateRange($($_.minimum), $([Int32]::MaxValue))]"
+                                    if ($Format.$Name.pattern) {
+                                        $FormatString = "$($FormatString)($($Format.$Name.pattern))"
                                     }
-                                    elseif (-not $_.minimum -and $_.maximum) {
-                                        "`t`t[ValidateRange(0, $($_.maximum))]"
-                                    }
-                                    if ($_.format_description) {
-                                        "# Format: $($_.format_description)"
-                                    }
-                                    $_ | Select-Object -Property format, type
+                                    "$FormatString"
                                 }
                             }
+                            # elseif ($_.Format -and $_.Format -is [String]) {
+                            #     "`t`t# Format: $($_.Format)"
+                            # }
                             if ($($_.Name -replace '-') -match ".+\[n\]") {
                                 $pDesc = $_.Description
                                 if ($_.Type -like "boolean") {
@@ -345,7 +350,7 @@ function Build-ApiCmdlets {
                             }
                             else {
                                 "`t`t# $(($_.Description -split "`n")[0])"
-                                "`t`t# $(($_.Format -split "`n")[0])"
+                                # "`t`t# $(($_.Format -split "`n")[0])"
                                 if ($_.Type -like "boolean") {
                                     "`t`t[switch]"
                                 }
@@ -356,7 +361,7 @@ function Build-ApiCmdlets {
                                     "`t`t[$($_.Type)]"
                                 }
                                 if ($_.Name -like "args") {
-                                    "`t`t`$args,"
+                                    "`t`t`$arguments,"
                                 }
                                 else {
                                     "`t`t`$$($_.Name -replace '-'),"
@@ -478,7 +483,7 @@ function Build-ApiCmdlets {
                             }
                             elseif ($_.Name -like "args") {
                                 # Handle args
-                                "`tif (`$args -and -not [String]::IsNullOrEmpty(`$args) -and -not [String]::IsNullOrWhiteSpace(`$args)) { `$Options.Add('$($_.Name)', `$args) }"
+                                "`tif (`$arguments -and -not [String]::IsNullOrEmpty(`$arguments) -and -not [String]::IsNullOrWhiteSpace(`$arguments)) { `$Options.Add('$($_.Name)', `$arguments) }"
                             }
                             else {
                                 "`tif (`$$($_.Name -replace '-') -and -not [String]::IsNullOrEmpty(`$$($_.Name -replace '-')) -and -not [String]::IsNullOrWhiteSpace(`$$($_.Name -replace '-'))) { `$Options.Add('$($_.Name)', `$$($_.Name -replace '-')) }"

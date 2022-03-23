@@ -316,6 +316,9 @@ function New-ClusterConfig {
 		# The name of the cluster.
 		[string]
 		$clustername,
+		# Format:
+		#  address=
+		#  priority=<0-255>
 		# Address and priority information of a single corosync link. (up to 8 links supported; link0..link7)
 		[string]
 		$link0,
@@ -387,6 +390,9 @@ function New-ClusterConfigNodesNode {
 		# The JOIN_API_VERSION of the new node.
 		[integer]
 		$apiversion,
+		# Format:
+		#  address=
+		#  priority=<0-255>
 		# Address and priority information of a single corosync link. (up to 8 links supported; link0..link7)
 		[string]
 		$link0,
@@ -440,7 +446,7 @@ function New-ClusterConfigNodesNode {
 	if ($votes -and -not [String]::IsNullOrEmpty($votes) -and -not [String]::IsNullOrWhiteSpace($votes)) { $Options.Add('votes', $votes) }
 	Invoke-ProxmoxAPI -Method POST -Resource "/cluster/config/nodes/$node"
 }
-function Remove-ClusterConfigNodesNode {
+function Remove-ClusterConfigNodesNodePriority {
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
@@ -614,6 +620,9 @@ function New-ClusterConfigJoin {
 		# Hostname (or IP) of an existing cluster member.
 		[string]
 		$hostname,
+		# Format:
+		#  address=
+		#  priority=<0-255>
 		# Address and priority information of a single corosync link. (up to 8 links supported; link0..link7)
 		[string]
 		$link0,
@@ -1368,6 +1377,10 @@ function Set-ClusterFirewallOptions {
 		# Enable or disable the firewall cluster wide.
 		[integer]
 		$enable,
+		# Format:
+		#  burst=
+		#  enable=
+		#  rate=([1-9][0-9]*\/(second|minute|hour|day))
 		# Log ratelimiting settings
 		[string]
 		$log_ratelimit,
@@ -1433,6 +1446,12 @@ function Get-ClusterOptions {
 function Set-ClusterOptions {
 	[CmdletBinding()]
 	param(
+		# Format:
+		#  clone=<0-N>
+		#  default=<0-N>
+		#  migration=<0-N>
+		#  move=<0-N>
+		#  restore=<0-N>
 		# Set bandwidth/io limits various operations.
 		[string]
 		$bwlimit,
@@ -1451,6 +1470,8 @@ function Set-ClusterOptions {
 		# Set the fencing mode of the HA cluster. Hardware mode needs a valid configuration of fence devices in /etc/pve/ha/fence.cfg. With both all two modes are used.
 		[string]
 		$fencing,
+		# Format:
+		#  shutdown_policy=
 		# Cluster wide HA settings.
 		[string]
 		$ha,
@@ -1469,15 +1490,25 @@ function Set-ClusterOptions {
 		# Defines how many workers (per node) are maximal started  on actions like 'stopall VMs' or task from the ha-manager.
 		[integer]
 		$max_workers,
+		# Format:
+		#  network=
+		#  type=
 		# For cluster wide migration settings.
 		[string]
 		$migration,
 		# Migration is secure using SSH tunnel by default. For secure private networks you can disable it to speed up migration. Deprecated, use the 'migration' property instead!
 		[switch]
 		$migration_unsecure,
+		# Format:
+		#  appid=
+		#  origin=
 		# u2f
 		[string]
 		$u2f,
+		# Format:
+		#  id=
+		#  origin=
+		#  rp=
 		# webauthn configuration
 		[string]
 		$webauthn
@@ -1867,6 +1898,10 @@ function New-NodeQemu {
 		# Enable/disable ACPI.
 		[switch]
 		$acpi,
+		# Format:
+		#  enabled=
+		#  fstrim_cloned_disks=
+		#  type=
 		# Enable/disable communication with the Qemu Guest Agent and its properties.
 		[string]
 		$agent,
@@ -1878,7 +1913,10 @@ function New-NodeQemu {
 		$archive,
 		# Arbitrary arguments passed to kvm.
 		[string]
-		$AudioArgs,
+		$arguments,
+		# Format:
+		#  device=
+		#  driver=
 		# Configure a audio device, useful in combination with QXL/Spice.
 		[string]
 		$audio0,
@@ -1930,6 +1968,13 @@ function New-NodeQemu {
 		# Description for the VM. Shown in the web-interface VM's summary. This is saved as comment inside the configuration file.
 		[string]
 		$description,
+		# Format:
+		#  efitype=
+		#  file=
+		#  format=
+		#  pre-enrolled-keys=
+		#  size=
+		#  volume=
 		# Configure a Disk for storing EFI vars. Use the special syntax STORAGE_ID:SIZE_IN_GiB to allocate a new volume. Note that SIZE_IN_GiB is ignored here and that the default EFI vars are copied to the volume instead.
 		[string]
 		$efidisk0,
@@ -1978,6 +2023,55 @@ function New-NodeQemu {
 		# Enable/disable hugepages memory.
 		[string]
 		$hugepages,
+		# Format:
+		#  aio=
+		#  backup=
+		#  bps=
+		#  bps_max_length=<1-N>
+		#  bps_rd=
+		#  bps_rd_length=
+		#  bps_rd_max_length=<1-N>
+		#  bps_wr=
+		#  bps_wr_length=
+		#  bps_wr_max_length=<1-N>
+		#  cache=
+		#  cyls=
+		#  detect_zeroes=
+		#  discard=
+		#  file=
+		#  format=
+		#  heads=
+		#  iops=
+		#  iops_max=
+		#  iops_max_length=<1-N>
+		#  iops_rd=
+		#  iops_rd_length=
+		#  iops_rd_max=
+		#  iops_rd_max_length=<1-N>
+		#  iops_wr=
+		#  iops_wr_length=
+		#  iops_wr_max=
+		#  iops_wr_max_length=<1-N>
+		#  mbps=
+		#  mbps_max=
+		#  mbps_rd=
+		#  mbps_rd_max=
+		#  mbps_wr=
+		#  mbps_wr_max=
+		#  media=
+		#  model=
+		#  replicate=
+		#  rerror=
+		#  secs=
+		#  serial=
+		#  shared=
+		#  size=
+		#  snapshot=
+		#  ssd=
+		#  trans=
+		#  volume=
+		#  werror=
+		#  wwn=((?^:^(0x)[0-9a-fA-F]{16}))
 		# Use volume as IDE hard disk or CD-ROM (n is 0 to 3). Use the special syntax STORAGE_ID:SIZE_IN_GiB to allocate a new volume.
 		[string]
 		$ide0,
@@ -2023,6 +2117,9 @@ function New-NodeQemu {
 		# cloud-init: Specify IP addresses and gateways for the corresponding interface.
 		[string]
 		$ipconfig10,
+		# Format:
+		#  name=([a-zA-Z0-9\-]+)
+		#  size=<1-N>
 		# Inter-VM shared memory. Useful for direct communication between VMs, or to the host.
 		[string]
 		$ivshmem,
@@ -2062,6 +2159,31 @@ function New-NodeQemu {
 		# cloud-init: Sets DNS server IP address for a container. Create will'
 		[string]
 		$nameserver,
+		# Format:
+		#  bridge=([-_.\w\d]+)
+		#  e1000=
+		#  e1000-82540em=
+		#  e1000-82544gc=
+		#  e1000-82545em=
+		#  e1000e=
+		#  firewall=
+		#  i82551=
+		#  i82557b=
+		#  i82559er=
+		#  link_down=
+		#  macaddr=
+		#  model=
+		#  mtu=<1-65520>
+		#  ne2k_isa=
+		#  ne2k_pci=
+		#  pcnet=
+		#  queues=<0-16>
+		#  rate=
+		#  rtl8139=
+		#  tag=<1-4094>
+		#  trunks=((?^:\d+(?:-\d+)?(?:;\d+(?:-\d+)?)*))
+		#  virtio=
+		#  vmxnet3=
 		# Specify network devices.
 		[string]
 		$net0,
@@ -2102,6 +2224,11 @@ function New-NodeQemu {
 		# Enable/disable NUMA.
 		[switch]
 		$numa,
+		# Format:
+		#  cpus=((?^:\d+(?:-\d+)?(?:;\d+(?:-\d+)?)*))
+		#  hostnodes=((?^:\d+(?:-\d+)?(?:;\d+(?:-\d+)?)*))
+		#  memory=
+		#  policy=
 		# NUMA topology.
 		[string]
 		$numa0,
@@ -2159,9 +2286,61 @@ function New-NodeQemu {
 		# Allow reboot. If set to '0' the VM exit on reboot.
 		[switch]
 		$reboot,
+		# Format:
+		#  max_bytes=
+		#  period=
+		#  source=
 		# Configure a VirtIO-based Random Number Generator.
 		[string]
 		$rng0,
+		# Format:
+		#  aio=
+		#  backup=
+		#  bps=
+		#  bps_max_length=<1-N>
+		#  bps_rd=
+		#  bps_rd_length=
+		#  bps_rd_max_length=<1-N>
+		#  bps_wr=
+		#  bps_wr_length=
+		#  bps_wr_max_length=<1-N>
+		#  cache=
+		#  cyls=
+		#  detect_zeroes=
+		#  discard=
+		#  file=
+		#  format=
+		#  heads=
+		#  iops=
+		#  iops_max=
+		#  iops_max_length=<1-N>
+		#  iops_rd=
+		#  iops_rd_length=
+		#  iops_rd_max=
+		#  iops_rd_max_length=<1-N>
+		#  iops_wr=
+		#  iops_wr_length=
+		#  iops_wr_max=
+		#  iops_wr_max_length=<1-N>
+		#  mbps=
+		#  mbps_max=
+		#  mbps_rd=
+		#  mbps_rd_max=
+		#  mbps_wr=
+		#  mbps_wr_max=
+		#  media=
+		#  replicate=
+		#  rerror=
+		#  secs=
+		#  serial=
+		#  shared=
+		#  size=
+		#  snapshot=
+		#  ssd=
+		#  trans=
+		#  volume=
+		#  werror=
+		#  wwn=((?^:^(0x)[0-9a-fA-F]{16}))
 		# Use volume as SATA hard disk or CD-ROM (n is 0 to 5). Use the special syntax STORAGE_ID:SIZE_IN_GiB to allocate a new volume.
 		[string]
 		$sata0,
@@ -2183,6 +2362,58 @@ function New-NodeQemu {
 		# SCSI controller model
 		[string]
 		$scsihw,
+		# Format:
+		#  aio=
+		#  backup=
+		#  bps=
+		#  bps_max_length=<1-N>
+		#  bps_rd=
+		#  bps_rd_length=
+		#  bps_rd_max_length=<1-N>
+		#  bps_wr=
+		#  bps_wr_length=
+		#  bps_wr_max_length=<1-N>
+		#  cache=
+		#  cyls=
+		#  detect_zeroes=
+		#  discard=
+		#  file=
+		#  format=
+		#  heads=
+		#  iops=
+		#  iops_max=
+		#  iops_max_length=<1-N>
+		#  iops_rd=
+		#  iops_rd_length=
+		#  iops_rd_max=
+		#  iops_rd_max_length=<1-N>
+		#  iops_wr=
+		#  iops_wr_length=
+		#  iops_wr_max=
+		#  iops_wr_max_length=<1-N>
+		#  iothread=
+		#  mbps=
+		#  mbps_max=
+		#  mbps_rd=
+		#  mbps_rd_max=
+		#  mbps_wr=
+		#  mbps_wr_max=
+		#  media=
+		#  queues=<2-N>
+		#  replicate=
+		#  rerror=
+		#  ro=
+		#  scsiblock=
+		#  secs=
+		#  serial=
+		#  shared=
+		#  size=
+		#  snapshot=
+		#  ssd=
+		#  trans=
+		#  volume=
+		#  werror=
+		#  wwn=((?^:^(0x)[0-9a-fA-F]{16}))
 		# Use volume as SCSI hard disk or CD-ROM (n is 0 to 30). Use the special syntax STORAGE_ID:SIZE_IN_GiB to allocate a new volume.
 		[string]
 		$scsi0,
@@ -2303,6 +2534,9 @@ function New-NodeQemu {
 		# The number of CPU sockets.
 		[integer]
 		$sockets,
+		# Format:
+		#  foldersharing=
+		#  videostreaming=
 		# Configure additional enhancements for SPICE.
 		[string]
 		$spice_enhancements,
@@ -2333,12 +2567,23 @@ function New-NodeQemu {
 		# Enable/disable Template.
 		[switch]
 		$template,
+		# Format:
+		#  file=
+		#  size=
+		#  version=
+		#  volume=
 		# Configure a Disk for storing TPM state. Use the special syntax STORAGE_ID:SIZE_IN_GiB to allocate a new volume. Note that SIZE_IN_GiB is ignored here and that the default size of 4 MiB will always be used instead. The format is also fixed to 'raw'.
 		[string]
 		$tpmstate0,
 		# Assign a unique random ethernet address.
 		[switch]
 		$unique,
+		# Format:
+		#  file=
+		#  volume=
+		# Format:
+		#  host=
+		#  usb3=
 		# Configure an USB device (n is 0 to 4).
 		[string]
 		$usb0,
@@ -2357,9 +2602,60 @@ function New-NodeQemu {
 		# Number of hotplugged vcpus.
 		[integer]
 		$vcpus,
+		# Format:
+		#  memory=<4-512>
+		#  type=
 		# Configure the VGA hardware.
 		[string]
 		$vga,
+		# Format:
+		#  aio=
+		#  backup=
+		#  bps=
+		#  bps_max_length=<1-N>
+		#  bps_rd=
+		#  bps_rd_length=
+		#  bps_rd_max_length=<1-N>
+		#  bps_wr=
+		#  bps_wr_length=
+		#  bps_wr_max_length=<1-N>
+		#  cache=
+		#  cyls=
+		#  detect_zeroes=
+		#  discard=
+		#  file=
+		#  format=
+		#  heads=
+		#  iops=
+		#  iops_max=
+		#  iops_max_length=<1-N>
+		#  iops_rd=
+		#  iops_rd_length=
+		#  iops_rd_max=
+		#  iops_rd_max_length=<1-N>
+		#  iops_wr=
+		#  iops_wr_length=
+		#  iops_wr_max=
+		#  iops_wr_max_length=<1-N>
+		#  iothread=
+		#  mbps=
+		#  mbps_max=
+		#  mbps_rd=
+		#  mbps_rd_max=
+		#  mbps_wr=
+		#  mbps_wr_max=
+		#  media=
+		#  replicate=
+		#  rerror=
+		#  ro=
+		#  secs=
+		#  serial=
+		#  shared=
+		#  size=
+		#  snapshot=
+		#  trans=
+		#  volume=
+		#  werror=
 		# Use volume as VIRTIO hard disk (n is 0 to 15). Use the special syntax STORAGE_ID:SIZE_IN_GiB to allocate a new volume.
 		[string]
 		$virtio0,
@@ -2426,7 +2722,7 @@ function New-NodeQemu {
 	if ($agent -and -not [String]::IsNullOrEmpty($agent) -and -not [String]::IsNullOrWhiteSpace($agent)) { $Options.Add('agent', $agent) }
 	if ($arch -and -not [String]::IsNullOrEmpty($arch) -and -not [String]::IsNullOrWhiteSpace($arch)) { $Options.Add('arch', $arch) }
 	if ($archive -and -not [String]::IsNullOrEmpty($archive) -and -not [String]::IsNullOrWhiteSpace($archive)) { $Options.Add('archive', $archive) }
-	if ($AudioArgs -and -not [String]::IsNullOrEmpty($AudioArgs) -and -not [String]::IsNullOrWhiteSpace($AudioArgs)) { $Options.Add('args', $AudioArgs) }
+	if ($arguments -and -not [String]::IsNullOrEmpty($arguments) -and -not [String]::IsNullOrWhiteSpace($arguments)) { $Options.Add('args', $arguments) }
 	if ($audio0 -and -not [String]::IsNullOrEmpty($audio0) -and -not [String]::IsNullOrWhiteSpace($audio0)) { $Options.Add('audio0', $audio0) }
 	if ($autostart) { $Options.Add('autostart', $autostart) }
 	if ($balloon -and -not [String]::IsNullOrEmpty($balloon) -and -not [String]::IsNullOrWhiteSpace($balloon)) { $Options.Add('balloon', $balloon) }
@@ -3379,6 +3675,10 @@ function New-NodeQemuConfig {
 		# Enable/disable ACPI.
 		[switch]
 		$acpi,
+		# Format:
+		#  enabled=
+		#  fstrim_cloned_disks=
+		#  type=
 		# Enable/disable communication with the Qemu Guest Agent and its properties.
 		[string]
 		$agent,
@@ -3387,7 +3687,10 @@ function New-NodeQemuConfig {
 		$arch,
 		# Arbitrary arguments passed to kvm.
 		[string]
-		$AudioArgs,
+		$arguments,
+		# Format:
+		#  device=
+		#  driver=
 		# Configure a audio device, useful in combination with QXL/Spice.
 		[string]
 		$audio0,
@@ -3445,6 +3748,13 @@ function New-NodeQemuConfig {
 		# Prevent changes if current configuration file has different SHA1 digest. This can be used to prevent concurrent modifications.
 		[string]
 		$digest,
+		# Format:
+		#  efitype=
+		#  file=
+		#  format=
+		#  pre-enrolled-keys=
+		#  size=
+		#  volume=
 		# Configure a Disk for storing EFI vars. Use the special syntax STORAGE_ID:SIZE_IN_GiB to allocate a new volume. Note that SIZE_IN_GiB is ignored here and that the default EFI vars are copied to the volume instead.
 		[string]
 		$efidisk0,
@@ -3493,6 +3803,55 @@ function New-NodeQemuConfig {
 		# Enable/disable hugepages memory.
 		[string]
 		$hugepages,
+		# Format:
+		#  aio=
+		#  backup=
+		#  bps=
+		#  bps_max_length=<1-N>
+		#  bps_rd=
+		#  bps_rd_length=
+		#  bps_rd_max_length=<1-N>
+		#  bps_wr=
+		#  bps_wr_length=
+		#  bps_wr_max_length=<1-N>
+		#  cache=
+		#  cyls=
+		#  detect_zeroes=
+		#  discard=
+		#  file=
+		#  format=
+		#  heads=
+		#  iops=
+		#  iops_max=
+		#  iops_max_length=<1-N>
+		#  iops_rd=
+		#  iops_rd_length=
+		#  iops_rd_max=
+		#  iops_rd_max_length=<1-N>
+		#  iops_wr=
+		#  iops_wr_length=
+		#  iops_wr_max=
+		#  iops_wr_max_length=<1-N>
+		#  mbps=
+		#  mbps_max=
+		#  mbps_rd=
+		#  mbps_rd_max=
+		#  mbps_wr=
+		#  mbps_wr_max=
+		#  media=
+		#  model=
+		#  replicate=
+		#  rerror=
+		#  secs=
+		#  serial=
+		#  shared=
+		#  size=
+		#  snapshot=
+		#  ssd=
+		#  trans=
+		#  volume=
+		#  werror=
+		#  wwn=((?^:^(0x)[0-9a-fA-F]{16}))
 		# Use volume as IDE hard disk or CD-ROM (n is 0 to 3). Use the special syntax STORAGE_ID:SIZE_IN_GiB to allocate a new volume.
 		[string]
 		$ide0,
@@ -3538,6 +3897,9 @@ function New-NodeQemuConfig {
 		# cloud-init: Specify IP addresses and gateways for the corresponding interface.
 		[string]
 		$ipconfig10,
+		# Format:
+		#  name=([a-zA-Z0-9\-]+)
+		#  size=<1-N>
 		# Inter-VM shared memory. Useful for direct communication between VMs, or to the host.
 		[string]
 		$ivshmem,
@@ -3574,6 +3936,31 @@ function New-NodeQemuConfig {
 		# cloud-init: Sets DNS server IP address for a container. Create will'
 		[string]
 		$nameserver,
+		# Format:
+		#  bridge=([-_.\w\d]+)
+		#  e1000=
+		#  e1000-82540em=
+		#  e1000-82544gc=
+		#  e1000-82545em=
+		#  e1000e=
+		#  firewall=
+		#  i82551=
+		#  i82557b=
+		#  i82559er=
+		#  link_down=
+		#  macaddr=
+		#  model=
+		#  mtu=<1-65520>
+		#  ne2k_isa=
+		#  ne2k_pci=
+		#  pcnet=
+		#  queues=<0-16>
+		#  rate=
+		#  rtl8139=
+		#  tag=<1-4094>
+		#  trunks=((?^:\d+(?:-\d+)?(?:;\d+(?:-\d+)?)*))
+		#  virtio=
+		#  vmxnet3=
 		# Specify network devices.
 		[string]
 		$net0,
@@ -3614,6 +4001,11 @@ function New-NodeQemuConfig {
 		# Enable/disable NUMA.
 		[switch]
 		$numa,
+		# Format:
+		#  cpus=((?^:\d+(?:-\d+)?(?:;\d+(?:-\d+)?)*))
+		#  hostnodes=((?^:\d+(?:-\d+)?(?:;\d+(?:-\d+)?)*))
+		#  memory=
+		#  policy=
 		# NUMA topology.
 		[string]
 		$numa0,
@@ -3671,9 +4063,61 @@ function New-NodeQemuConfig {
 		# Revert a pending change.
 		[string]
 		$revert,
+		# Format:
+		#  max_bytes=
+		#  period=
+		#  source=
 		# Configure a VirtIO-based Random Number Generator.
 		[string]
 		$rng0,
+		# Format:
+		#  aio=
+		#  backup=
+		#  bps=
+		#  bps_max_length=<1-N>
+		#  bps_rd=
+		#  bps_rd_length=
+		#  bps_rd_max_length=<1-N>
+		#  bps_wr=
+		#  bps_wr_length=
+		#  bps_wr_max_length=<1-N>
+		#  cache=
+		#  cyls=
+		#  detect_zeroes=
+		#  discard=
+		#  file=
+		#  format=
+		#  heads=
+		#  iops=
+		#  iops_max=
+		#  iops_max_length=<1-N>
+		#  iops_rd=
+		#  iops_rd_length=
+		#  iops_rd_max=
+		#  iops_rd_max_length=<1-N>
+		#  iops_wr=
+		#  iops_wr_length=
+		#  iops_wr_max=
+		#  iops_wr_max_length=<1-N>
+		#  mbps=
+		#  mbps_max=
+		#  mbps_rd=
+		#  mbps_rd_max=
+		#  mbps_wr=
+		#  mbps_wr_max=
+		#  media=
+		#  replicate=
+		#  rerror=
+		#  secs=
+		#  serial=
+		#  shared=
+		#  size=
+		#  snapshot=
+		#  ssd=
+		#  trans=
+		#  volume=
+		#  werror=
+		#  wwn=((?^:^(0x)[0-9a-fA-F]{16}))
 		# Use volume as SATA hard disk or CD-ROM (n is 0 to 5). Use the special syntax STORAGE_ID:SIZE_IN_GiB to allocate a new volume.
 		[string]
 		$sata0,
@@ -3695,6 +4139,58 @@ function New-NodeQemuConfig {
 		# SCSI controller model
 		[string]
 		$scsihw,
+		# Format:
+		#  aio=
+		#  backup=
+		#  bps=
+		#  bps_max_length=<1-N>
+		#  bps_rd=
+		#  bps_rd_length=
+		#  bps_rd_max_length=<1-N>
+		#  bps_wr=
+		#  bps_wr_length=
+		#  bps_wr_max_length=<1-N>
+		#  cache=
+		#  cyls=
+		#  detect_zeroes=
+		#  discard=
+		#  file=
+		#  format=
+		#  heads=
+		#  iops=
+		#  iops_max=
+		#  iops_max_length=<1-N>
+		#  iops_rd=
+		#  iops_rd_length=
+		#  iops_rd_max=
+		#  iops_rd_max_length=<1-N>
+		#  iops_wr=
+		#  iops_wr_length=
+		#  iops_wr_max=
+		#  iops_wr_max_length=<1-N>
+		#  iothread=
+		#  mbps=
+		#  mbps_max=
+		#  mbps_rd=
+		#  mbps_rd_max=
+		#  mbps_wr=
+		#  mbps_wr_max=
+		#  media=
+		#  queues=<2-N>
+		#  replicate=
+		#  rerror=
+		#  ro=
+		#  scsiblock=
+		#  secs=
+		#  serial=
+		#  shared=
+		#  size=
+		#  snapshot=
+		#  ssd=
+		#  trans=
+		#  volume=
+		#  werror=
+		#  wwn=((?^:^(0x)[0-9a-fA-F]{16}))
 		# Use volume as SCSI hard disk or CD-ROM (n is 0 to 30). Use the special syntax STORAGE_ID:SIZE_IN_GiB to allocate a new volume.
 		[string]
 		$scsi0,
@@ -3818,6 +4314,9 @@ function New-NodeQemuConfig {
 		# The number of CPU sockets.
 		[integer]
 		$sockets,
+		# Format:
+		#  foldersharing=
+		#  videostreaming=
 		# Configure additional enhancements for SPICE.
 		[string]
 		$spice_enhancements,
@@ -3842,9 +4341,20 @@ function New-NodeQemuConfig {
 		# Enable/disable Template.
 		[switch]
 		$template,
+		# Format:
+		#  file=
+		#  size=
+		#  version=
+		#  volume=
 		# Configure a Disk for storing TPM state. Use the special syntax STORAGE_ID:SIZE_IN_GiB to allocate a new volume. Note that SIZE_IN_GiB is ignored here and that the default size of 4 MiB will always be used instead. The format is also fixed to 'raw'.
 		[string]
 		$tpmstate0,
+		# Format:
+		#  file=
+		#  volume=
+		# Format:
+		#  host=
+		#  usb3=
 		# Configure an USB device (n is 0 to 4).
 		[string]
 		$usb0,
@@ -3863,9 +4373,60 @@ function New-NodeQemuConfig {
 		# Number of hotplugged vcpus.
 		[integer]
 		$vcpus,
+		# Format:
+		#  memory=<4-512>
+		#  type=
 		# Configure the VGA hardware.
 		[string]
 		$vga,
+		# Format:
+		#  aio=
+		#  backup=
+		#  bps=
+		#  bps_max_length=<1-N>
+		#  bps_rd=
+		#  bps_rd_length=
+		#  bps_rd_max_length=<1-N>
+		#  bps_wr=
+		#  bps_wr_length=
+		#  bps_wr_max_length=<1-N>
+		#  cache=
+		#  cyls=
+		#  detect_zeroes=
+		#  discard=
+		#  file=
+		#  format=
+		#  heads=
+		#  iops=
+		#  iops_max=
+		#  iops_max_length=<1-N>
+		#  iops_rd=
+		#  iops_rd_length=
+		#  iops_rd_max=
+		#  iops_rd_max_length=<1-N>
+		#  iops_wr=
+		#  iops_wr_length=
+		#  iops_wr_max=
+		#  iops_wr_max_length=<1-N>
+		#  iothread=
+		#  mbps=
+		#  mbps_max=
+		#  mbps_rd=
+		#  mbps_rd_max=
+		#  mbps_wr=
+		#  mbps_wr_max=
+		#  media=
+		#  replicate=
+		#  rerror=
+		#  ro=
+		#  secs=
+		#  serial=
+		#  shared=
+		#  size=
+		#  snapshot=
+		#  trans=
+		#  volume=
+		#  werror=
 		# Use volume as VIRTIO hard disk (n is 0 to 15). Use the special syntax STORAGE_ID:SIZE_IN_GiB to allocate a new volume.
 		[string]
 		$virtio0,
@@ -3931,7 +4492,7 @@ function New-NodeQemuConfig {
 	if ($acpi) { $Options.Add('acpi', $acpi) }
 	if ($agent -and -not [String]::IsNullOrEmpty($agent) -and -not [String]::IsNullOrWhiteSpace($agent)) { $Options.Add('agent', $agent) }
 	if ($arch -and -not [String]::IsNullOrEmpty($arch) -and -not [String]::IsNullOrWhiteSpace($arch)) { $Options.Add('arch', $arch) }
-	if ($AudioArgs -and -not [String]::IsNullOrEmpty($AudioArgs) -and -not [String]::IsNullOrWhiteSpace($AudioArgs)) { $Options.Add('args', $AudioArgs) }
+	if ($arguments -and -not [String]::IsNullOrEmpty($arguments) -and -not [String]::IsNullOrWhiteSpace($arguments)) { $Options.Add('args', $arguments) }
 	if ($audio0 -and -not [String]::IsNullOrEmpty($audio0) -and -not [String]::IsNullOrWhiteSpace($audio0)) { $Options.Add('audio0', $audio0) }
 	if ($autostart) { $Options.Add('autostart', $autostart) }
 	if ($background_delay -and -not [String]::IsNullOrEmpty($background_delay) -and -not [String]::IsNullOrWhiteSpace($background_delay)) { $Options.Add('background_delay', $background_delay) }
@@ -4112,12 +4673,16 @@ function New-NodeQemuConfig {
 	if ($watchdog -and -not [String]::IsNullOrEmpty($watchdog) -and -not [String]::IsNullOrWhiteSpace($watchdog)) { $Options.Add('watchdog', $watchdog) }
 	Invoke-ProxmoxAPI -Method POST -Resource "/nodes/$node/qemu/$vmid/config"
 }
-function Set-NodeQemuConfig {
+function Set-NodeQemuConfigWerror {
 	[CmdletBinding()]
 	param(
 		# Enable/disable ACPI.
 		[switch]
 		$acpi,
+		# Format:
+		#  enabled=
+		#  fstrim_cloned_disks=
+		#  type=
 		# Enable/disable communication with the Qemu Guest Agent and its properties.
 		[string]
 		$agent,
@@ -4126,7 +4691,10 @@ function Set-NodeQemuConfig {
 		$arch,
 		# Arbitrary arguments passed to kvm.
 		[string]
-		$AudioArgs,
+		$arguments,
+		# Format:
+		#  device=
+		#  driver=
 		# Configure a audio device, useful in combination with QXL/Spice.
 		[string]
 		$audio0,
@@ -4181,6 +4749,13 @@ function Set-NodeQemuConfig {
 		# Prevent changes if current configuration file has different SHA1 digest. This can be used to prevent concurrent modifications.
 		[string]
 		$digest,
+		# Format:
+		#  efitype=
+		#  file=
+		#  format=
+		#  pre-enrolled-keys=
+		#  size=
+		#  volume=
 		# Configure a Disk for storing EFI vars. Use the special syntax STORAGE_ID:SIZE_IN_GiB to allocate a new volume. Note that SIZE_IN_GiB is ignored here and that the default EFI vars are copied to the volume instead.
 		[string]
 		$efidisk0,
@@ -4229,6 +4804,55 @@ function Set-NodeQemuConfig {
 		# Enable/disable hugepages memory.
 		[string]
 		$hugepages,
+		# Format:
+		#  aio=
+		#  backup=
+		#  bps=
+		#  bps_max_length=<1-N>
+		#  bps_rd=
+		#  bps_rd_length=
+		#  bps_rd_max_length=<1-N>
+		#  bps_wr=
+		#  bps_wr_length=
+		#  bps_wr_max_length=<1-N>
+		#  cache=
+		#  cyls=
+		#  detect_zeroes=
+		#  discard=
+		#  file=
+		#  format=
+		#  heads=
+		#  iops=
+		#  iops_max=
+		#  iops_max_length=<1-N>
+		#  iops_rd=
+		#  iops_rd_length=
+		#  iops_rd_max=
+		#  iops_rd_max_length=<1-N>
+		#  iops_wr=
+		#  iops_wr_length=
+		#  iops_wr_max=
+		#  iops_wr_max_length=<1-N>
+		#  mbps=
+		#  mbps_max=
+		#  mbps_rd=
+		#  mbps_rd_max=
+		#  mbps_wr=
+		#  mbps_wr_max=
+		#  media=
+		#  model=
+		#  replicate=
+		#  rerror=
+		#  secs=
+		#  serial=
+		#  shared=
+		#  size=
+		#  snapshot=
+		#  ssd=
+		#  trans=
+		#  volume=
+		#  werror=
+		#  wwn=((?^:^(0x)[0-9a-fA-F]{16}))
 		# Use volume as IDE hard disk or CD-ROM (n is 0 to 3). Use the special syntax STORAGE_ID:SIZE_IN_GiB to allocate a new volume.
 		[string]
 		$ide0,
@@ -4274,6 +4898,9 @@ function Set-NodeQemuConfig {
 		# cloud-init: Specify IP addresses and gateways for the corresponding interface.
 		[string]
 		$ipconfig10,
+		# Format:
+		#  name=([a-zA-Z0-9\-]+)
+		#  size=<1-N>
 		# Inter-VM shared memory. Useful for direct communication between VMs, or to the host.
 		[string]
 		$ivshmem,
@@ -4310,6 +4937,31 @@ function Set-NodeQemuConfig {
 		# cloud-init: Sets DNS server IP address for a container. Create will'
 		[string]
 		$nameserver,
+		# Format:
+		#  bridge=([-_.\w\d]+)
+		#  e1000=
+		#  e1000-82540em=
+		#  e1000-82544gc=
+		#  e1000-82545em=
+		#  e1000e=
+		#  firewall=
+		#  i82551=
+		#  i82557b=
+		#  i82559er=
+		#  link_down=
+		#  macaddr=
+		#  model=
+		#  mtu=<1-65520>
+		#  ne2k_isa=
+		#  ne2k_pci=
+		#  pcnet=
+		#  queues=<0-16>
+		#  rate=
+		#  rtl8139=
+		#  tag=<1-4094>
+		#  trunks=((?^:\d+(?:-\d+)?(?:;\d+(?:-\d+)?)*))
+		#  virtio=
+		#  vmxnet3=
 		# Specify network devices.
 		[string]
 		$net0,
@@ -4350,6 +5002,11 @@ function Set-NodeQemuConfig {
 		# Enable/disable NUMA.
 		[switch]
 		$numa,
+		# Format:
+		#  cpus=((?^:\d+(?:-\d+)?(?:;\d+(?:-\d+)?)*))
+		#  hostnodes=((?^:\d+(?:-\d+)?(?:;\d+(?:-\d+)?)*))
+		#  memory=
+		#  policy=
 		# NUMA topology.
 		[string]
 		$numa0,
@@ -4407,9 +5064,61 @@ function Set-NodeQemuConfig {
 		# Revert a pending change.
 		[string]
 		$revert,
+		# Format:
+		#  max_bytes=
+		#  period=
+		#  source=
 		# Configure a VirtIO-based Random Number Generator.
 		[string]
 		$rng0,
+		# Format:
+		#  aio=
+		#  backup=
+		#  bps=
+		#  bps_max_length=<1-N>
+		#  bps_rd=
+		#  bps_rd_length=
+		#  bps_rd_max_length=<1-N>
+		#  bps_wr=
+		#  bps_wr_length=
+		#  bps_wr_max_length=<1-N>
+		#  cache=
+		#  cyls=
+		#  detect_zeroes=
+		#  discard=
+		#  file=
+		#  format=
+		#  heads=
+		#  iops=
+		#  iops_max=
+		#  iops_max_length=<1-N>
+		#  iops_rd=
+		#  iops_rd_length=
+		#  iops_rd_max=
+		#  iops_rd_max_length=<1-N>
+		#  iops_wr=
+		#  iops_wr_length=
+		#  iops_wr_max=
+		#  iops_wr_max_length=<1-N>
+		#  mbps=
+		#  mbps_max=
+		#  mbps_rd=
+		#  mbps_rd_max=
+		#  mbps_wr=
+		#  mbps_wr_max=
+		#  media=
+		#  replicate=
+		#  rerror=
+		#  secs=
+		#  serial=
+		#  shared=
+		#  size=
+		#  snapshot=
+		#  ssd=
+		#  trans=
+		#  volume=
+		#  werror=
+		#  wwn=((?^:^(0x)[0-9a-fA-F]{16}))
 		# Use volume as SATA hard disk or CD-ROM (n is 0 to 5). Use the special syntax STORAGE_ID:SIZE_IN_GiB to allocate a new volume.
 		[string]
 		$sata0,
@@ -4431,6 +5140,58 @@ function Set-NodeQemuConfig {
 		# SCSI controller model
 		[string]
 		$scsihw,
+		# Format:
+		#  aio=
+		#  backup=
+		#  bps=
+		#  bps_max_length=<1-N>
+		#  bps_rd=
+		#  bps_rd_length=
+		#  bps_rd_max_length=<1-N>
+		#  bps_wr=
+		#  bps_wr_length=
+		#  bps_wr_max_length=<1-N>
+		#  cache=
+		#  cyls=
+		#  detect_zeroes=
+		#  discard=
+		#  file=
+		#  format=
+		#  heads=
+		#  iops=
+		#  iops_max=
+		#  iops_max_length=<1-N>
+		#  iops_rd=
+		#  iops_rd_length=
+		#  iops_rd_max=
+		#  iops_rd_max_length=<1-N>
+		#  iops_wr=
+		#  iops_wr_length=
+		#  iops_wr_max=
+		#  iops_wr_max_length=<1-N>
+		#  iothread=
+		#  mbps=
+		#  mbps_max=
+		#  mbps_rd=
+		#  mbps_rd_max=
+		#  mbps_wr=
+		#  mbps_wr_max=
+		#  media=
+		#  queues=<2-N>
+		#  replicate=
+		#  rerror=
+		#  ro=
+		#  scsiblock=
+		#  secs=
+		#  serial=
+		#  shared=
+		#  size=
+		#  snapshot=
+		#  ssd=
+		#  trans=
+		#  volume=
+		#  werror=
+		#  wwn=((?^:^(0x)[0-9a-fA-F]{16}))
 		# Use volume as SCSI hard disk or CD-ROM (n is 0 to 30). Use the special syntax STORAGE_ID:SIZE_IN_GiB to allocate a new volume.
 		[string]
 		$scsi0,
@@ -4554,6 +5315,9 @@ function Set-NodeQemuConfig {
 		# The number of CPU sockets.
 		[integer]
 		$sockets,
+		# Format:
+		#  foldersharing=
+		#  videostreaming=
 		# Configure additional enhancements for SPICE.
 		[string]
 		$spice_enhancements,
@@ -4578,9 +5342,20 @@ function Set-NodeQemuConfig {
 		# Enable/disable Template.
 		[switch]
 		$template,
+		# Format:
+		#  file=
+		#  size=
+		#  version=
+		#  volume=
 		# Configure a Disk for storing TPM state. Use the special syntax STORAGE_ID:SIZE_IN_GiB to allocate a new volume. Note that SIZE_IN_GiB is ignored here and that the default size of 4 MiB will always be used instead. The format is also fixed to 'raw'.
 		[string]
 		$tpmstate0,
+		# Format:
+		#  file=
+		#  volume=
+		# Format:
+		#  host=
+		#  usb3=
 		# Configure an USB device (n is 0 to 4).
 		[string]
 		$usb0,
@@ -4599,9 +5374,60 @@ function Set-NodeQemuConfig {
 		# Number of hotplugged vcpus.
 		[integer]
 		$vcpus,
+		# Format:
+		#  memory=<4-512>
+		#  type=
 		# Configure the VGA hardware.
 		[string]
 		$vga,
+		# Format:
+		#  aio=
+		#  backup=
+		#  bps=
+		#  bps_max_length=<1-N>
+		#  bps_rd=
+		#  bps_rd_length=
+		#  bps_rd_max_length=<1-N>
+		#  bps_wr=
+		#  bps_wr_length=
+		#  bps_wr_max_length=<1-N>
+		#  cache=
+		#  cyls=
+		#  detect_zeroes=
+		#  discard=
+		#  file=
+		#  format=
+		#  heads=
+		#  iops=
+		#  iops_max=
+		#  iops_max_length=<1-N>
+		#  iops_rd=
+		#  iops_rd_length=
+		#  iops_rd_max=
+		#  iops_rd_max_length=<1-N>
+		#  iops_wr=
+		#  iops_wr_length=
+		#  iops_wr_max=
+		#  iops_wr_max_length=<1-N>
+		#  iothread=
+		#  mbps=
+		#  mbps_max=
+		#  mbps_rd=
+		#  mbps_rd_max=
+		#  mbps_wr=
+		#  mbps_wr_max=
+		#  media=
+		#  replicate=
+		#  rerror=
+		#  ro=
+		#  secs=
+		#  serial=
+		#  shared=
+		#  size=
+		#  snapshot=
+		#  trans=
+		#  volume=
+		#  werror=
 		# Use volume as VIRTIO hard disk (n is 0 to 15). Use the special syntax STORAGE_ID:SIZE_IN_GiB to allocate a new volume.
 		[string]
 		$virtio0,
@@ -4667,7 +5493,7 @@ function Set-NodeQemuConfig {
 	if ($acpi) { $Options.Add('acpi', $acpi) }
 	if ($agent -and -not [String]::IsNullOrEmpty($agent) -and -not [String]::IsNullOrWhiteSpace($agent)) { $Options.Add('agent', $agent) }
 	if ($arch -and -not [String]::IsNullOrEmpty($arch) -and -not [String]::IsNullOrWhiteSpace($arch)) { $Options.Add('arch', $arch) }
-	if ($AudioArgs -and -not [String]::IsNullOrEmpty($AudioArgs) -and -not [String]::IsNullOrWhiteSpace($AudioArgs)) { $Options.Add('args', $AudioArgs) }
+	if ($arguments -and -not [String]::IsNullOrEmpty($arguments) -and -not [String]::IsNullOrWhiteSpace($arguments)) { $Options.Add('args', $arguments) }
 	if ($audio0 -and -not [String]::IsNullOrEmpty($audio0) -and -not [String]::IsNullOrWhiteSpace($audio0)) { $Options.Add('audio0', $audio0) }
 	if ($autostart) { $Options.Add('autostart', $autostart) }
 	if ($balloon -and -not [String]::IsNullOrEmpty($balloon) -and -not [String]::IsNullOrWhiteSpace($balloon)) { $Options.Add('balloon', $balloon) }
@@ -5622,6 +6448,13 @@ function New-NodeLxc {
 		# Description for the Container. Shown in the web-interface CT's summary. This is saved as comment inside the configuration file.
 		[string]
 		$description,
+		# Format:
+		#  force_rw_sys=
+		#  fuse=
+		#  keyctl=
+		#  mknod=
+		#  mount=((?^:[a-zA-Z0-9_; ]+))
+		#  nesting=
 		# Allow containers access to advanced features.
 		[string]
 		$features,
@@ -5640,6 +6473,17 @@ function New-NodeLxc {
 		# Amount of RAM for the VM in MB.
 		[integer]
 		$memory,
+		# Format:
+		#  acl=
+		#  backup=
+		#  mountoptions=((?^:(?^:(noatime|nodev|nosuid|noexec))(;(?^:(noatime|nodev|nosuid|noexec)))*))
+		#  mp=
+		#  quota=
+		#  replicate=
+		#  ro=
+		#  shared=
+		#  size=
+		#  volume=
 		# Use volume as container mount point. Use the special syntax STORAGE_ID:SIZE_IN_GiB to allocate a new volume.
 		[string]
 		$mp0,
@@ -5676,6 +6520,20 @@ function New-NodeLxc {
 		# Sets DNS server IP address for a container. Create will automatically use the setting from the host if you neither set searchdomain nor nameserver.
 		[string]
 		$nameserver,
+		# Format:
+		#  bridge=([-_.\w\d]+)
+		#  firewall=
+		#  gw=
+		#  gw6=
+		#  hwaddr=
+		#  ip=
+		#  ip6=
+		#  mtu=<64-N>
+		#  name=([-_.\w\d]+)
+		#  rate=
+		#  tag=<1-4094>
+		#  trunks=((?^:\d+(?:;\d+)*))
+		#  type=
 		# Specifies network interfaces for the container.
 		[string]
 		$net0,
@@ -5735,6 +6593,15 @@ function New-NodeLxc {
 		# Mark this as restore task.
 		[switch]
 		$restore,
+		# Format:
+		#  acl=
+		#  mountoptions=((?^:(?^:(noatime|nodev|nosuid|noexec))(;(?^:(noatime|nodev|nosuid|noexec)))*))
+		#  quota=
+		#  replicate=
+		#  ro=
+		#  shared=
+		#  size=
+		#  volume=
 		# Use volume as container root.
 		[string]
 		$rootfs,
@@ -5774,6 +6641,8 @@ function New-NodeLxc {
 		# Makes the container run as unprivileged user. (Should not be modified manually.)
 		[switch]
 		$unprivileged,
+		# Format:
+		#  volume=
 		[Parameter(Mandatory)]
 		# The (unique) ID of the VM.
 		[integer]
@@ -5931,6 +6800,13 @@ function Set-NodeLxcConfig {
 		# Prevent changes if current configuration file has different SHA1 digest. This can be used to prevent concurrent modifications.
 		[string]
 		$digest,
+		# Format:
+		#  force_rw_sys=
+		#  fuse=
+		#  keyctl=
+		#  mknod=
+		#  mount=((?^:[a-zA-Z0-9_; ]+))
+		#  nesting=
 		# Allow containers access to advanced features.
 		[string]
 		$features,
@@ -5946,6 +6822,17 @@ function Set-NodeLxcConfig {
 		# Amount of RAM for the VM in MB.
 		[integer]
 		$memory,
+		# Format:
+		#  acl=
+		#  backup=
+		#  mountoptions=((?^:(?^:(noatime|nodev|nosuid|noexec))(;(?^:(noatime|nodev|nosuid|noexec)))*))
+		#  mp=
+		#  quota=
+		#  replicate=
+		#  ro=
+		#  shared=
+		#  size=
+		#  volume=
 		# Use volume as container mount point. Use the special syntax STORAGE_ID:SIZE_IN_GiB to allocate a new volume.
 		[string]
 		$mp0,
@@ -5982,6 +6869,20 @@ function Set-NodeLxcConfig {
 		# Sets DNS server IP address for a container. Create will automatically use the setting from the host if you neither set searchdomain nor nameserver.
 		[string]
 		$nameserver,
+		# Format:
+		#  bridge=([-_.\w\d]+)
+		#  firewall=
+		#  gw=
+		#  gw6=
+		#  hwaddr=
+		#  ip=
+		#  ip6=
+		#  mtu=<64-N>
+		#  name=([-_.\w\d]+)
+		#  rate=
+		#  tag=<1-4094>
+		#  trunks=((?^:\d+(?:;\d+)*))
+		#  type=
 		# Specifies network interfaces for the container.
 		[string]
 		$net0,
@@ -6031,6 +6932,15 @@ function Set-NodeLxcConfig {
 		# Revert a pending change.
 		[string]
 		$revert,
+		# Format:
+		#  acl=
+		#  mountoptions=((?^:(?^:(noatime|nodev|nosuid|noexec))(;(?^:(noatime|nodev|nosuid|noexec)))*))
+		#  quota=
+		#  replicate=
+		#  ro=
+		#  shared=
+		#  size=
+		#  volume=
 		# Use volume as container root.
 		[string]
 		$rootfs,
@@ -6058,6 +6968,8 @@ function Set-NodeLxcConfig {
 		# Makes the container run as unprivileged user. (Should not be modified manually.)
 		[switch]
 		$unprivileged,
+		# Format:
+		#  volume=
 		[Parameter(Mandatory)]
 		# The (unique) ID of the VM.
 		[integer]
@@ -8498,9 +9410,16 @@ function Get-NodeConfig {
 function Set-NodeConfig {
 	[CmdletBinding()]
 	param(
+		# Format:
+		#  account=
+		#  domains=
 		# Node specific ACME settings.
 		[string]
 		$acme,
+		# Format:
+		#  alias=
+		#  domain=
+		#  plugin=
 		# ACME domain and validation plugin
 		[string]
 		$acmedomain0,
@@ -10350,6 +11269,12 @@ function New-Storage {
 		# block size
 		[string]
 		$blocksize,
+		# Format:
+		#  clone=<0-N>
+		#  default=<0-N>
+		#  migration=<0-N>
+		#  move=<0-N>
+		#  restore=<0-N>
 		# Set bandwidth/io limits various operations.
 		[string]
 		$bwlimit,
@@ -10586,6 +11511,12 @@ function Set-Storage {
 		# block size
 		[string]
 		$blocksize,
+		# Format:
+		#  clone=<0-N>
+		#  default=<0-N>
+		#  migration=<0-N>
+		#  move=<0-N>
+		#  restore=<0-N>
 		# Set bandwidth/io limits various operations.
 		[string]
 		$bwlimit,
@@ -10766,7 +11697,7 @@ function Set-Storage {
 	if ($username -and -not [String]::IsNullOrEmpty($username) -and -not [String]::IsNullOrWhiteSpace($username)) { $Options.Add('username', $username) }
 	Invoke-ProxmoxAPI -Method PUT -Resource "/storage/$storage"
 }
-function Remove-Storage {
+function Remove-StorageRestore {
 	[CmdletBinding()]
 	param(
 		[Parameter(Mandatory)]
