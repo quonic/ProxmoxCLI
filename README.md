@@ -6,6 +6,7 @@ A Proxmox module for accessing your Proxmox APIs similar in functionality to Pow
 
 * Developing and Testing
 * NOT Production Ready, yet.
+* Work on a way to dynamicly generating cmdlets from [apidata.js](https://raw.githubusercontent.com/proxmox/pve-docs/master/api-viewer/apidata.js)
 
 [![Build status](https://ci.appveyor.com/api/projects/status/pxsta8uglrc9kql8?svg=true)](https://ci.appveyor.com/project/quonic/proxmoxcli)
 
